@@ -192,6 +192,7 @@ BursarExportsConfigurationForm.propTypes = {
 };
 
 export const BursarExportsConfiguration = stripesFinalForm({
+  keepDirtyOnReinitialize: true,
   subscription: { values: true },
   navigationCheck: true,
   mutators: {
@@ -203,7 +204,6 @@ export const BursarExportsConfiguration = stripesFinalForm({
 
       if (prevValue === SCHEDULE_PERIODS.none) {
         utils.changeValue(state, 'scheduleFrequency', () => 1);
-        utils.changeValue(state, 'daysOutstanding', () => 1);
       }
 
       if (prevValue === SCHEDULE_PERIODS.weeks) {
@@ -216,8 +216,6 @@ export const BursarExportsConfiguration = stripesFinalForm({
 
       if (nextValue === SCHEDULE_PERIODS.none) {
         utils.changeValue(state, 'scheduleFrequency', () => undefined);
-        utils.changeValue(state, 'daysOutstanding', () => undefined);
-        utils.changeValue(state, 'patronGroups', () => undefined);
       }
     },
   },
