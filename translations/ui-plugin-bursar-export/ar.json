@@ -23,7 +23,7 @@
     "bursarExports.patronGroups": "مجموعات المستفيدين",
     "bursarExports.save.success": "تم حفظ تهيئة تصديرات Bursar بنجاح",
     "bursarExports.save.error": "لم يتم حفظ تهيئة تصديرات Bursar",
-    "bursarExports.runManually": "Run manually",
-    "bursarExports.runManually.success": "Bursar exports has been successfully scheduled",
-    "bursarExports.runManually.error": "Bursar exports was not scheduled"
+    "bursarExports.runManually": "تشغيل يدوي",
+    "bursarExports.runManually.success": "تمت جدولة تصديرات Bursar بنجاح",
+    "bursarExports.runManually.error": "لم تتم جدولة تصديرات Bursar"
 }
