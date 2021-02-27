@@ -23,7 +23,7 @@
     "bursarExports.patronGroups": "Patron groups",
     "bursarExports.save.success": "Bursar exports configuration has been successfully saved",
     "bursarExports.save.error": "Bursar exports configuration was not saved",
-    "bursarExports.runManually": "Run manually",
+    "bursarExports.runManually": "Ejecutar manualmente",
     "bursarExports.runManually.success": "Bursar exports has been successfully scheduled",
     "bursarExports.runManually.error": "Bursar exports was not scheduled"
 }
