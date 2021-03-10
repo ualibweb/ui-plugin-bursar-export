@@ -9,7 +9,6 @@
     "bursarExports.scheduleFrequency": "计划频率",
     "bursarExports.scheduleWeekdays": "工作日",
     "bursarExports.scheduleTime": "计划时间",
-    "bursarExports.ftpAddress": "FTP地址",
     "bursarExports.save": "保存",
     "permission.bursar-exports.all": "费用/罚款导出：费用/罚款管理",
     "bursarExports.scheduleWeekdays.friday": "星期五",
@@ -25,5 +24,6 @@
     "bursarExports.save.error": "费用/罚款导出配置未保存",
     "bursarExports.runManually": "人工运行",
     "bursarExports.runManually.success": "费用/罚款导出已成功安排",
-    "bursarExports.runManually.error": "费用/罚款导出未安排"
+    "bursarExports.runManually.error": "费用/罚款导出未安排",
+    "bursarExports.folder": "Folder"
 }
