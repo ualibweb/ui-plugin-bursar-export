@@ -9,7 +9,6 @@
     "bursarExports.scheduleFrequency": "Frequência de programação",
     "bursarExports.scheduleWeekdays": "Dias úteis",
     "bursarExports.scheduleTime": "Horário de programação",
-    "bursarExports.ftpAddress": "Endereço FTP",
     "bursarExports.save": "Salvar",
     "permission.bursar-exports.all": "Exportações de tesoureiro: administrador de tesoureiro",
     "bursarExports.scheduleWeekdays.friday": "Sexta",
@@ -25,5 +24,6 @@
     "bursarExports.save.error": "Bursar exports configuration was not saved",
     "bursarExports.runManually": "Executar manualmente",
     "bursarExports.runManually.success": "Bursar exports has been successfully scheduled",
-    "bursarExports.runManually.error": "Bursar exports was not scheduled"
+    "bursarExports.runManually.error": "Bursar exports was not scheduled",
+    "bursarExports.folder": "Folder"
 }

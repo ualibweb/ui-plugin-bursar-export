@@ -9,7 +9,6 @@
     "bursarExports.scheduleFrequency": "جدولة التواتر",
     "bursarExports.scheduleWeekdays": "أيام الأسبوع",
     "bursarExports.scheduleTime": "جدولة الوقت",
-    "bursarExports.ftpAddress": "عنوان FTP",
     "bursarExports.save": "حفظ",
     "permission.bursar-exports.all": "تصديرات Bursar: إدارة Bursar",
     "bursarExports.scheduleWeekdays.friday": "الجمعة",
@@ -25,5 +24,6 @@
     "bursarExports.save.error": "لم يتم حفظ تهيئة تصديرات Bursar",
     "bursarExports.runManually": "تشغيل يدوي",
     "bursarExports.runManually.success": "تمت جدولة تصديرات Bursar بنجاح",
-    "bursarExports.runManually.error": "لم تتم جدولة تصديرات Bursar"
+    "bursarExports.runManually.error": "لم تتم جدولة تصديرات Bursar",
+    "bursarExports.folder": "مجلد"
 }

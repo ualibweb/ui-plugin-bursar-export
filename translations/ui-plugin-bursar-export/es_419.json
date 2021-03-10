@@ -9,7 +9,6 @@
     "bursarExports.scheduleFrequency": "Schedule frequency",
     "bursarExports.scheduleWeekdays": "Weekdays",
     "bursarExports.scheduleTime": "Schedule time",
-    "bursarExports.ftpAddress": "FTP address",
     "bursarExports.save": "Save",
     "permission.bursar-exports.all": "Bursar exports: Bursar admin",
     "bursarExports.scheduleWeekdays.friday": "F",
@@ -25,5 +24,6 @@
     "bursarExports.save.error": "Bursar exports configuration was not saved",
     "bursarExports.runManually": "Ejecutar manualmente",
     "bursarExports.runManually.success": "Bursar exports has been successfully scheduled",
-    "bursarExports.runManually.error": "Bursar exports was not scheduled"
+    "bursarExports.runManually.error": "Bursar exports was not scheduled",
+    "bursarExports.folder": "Carpeta"
 }
