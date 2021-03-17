@@ -25,5 +25,5 @@
     "bursarExports.runManually": "Executar manualmente",
     "bursarExports.runManually.success": "Bursar exports has been successfully scheduled",
     "bursarExports.runManually.error": "Bursar exports was not scheduled",
-    "bursarExports.folder": "Folder"
+    "bursarExports.folder": "Pasta"
 }
