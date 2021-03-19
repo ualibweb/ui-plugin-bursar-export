@@ -2,7 +2,8 @@
 
 ## (in progress)
 
-### Stories
+## [1.0.0](https://github.com/folio-org/ui-plugin-bursar-export/tree/v1.0.0) (2021-03-19)
+
 * Project Setup: ui-plugin-bursar-export. Refs UIPBEX-1.
 * Bursar exports configuration form (UI). Refs UIPBEX-5.
 * Enable FOLIO to define FTP file destinations for automated exports. Refs UIPBEX-2.
