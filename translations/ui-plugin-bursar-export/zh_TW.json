@@ -25,5 +25,14 @@
     "bursarExports.runManually": "Run manually",
     "bursarExports.runManually.success": "Bursar exports has been successfully scheduled",
     "bursarExports.runManually.error": "Bursar exports was not scheduled",
-    "bursarExports.folder": "Folder"
+    "bursarExports.owner": "負責人",
+    "bursarExports.servicePoint": "工作區",
+    "bursarExports.transferAccount": "轉移帳號",
+    "bursarExports.itemTypes": "轉移類型",
+    "bursarExports.feeFineType": "費用 / 罰款類型",
+    "bursarExports.itemType": "轉移類型",
+    "bursarExports.itemDescription": "轉移說明",
+    "bursarExports.itemCode": "轉移碼",
+    "bursarExports.itemCode.CHARGE": "收費",
+    "bursarExports.itemCode.PAYMENT": "付款"
 }
