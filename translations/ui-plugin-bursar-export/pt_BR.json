@@ -28,11 +28,11 @@
     "bursarExports.owner": "Proprietário",
     "bursarExports.servicePoint": "Ponto de serviço",
     "bursarExports.transferAccount": "Transferir conta",
-    "bursarExports.itemTypes": "Tipos de item",
+    "bursarExports.itemTypes": "Tipos de transferência",
     "bursarExports.feeFineType": "Tipo de taxa/multa",
-    "bursarExports.itemType": "Tipo de item",
-    "bursarExports.itemDescription": "Descrição do item",
-    "bursarExports.itemCode": "Código do item",
+    "bursarExports.itemType": "Tipo de transferência",
+    "bursarExports.itemDescription": "Descrição de transferência",
+    "bursarExports.itemCode": "Código de transferência",
     "bursarExports.itemCode.CHARGE": "Carregar",
     "bursarExports.itemCode.PAYMENT": "Pagamento"
 }
