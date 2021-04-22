@@ -28,11 +28,11 @@
     "bursarExports.owner": "جهة التحصيل",
     "bursarExports.servicePoint": "نقطة الخدمة",
     "bursarExports.transferAccount": "حساب التحويل",
-    "bursarExports.itemTypes": "أنواع المواد",
+    "bursarExports.itemTypes": "أنواع التحويل",
     "bursarExports.feeFineType": "نوع الرسم/الغرامة",
-    "bursarExports.itemType": "نوع المادة",
-    "bursarExports.itemDescription": "وصف المادة",
-    "bursarExports.itemCode": "رمز المادة",
+    "bursarExports.itemType": "نوع التحويل",
+    "bursarExports.itemDescription": "وصف التحويل",
+    "bursarExports.itemCode": "رمز التحويل",
     "bursarExports.itemCode.CHARGE": "فرض",
     "bursarExports.itemCode.PAYMENT": "الدفع"
 }
