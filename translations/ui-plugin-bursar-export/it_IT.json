@@ -30,9 +30,9 @@
     "bursarExports.transferAccount": "Transfer account",
     "bursarExports.itemTypes": "Transfer types",
     "bursarExports.feeFineType": "Fee/fine type",
-    "bursarExports.itemType": "Transfer type",
-    "bursarExports.itemDescription": "Transfer description",
-    "bursarExports.itemCode": "Transfer code",
+    "bursarExports.itemType": "Trasferisci tipo",
+    "bursarExports.itemDescription": "Trasferisci descrizione",
+    "bursarExports.itemCode": "Trasferisci codice",
     "bursarExports.itemCode.CHARGE": "Charge",
     "bursarExports.itemCode.PAYMENT": "Payment"
 }
