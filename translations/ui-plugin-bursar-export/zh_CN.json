@@ -28,11 +28,11 @@
     "bursarExports.owner": "缴费处",
     "bursarExports.servicePoint": "服务点",
     "bursarExports.transferAccount": "转移账户",
-    "bursarExports.itemTypes": "单件类型",
+    "bursarExports.itemTypes": "转移类型",
     "bursarExports.feeFineType": "费用/罚款类型",
-    "bursarExports.itemType": "单件类型",
-    "bursarExports.itemDescription": "单件描述",
-    "bursarExports.itemCode": "单件代码",
+    "bursarExports.itemType": "转移类型",
+    "bursarExports.itemDescription": "转移描述",
+    "bursarExports.itemCode": "转移代码",
     "bursarExports.itemCode.CHARGE": "收费",
     "bursarExports.itemCode.PAYMENT": "支付"
 }
