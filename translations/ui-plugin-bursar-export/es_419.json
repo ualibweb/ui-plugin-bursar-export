@@ -1,5 +1,5 @@
 {
-    "meta.title": "Bursar exports",
+    "meta.title": "Transfer criteria",
     "bursarExports": "Bursar exports",
     "bursarExports.schedulePeriod": "Schedule period",
     "bursarExports.schedulePeriod.none": "None",
@@ -10,7 +10,7 @@
     "bursarExports.scheduleWeekdays": "Weekdays",
     "bursarExports.scheduleTime": "Schedule time",
     "bursarExports.save": "Save",
-    "permission.bursar-exports.all": "Bursar exports: Bursar admin",
+    "permission.bursar-exports.all": "Transfer exports: Transfer admin",
     "bursarExports.scheduleWeekdays.friday": "F",
     "bursarExports.scheduleWeekdays.monday": "M",
     "bursarExports.scheduleWeekdays.saturday": "S",
