@@ -1,5 +1,5 @@
 {
-    "meta.title": "Exportações de tesoureiro",
+    "meta.title": "Critérios de transferência",
     "bursarExports": "Exportações de tesoureiro",
     "bursarExports.schedulePeriod": "Período de programação",
     "bursarExports.schedulePeriod.none": "Nenhum",
@@ -10,7 +10,7 @@
     "bursarExports.scheduleWeekdays": "Dias úteis",
     "bursarExports.scheduleTime": "Horário de programação",
     "bursarExports.save": "Salvar",
-    "permission.bursar-exports.all": "Exportações de tesoureiro: administrador de tesoureiro",
+    "permission.bursar-exports.all": "Exportações de transferência: admin de transferência",
     "bursarExports.scheduleWeekdays.friday": "Sexta",
     "bursarExports.scheduleWeekdays.monday": "S",
     "bursarExports.scheduleWeekdays.saturday": "S",

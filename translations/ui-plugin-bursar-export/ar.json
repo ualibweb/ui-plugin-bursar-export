@@ -1,5 +1,5 @@
 {
-    "meta.title": "تصديرات Bursar",
+    "meta.title": "معايير التحويل",
     "bursarExports": "تصديرات Bursar",
     "bursarExports.schedulePeriod": "جدولة الفترة",
     "bursarExports.schedulePeriod.none": "لا شيء",
@@ -10,7 +10,7 @@
     "bursarExports.scheduleWeekdays": "أيام الأسبوع",
     "bursarExports.scheduleTime": "جدولة الوقت",
     "bursarExports.save": "حفظ",
-    "permission.bursar-exports.all": "تصديرات Bursar: إدارة Bursar",
+    "permission.bursar-exports.all": "تصديرات التحويل: إدارة التحويل",
     "bursarExports.scheduleWeekdays.friday": "الجمعة",
     "bursarExports.scheduleWeekdays.monday": "الاثنين",
     "bursarExports.scheduleWeekdays.saturday": "السبت",
