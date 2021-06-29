@@ -1,5 +1,5 @@
 {
-    "meta.title": "费用/罚款导出",
+    "meta.title": "转移条件",
     "bursarExports": "费用/罚款导出",
     "bursarExports.schedulePeriod": "计划期间",
     "bursarExports.schedulePeriod.none": "无",
@@ -10,7 +10,7 @@
     "bursarExports.scheduleWeekdays": "工作日",
     "bursarExports.scheduleTime": "计划时间",
     "bursarExports.save": "保存",
-    "permission.bursar-exports.all": "费用/罚款导出：费用/罚款管理",
+    "permission.bursar-exports.all": "转移导出：转移管理员",
     "bursarExports.scheduleWeekdays.friday": "星期五",
     "bursarExports.scheduleWeekdays.monday": "星期一",
     "bursarExports.scheduleWeekdays.saturday": "星期六",
