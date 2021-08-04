@@ -28,11 +28,11 @@
     "bursarExports.owner": "Dueño",
     "bursarExports.transferAccount": "Cuenta de transferencia",
     "bursarExports.itemTypes": "Tipos de transferencia",
-    "bursarExports.feeFineType": "Fee/fine type",
+    "bursarExports.feeFineType": "Tipo de Tarifa/multa",
     "bursarExports.itemType": "Tipo de transferencia",
     "bursarExports.itemDescription": "Transfer description",
     "bursarExports.itemCode": "Código de transferencia",
     "bursarExports.itemCode.CHARGE": "Cargar",
     "bursarExports.itemCode.PAYMENT": "Pago",
-    "bursarExports.transferOwner": "Transfer owner"
+    "bursarExports.transferOwner": "Dueño de la transferencia"
 }
