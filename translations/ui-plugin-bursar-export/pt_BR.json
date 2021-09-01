@@ -25,7 +25,7 @@
     "bursarExports.runManually": "Executar manualmente",
     "bursarExports.runManually.success": "As exportações de tesoureiro foram programadas com sucesso",
     "bursarExports.runManually.error": "As exportações de tesoureiro não estavam programadas",
-    "bursarExports.owner": "Proprietário",
+    "bursarExports.owner": "Proprietário de taxa/multa",
     "bursarExports.transferAccount": "Transferir conta",
     "bursarExports.itemTypes": "Tipos de transferência",
     "bursarExports.feeFineType": "Tipo de taxa/multa",
