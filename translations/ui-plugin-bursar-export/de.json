@@ -19,7 +19,7 @@
     "bursarExports.scheduleWeekdays.tuesday": "T",
     "bursarExports.scheduleWeekdays.wednesday": "W",
     "bursarExports.daysOutstanding": "Max. days outstanding",
-    "bursarExports.patronGroups": "Patron groups",
+    "bursarExports.patronGroups": "Personengruppen",
     "bursarExports.save.success": "Bursar exports configuration has been successfully saved",
     "bursarExports.save.error": "Bursar exports configuration was not saved",
     "bursarExports.runManually": "Run manually",
