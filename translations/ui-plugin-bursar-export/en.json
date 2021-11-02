@@ -17,7 +17,7 @@
   "bursarExports.scheduleWeekdays.tuesday": "T",
   "bursarExports.scheduleWeekdays.wednesday": "W",
   "bursarExports.scheduleTime": "Schedule time",
-  "bursarExports.daysOutstanding": "Max. days outstanding",
+  "bursarExports.daysOutstanding": "Fees/Fines older than (days)",
   "bursarExports.patronGroups": "Patron groups",
   "bursarExports.transferOwner": "Transfer owner",
   "bursarExports.transferAccount": "Transfer account",
