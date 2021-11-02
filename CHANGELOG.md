@@ -2,6 +2,7 @@
 
 ## (IN PROGRESS)
 
+* Rename the label "Max. days outstanding" to "Fees/Fines older than (days)". Refs UIPBEX-27
 
 ## [2.0.0](https://github.com/folio-org/ui-plugin-bursar-export/tree/v2.0.0) (2021-10-06)
 [Full Changelog](https://github.com/folio-org/ui-plugin-bursar-export/compare/v1.1.2...v2.0.0)
