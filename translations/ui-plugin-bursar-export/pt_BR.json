@@ -18,7 +18,7 @@
     "bursarExports.scheduleWeekdays.thursday": "Q",
     "bursarExports.scheduleWeekdays.tuesday": "T",
     "bursarExports.scheduleWeekdays.wednesday": "Q",
-    "bursarExports.daysOutstanding": "Max. dias pendentes",
+    "bursarExports.daysOutstanding": "Taxas/multas anteriores a (dias)",
     "bursarExports.patronGroups": "Grupos de usuários",
     "bursarExports.save.success": "A configuração das exportações da Bursar foi salva com sucesso",
     "bursarExports.save.error": "A configuração das exportações do Bursar não foi salva",

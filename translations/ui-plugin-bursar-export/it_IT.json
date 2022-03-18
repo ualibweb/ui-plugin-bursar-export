@@ -9,7 +9,7 @@
     "bursarExports.scheduleFrequency": "Schedule frequency",
     "bursarExports.scheduleWeekdays": "Giorni della settimana",
     "bursarExports.scheduleTime": "Schedule time",
-    "bursarExports.save": "Save",
+    "bursarExports.save": "Salva",
     "permission.bursar-exports.all": "Transfer exports: Transfer admin",
     "bursarExports.scheduleWeekdays.friday": "V",
     "bursarExports.scheduleWeekdays.monday": "L",
@@ -33,6 +33,6 @@
     "bursarExports.itemDescription": "Trasferisci descrizione",
     "bursarExports.itemCode": "Trasferisci codice",
     "bursarExports.itemCode.CHARGE": "Charge",
-    "bursarExports.itemCode.PAYMENT": "Payment",
+    "bursarExports.itemCode.PAYMENT": "Pagamento",
     "bursarExports.transferOwner": "Transfer owner"
 }
