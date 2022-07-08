@@ -45,6 +45,7 @@
     "build": "yarn stripes build --output ./output",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-plugin-bursar-export ./translations/ui-plugin-bursar-export/compiled",
     "lint": "eslint .",
+    "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json ",
     "start": "yarn stripes serve",
     "test:unit": "jest --ci --coverage && yarn run test:unit:report",
     "test:unit:watch": "jest --ci --coverage --watch",
