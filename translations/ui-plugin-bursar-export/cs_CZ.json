@@ -1,5 +1,5 @@
 {
-    "meta.title": "Transfer criteria",
+    "meta.title": "Kritéria převodu",
     "bursarExports": "Kvestorský export",
     "bursarExports.schedulePeriod": "Plánované období",
     "bursarExports.schedulePeriod.none": "Žádné",
@@ -10,7 +10,7 @@
     "bursarExports.scheduleWeekdays": "Všední dny",
     "bursarExports.scheduleTime": "Naplánovat čas",
     "bursarExports.save": "Uložit",
-    "permission.bursar-exports.all": "Exporty přenosu: přenos admin",
+    "permission.bursar-exports.all": "Exporty převodu: Správce převodu",
     "bursarExports.scheduleWeekdays.friday": "F",
     "bursarExports.scheduleWeekdays.monday": "M",
     "bursarExports.scheduleWeekdays.saturday": "S",
@@ -26,13 +26,13 @@
     "bursarExports.runManually.success": "Exporty kvestorů byly úspěšně naplánovány",
     "bursarExports.runManually.error": "Export kvestorů nebyl naplánován",
     "bursarExports.owner": "Majitel poplatku/pokuty",
-    "bursarExports.transferAccount": "Přenosový účet",
-    "bursarExports.itemTypes": "Typy přenosů",
+    "bursarExports.transferAccount": "Převodní účet",
+    "bursarExports.itemTypes": "Typy převodů",
     "bursarExports.feeFineType": "Typ poplatku/pokuty",
-    "bursarExports.itemType": "Typ přenosu",
-    "bursarExports.itemDescription": "Popis přenosu",
-    "bursarExports.itemCode": "Přenosový kód",
+    "bursarExports.itemType": "Typ převodu",
+    "bursarExports.itemDescription": "Popis převodu",
+    "bursarExports.itemCode": "Kód převodu",
     "bursarExports.itemCode.CHARGE": "Poplatek",
     "bursarExports.itemCode.PAYMENT": "Platba",
-    "bursarExports.transferOwner": "Vlastník přenosu"
+    "bursarExports.transferOwner": "Vlastník převodu"
 }
