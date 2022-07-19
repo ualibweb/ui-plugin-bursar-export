@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+* Remove react-hot-loader from package.json. Refs UIPBEX-34.
+* Replace babel-eslint with @babel/eslint-parser. Refs UIPBEX-36.
+
 ## [2.2.0](https://github.com/folio-org/ui-plugin-bursar-export/tree/v2.2.0) (2022-07-08)
 [Full Changelog](https://github.com/folio-org/ui-plugin-bursar-export/compare/v2.1.0...v2.2.0)
 * Compile Translation Files into AST Format. Refs UIPBEX-11.
