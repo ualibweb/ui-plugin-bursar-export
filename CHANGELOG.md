@@ -1,6 +1,7 @@
 # Change history for ui-plugin-bursar-export
 
 ## (IN PROGRESS)
+* Upgrade Users interface to 16.0. Refs UIPBEX-39.
 
 ## [2.2.1](https://github.com/folio-org/ui-plugin-bursar-export/tree/v2.2.1) (2022-07-22)
 [Full Changelog](https://github.com/folio-org/ui-plugin-bursar-export/compare/v2.2.0...v2.2.1)
