@@ -1,7 +1,7 @@
 {
     "meta.title": "Transfer criteria",
     "bursarExports": "Bursar exports",
-    "bursarExports.schedulePeriod": "Pianifica il periodo",
+    "bursarExports.schedulePeriod": "Periodo di pianificazione",
     "bursarExports.schedulePeriod.none": "Nessuno",
     "bursarExports.schedulePeriod.hours": "Ore",
     "bursarExports.schedulePeriod.days": "Giorni",
