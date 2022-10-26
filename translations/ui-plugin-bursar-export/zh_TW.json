@@ -1,6 +1,6 @@
 {
     "meta.title": "费用/罚款导出",
-    "bursarExports": "费用/罚款导出",
+    "bursarExports": "費用/罰款匯出",
     "bursarExports.schedulePeriod": "计划期间",
     "bursarExports.schedulePeriod.none": "无",
     "bursarExports.schedulePeriod.hours": "小时",
