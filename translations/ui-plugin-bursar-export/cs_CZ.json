@@ -25,7 +25,7 @@
     "bursarExports.runManually": "Ruční spuštění",
     "bursarExports.runManually.success": "Exporty kvestorů byly úspěšně naplánovány",
     "bursarExports.runManually.error": "Export kvestorů nebyl naplánován",
-    "bursarExports.owner": "Majitel poplatku/pokuty",
+    "bursarExports.owner": "Vlastník poplatku/pokuty",
     "bursarExports.transferAccount": "Převodní účet",
     "bursarExports.itemTypes": "Typy převodů",
     "bursarExports.feeFineType": "Typ poplatku/pokuty",
