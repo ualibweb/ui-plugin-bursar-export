@@ -2,7 +2,7 @@
     "meta.title": "Transfer criteria",
     "bursarExports": "Bursar exports",
     "bursarExports.schedulePeriod": "Schedule period",
-    "bursarExports.schedulePeriod.none": "None",
+    "bursarExports.schedulePeriod.none": "なし",
     "bursarExports.schedulePeriod.hours": "Hours",
     "bursarExports.schedulePeriod.days": "Days",
     "bursarExports.schedulePeriod.weeks": "Weeks",
