@@ -21,7 +21,7 @@
     "bursarExports.daysOutstanding": "Tarifas/Multas anteriores a (días)",
     "bursarExports.patronGroups": "Grupos de usuarios",
     "bursarExports.save.success": "La configuración de las exportaciones de tesorería se ha guardado exitosamente",
-    "bursarExports.save.error": "Bursar exports configuration was not saved",
+    "bursarExports.save.error": "No se ha guardado la configuración de las exportaciones de Bursar",
     "bursarExports.runManually": "Ejecutar manualmente",
     "bursarExports.runManually.success": "Las exportaciones de tesorería se han programado exitosamente",
     "bursarExports.runManually.error": "No se programaron exportaciones de tesorería",
