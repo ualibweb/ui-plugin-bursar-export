@@ -2,12 +2,16 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../test/util/withIntlConfiguration';
-import SchedulingMenu from './SchedulingMenu';
+import SchedulingMenu, { getIntervalLabel } from './SchedulingMenu';
 import { FormValues, SchedulingFrequency } from '../types';
 
 const noop = () => ({});
 
 describe('Scheduling menu', () => {
+  it('Shows no interval field label when in manual mode', () => {
+    expect(getIntervalLabel(SchedulingFrequency.Manual)).toBe('');
+  });
+
   it('Manual (never) option does not show extra fields', () => {
     render(
       withIntlConfiguration(
