@@ -16,7 +16,6 @@ interface ConfigurationFormProps {}
 
 function ConfigurationForm({
   handleSubmit,
-  submitErrors,
 }: FormRenderProps<FormValues> & ConfigurationFormProps) {
   const submitter = useCallback(
     (e: FormEvent) => {

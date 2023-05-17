@@ -1,5 +1,5 @@
 import { Button, Pane, PaneFooter } from '@folio/stripes/components';
-import React from 'react';
+import React, { useCallback } from 'react';
 import ConfigurationForm from './form/ConfigurationForm';
 
 export default function BursarExports() {
@@ -20,6 +20,8 @@ export default function BursarExports() {
   //   );
   // }
 
+  const submitCallback = useCallback((v) => console.log(v), []);
+
   return (
     <Pane
       defaultWidth="fill"
@@ -27,7 +29,7 @@ export default function BursarExports() {
       id="pane-batch-group-configuration"
       paneTitle={'Transfer configuration'}
     >
-      <ConfigurationForm initialValues={{}} onSubmit={(v) => console.log(v)} />
+      <ConfigurationForm initialValues={{}} onSubmit={submitCallback} />
     </Pane>
   );
 }
