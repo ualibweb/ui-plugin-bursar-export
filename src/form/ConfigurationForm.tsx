@@ -8,8 +8,8 @@ import {
 import stripesFinalForm from '@folio/stripes/final-form';
 import React, { FormEvent, useCallback } from 'react';
 import { FormRenderProps, FormSpy } from 'react-final-form';
-import { FormValues, SchedulingFrequency } from './types';
 import SchedulingMenu from './sections/SchedulingMenu';
+import { FormValues } from './types';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
