@@ -7,7 +7,8 @@ import {
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import React, { FormEvent, useCallback } from 'react';
-import { FormRenderProps } from 'react-final-form';
+import { FormRenderProps, FormSpy } from 'react-final-form';
+import SchedulingMenu from './sections/SchedulingMenu';
 import { FormValues } from './types';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
@@ -34,11 +35,16 @@ function ConfigurationForm({
             <ExpandAllButton />
           </Col>
         </Row>
-        <Accordion label="First section">
-          <p>Fields should go here...</p>
+        <Accordion label="Scheduling">
+          <SchedulingMenu />
         </Accordion>
         <Accordion label="Second section">
           <p>Fields should go here...</p>
+        </Accordion>
+        <Accordion label="Debug (form state)">
+          <FormSpy subscription={{ values: true }}>
+            {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
+          </FormSpy>
         </Accordion>
       </AccordionSet>
     </form>
