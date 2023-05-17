@@ -1,3 +1,3 @@
-it('blank test', () => {
+test('blank test', () => {
   expect(true).toBeTruthy();
 });
