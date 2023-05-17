@@ -25,7 +25,7 @@ export default function withIntlConfiguration(
   children: ReactNode,
   locale = 'en-US',
   timeZone = 'UTC'
-): JSX.Element {
+): React.JSX.Element {
   const allTranslations: Record<string, string> = {};
 
   translationSets.forEach((set) => {
