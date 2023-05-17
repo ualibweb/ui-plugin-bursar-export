@@ -1,6 +1,5 @@
-// import BursarExports from './BursarExportPlugin';
+import BursarExports from './BursarExportPlugin';
 
 test('meaningless test', () => {
-  expect(true).toBe(true);
-  // expect(BursarExports).not.toBeUndefined();
+  expect(BursarExports).not.toBeUndefined();
 });
