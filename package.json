@@ -88,7 +88,8 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.3",
-    "ts-jest": "^28.0.7"
+    "ts-jest": "^28.0.7",
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "@folio/stripes-acq-components": "~4.0.0",
