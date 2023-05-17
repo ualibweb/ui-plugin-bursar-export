@@ -2,7 +2,7 @@
   "name": "@folio/plugin-bursar-export",
   "version": "2.4.0",
   "description": "Bursar export",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "",
   "license": "Apache-2.0",
   "engines": {
@@ -19,9 +19,6 @@
       "feesfines": "16.0 17.0 18.0",
       "data-export-spring": "1.0"
     },
-    "stripesDeps": [
-      "@folio/stripes-acq-components"
-    ],
     "permissionSets": [
       {
         "permissionName": "ui-plugin-bursar-export.bursar-exports.all",
@@ -90,7 +87,6 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@folio/stripes-acq-components": "~4.0.0",
     "lodash": "^4.17.5",
     "prop-types": "^15.5.10",
     "react-final-form": "^6.3.0",
