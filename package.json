@@ -47,11 +47,8 @@
     "lint": "eslint .",
     "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json ",
     "start": "yarn stripes serve",
-    "test:unit": "jest --ci --coverage && yarn run test:unit:report",
-    "test:unit:watch": "jest --ci --coverage --watch",
-    "test:unit:report": "cp -r ./artifacts/coverage-jest ./artifacts/coverage",
-    "test:e2e": "echo Not implemented",
-    "test": "yarn run test:unit && yarn run test:e2e"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
