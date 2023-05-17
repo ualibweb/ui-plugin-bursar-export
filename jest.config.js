@@ -20,10 +20,11 @@ module.exports = {
   coverageReporters: ['lcov', 'text'],
   coverageDirectory: './artifacts/coverage-jest/',
   collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    '!src/**/*.d.ts',
-    '!src/**/*.test.{ts,tsx}',
-    '!src/test/**',
+    '<rootDir>/index.ts',
+    '<rootDir>/src/**/*.{ts,tsx}',
+    '!<rootDir>/src/**/*.d.ts',
+    '!<rootDir>/src/**/*.test.{ts,tsx}',
+    '!<rootDir>/src/test/**',
     '!**/node_modules/**',
   ],
 
