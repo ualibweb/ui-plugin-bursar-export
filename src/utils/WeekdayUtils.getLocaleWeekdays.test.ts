@@ -19,31 +19,61 @@ beforeAll(() => {
 
 test('Locale weekdays are properly retrieved', () => {
   expect(getLocaleWeekdays(intlEn)).toStrictEqual([
-    { weekday: Weekdays.Sunday, long: 'Sunday', short: 'Sun' },
-    { weekday: Weekdays.Monday, long: 'Monday', short: 'Mon' },
-    { weekday: Weekdays.Tuesday, long: 'Tuesday', short: 'Tue' },
-    { weekday: Weekdays.Wednesday, long: 'Wednesday', short: 'Wed' },
-    { weekday: Weekdays.Thursday, long: 'Thursday', short: 'Thu' },
-    { weekday: Weekdays.Friday, long: 'Friday', short: 'Fri' },
-    { weekday: Weekdays.Saturday, long: 'Saturday', short: 'Sat' }
+    { weekday: Weekdays.Sunday, long: 'Sunday', short: 'Sun', narrow: 'S' },
+    { weekday: Weekdays.Monday, long: 'Monday', short: 'Mon', narrow: 'M' },
+    { weekday: Weekdays.Tuesday, long: 'Tuesday', short: 'Tue', narrow: 'T' },
+    {
+      weekday: Weekdays.Wednesday,
+      long: 'Wednesday',
+      short: 'Wed',
+      narrow: 'W',
+    },
+    { weekday: Weekdays.Thursday, long: 'Thursday', short: 'Thu', narrow: 'T' },
+    { weekday: Weekdays.Friday, long: 'Friday', short: 'Fri', narrow: 'F' },
+    { weekday: Weekdays.Saturday, long: 'Saturday', short: 'Sat', narrow: 'S' },
   ]);
   expect(getLocaleWeekdays(intlFr)).toStrictEqual([
-    { weekday: Weekdays.Monday, long: 'lundi', short: 'lun.' },
-    { weekday: Weekdays.Tuesday, long: 'mardi', short: 'mar.' },
-    { weekday: Weekdays.Wednesday, long: 'mercredi', short: 'mer.' },
-    { weekday: Weekdays.Thursday, long: 'jeudi', short: 'jeu.' },
-    { weekday: Weekdays.Friday, long: 'vendredi', short: 'ven.' },
-    { weekday: Weekdays.Saturday, long: 'samedi', short: 'sam.' },
-    { weekday: Weekdays.Sunday, long: 'dimanche', short: 'dim.' }
+    { weekday: Weekdays.Monday, long: 'lundi', short: 'lun.', narrow: 'L' },
+    { weekday: Weekdays.Tuesday, long: 'mardi', short: 'mar.', narrow: 'M' },
+    {
+      weekday: Weekdays.Wednesday,
+      long: 'mercredi',
+      short: 'mer.',
+      narrow: 'M',
+    },
+    { weekday: Weekdays.Thursday, long: 'jeudi', short: 'jeu.', narrow: 'J' },
+    { weekday: Weekdays.Friday, long: 'vendredi', short: 'ven.', narrow: 'V' },
+    { weekday: Weekdays.Saturday, long: 'samedi', short: 'sam.', narrow: 'S' },
+    { weekday: Weekdays.Sunday, long: 'dimanche', short: 'dim.', narrow: 'D' },
   ]);
   expect(getLocaleWeekdays(intlAr)).toStrictEqual([
-    { weekday: Weekdays.Saturday, long: 'السبت', short: 'السبت' },
-    { weekday: Weekdays.Sunday, long: 'الأحد', short: 'الأحد' },
-    { weekday: Weekdays.Monday, long: 'الاثنين', short: 'الاثنين' },
-    { weekday: Weekdays.Tuesday, long: 'الثلاثاء', short: 'الثلاثاء' },
-    { weekday: Weekdays.Wednesday, long: 'الأربعاء', short: 'الأربعاء' },
-    { weekday: Weekdays.Thursday, long: 'الخميس', short: 'الخميس' },
-    { weekday: Weekdays.Friday, long: 'الجمعة', short: 'الجمعة' }
+    { weekday: Weekdays.Saturday, long: 'السبت', short: 'السبت', narrow: 'س' },
+    { weekday: Weekdays.Sunday, long: 'الأحد', short: 'الأحد', narrow: 'ح' },
+    {
+      weekday: Weekdays.Monday,
+      long: 'الاثنين',
+      short: 'الاثنين',
+      narrow: 'ن',
+    },
+    {
+      weekday: Weekdays.Tuesday,
+      long: 'الثلاثاء',
+      short: 'الثلاثاء',
+      narrow: 'ث',
+    },
+    {
+      weekday: Weekdays.Wednesday,
+      long: 'الأربعاء',
+      short: 'الأربعاء',
+      narrow: 'ر',
+    },
+    {
+      weekday: Weekdays.Thursday,
+      long: 'الخميس',
+      short: 'الخميس',
+      narrow: 'خ',
+    },
+    { weekday: Weekdays.Friday, long: 'الجمعة', short: 'الجمعة', narrow: 'ج' },
   ]);
 });
 
@@ -54,36 +84,66 @@ test('useLocaleWeekdays hook works like getLocaleWeekdays', () => {
   intlToTest = intlEn;
   rerender();
   expect(result.current).toStrictEqual([
-    { weekday: Weekdays.Sunday, long: 'Sunday', short: 'Sun' },
-    { weekday: Weekdays.Monday, long: 'Monday', short: 'Mon' },
-    { weekday: Weekdays.Tuesday, long: 'Tuesday', short: 'Tue' },
-    { weekday: Weekdays.Wednesday, long: 'Wednesday', short: 'Wed' },
-    { weekday: Weekdays.Thursday, long: 'Thursday', short: 'Thu' },
-    { weekday: Weekdays.Friday, long: 'Friday', short: 'Fri' },
-    { weekday: Weekdays.Saturday, long: 'Saturday', short: 'Sat' }
+    { weekday: Weekdays.Sunday, long: 'Sunday', short: 'Sun', narrow: 'S' },
+    { weekday: Weekdays.Monday, long: 'Monday', short: 'Mon', narrow: 'M' },
+    { weekday: Weekdays.Tuesday, long: 'Tuesday', short: 'Tue', narrow: 'T' },
+    {
+      weekday: Weekdays.Wednesday,
+      long: 'Wednesday',
+      short: 'Wed',
+      narrow: 'W',
+    },
+    { weekday: Weekdays.Thursday, long: 'Thursday', short: 'Thu', narrow: 'T' },
+    { weekday: Weekdays.Friday, long: 'Friday', short: 'Fri', narrow: 'F' },
+    { weekday: Weekdays.Saturday, long: 'Saturday', short: 'Sat', narrow: 'S' },
   ]);
 
   intlToTest = intlFr;
   rerender();
   expect(result.current).toStrictEqual([
-    { weekday: Weekdays.Monday, long: 'lundi', short: 'lun.' },
-    { weekday: Weekdays.Tuesday, long: 'mardi', short: 'mar.' },
-    { weekday: Weekdays.Wednesday, long: 'mercredi', short: 'mer.' },
-    { weekday: Weekdays.Thursday, long: 'jeudi', short: 'jeu.' },
-    { weekday: Weekdays.Friday, long: 'vendredi', short: 'ven.' },
-    { weekday: Weekdays.Saturday, long: 'samedi', short: 'sam.' },
-    { weekday: Weekdays.Sunday, long: 'dimanche', short: 'dim.' }
+    { weekday: Weekdays.Monday, long: 'lundi', short: 'lun.', narrow: 'L' },
+    { weekday: Weekdays.Tuesday, long: 'mardi', short: 'mar.', narrow: 'M' },
+    {
+      weekday: Weekdays.Wednesday,
+      long: 'mercredi',
+      short: 'mer.',
+      narrow: 'M',
+    },
+    { weekday: Weekdays.Thursday, long: 'jeudi', short: 'jeu.', narrow: 'J' },
+    { weekday: Weekdays.Friday, long: 'vendredi', short: 'ven.', narrow: 'V' },
+    { weekday: Weekdays.Saturday, long: 'samedi', short: 'sam.', narrow: 'S' },
+    { weekday: Weekdays.Sunday, long: 'dimanche', short: 'dim.', narrow: 'D' },
   ]);
 
   intlToTest = intlAr;
   rerender();
   expect(result.current).toStrictEqual([
-    { weekday: Weekdays.Saturday, long: 'السبت', short: 'السبت' },
-    { weekday: Weekdays.Sunday, long: 'الأحد', short: 'الأحد' },
-    { weekday: Weekdays.Monday, long: 'الاثنين', short: 'الاثنين' },
-    { weekday: Weekdays.Tuesday, long: 'الثلاثاء', short: 'الثلاثاء' },
-    { weekday: Weekdays.Wednesday, long: 'الأربعاء', short: 'الأربعاء' },
-    { weekday: Weekdays.Thursday, long: 'الخميس', short: 'الخميس' },
-    { weekday: Weekdays.Friday, long: 'الجمعة', short: 'الجمعة' }
+    { weekday: Weekdays.Saturday, long: 'السبت', short: 'السبت', narrow: 'س' },
+    { weekday: Weekdays.Sunday, long: 'الأحد', short: 'الأحد', narrow: 'ح' },
+    {
+      weekday: Weekdays.Monday,
+      long: 'الاثنين',
+      short: 'الاثنين',
+      narrow: 'ن',
+    },
+    {
+      weekday: Weekdays.Tuesday,
+      long: 'الثلاثاء',
+      short: 'الثلاثاء',
+      narrow: 'ث',
+    },
+    {
+      weekday: Weekdays.Wednesday,
+      long: 'الأربعاء',
+      short: 'الأربعاء',
+      narrow: 'ر',
+    },
+    {
+      weekday: Weekdays.Thursday,
+      long: 'الخميس',
+      short: 'الخميس',
+      narrow: 'خ',
+    },
+    { weekday: Weekdays.Friday, long: 'الجمعة', short: 'الجمعة', narrow: 'ج' },
   ]);
 });
