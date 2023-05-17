@@ -103,6 +103,7 @@ export default function SchedulingMenu() {
             {(fieldProps) => (
               <MultiSelection<MultiSelectionDefaultOptionType<Weekday>>
                 {...fieldProps}
+                required
                 label="Run on weekdays"
                 dataOptions={localeWeekdays.map((weekday) => ({
                   label: weekday.long,
