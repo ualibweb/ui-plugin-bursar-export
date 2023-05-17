@@ -10,15 +10,13 @@
 #   - PUBLISH_MOD_DESCRIPTOR (boolean 'true' or 'false')
 #   - COMPILE_TRANSLATION_FILES (boolean 'true' or 'false')
 
-
-
 name: buildNPM Snapshot
 on: [push, pull_request]
 
 jobs:
   github-actions-ci:
     env:
-      YARN_TEST_OPTIONS: ''
+      YARN_TEST_OPTIONS: '--coverage'
       SQ_ROOT_DIR: './src'
       COMPILE_TRANSLATION_FILES: 'true'
       PUBLISH_MOD_DESCRIPTOR: 'true'
@@ -70,7 +68,7 @@ jobs:
         continue-on-error: true
 
       - name: Run yarn test
-        run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test $YARN_TEST_OPTIONS
+        run: yarn node --expose-gc $(yarn bin jest) --runInBand --logHeapUsage $YARN_TEST_OPTIONS
 
       - name: Run yarn formatjs-compile
         if: ${{ env.COMPILE_TRANSLATION_FILES == 'true' }}
@@ -89,7 +87,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ github.token }}
-          files: "${{ env.JEST_JUNIT_OUTPUT_DIR }}/*.xml"
+          files: '${{ env.JEST_JUNIT_OUTPUT_DIR }}/*.xml'
           check_name: Jest Unit Test Results
           comment_mode: update last
           comment_title: Jest Unit Test Statistics
@@ -107,7 +105,7 @@ jobs:
         if: always()
         with:
           github_token: ${{ github.token }}
-          files: "${{ env.BIGTEST_JUNIT_OUTPUT_DIR }}/*.xml"
+          files: '${{ env.BIGTEST_JUNIT_OUTPUT_DIR }}/*.xml'
           check_name: BigTest Unit Test Results
           comment_mode: update last
           comment_title: BigTest Unit Test Statistics
@@ -138,8 +136,8 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.organization=folio-org
-            -Dsonar.projectKey=org.folio:${{ github.event.repository.name }}
+            -Dsonar.organization=ualibweb
+            -Dsonar.projectKey=ualibweb_${{ github.event.repository.name }}
             -Dsonar.projectName=${{ github.event.repository.name }}
             -Dsonar.sources=${{ env.SQ_ROOT_DIR }}
             -Dsonar.language=js
@@ -198,4 +196,3 @@ jobs:
           data: ${{ steps.moduleDescriptor.outputs.content }}
           username: ${{ secrets.FOLIO_REGISTRY_USERNAME }}
           password: ${{ secrets.FOLIO_REGISTRY_PASSWORD }}
-
