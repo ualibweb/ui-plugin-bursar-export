@@ -1,3 +1,5 @@
+export const MAX_LIMIT = 2147483647;
+
 /**
  * Returned from GET /groups v15.3
  * @see https://s3.amazonaws.com/foliodocs/api/mod-users/r/groups.html#groups_get

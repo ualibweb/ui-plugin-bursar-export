@@ -1,8 +1,6 @@
 import { useOkapiKy } from '@folio/stripes/core';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { PatronGroupDTO, PatronGroupResponse } from './types';
-
-export const MAX_LIMIT = 2147483647;
+import { useQuery } from 'react-query';
+import { MAX_LIMIT, PatronGroupDTO, PatronGroupResponse } from './types';
 
 export default function usePatronGroups() {
   const ky = useOkapiKy();
