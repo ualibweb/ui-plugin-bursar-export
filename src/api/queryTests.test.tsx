@@ -6,7 +6,7 @@ import useServicePoints from './useServicePoints';
 
 const responseMock = jest.fn();
 const kyMock = jest.fn(() => ({
-  json: function <_T>() {
+  json: () => {
     return Promise.resolve(responseMock());
   },
 }));
