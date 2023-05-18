@@ -21,13 +21,14 @@ describe('API Query Tests', () => {
 
   it('Patron groups query works as expected', async () => {
     kyMock.mockReturnValue({
-      json: () =>
+      json: jest.fn(() =>
         Promise.resolve({
           usergroups: [
             { id: '1', group: 'staff' },
             { id: '2', group: 'undergraduate' },
           ],
-        }),
+        })
+      ),
     });
 
     const { result, waitFor } = renderHook(() => usePatronGroups(), {
