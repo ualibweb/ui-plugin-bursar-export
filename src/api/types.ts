@@ -25,3 +25,29 @@ export interface PatronGroupDTO {
   expirationOffsetInDays?: number;
   metadata?: unknown;
 }
+
+/**
+ * Returned as part of GET /service-points v3.3
+ * @see https://s3.amazonaws.com/foliodocs/api/mod-inventory-storage/r/service-point.html
+ */
+export interface ServicePointResponse {
+  servicepoints: ServicePointDTO[];
+  totalRecords: number;
+}
+
+/**
+ * Returned as part of GET /service-points v3.3
+ * @see https://s3.amazonaws.com/foliodocs/api/mod-inventory-storage/r/service-point.html
+ */
+export interface ServicePointDTO {
+  /** Unique UUID for this service point */
+  id: string;
+  /** Human-displayed name for this service point */
+  name: string;
+  code: string;
+  discoveryDisplayName: string;
+
+  // don't care about these
+  staffSlips: unknown[];
+  metadata: unknown;
+}
