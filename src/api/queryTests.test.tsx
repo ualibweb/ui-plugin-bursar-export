@@ -2,10 +2,14 @@ import { renderHook } from '@testing-library/react-hooks';
 import React, { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import usePatronGroups from './usePatronGroups';
-import { MAX_LIMIT } from './types';
 import useServicePoints from './useServicePoints';
 
-const kyMock = jest.fn();
+const responseMock = jest.fn();
+const kyMock = jest.fn(() => ({
+  json: function <_T>() {
+    return Promise.resolve(responseMock());
+  },
+}));
 
 jest.mock('@folio/stripes/core', () => ({
   ...jest.requireActual('@folio/stripes/core'),
@@ -21,15 +25,11 @@ describe('API Query Tests', () => {
   );
 
   it('Patron groups query works as expected', async () => {
-    kyMock.mockReturnValueOnce({
-      json: jest.fn(() =>
-        Promise.resolve({
-          usergroups: [
-            { id: '1', group: 'staff' },
-            { id: '2', group: 'undergraduate' },
-          ],
-        })
-      ),
+    responseMock.mockResolvedValue({
+      usergroups: [
+        { id: '1', group: 'staff' },
+        { id: '2', group: 'undergraduate' },
+      ],
     });
 
     const { result, waitFor } = renderHook(() => usePatronGroups(), {
@@ -46,15 +46,11 @@ describe('API Query Tests', () => {
   });
 
   it('Service points query works as expected', async () => {
-    kyMock.mockReturnValueOnce({
-      json: jest.fn(() =>
-        Promise.resolve({
-          servicepoints: [
-            { id: '1', name: 'Circ desk 1' },
-            { id: '2', name: 'Online' },
-          ],
-        })
-      ),
+    responseMock.mockResolvedValue({
+      servicepoints: [
+        { id: '1', name: 'Circ desk 1' },
+        { id: '2', name: 'Online' },
+      ],
     });
 
     const { result, waitFor } = renderHook(() => useServicePoints(), {
