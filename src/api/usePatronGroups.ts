@@ -9,6 +9,6 @@ export default function usePatronGroups() {
     ['ui-plugin-bursar-export', 'patron-groups'],
     async () =>
       (await ky.get(`groups?limit=${MAX_LIMIT}`).json<PatronGroupResponse>())
-        .usergrops
-  ).data;
+        .usergroups
+  );
 }

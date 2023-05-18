@@ -6,7 +6,7 @@ export const MAX_LIMIT = 2147483647;
  */
 export interface PatronGroupResponse {
   totalRecords: number;
-  usergrops: PatronGroupDTO[];
+  usergroups: PatronGroupDTO[];
 }
 
 /**
@@ -14,12 +14,12 @@ export interface PatronGroupResponse {
  * @see https://s3.amazonaws.com/foliodocs/api/mod-users/r/groups.html#groups_get
  */
 export interface PatronGroupDTO {
+  /** Unique UUID for this group */
+  id: string;
   /** Unique, human-readable name of this group (e.g. "staff" or "undergraduate") */
   group: string;
   /** A description of the group's members */
   desc?: string;
-  /** Unique UUID for this group */
-  id: string;
 
   // don't care about these
   expirationOffsetInDays?: number;
