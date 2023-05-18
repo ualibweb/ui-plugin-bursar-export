@@ -9,6 +9,7 @@ module.exports = {
     '^.+\\.(t|j)sx?$': 'ts-jest',
   },
   transformIgnorePatterns: ['node_modules/(?!@folio|ky)'],
+  coverageProvider: 'v8',
 
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
 
