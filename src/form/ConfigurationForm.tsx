@@ -10,6 +10,9 @@ import React, { FormEvent, useCallback } from 'react';
 import { FormRenderProps, FormSpy } from 'react-final-form';
 import SchedulingMenu from './sections/SchedulingMenu';
 import { FormValues } from './types';
+import usePatronGroups from '../api/usePatronGroups';
+import useServicePoints from '../api/useServicePoints';
+import useLocations from '../api/useLocations';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -45,6 +48,15 @@ function ConfigurationForm({
           <FormSpy subscription={{ values: true }}>
             {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
           </FormSpy>
+        </Accordion>
+        <Accordion label="Debug (usePatronGroups)">
+          <pre>{JSON.stringify(usePatronGroups().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useServicePoints)">
+          <pre>{JSON.stringify(useServicePoints().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useLocations)">
+          <pre>{JSON.stringify(useLocations().data, undefined, 2)}</pre>
         </Accordion>
       </AccordionSet>
     </form>

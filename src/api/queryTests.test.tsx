@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import React, { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import useLocations from './useLocations';
 import usePatronGroups from './usePatronGroups';
 import useServicePoints from './useServicePoints';
 
@@ -65,6 +66,65 @@ describe('API Query Tests', () => {
     expect(result.current.data).toStrictEqual([
       { id: '1', name: 'Circ desk 1' },
       { id: '2', name: 'Online' },
+    ]);
+  });
+
+  it('Locations query works as expected', async () => {
+    responseMock.mockResolvedValue({
+      locations: [
+        {
+          id: '1',
+          name: 'Popular Reading Collection',
+          code: 'KU/CC/DI/P',
+        },
+        {
+          id: '2',
+          name: 'Online',
+          code: 'E',
+        },
+        {
+          id: '3',
+          name: 'SECOND FLOOR',
+          code: 'KU/CC/DI/2',
+        },
+        {
+          id: '4',
+          name: 'Annex',
+          code: 'KU/CC/DI/A',
+        },
+      ],
+    });
+
+    const { result, waitFor } = renderHook(() => useLocations(), {
+      wrapper,
+    });
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(kyMock).toHaveBeenCalledWith(
+      'locations?cql.allRecords=1&limit=2147483647'
+    );
+    expect(result.current.data).toStrictEqual([
+      {
+        id: '1',
+        name: 'Popular Reading Collection',
+        code: 'KU/CC/DI/P',
+      },
+      {
+        id: '2',
+        name: 'Online',
+        code: 'E',
+      },
+      {
+        id: '3',
+        name: 'SECOND FLOOR',
+        code: 'KU/CC/DI/2',
+      },
+      {
+        id: '4',
+        name: 'Annex',
+        code: 'KU/CC/DI/A',
+      },
     ]);
   });
 });
