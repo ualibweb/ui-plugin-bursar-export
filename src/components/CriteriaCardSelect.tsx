@@ -9,7 +9,7 @@ import {
 } from '../form/types';
 import { useFieldArray } from 'react-final-form-arrays';
 
-export default function CriteriaCardGroupSelect({
+export default function CriteriaCardSelect({
   prefix,
   root,
 }: {
@@ -17,7 +17,9 @@ export default function CriteriaCardGroupSelect({
   root: boolean;
 }) {
   const form = useForm();
-  const type = useField<CriteriaCardGroupType>(`${prefix}type`).input.value;
+  const type = useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
+    `${prefix}type`
+  ).input.value;
   const criteria = useFieldArray<CriteriaGroup | CriteriaTerminal>(
     `${prefix}criteria`
   );
@@ -31,7 +33,9 @@ export default function CriteriaCardGroupSelect({
   }, [root]);
 
   const selectOptions = useMemo(() => {
-    const options: SelectOptionType<CriteriaCardGroupType>[] = [
+    const options: SelectOptionType<
+      CriteriaCardGroupType | CriteriaCardTerminalType
+    >[] = [
       {
         label: 'All of:',
         value: CriteriaCardGroupType.ALL_OF,
@@ -43,6 +47,17 @@ export default function CriteriaCardGroupSelect({
       {
         label: 'None of:',
         value: CriteriaCardGroupType.NONE_OF,
+      },
+
+      {
+        label: '',
+        value: CriteriaCardGroupType.PASS,
+        disabled: true,
+      },
+
+      {
+        label: 'Age',
+        value: CriteriaCardTerminalType.AGE,
       },
     ];
 
@@ -60,21 +75,13 @@ export default function CriteriaCardGroupSelect({
     if (type === CriteriaCardGroupType.PASS && criteria.fields.length) {
       // remove conditions if changed to pass
       form.change(`${prefix}criteria`, []);
-    } else if (
-      type !== CriteriaCardGroupType.PASS &&
-      criteria.fields.length === 0
-    ) {
-      // ensure at least one inner condition
-      form.change(`${prefix}criteria`, [
-        { type: CriteriaCardTerminalType.AGE },
-      ]);
     }
   }, [type]);
 
   return (
     <Field name={`${prefix}type`} defaultValue={selectDefaultValue}>
       {(fieldProps) => (
-        <Select<CriteriaCardGroupType>
+        <Select<CriteriaCardGroupType | CriteriaCardTerminalType>
           {...fieldProps}
           required
           marginBottom0

@@ -7,6 +7,6 @@
   flex: initial;
 }
 
-.emptyPassCard div:nth-child(2) {
+.emptyBody {
   padding: 0;
 }

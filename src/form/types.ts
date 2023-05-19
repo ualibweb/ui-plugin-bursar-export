@@ -18,15 +18,29 @@ export interface CriteriaGroup {
   criteria?: (CriteriaGroup | CriteriaTerminal)[];
 }
 
-export interface CriteriaTerminal {
-  type: CriteriaCardTerminalType;
+export enum ComparisonOperator {
+  LESS_THAN_EQUAL = 'LESS_THAN_EQUAL',
+  LESS_THAN = 'LESS_THAN',
+  GREATER_THAN_EQUAL = 'GREATER_THAN_EQUAL',
+  GREATER_THAN = 'GREATER_THAN',
 }
+
+export type CriteriaTerminal =
+  | {
+      type: CriteriaCardTerminalType.AGE;
+      numDays: number;
+    }
+  | {
+      type: CriteriaCardTerminalType.AMOUNT;
+      amountDollars: number;
+      operator: ComparisonOperator;
+    };
 
 export enum CriteriaCardGroupType {
   ALL_OF = 'Condition-AND',
   ANY_OF = 'Condition-OR',
   NONE_OF = 'Condition-NOR',
-  PASS = 'Pass',
+  PASS = '',
 }
 
 export enum CriteriaCardTerminalType {

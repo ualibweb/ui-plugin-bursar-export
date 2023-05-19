@@ -1,60 +1,77 @@
-import { Card, IconButton } from '@folio/stripes/components';
+import { Card, Loading, Row } from '@folio/stripes/components';
 import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { useField } from 'react-final-form';
-import { useFieldArray } from 'react-final-form-arrays';
-import {
-  CriteriaCardGroupType,
-  CriteriaGroup,
-  CriteriaTerminal,
-} from '../form/types';
+import { FieldArray } from 'react-final-form-arrays';
+import { CriteriaCardGroupType, CriteriaCardTerminalType } from '../form/types';
+import CriteriaAge from './CriteriaAge';
 import css from './CriteriaCard.module.css';
-import CriteriaCardAddButton from './CriteriaCardAddButton';
-import CriteriaCardGroupSelect from './CriteriaCardGroupSelect';
-
-export interface CriteriaCardProps {
-  prefix: string;
-  root?: boolean;
-  onRemove?: () => void;
-}
+import CriteriaCardSelect from './CriteriaCardSelect';
+import CriteriaCardToolbox from './CriteriaCardToolbox';
 
 export default function CriteriaCard({
-  prefix,
-  root = false,
+  name,
   onRemove,
-}: CriteriaCardProps) {
-  const type = useField<CriteriaCardGroupType>(`${prefix}type`).input.value;
-  const criteria = useFieldArray<CriteriaGroup | CriteriaTerminal>(
-    `${prefix}criteria`
-  );
+  root = false,
+  alone,
+}: {
+  name: string;
+  onRemove?: () => void;
+  root?: boolean;
+  alone: boolean;
+}) {
+  const type = useField<
+    CriteriaCardGroupType | CriteriaCardTerminalType | undefined
+  >(`${name}.type`).input.value;
 
-  const headerEnd = useMemo(() => {
-    if (type === CriteriaCardGroupType.PASS) {
-      return <div />;
-    }
+  const cardInterior = useMemo(() => {
+    switch (type) {
+      case CriteriaCardGroupType.PASS:
+        return <div />;
 
-    if (root) {
-      return <CriteriaCardAddButton onAdd={criteria.fields.push} />;
-    } else {
-      return (
-        <>
-          <CriteriaCardAddButton onAdd={criteria.fields.push} />
-          <IconButton icon="trash" onClick={onRemove} />
-        </>
-      );
+      case CriteriaCardGroupType.ALL_OF:
+      case CriteriaCardGroupType.ANY_OF:
+      case CriteriaCardGroupType.NONE_OF:
+        return (
+          <FieldArray name={`${name}.criteria`}>
+            {({ fields }) =>
+              fields.map((innerName, index) => (
+                <CriteriaCard
+                  key={innerName}
+                  name={innerName}
+                  alone={fields.length === 1}
+                  onRemove={() => fields.remove(index)}
+                />
+              ))
+            }
+          </FieldArray>
+        );
+
+      case CriteriaCardTerminalType.AGE:
+        return <CriteriaAge prefix={`${name}.`} />;
+
+      default:
+        return <Loading />;
     }
-  }, [root, prefix, type, criteria, onRemove]);
+  }, [type]);
 
   return (
     <Card
       headerClass={css.headerClass}
-      headerStart={<CriteriaCardGroupSelect prefix={prefix} root={root} />}
-      headerEnd={headerEnd}
-      cardClass={classNames({
-        [css.emptyPassCard]: type === CriteriaCardGroupType.PASS,
+      headerStart={<CriteriaCardSelect prefix={`${name}.`} root={root} />}
+      headerEnd={
+        <CriteriaCardToolbox
+          prefix={`${name}.`}
+          root={root}
+          alone={alone}
+          onRemove={onRemove}
+        />
+      }
+      bodyClass={classNames({
+        [css.emptyBody]: type === CriteriaCardGroupType.PASS,
       })}
     >
-      <div></div>
+      <Row>{cardInterior}</Row>
     </Card>
   );
 }
