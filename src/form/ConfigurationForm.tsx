@@ -10,16 +10,22 @@ import React, { FormEvent, useCallback } from 'react';
 import { FormRenderProps, FormSpy } from 'react-final-form';
 import SchedulingMenu from './sections/SchedulingMenu';
 import { FormValues } from './types';
-import usePatronGroups from '../api/usePatronGroups';
-import useServicePoints from '../api/useServicePoints';
-import useLocations from '../api/useLocations';
-import useFeeFineOwners from '../api/useFeeFineOwners';
-import useFeeFineTypes from '../api/useFeeFineTypes';
+import usePatronGroups, { PatronGroupDTO } from '../api/usePatronGroups';
+import useServicePoints, { ServicePointDTO } from '../api/useServicePoints';
+import useLocations, { LocationDTO } from '../api/useLocations';
+import useFeeFineOwners, { FeeFineOwnerDTO } from '../api/useFeeFineOwners';
+import useFeeFineTypes, { FeeFineTypeDTO } from '../api/useFeeFineTypes';
 import useTransferAccounts from '../api/useTransferAccounts';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
-interface ConfigurationFormProps {}
+interface ConfigurationFormProps {
+  feeFineOwners: FeeFineOwnerDTO[];
+  feeFineTypes: FeeFineTypeDTO[];
+  locations: LocationDTO[];
+  patronGroups: PatronGroupDTO[];
+  servicePoints: ServicePointDTO[];
+}
 
 function ConfigurationForm({
   handleSubmit,
