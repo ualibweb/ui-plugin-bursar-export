@@ -8,16 +8,15 @@ import {
 import stripesFinalForm from '@folio/stripes/final-form';
 import React, { FormEvent, useCallback } from 'react';
 import { FormRenderProps, FormSpy } from 'react-final-form';
-import SchedulingMenu from './sections/SchedulingMenu';
-import { FormValues } from './types';
-import usePatronGroups, { PatronGroupDTO } from '../api/usePatronGroups';
-import useServicePoints, { ServicePointDTO } from '../api/useServicePoints';
-import useLocations, { LocationDTO } from '../api/useLocations';
 import useFeeFineOwners, { FeeFineOwnerDTO } from '../api/useFeeFineOwners';
 import useFeeFineTypes, { FeeFineTypeDTO } from '../api/useFeeFineTypes';
+import useLocations, { LocationDTO } from '../api/useLocations';
+import usePatronGroups, { PatronGroupDTO } from '../api/usePatronGroups';
+import useServicePoints, { ServicePointDTO } from '../api/useServicePoints';
 import useTransferAccounts from '../api/useTransferAccounts';
 import CriteriaMenu from './sections/CriteriaMenu';
-import CriteriaCardAddButton from '../components/CriteriaCardAddButton';
+import SchedulingMenu from './sections/SchedulingMenu';
+import { FormValues } from './types';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 

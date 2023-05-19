@@ -1,9 +1,4 @@
-import {
-  Card,
-  IconButton,
-  Select,
-  SelectOptionType,
-} from '@folio/stripes/components';
+import { Select, SelectOptionType } from '@folio/stripes/components';
 import React, { useEffect, useMemo } from 'react';
 import { Field, useField, useForm } from 'react-final-form';
 import {
@@ -11,13 +6,8 @@ import {
   CriteriaCardTerminalType,
   CriteriaGroup,
   CriteriaTerminal,
-  FormValues,
 } from '../form/types';
-
-import css from './CriteriaCard.module.css';
-import CriteriaCardAddButton from './CriteriaCardAddButton';
 import { useFieldArray } from 'react-final-form-arrays';
-import classNames from 'classnames';
 
 export default function CriteriaCardGroupSelect({
   prefix,
