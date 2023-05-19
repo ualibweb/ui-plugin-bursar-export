@@ -48,7 +48,11 @@ export default function CriteriaCard({
         );
 
       case CriteriaCardTerminalType.AGE:
-        return <CriteriaAge prefix={`${name}.`} />;
+        return (
+          <Row>
+            <CriteriaAge prefix={`${name}.`} />
+          </Row>
+        );
 
       default:
         return <Loading />;
@@ -57,6 +61,7 @@ export default function CriteriaCard({
 
   return (
     <Card
+      cardClass={css.cardClass}
       headerClass={css.headerClass}
       headerStart={<CriteriaCardSelect prefix={`${name}.`} root={root} />}
       headerEnd={
@@ -71,7 +76,7 @@ export default function CriteriaCard({
         [css.emptyBody]: type === CriteriaCardGroupType.PASS,
       })}
     >
-      <Row>{cardInterior}</Row>
+      {cardInterior}
     </Card>
   );
 }

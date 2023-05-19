@@ -1,3 +1,7 @@
+.cardClass:last-child {
+  margin-bottom: 0;
+}
+
 .headerClass {
   padding: 5px;
   justify-content: space-between;
