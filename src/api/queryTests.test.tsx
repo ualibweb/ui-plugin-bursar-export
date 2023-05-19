@@ -4,6 +4,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import useLocations from './useLocations';
 import usePatronGroups from './usePatronGroups';
 import useServicePoints from './useServicePoints';
+import useFeeFineTypes from './useFeeFineTypes';
+import useFeeFineOwners from './useFeeFineOwners';
 
 const responseMock = jest.fn();
 const kyMock = jest.fn(() => ({
@@ -147,7 +149,7 @@ describe('API Query Tests', () => {
       ],
     });
 
-    const { result, waitFor } = renderHook(() => useLocations(), {
+    const { result, waitFor } = renderHook(() => useFeeFineOwners(), {
       wrapper,
     });
 
@@ -169,6 +171,57 @@ describe('API Query Tests', () => {
         id: '4ae65faa-8df7-4fbc-a4db-ccdcc1479b10',
         owner: 'Shared',
         servicePointOwner: [],
+      },
+    ]);
+  });
+
+  it('Fee fine types query works as expected', async () => {
+    responseMock.mockResolvedValue({
+      feefines: [
+        {
+          id: '9523cb96-e752-40c2-89da-60f3961a488d',
+          feeFineType: 'Overdue fine',
+          automatic: true,
+        },
+        {
+          id: 'cf238f9f-7018-47b7-b815-bb2db798e19f',
+          feeFineType: 'Lost item fee',
+          automatic: true,
+        },
+        {
+          id: '49223209-4d06-4bb5-8b7e-d0b7e5b8fb10',
+          ownerId: '9cb8f9fd-4386-45d0-bb6e-aa8b33e577b0',
+          feeFineType: 'Type 1',
+          automatic: false,
+        },
+      ],
+    });
+
+    const { result, waitFor } = renderHook(() => useFeeFineTypes(), {
+      wrapper,
+    });
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(kyMock).toHaveBeenCalledWith(
+      'feefines?cql.allRecords=1&limit=2147483647'
+    );
+    expect(result.current.data).toStrictEqual([
+      {
+        id: '9523cb96-e752-40c2-89da-60f3961a488d',
+        feeFineType: 'Overdue fine',
+        automatic: true,
+      },
+      {
+        id: 'cf238f9f-7018-47b7-b815-bb2db798e19f',
+        feeFineType: 'Lost item fee',
+        automatic: true,
+      },
+      {
+        id: '49223209-4d06-4bb5-8b7e-d0b7e5b8fb10',
+        ownerId: '9cb8f9fd-4386-45d0-bb6e-aa8b33e577b0',
+        feeFineType: 'Type 1',
+        automatic: false,
       },
     ]);
   });

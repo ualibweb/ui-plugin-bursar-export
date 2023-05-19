@@ -14,6 +14,7 @@ import usePatronGroups from '../api/usePatronGroups';
 import useServicePoints from '../api/useServicePoints';
 import useLocations from '../api/useLocations';
 import useFeeFineOwners from '../api/useFeeFineOwners';
+import useFeeFineTypes from '../api/useFeeFineTypes';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -61,6 +62,9 @@ function ConfigurationForm({
         </Accordion>
         <Accordion label="Debug (useFeeFineOwners)" closedByDefault>
           <pre>{JSON.stringify(useFeeFineOwners().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useFeeFineTypes)" closedByDefault>
+          <pre>{JSON.stringify(useFeeFineTypes().data, undefined, 2)}</pre>
         </Accordion>
       </AccordionSet>
     </form>
