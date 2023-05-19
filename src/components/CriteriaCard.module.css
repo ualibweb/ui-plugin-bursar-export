@@ -6,3 +6,7 @@
 .headerClass span {
   flex: initial;
 }
+
+.emptyPassCard div:nth-child(2) {
+  padding: 0;
+}
