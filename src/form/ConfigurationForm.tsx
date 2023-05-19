@@ -16,6 +16,8 @@ import useLocations, { LocationDTO } from '../api/useLocations';
 import useFeeFineOwners, { FeeFineOwnerDTO } from '../api/useFeeFineOwners';
 import useFeeFineTypes, { FeeFineTypeDTO } from '../api/useFeeFineTypes';
 import useTransferAccounts from '../api/useTransferAccounts';
+import CriteriaMenu from './sections/CriteriaMenu';
+import CriteriaCardAddButton from '../components/CriteriaCardAddButton';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -41,6 +43,7 @@ function ConfigurationForm({
 
   return (
     <form id={FORM_ID} onSubmit={submitter}>
+      <CriteriaCardAddButton onAdd={() => {}} />
       <AccordionSet>
         <Row end="xs">
           <Col xs>
@@ -50,8 +53,8 @@ function ConfigurationForm({
         <Accordion label="Scheduling">
           <SchedulingMenu />
         </Accordion>
-        <Accordion label="Second section">
-          <p>Fields should go here...</p>
+        <Accordion label="Criteria">
+          <CriteriaMenu />
         </Accordion>
         <Accordion label="Debug (form state)">
           <FormSpy subscription={{ values: true }}>
