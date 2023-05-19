@@ -127,4 +127,49 @@ describe('API Query Tests', () => {
       },
     ]);
   });
+
+  it('Fee fine owners query works as expected', async () => {
+    responseMock.mockResolvedValue({
+      owners: [
+        {
+          id: '9cb8f9fd-4386-45d0-bb6e-aa8b33e577b0',
+          owner: 'Owner 1',
+        },
+        {
+          id: '3da4b49d-ee7a-41fc-bf53-10f626180f7f',
+          owner: 'Owner 2',
+        },
+        {
+          id: '4ae65faa-8df7-4fbc-a4db-ccdcc1479b10',
+          owner: 'Shared',
+          servicePointOwner: [],
+        },
+      ],
+    });
+
+    const { result, waitFor } = renderHook(() => useLocations(), {
+      wrapper,
+    });
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(kyMock).toHaveBeenCalledWith(
+      'owners?cql.allRecords=1&limit=2147483647'
+    );
+    expect(result.current.data).toStrictEqual([
+      {
+        id: '9cb8f9fd-4386-45d0-bb6e-aa8b33e577b0',
+        owner: 'Owner 1',
+      },
+      {
+        id: '3da4b49d-ee7a-41fc-bf53-10f626180f7f',
+        owner: 'Owner 2',
+      },
+      {
+        id: '4ae65faa-8df7-4fbc-a4db-ccdcc1479b10',
+        owner: 'Shared',
+        servicePointOwner: [],
+      },
+    ]);
+  });
 });

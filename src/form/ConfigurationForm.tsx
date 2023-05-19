@@ -13,6 +13,7 @@ import { FormValues } from './types';
 import usePatronGroups from '../api/usePatronGroups';
 import useServicePoints from '../api/useServicePoints';
 import useLocations from '../api/useLocations';
+import useFeeFineOwners from '../api/useFeeFineOwners';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -49,14 +50,17 @@ function ConfigurationForm({
             {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
           </FormSpy>
         </Accordion>
-        <Accordion label="Debug (usePatronGroups)">
+        <Accordion label="Debug (usePatronGroups)" closedByDefault>
           <pre>{JSON.stringify(usePatronGroups().data, undefined, 2)}</pre>
         </Accordion>
-        <Accordion label="Debug (useServicePoints)">
+        <Accordion label="Debug (useServicePoints)" closedByDefault>
           <pre>{JSON.stringify(useServicePoints().data, undefined, 2)}</pre>
         </Accordion>
-        <Accordion label="Debug (useLocations)">
+        <Accordion label="Debug (useLocations)" closedByDefault>
           <pre>{JSON.stringify(useLocations().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useFeeFineOwners)" closedByDefault>
+          <pre>{JSON.stringify(useFeeFineOwners().data, undefined, 2)}</pre>
         </Accordion>
       </AccordionSet>
     </form>
