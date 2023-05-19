@@ -6,6 +6,7 @@ import usePatronGroups from './usePatronGroups';
 import useServicePoints from './useServicePoints';
 import useFeeFineTypes from './useFeeFineTypes';
 import useFeeFineOwners from './useFeeFineOwners';
+import useTransferAccounts from './useTransferAccounts';
 
 const responseMock = jest.fn();
 const kyMock = jest.fn(() => ({
@@ -222,6 +223,45 @@ describe('API Query Tests', () => {
         ownerId: '9cb8f9fd-4386-45d0-bb6e-aa8b33e577b0',
         feeFineType: 'Type 1',
         automatic: false,
+      },
+    ]);
+  });
+
+  it('Fee fine transfer accounts query works as expected', async () => {
+    responseMock.mockResolvedValue({
+      transfers: [
+        {
+          accountName: 'test account 1',
+          ownerId: 'b25fd8e7-a0e7-4690-ab0b-94039739c0db',
+          id: '90c1820f-60bf-4b9a-99f5-d677ea78ddca',
+        },
+        {
+          accountName: 'test account 2',
+          ownerId: '60f7a273-1454-4a5d-b379-1f323a74e3f1',
+          id: 'bb58346b-4025-4236-a0a6-5476eb972066',
+        },
+      ],
+    });
+
+    const { result, waitFor } = renderHook(() => useTransferAccounts(), {
+      wrapper,
+    });
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(kyMock).toHaveBeenCalledWith(
+      'transfers?cql.allRecords=1&limit=2147483647'
+    );
+    expect(result.current.data).toStrictEqual([
+      {
+        accountName: 'test account 1',
+        ownerId: 'b25fd8e7-a0e7-4690-ab0b-94039739c0db',
+        id: '90c1820f-60bf-4b9a-99f5-d677ea78ddca',
+      },
+      {
+        accountName: 'test account 2',
+        ownerId: '60f7a273-1454-4a5d-b379-1f323a74e3f1',
+        id: 'bb58346b-4025-4236-a0a6-5476eb972066',
       },
     ]);
   });
