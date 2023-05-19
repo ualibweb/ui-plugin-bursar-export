@@ -43,7 +43,6 @@ function ConfigurationForm({
 
   return (
     <form id={FORM_ID} onSubmit={submitter}>
-      <CriteriaCardAddButton onAdd={() => {}} />
       <AccordionSet>
         <Row end="xs">
           <Col xs>

@@ -1,14 +1,13 @@
 import { Card, IconButton } from '@folio/stripes/components';
+import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { useField } from 'react-final-form';
+import { useFieldArray } from 'react-final-form-arrays';
 import {
   CriteriaCardGroupType,
   CriteriaGroup,
   CriteriaTerminal,
 } from '../form/types';
-
-import classNames from 'classnames';
-import { useFieldArray } from 'react-final-form-arrays';
 import css from './CriteriaCard.module.css';
 import CriteriaCardAddButton from './CriteriaCardAddButton';
 import CriteriaCardGroupSelect from './CriteriaCardGroupSelect';
