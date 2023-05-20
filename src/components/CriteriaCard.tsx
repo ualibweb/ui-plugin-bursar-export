@@ -5,6 +5,7 @@ import { useField } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 import { CriteriaCardGroupType, CriteriaCardTerminalType } from '../form/types';
 import CriteriaAge from './CriteriaAge';
+import CriteriaAmount from './CriteriaAmount';
 import css from './CriteriaCard.module.css';
 import CriteriaCardSelect from './CriteriaCardSelect';
 import CriteriaCardToolbox from './CriteriaCardToolbox';
@@ -51,6 +52,12 @@ export default function CriteriaCard({
         return (
           <Row>
             <CriteriaAge prefix={`${name}.`} />
+          </Row>
+        );
+      case CriteriaCardTerminalType.AMOUNT:
+        return (
+          <Row>
+            <CriteriaAmount prefix={`${name}.`} />
           </Row>
         );
 

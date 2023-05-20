@@ -55,9 +55,14 @@ export default function CriteriaCardSelect({
         disabled: true,
       },
 
+      // TODO: sort these alphabetically per i18n
       {
         label: 'Age',
         value: CriteriaCardTerminalType.AGE,
+      },
+      {
+        label: 'Amount',
+        value: CriteriaCardTerminalType.AMOUNT,
       },
     ];
 

@@ -32,8 +32,8 @@ export type CriteriaTerminal =
     }
   | {
       type: CriteriaCardTerminalType.AMOUNT;
+      operator?: ComparisonOperator;
       amountDollars: number;
-      operator: ComparisonOperator;
     };
 
 export enum CriteriaCardGroupType {
