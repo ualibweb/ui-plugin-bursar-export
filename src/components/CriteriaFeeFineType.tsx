@@ -13,7 +13,7 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
     {
       subscription: { value: true },
       // provide default value for when the field is not yet initialized
-      format: (value) => value || 'automatic',
+      format: (value) => value ?? 'automatic',
     }
   ).input.value;
 

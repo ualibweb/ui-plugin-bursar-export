@@ -1,13 +1,7 @@
 import { Select, SelectOptionType } from '@folio/stripes/components';
-import React, { useEffect, useMemo } from 'react';
-import { Field, useField, useForm } from 'react-final-form';
-import {
-  CriteriaCardGroupType,
-  CriteriaCardTerminalType,
-  CriteriaGroup,
-  CriteriaTerminal,
-} from '../form/types';
-import { useFieldArray } from 'react-final-form-arrays';
+import React, { useMemo } from 'react';
+import { Field } from 'react-final-form';
+import { CriteriaCardGroupType, CriteriaCardTerminalType } from '../form/types';
 
 export default function CriteriaCardSelect({
   prefix,
@@ -16,15 +10,6 @@ export default function CriteriaCardSelect({
   prefix: string;
   root: boolean;
 }) {
-  const form = useForm();
-  const type = useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
-    `${prefix}type`,
-    { subscription: { value: true } }
-  ).input.value;
-  const criteria = useFieldArray<CriteriaGroup | CriteriaTerminal>(
-    `${prefix}criteria`
-  );
-
   const selectDefaultValue = useMemo(() => {
     if (root) {
       return CriteriaCardTerminalType.PASS;
