@@ -20,6 +20,7 @@ export default function CriteriaAmount({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
+              type="number"
               label="Amount"
               min={0}
               step={0.01}
