@@ -9,6 +9,7 @@ import CriteriaAmount from './CriteriaAmount';
 import css from './CriteriaCard.module.css';
 import CriteriaCardSelect from './CriteriaCardSelect';
 import CriteriaCardToolbox from './CriteriaCardToolbox';
+import CriteriaFeeFineType from './CriteriaFeeFineType';
 
 export default function CriteriaCard({
   name,
@@ -23,7 +24,7 @@ export default function CriteriaCard({
 }) {
   const type = useField<
     CriteriaCardGroupType | CriteriaCardTerminalType | undefined
-  >(`${name}.type`).input.value;
+  >(`${name}.type`, { subscription: { value: true } }).input.value;
 
   const cardInterior = useMemo(() => {
     switch (type) {
@@ -58,6 +59,12 @@ export default function CriteriaCard({
         return (
           <Row>
             <CriteriaAmount prefix={`${name}.`} />
+          </Row>
+        );
+      case CriteriaCardTerminalType.FEE_FINE_TYPE:
+        return (
+          <Row>
+            <CriteriaFeeFineType prefix={`${name}.`} />
           </Row>
         );
 

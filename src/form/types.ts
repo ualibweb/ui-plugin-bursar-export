@@ -28,12 +28,17 @@ export enum ComparisonOperator {
 export type CriteriaTerminal =
   | {
       type: CriteriaCardTerminalType.AGE;
-      numDays: number;
+      numDays?: number;
     }
   | {
       type: CriteriaCardTerminalType.AMOUNT;
       operator?: ComparisonOperator;
-      amountDollars: number;
+      amountDollars?: number;
+    }
+  | {
+      type: CriteriaCardTerminalType.FEE_FINE_TYPE;
+      feeFineOwnerId?: string;
+      feeFineTypeId?: string;
     };
 
 export enum CriteriaCardGroupType {
@@ -46,4 +51,5 @@ export enum CriteriaCardGroupType {
 export enum CriteriaCardTerminalType {
   AGE = 'Age',
   AMOUNT = 'Amount',
+  FEE_FINE_TYPE = 'FeeType',
 }

@@ -23,8 +23,10 @@ export default function CriteriaCardToolbox({
   onRemove,
 }: CriteriaCardToolboxProps) {
   const type =
-    useField<CriteriaCardGroupType | CriteriaCardTerminalType>(`${prefix}type`)
-      .input.value ?? CriteriaCardGroupType.PASS;
+    useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
+      `${prefix}type`,
+      { subscription: { value: true } }
+    ).input.value ?? CriteriaCardGroupType.PASS;
   const criteria = useFieldArray<CriteriaGroup | CriteriaTerminal>(
     `${prefix}criteria`
   );

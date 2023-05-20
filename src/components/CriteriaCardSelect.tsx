@@ -18,7 +18,8 @@ export default function CriteriaCardSelect({
 }) {
   const form = useForm();
   const type = useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
-    `${prefix}type`
+    `${prefix}type`,
+    { subscription: { value: true } }
   ).input.value;
   const criteria = useFieldArray<CriteriaGroup | CriteriaTerminal>(
     `${prefix}criteria`
@@ -63,6 +64,10 @@ export default function CriteriaCardSelect({
       {
         label: 'Amount',
         value: CriteriaCardTerminalType.AMOUNT,
+      },
+      {
+        label: 'Fee/fine type',
+        value: CriteriaCardTerminalType.FEE_FINE_TYPE,
       },
     ];
 
