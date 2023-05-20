@@ -93,13 +93,6 @@ export default function CriteriaCardSelect({
     return options;
   }, [root]);
 
-  useEffect(() => {
-    if (type === CriteriaCardTerminalType.PASS && criteria.fields.length) {
-      // remove conditions if changed to pass
-      form.change(`${prefix}criteria`, []);
-    }
-  }, [type]);
-
   return (
     <Field name={`${prefix}type`} defaultValue={selectDefaultValue}>
       {(fieldProps) => (
