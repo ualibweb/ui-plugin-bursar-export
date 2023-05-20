@@ -11,6 +11,8 @@ import CriteriaCardSelect from './CriteriaCardSelect';
 import CriteriaCardToolbox from './CriteriaCardToolbox';
 import CriteriaFeeFineType from './CriteriaFeeFineType';
 import CriteriaLocation from './CriteriaLocation';
+import CriteriaPatronGroup from './CriteriaPatronGroup';
+import CriteriaServicePoint from './CriteriaServicePoint';
 
 export default function CriteriaCard({
   name,
