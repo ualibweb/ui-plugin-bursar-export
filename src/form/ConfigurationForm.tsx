@@ -17,6 +17,9 @@ import useTransferAccounts from '../api/useTransferAccounts';
 import CriteriaMenu from './sections/CriteriaMenu';
 import SchedulingMenu from './sections/SchedulingMenu';
 import { FormValues } from './types';
+import useCampuses from '../api/useCampuses';
+import useInstitutions from '../api/useInstitutions';
+import useLibraries from '../api/useLibraries';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -65,9 +68,6 @@ function ConfigurationForm({
         <Accordion label="Debug (useServicePoints)" closedByDefault>
           <pre>{JSON.stringify(useServicePoints().data, undefined, 2)}</pre>
         </Accordion>
-        <Accordion label="Debug (useLocations)" closedByDefault>
-          <pre>{JSON.stringify(useLocations().data, undefined, 2)}</pre>
-        </Accordion>
         <Accordion label="Debug (useFeeFineOwners)" closedByDefault>
           <pre>{JSON.stringify(useFeeFineOwners().data, undefined, 2)}</pre>
         </Accordion>
@@ -76,6 +76,18 @@ function ConfigurationForm({
         </Accordion>
         <Accordion label="Debug (useTransferAccounts)" closedByDefault>
           <pre>{JSON.stringify(useTransferAccounts().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useInstitutions)" closedByDefault>
+          <pre>{JSON.stringify(useInstitutions().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useCampuses)" closedByDefault>
+          <pre>{JSON.stringify(useCampuses().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useLibraries)" closedByDefault>
+          <pre>{JSON.stringify(useLibraries().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useLocations)" closedByDefault>
+          <pre>{JSON.stringify(useLocations().data, undefined, 2)}</pre>
         </Accordion>
       </AccordionSet>
     </form>
