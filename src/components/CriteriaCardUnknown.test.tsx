@@ -26,8 +26,6 @@ it('Criteria card with unknown type should display loading', async () => {
     )
   );
 
-  screen.debug();
-
   expect(
     container.querySelector('[data-test-card-body] .spinner')
   ).toBeInTheDocument();
