@@ -12,7 +12,7 @@ import CriteriaCardToolbox from './CriteriaCardToolbox';
 import CriteriaCard from './CriteriaCard';
 import userEvent from '@testing-library/user-event';
 
-it('Age criteria displays appropriate form', async () => {
+it('Amount criteria displays appropriate form', async () => {
   const submitter = jest.fn();
 
   render(
@@ -31,14 +31,19 @@ it('Age criteria displays appropriate form', async () => {
     )
   );
 
-  await userEvent.selectOptions(screen.getByRole('combobox'), 'Age');
-  await userEvent.type(await screen.findByRole('textbox'), '10');
+  await userEvent.selectOptions(screen.getByRole('combobox'), 'Amount');
+  await userEvent.selectOptions(
+    await screen.findByRole('combobox', { name: 'Comparison operator' }),
+    'Greater than but not equal to'
+  );
+  await userEvent.type(await screen.findByRole('textbox'), '12');
   await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
   expect(submitter).toHaveBeenCalledWith({
     criteria: {
-      type: 'Age',
-      numDays: '10',
+      type: 'Amount',
+      operator: 'GREATER_THAN',
+      amountDollars: '12.00',
     },
   });
 });
