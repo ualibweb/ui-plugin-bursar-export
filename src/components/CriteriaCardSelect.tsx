@@ -69,6 +69,18 @@ export default function CriteriaCardSelect({
         label: 'Fee/fine type',
         value: CriteriaCardTerminalType.FEE_FINE_TYPE,
       },
+      {
+        label: 'Item location',
+        value: CriteriaCardTerminalType.LOCATION,
+      },
+      {
+        label: 'Item service point',
+        value: CriteriaCardTerminalType.SERVICE_POINT,
+      },
+      {
+        label: 'Patron group',
+        value: CriteriaCardTerminalType.PATRON_GROUP,
+      },
     ];
 
     if (root) {

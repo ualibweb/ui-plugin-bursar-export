@@ -1,8 +1,6 @@
-import { Col, Select, TextField } from '@folio/stripes/components';
+import { Col, Select } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { Field, useField } from 'react-final-form';
-import useMonetaryOnBlur from '../utils/useMonetaryOnBlur';
-import OperatorSelect from './OperatorSelect';
 import useFeeFineOwners from '../api/useFeeFineOwners';
 import useFeeFineTypes from '../api/useFeeFineTypes';
 
@@ -43,7 +41,7 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
 
   return (
     <>
-      <Col xs={6}>
+      <Col xs={12} md={6}>
         <Field name={`${prefix}feeFineOwnerId`}>
           {(fieldProps) => (
             <Select<string | undefined>
@@ -60,7 +58,7 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
           )}
         </Field>
       </Col>
-      <Col xs={6}>
+      <Col xs={12} md={6}>
         <Field name={`${prefix}feeFineTypeId`}>
           {(fieldProps) => (
             <Select<string | undefined>

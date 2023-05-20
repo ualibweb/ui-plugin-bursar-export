@@ -10,6 +10,7 @@ import css from './CriteriaCard.module.css';
 import CriteriaCardSelect from './CriteriaCardSelect';
 import CriteriaCardToolbox from './CriteriaCardToolbox';
 import CriteriaFeeFineType from './CriteriaFeeFineType';
+import CriteriaLocation from './CriteriaLocation';
 
 export default function CriteriaCard({
   name,
@@ -65,6 +66,24 @@ export default function CriteriaCard({
         return (
           <Row>
             <CriteriaFeeFineType prefix={`${name}.`} />
+          </Row>
+        );
+      case CriteriaCardTerminalType.LOCATION:
+        return (
+          <Row>
+            <CriteriaLocation prefix={`${name}.`} />
+          </Row>
+        );
+      case CriteriaCardTerminalType.SERVICE_POINT:
+        return (
+          <Row>
+            <CriteriaServicePoint prefix={`${name}.`} />
+          </Row>
+        );
+      case CriteriaCardTerminalType.PATRON_GROUP:
+        return (
+          <Row>
+            <CriteriaPatronGroup prefix={`${name}.`} />
           </Row>
         );
 

@@ -39,6 +39,21 @@ export type CriteriaTerminal =
       type: CriteriaCardTerminalType.FEE_FINE_TYPE;
       feeFineOwnerId?: string;
       feeFineTypeId?: string;
+    }
+  | {
+      type: CriteriaCardTerminalType.LOCATION;
+      institutionId?: string;
+      campusId?: string;
+      libraryId?: string;
+      locationId?: string;
+    }
+  | {
+      type: CriteriaCardTerminalType.SERVICE_POINT;
+      servicePointId?: string;
+    }
+  | {
+      type: CriteriaCardTerminalType.PATRON_GROUP;
+      patronGroupId?: string;
     };
 
 export enum CriteriaCardGroupType {
@@ -52,4 +67,7 @@ export enum CriteriaCardTerminalType {
   AGE = 'Age',
   AMOUNT = 'Amount',
   FEE_FINE_TYPE = 'FeeType',
+  LOCATION = 'Location',
+  SERVICE_POINT = 'ServicePoint',
+  PATRON_GROUP = 'PatronGroup',
 }
