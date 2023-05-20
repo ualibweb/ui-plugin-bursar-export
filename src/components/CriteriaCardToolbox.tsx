@@ -25,7 +25,8 @@ export default function CriteriaCardToolbox({
   const type =
     useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
       `${prefix}type`,
-      { subscription: { value: true } }
+      // format ensures that `undefined` stays `undefined` for use of ??
+      { subscription: { value: true }, format: (value) => value }
     ).input.value ?? CriteriaCardGroupType.PASS;
   const criteria = useFieldArray<CriteriaGroup | CriteriaTerminal>(
     `${prefix}criteria`

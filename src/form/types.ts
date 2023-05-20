@@ -3,7 +3,7 @@ export interface FormValues {
     frequency: SchedulingFrequency;
     interval?: number;
   };
-  criteria: CriteriaGroup;
+  criteria: CriteriaGroup | CriteriaTerminal;
 }
 
 export enum SchedulingFrequency {
