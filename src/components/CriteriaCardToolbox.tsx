@@ -22,12 +22,14 @@ export default function CriteriaCardToolbox({
   alone = false,
   onRemove,
 }: CriteriaCardToolboxProps) {
-  const type =
-    useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
-      `${prefix}type`,
-      // format ensures that `undefined` stays `undefined` for use of ??
-      { subscription: { value: true }, format: (value) => value }
-    ).input.value ?? CriteriaCardGroupType.PASS;
+  const type = useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
+    `${prefix}type`,
+    // format ensures undefined is treated as default (pass)
+    {
+      subscription: { value: true },
+      format: (value) => value || CriteriaCardTerminalType.PASS,
+    }
+  ).input.value;
   const criteria = useFieldArray<CriteriaGroup | CriteriaTerminal>(
     `${prefix}criteria`
   );

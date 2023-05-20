@@ -26,6 +26,7 @@ export enum ComparisonOperator {
 }
 
 export type CriteriaTerminal =
+  | { type: CriteriaCardTerminalType.PASS }
   | {
       type: CriteriaCardTerminalType.AGE;
       numDays?: number;
@@ -60,10 +61,11 @@ export enum CriteriaCardGroupType {
   ALL_OF = 'Condition-AND',
   ANY_OF = 'Condition-OR',
   NONE_OF = 'Condition-NOR',
-  PASS = '',
 }
 
 export enum CriteriaCardTerminalType {
+  PASS = 'Pass',
+
   AGE = 'Age',
   AMOUNT = 'Amount',
   FEE_FINE_TYPE = 'FeeType',

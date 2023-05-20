@@ -27,7 +27,7 @@ export default function CriteriaCardSelect({
 
   const selectDefaultValue = useMemo(() => {
     if (root) {
-      return CriteriaCardGroupType.PASS;
+      return CriteriaCardTerminalType.PASS;
     } else {
       return CriteriaCardGroupType.ALL_OF;
     }
@@ -52,7 +52,7 @@ export default function CriteriaCardSelect({
 
       {
         label: '',
-        value: CriteriaCardGroupType.PASS,
+        value: CriteriaCardTerminalType.PASS,
         disabled: true,
       },
 
@@ -86,7 +86,7 @@ export default function CriteriaCardSelect({
     if (root) {
       options.unshift({
         label: 'No criteria (always run)',
-        value: CriteriaCardGroupType.PASS,
+        value: CriteriaCardTerminalType.PASS,
       });
     }
 
@@ -94,7 +94,7 @@ export default function CriteriaCardSelect({
   }, [root]);
 
   useEffect(() => {
-    if (type === CriteriaCardGroupType.PASS && criteria.fields.length) {
+    if (type === CriteriaCardTerminalType.PASS && criteria.fields.length) {
       // remove conditions if changed to pass
       form.change(`${prefix}criteria`, []);
     }

@@ -31,7 +31,7 @@ export default function CriteriaCard({
 
   const cardInterior = useMemo(() => {
     switch (type) {
-      case CriteriaCardGroupType.PASS:
+      case CriteriaCardTerminalType.PASS:
         return <div />;
 
       case CriteriaCardGroupType.ALL_OF:
@@ -108,7 +108,7 @@ export default function CriteriaCard({
         />
       }
       bodyClass={classNames({
-        [css.emptyBody]: type === CriteriaCardGroupType.PASS,
+        [css.emptyBody]: type === CriteriaCardTerminalType.PASS,
       })}
     >
       {cardInterior}
