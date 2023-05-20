@@ -12,6 +12,8 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
     `${prefix}feeFineOwnerId`,
     {
       subscription: { value: true },
+      // provide default value for when the field is not yet initialized
+      format: (value) => value || 'automatic',
     }
   ).input.value;
 
@@ -27,8 +29,17 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
   }, [feeFineOwners]);
 
   const typeSelectOptions = useMemo(() => {
-    if (!selectedOwner || !feeFineTypes.isSuccess) {
+    if (!feeFineTypes.isSuccess) {
       return [];
+    }
+
+    if (selectedOwner === 'automatic') {
+      return feeFineTypes.data
+        .filter((type) => type.automatic)
+        .map((type) => ({
+          label: type.feeFineType,
+          value: type.id,
+        }));
     }
 
     return feeFineTypes.data
@@ -42,7 +53,7 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
   return (
     <>
       <Col xs={12} md={6}>
-        <Field name={`${prefix}feeFineOwnerId`}>
+        <Field name={`${prefix}feeFineOwnerId`} defaultValue="automatic">
           {(fieldProps) => (
             <Select<string | undefined>
               {...fieldProps}
@@ -51,7 +62,7 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
               required
               label="Fee/fine owner"
               dataOptions={[
-                { label: '', value: undefined },
+                { label: 'Automatic', value: 'automatic' },
                 ...ownersSelectOptions,
               ]}
             />
