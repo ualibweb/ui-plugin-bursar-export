@@ -11,7 +11,7 @@ import React from 'react';
 import { Field, useField } from 'react-final-form';
 import { useIntl } from 'react-intl';
 import { Weekday, useLocaleWeekdays } from '../../utils/WeekdayUtils';
-import { SchedulingFrequency } from '../types';
+import SchedulingFrequency from '../../types/SchedulingFrequency';
 
 export function getIntervalLabel(frequency: SchedulingFrequency) {
   switch (frequency) {

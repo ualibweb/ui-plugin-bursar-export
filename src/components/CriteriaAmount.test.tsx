@@ -3,8 +3,8 @@ import userEvent from '@testing-library/user-event';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
-import { FormValues } from '../form/types';
 import withIntlConfiguration from '../test/util/withIntlConfiguration';
+import FormValues from '../types/FormValues';
 import CriteriaCard from './CriteriaCard';
 
 it('Amount criteria displays appropriate form', async () => {

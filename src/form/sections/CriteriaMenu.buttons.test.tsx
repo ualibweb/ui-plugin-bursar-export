@@ -3,10 +3,9 @@ import userEvent from '@testing-library/user-event';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
-import { CriteriaCardGroupType, FormValues } from '../types';
 import withIntlConfiguration from '../../test/util/withIntlConfiguration';
-import CriteriaCardToolbox from '../../components/CriteriaCardToolbox';
-import CriteriaCard from '../../components/CriteriaCard';
+import { CriteriaCardGroupType } from '../../types/CriteriaTypes';
+import FormValues from '../../types/FormValues';
 import CriteriaMenu from './CriteriaMenu';
 
 describe('Buttons work as expected', () => {

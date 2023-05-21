@@ -3,7 +3,10 @@ import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { useField } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import { CriteriaCardGroupType, CriteriaCardTerminalType } from '../form/types';
+import {
+  CriteriaCardGroupType,
+  CriteriaCardTerminalType,
+} from '../types/CriteriaTypes';
 import CriteriaAge from './CriteriaAge';
 import CriteriaAmount from './CriteriaAmount';
 import css from './CriteriaCard.module.css';

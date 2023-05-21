@@ -16,7 +16,7 @@ import useServicePoints, { ServicePointDTO } from '../api/useServicePoints';
 import useTransferAccounts from '../api/useTransferAccounts';
 import CriteriaMenu from './sections/CriteriaMenu';
 import SchedulingMenu from './sections/SchedulingMenu';
-import { FormValues } from './types';
+import FormValues from '../types/FormValues';
 import useCampuses from '../api/useCampuses';
 import useInstitutions from '../api/useInstitutions';
 import useLibraries from '../api/useLibraries';

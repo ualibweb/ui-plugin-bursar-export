@@ -1,18 +1,3 @@
-export interface FormValues {
-  scheduling: {
-    frequency: SchedulingFrequency;
-    interval?: number;
-  };
-  criteria: CriteriaGroup | CriteriaTerminal;
-}
-
-export enum SchedulingFrequency {
-  Manual = 'NONE',
-  Hours = 'HOUR',
-  Days = 'DAY',
-  Weeks = 'WEEK',
-}
-
 export interface CriteriaGroup {
   type: CriteriaCardGroupType;
   criteria?: (CriteriaGroup | CriteriaTerminal)[];
