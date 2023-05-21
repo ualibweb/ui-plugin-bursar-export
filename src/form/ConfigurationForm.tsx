@@ -8,14 +8,18 @@ import {
 import stripesFinalForm from '@folio/stripes/final-form';
 import React, { FormEvent, useCallback } from 'react';
 import { FormRenderProps, FormSpy } from 'react-final-form';
-import SchedulingMenu from './sections/SchedulingMenu';
-import { FormValues } from './types';
-import usePatronGroups, { PatronGroupDTO } from '../api/usePatronGroups';
-import useServicePoints, { ServicePointDTO } from '../api/useServicePoints';
-import useLocations, { LocationDTO } from '../api/useLocations';
 import useFeeFineOwners, { FeeFineOwnerDTO } from '../api/useFeeFineOwners';
 import useFeeFineTypes, { FeeFineTypeDTO } from '../api/useFeeFineTypes';
+import useLocations, { LocationDTO } from '../api/useLocations';
+import usePatronGroups, { PatronGroupDTO } from '../api/usePatronGroups';
+import useServicePoints, { ServicePointDTO } from '../api/useServicePoints';
 import useTransferAccounts from '../api/useTransferAccounts';
+import CriteriaMenu from './sections/CriteriaMenu';
+import SchedulingMenu from './sections/SchedulingMenu';
+import { FormValues } from './types';
+import useCampuses from '../api/useCampuses';
+import useInstitutions from '../api/useInstitutions';
+import useLibraries from '../api/useLibraries';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -50,8 +54,8 @@ function ConfigurationForm({
         <Accordion label="Scheduling">
           <SchedulingMenu />
         </Accordion>
-        <Accordion label="Second section">
-          <p>Fields should go here...</p>
+        <Accordion label="Criteria">
+          <CriteriaMenu />
         </Accordion>
         <Accordion label="Debug (form state)">
           <FormSpy subscription={{ values: true }}>
@@ -64,9 +68,6 @@ function ConfigurationForm({
         <Accordion label="Debug (useServicePoints)" closedByDefault>
           <pre>{JSON.stringify(useServicePoints().data, undefined, 2)}</pre>
         </Accordion>
-        <Accordion label="Debug (useLocations)" closedByDefault>
-          <pre>{JSON.stringify(useLocations().data, undefined, 2)}</pre>
-        </Accordion>
         <Accordion label="Debug (useFeeFineOwners)" closedByDefault>
           <pre>{JSON.stringify(useFeeFineOwners().data, undefined, 2)}</pre>
         </Accordion>
@@ -75,6 +76,18 @@ function ConfigurationForm({
         </Accordion>
         <Accordion label="Debug (useTransferAccounts)" closedByDefault>
           <pre>{JSON.stringify(useTransferAccounts().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useInstitutions)" closedByDefault>
+          <pre>{JSON.stringify(useInstitutions().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useCampuses)" closedByDefault>
+          <pre>{JSON.stringify(useCampuses().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useLibraries)" closedByDefault>
+          <pre>{JSON.stringify(useLibraries().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useLocations)" closedByDefault>
+          <pre>{JSON.stringify(useLocations().data, undefined, 2)}</pre>
         </Accordion>
       </AccordionSet>
     </form>

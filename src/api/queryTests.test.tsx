@@ -7,6 +7,9 @@ import useServicePoints from './useServicePoints';
 import useFeeFineTypes from './useFeeFineTypes';
 import useFeeFineOwners from './useFeeFineOwners';
 import useTransferAccounts from './useTransferAccounts';
+import useInstitutions from './useInstitutions';
+import useCampuses from './useCampuses';
+import useLibraries from './useLibraries';
 
 const responseMock = jest.fn();
 const kyMock = jest.fn(() => ({
@@ -262,6 +265,121 @@ describe('API Query Tests', () => {
         accountName: 'test account 2',
         ownerId: '60f7a273-1454-4a5d-b379-1f323a74e3f1',
         id: 'bb58346b-4025-4236-a0a6-5476eb972066',
+      },
+    ]);
+  });
+
+  it('Institutions query works as expected', async () => {
+    responseMock.mockResolvedValue({
+      locinsts: [
+        {
+          id: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+          name: 'Københavns Universitet',
+          code: 'KU',
+        },
+      ],
+    });
+
+    const { result, waitFor } = renderHook(() => useInstitutions(), {
+      wrapper,
+    });
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(kyMock).toHaveBeenCalledWith(
+      'location-units/institutions?cql.allRecords=1&limit=2147483647'
+    );
+    expect(result.current.data).toStrictEqual([
+      {
+        id: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+        name: 'Københavns Universitet',
+        code: 'KU',
+      },
+    ]);
+  });
+
+  it('Campuses query works as expected', async () => {
+    responseMock.mockResolvedValue({
+      loccamps: [
+        {
+          id: '62cf76b7-cca5-4d33-9217-edf42ce1a848',
+          name: 'City Campus',
+          code: 'CC',
+          institutionId: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+        },
+        {
+          id: '470ff1dd-937a-4195-bf9e-06bcfcd135df',
+          name: 'Online',
+          code: 'E',
+          institutionId: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+        },
+      ],
+    });
+
+    const { result, waitFor } = renderHook(() => useCampuses(), {
+      wrapper,
+    });
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(kyMock).toHaveBeenCalledWith(
+      'location-units/campuses?cql.allRecords=1&limit=2147483647'
+    );
+    expect(result.current.data).toStrictEqual([
+      {
+        id: '62cf76b7-cca5-4d33-9217-edf42ce1a848',
+        name: 'City Campus',
+        code: 'CC',
+        institutionId: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+      },
+      {
+        id: '470ff1dd-937a-4195-bf9e-06bcfcd135df',
+        name: 'Online',
+        code: 'E',
+        institutionId: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+      },
+    ]);
+  });
+
+  it('Libraries query works as expected', async () => {
+    responseMock.mockResolvedValue({
+      loclibs: [
+        {
+          id: '5d78803e-ca04-4b4a-aeae-2c63b924518b',
+          name: 'Datalogisk Institut',
+          code: 'DI',
+          campusId: '62cf76b7-cca5-4d33-9217-edf42ce1a848',
+        },
+        {
+          id: 'c2549bb4-19c7-4fcc-8b52-39e612fb7dbe',
+          name: 'Online',
+          code: 'E',
+          campusId: '470ff1dd-937a-4195-bf9e-06bcfcd135df',
+        },
+      ],
+    });
+
+    const { result, waitFor } = renderHook(() => useLibraries(), {
+      wrapper,
+    });
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(kyMock).toHaveBeenCalledWith(
+      'location-units/libraries?cql.allRecords=1&limit=2147483647'
+    );
+    expect(result.current.data).toStrictEqual([
+      {
+        id: '5d78803e-ca04-4b4a-aeae-2c63b924518b',
+        name: 'Datalogisk Institut',
+        code: 'DI',
+        campusId: '62cf76b7-cca5-4d33-9217-edf42ce1a848',
+      },
+      {
+        id: 'c2549bb4-19c7-4fcc-8b52-39e612fb7dbe',
+        name: 'Online',
+        code: 'E',
+        campusId: '470ff1dd-937a-4195-bf9e-06bcfcd135df',
       },
     ]);
   });

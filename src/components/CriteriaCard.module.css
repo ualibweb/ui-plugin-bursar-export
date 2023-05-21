@@ -1,0 +1,16 @@
+.cardClass:last-child {
+  margin-bottom: 0;
+}
+
+.headerClass {
+  padding: 5px;
+  justify-content: space-between;
+}
+
+.headerClass span {
+  flex: initial;
+}
+
+.emptyBody {
+  padding: 0;
+}

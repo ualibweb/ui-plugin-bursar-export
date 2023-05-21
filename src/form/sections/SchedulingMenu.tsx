@@ -27,8 +27,9 @@ export function getIntervalLabel(frequency: SchedulingFrequency) {
 }
 
 export default function SchedulingMenu() {
-  const frequencyValue = useField<SchedulingFrequency>('scheduling.frequency')
-    .input.value;
+  const frequencyValue = useField<SchedulingFrequency>('scheduling.frequency', {
+    subscription: { value: true },
+  }).input.value;
 
   const localeWeekdays = useLocaleWeekdays(useIntl());
 
