@@ -166,4 +166,60 @@ describe('Token card toolbox', () => {
     ).toBeDisabled();
     expect(screen.queryByRole('button', { name: 'gear' })).toBeVisible();
   });
+
+  it('length control button works', async () => {
+    const submitter = jest.fn();
+
+    render(
+      withIntlConfiguration(
+        <Form
+          mutators={{ ...arrayMutators }}
+          onSubmit={(v) => submitter(v)}
+          initialValues={{
+            test: [{}],
+          }}
+        >
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <TokenCardToolbox
+                fieldArrayName={'test'}
+                name={'test[0]'}
+                index={0}
+                isLast
+                showLengthControl
+              />
+              <button type="submit">Submit</button>
+            </form>
+          )}
+        </Form>
+      )
+    );
+
+    await userEvent.click(await screen.findByRole('button', { name: 'gear' }));
+    await userEvent.click(
+      await screen.findByRole('button', { name: 'Submit' })
+    );
+
+    expect(submitter).toHaveBeenLastCalledWith({
+      test: [{ lengthControl: { drawerOpen: true } }],
+    });
+
+    await userEvent.click(await screen.findByRole('button', { name: 'gear' }));
+    await userEvent.click(
+      await screen.findByRole('button', { name: 'Submit' })
+    );
+
+    expect(submitter).toHaveBeenLastCalledWith({
+      test: [{ lengthControl: { drawerOpen: false } }],
+    });
+
+    await userEvent.click(await screen.findByRole('button', { name: 'gear' }));
+    await userEvent.click(
+      await screen.findByRole('button', { name: 'Submit' })
+    );
+
+    expect(submitter).toHaveBeenLastCalledWith({
+      test: [{ lengthControl: { drawerOpen: true } }],
+    });
+  });
 });
