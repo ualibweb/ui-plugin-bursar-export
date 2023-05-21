@@ -20,6 +20,7 @@ import FormValues from '../types/FormValues';
 import useCampuses from '../api/useCampuses';
 import useInstitutions from '../api/useInstitutions';
 import useLibraries from '../api/useLibraries';
+import HeaderFooterMenu from './sections/HeaderFooterMenu';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -56,6 +57,9 @@ function ConfigurationForm({
         </Accordion>
         <Accordion label="Criteria">
           <CriteriaMenu />
+        </Accordion>
+        <Accordion label="Header format">
+          <HeaderFooterMenu name="header" />
         </Accordion>
         <Accordion label="Debug (form state)">
           <FormSpy subscription={{ values: true }}>
