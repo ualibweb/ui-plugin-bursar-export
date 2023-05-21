@@ -1,10 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render } from '@testing-library/react';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
-import FormValues from '../../../types/FormValues';
 import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 import HeaderFooterCardBody, {
   isHeaderFooterBodyEmpty,
