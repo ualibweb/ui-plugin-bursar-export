@@ -45,7 +45,7 @@ describe('Criteria card toolbox', () => {
     expect(screen.queryAllByRole('button')).toHaveLength(1);
     expect(
       await screen.findByRole('button', { name: 'plus-sign' })
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
   it.each([
@@ -74,10 +74,8 @@ describe('Criteria card toolbox', () => {
     expect(screen.queryAllByRole('button')).toHaveLength(2);
     expect(
       await screen.findByRole('button', { name: 'plus-sign' })
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByRole('button', { name: 'trash' })
-    ).toBeInTheDocument();
+    ).toBeVisible();
+    expect(await screen.findByRole('button', { name: 'trash' })).toBeVisible();
     expect(
       await screen.findByRole('button', { name: 'trash' })
     ).not.toHaveAttribute('disabled');
@@ -107,10 +105,10 @@ describe('Criteria card toolbox', () => {
       expect(screen.queryAllByRole('button')).toHaveLength(2);
       expect(
         await screen.findByRole('button', { name: 'plus-sign' })
-      ).toBeInTheDocument();
+      ).toBeVisible();
       expect(
         await screen.findByRole('button', { name: 'trash' })
-      ).toBeInTheDocument();
+      ).toBeVisible();
       expect(
         await screen.findByRole('button', { name: 'trash' })
       ).toHaveAttribute('disabled');
@@ -137,7 +135,7 @@ describe('Criteria card toolbox', () => {
       expect(screen.queryAllByRole('button')).toHaveLength(1);
       expect(
         await screen.findByRole('button', { name: 'trash' })
-      ).toBeInTheDocument();
+      ).toBeVisible();
       expect(
         await screen.findByRole('button', { name: 'trash' })
       ).toHaveAttribute('disabled');
@@ -164,7 +162,7 @@ describe('Criteria card toolbox', () => {
       expect(screen.queryAllByRole('button')).toHaveLength(1);
       expect(
         await screen.findByRole('button', { name: 'trash' })
-      ).toBeInTheDocument();
+      ).toBeVisible();
       expect(
         await screen.findByRole('button', { name: 'trash' })
       ).toHaveAttribute('disabled', '');

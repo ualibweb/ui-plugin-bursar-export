@@ -105,10 +105,10 @@ describe('Fee/fine type criteria displays appropriate form', () => {
 
     expect(
       await screen.findByRole('option', { name: 'Overdue fine' })
-    ).toBeInTheDocument();
+    ).toBeVisible();
     expect(
       await screen.findByRole('option', { name: 'Lost item fee' })
-    ).toBeInTheDocument();
+    ).toBeVisible();
     expect(screen.queryByRole('option', { name: 'Type 1' })).toBeNull();
     expect(screen.queryByRole('option', { name: 'Type 2' })).toBeNull();
     expect(screen.queryByRole('option', { name: 'Type 3' })).toBeNull();
@@ -134,12 +134,8 @@ describe('Fee/fine type criteria displays appropriate form', () => {
       'Owner 1'
     );
 
-    expect(
-      await screen.findByRole('option', { name: 'Type 1' })
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByRole('option', { name: 'Type 2' })
-    ).toBeInTheDocument();
+    expect(await screen.findByRole('option', { name: 'Type 1' })).toBeVisible();
+    expect(await screen.findByRole('option', { name: 'Type 2' })).toBeVisible();
     expect(screen.queryByRole('option', { name: 'Type 3' })).toBeNull();
     expect(screen.queryByRole('option', { name: 'Overdue fine' })).toBeNull();
 

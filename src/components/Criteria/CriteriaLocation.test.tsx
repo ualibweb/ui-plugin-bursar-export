@@ -109,9 +109,7 @@ it('Location criteria displays appropriate form', async () => {
   );
 
   async function expectOptionInDocument(option: string) {
-    expect(
-      await screen.findByRole('option', { name: option })
-    ).toBeInTheDocument();
+    expect(await screen.findByRole('option', { name: option })).toBeVisible();
   }
   async function expectOptionNotInDocument(option: string) {
     expect(screen.queryByRole('option', { name: option })).toBeNull();

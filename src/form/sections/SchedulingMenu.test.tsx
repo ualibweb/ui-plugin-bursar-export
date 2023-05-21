@@ -48,7 +48,7 @@ describe('Scheduling menu', () => {
     expect(screen.queryAllByRole('textbox')).toHaveLength(1);
     expect(
       await screen.findByRole('textbox', { name: 'Hours between runs' })
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
   it('Days option shows interval and start time options only', async () => {
@@ -68,12 +68,12 @@ describe('Scheduling menu', () => {
     expect(screen.queryAllByRole('textbox')).toHaveLength(2);
     expect(
       await screen.findByRole('textbox', { name: 'Days between runs' })
-    ).toBeInTheDocument();
+    ).toBeVisible();
     expect(
       await screen.findByRole('textbox', {
         name: (name) => name.startsWith('Run at'),
       })
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
   it('Weeks option shows all options', async () => {
@@ -93,14 +93,14 @@ describe('Scheduling menu', () => {
     expect(screen.queryAllByRole('textbox')).toHaveLength(3);
     expect(
       await screen.findByRole('textbox', { name: 'Weeks between runs' })
-    ).toBeInTheDocument();
+    ).toBeVisible();
     expect(
       await screen.findByRole('textbox', {
         name: (name) => name.startsWith('Run at'),
       })
-    ).toBeInTheDocument();
+    ).toBeVisible();
     expect(
       await screen.findByRole('textbox', { name: 'Run on weekdays' })
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 });
