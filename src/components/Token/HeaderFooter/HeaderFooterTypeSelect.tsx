@@ -49,12 +49,12 @@ export default function HeaderFooterTypeSelect({ name }: { name: string }) {
               value: HeaderFooterTokenType.CURRENT_DATE,
             },
             {
-              label: 'Total amount',
-              value: HeaderFooterTokenType.AGGREGATE_TOTAL,
-            },
-            {
               label: 'Number of accounts',
               value: HeaderFooterTokenType.AGGREGATE_COUNT,
+            },
+            {
+              label: 'Total amount',
+              value: HeaderFooterTokenType.AGGREGATE_TOTAL,
             },
           ]}
         />

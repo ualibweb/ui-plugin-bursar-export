@@ -4,8 +4,8 @@ import { Field } from 'react-final-form';
 
 export default function AggregateTotalToken({ prefix }: { prefix: string }) {
   return (
-    <Col xs={12} defaultChecked>
-      <Field name={`${prefix}decimal`} type="checkbox">
+    <Col xs={12}>
+      <Field name={`${prefix}decimal`} type="checkbox" defaultValue={true}>
         {(fieldProps) => (
           <Checkbox
             {...fieldProps}
