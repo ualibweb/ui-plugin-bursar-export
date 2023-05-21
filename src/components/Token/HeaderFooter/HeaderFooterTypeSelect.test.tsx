@@ -24,9 +24,7 @@ describe('Header/footer type selection', () => {
       )
     );
 
-    expect(await screen.findByRole('combobox')).toHaveDisplayValue(
-      'Newline (LF)'
-    );
+    expect(screen.getByRole('combobox')).toHaveDisplayValue('Newline (LF)');
 
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
     expect(submitter).toHaveBeenLastCalledWith({
@@ -34,7 +32,7 @@ describe('Header/footer type selection', () => {
     });
   });
 
-  it('respects initial values', async () => {
+  it('respects initial values', () => {
     render(
       withIntlConfiguration(
         <Form
@@ -54,8 +52,6 @@ describe('Header/footer type selection', () => {
       )
     );
 
-    expect(await screen.findByRole('combobox')).toHaveDisplayValue(
-      'Arbitrary text'
-    );
+    expect(screen.getByRole('combobox')).toHaveDisplayValue('Arbitrary text');
   });
 });

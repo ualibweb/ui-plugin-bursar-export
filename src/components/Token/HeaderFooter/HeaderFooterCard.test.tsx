@@ -7,7 +7,7 @@ import HeaderFooterCard from './HeaderFooterCard';
 import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 
 describe('Header/footer card', () => {
-  test('has good default value', async () => {
+  test('has good default value', () => {
     render(
       withIntlConfiguration(
         <Form mutators={{ ...arrayMutators }} onSubmit={() => ({})}>
@@ -25,12 +25,10 @@ describe('Header/footer card', () => {
       )
     );
 
-    expect(await screen.findByRole('combobox')).toHaveDisplayValue(
-      'Newline (LF)'
-    );
+    expect(screen.getByRole('combobox')).toHaveDisplayValue('Newline (LF)');
   });
 
-  it('respects initial value', async () => {
+  it('respects initial value', () => {
     render(
       withIntlConfiguration(
         <Form
@@ -52,6 +50,6 @@ describe('Header/footer card', () => {
       )
     );
 
-    expect(await screen.findByRole('combobox')).toHaveDisplayValue('Comma');
+    expect(screen.getByRole('combobox')).toHaveDisplayValue('Comma');
   });
 });

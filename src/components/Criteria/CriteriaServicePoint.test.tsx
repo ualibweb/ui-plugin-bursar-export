@@ -67,13 +67,11 @@ it('Service point type criteria displays appropriate form', async () => {
     'Item service point'
   );
 
-  expect(
-    await screen.findByRole('option', { name: 'Circ Desk 1' })
-  ).toBeVisible();
-  expect(await screen.findByRole('option', { name: 'Online' })).toBeVisible();
+  expect(screen.getByRole('option', { name: 'Circ Desk 1' })).toBeVisible();
+  expect(screen.getByRole('option', { name: 'Online' })).toBeVisible();
 
   await userEvent.selectOptions(
-    await screen.findByRole('combobox', { name: 'Service point' }),
+    screen.getByRole('combobox', { name: 'Service point' }),
     'Circ Desk 1'
   );
 

@@ -108,80 +108,80 @@ it('Location criteria displays appropriate form', async () => {
     )
   );
 
-  async function expectOptionInDocument(option: string) {
-    expect(await screen.findByRole('option', { name: option })).toBeVisible();
+  function expectOptionInDocument(option: string) {
+    expect(screen.getByRole('option', { name: option })).toBeVisible();
   }
-  async function expectOptionNotInDocument(option: string) {
+  function expectOptionNotInDocument(option: string) {
     expect(screen.queryByRole('option', { name: option })).toBeNull();
   }
 
   await userEvent.selectOptions(screen.getByRole('combobox'), 'Item location');
 
-  await expectOptionInDocument('Test institution');
-  await expectOptionNotInDocument('Matching campus 1');
-  await expectOptionNotInDocument('Matching campus 2');
-  await expectOptionNotInDocument('Non-matching campus');
-  await expectOptionNotInDocument('Matching library');
-  await expectOptionNotInDocument('Non-matching library');
-  await expectOptionNotInDocument('Matching location 1');
-  await expectOptionNotInDocument('Matching location 2');
-  await expectOptionNotInDocument('Non-matching location');
+  expectOptionInDocument('Test institution');
+  expectOptionNotInDocument('Matching campus 1');
+  expectOptionNotInDocument('Matching campus 2');
+  expectOptionNotInDocument('Non-matching campus');
+  expectOptionNotInDocument('Matching library');
+  expectOptionNotInDocument('Non-matching library');
+  expectOptionNotInDocument('Matching location 1');
+  expectOptionNotInDocument('Matching location 2');
+  expectOptionNotInDocument('Non-matching location');
 
   await userEvent.selectOptions(
     screen.getByRole('combobox', { name: 'Institution' }),
     'Test institution'
   );
 
-  await expectOptionInDocument('Matching campus 1');
-  await expectOptionInDocument('Matching campus 2');
-  await expectOptionNotInDocument('Non-matching campus');
-  await expectOptionNotInDocument('Matching library');
-  await expectOptionNotInDocument('Non-matching library');
-  await expectOptionNotInDocument('Matching location 1');
-  await expectOptionNotInDocument('Matching location 2');
-  await expectOptionNotInDocument('Non-matching location');
+  expectOptionInDocument('Matching campus 1');
+  expectOptionInDocument('Matching campus 2');
+  expectOptionNotInDocument('Non-matching campus');
+  expectOptionNotInDocument('Matching library');
+  expectOptionNotInDocument('Non-matching library');
+  expectOptionNotInDocument('Matching location 1');
+  expectOptionNotInDocument('Matching location 2');
+  expectOptionNotInDocument('Non-matching location');
 
   await userEvent.selectOptions(
     screen.getByRole('combobox', { name: 'Campus' }),
     'Matching campus 1'
   );
 
-  await expectOptionInDocument('Matching library');
-  await expectOptionNotInDocument('Non-matching library');
-  await expectOptionNotInDocument('Matching location 1');
-  await expectOptionNotInDocument('Matching location 2');
-  await expectOptionNotInDocument('Non-matching location');
+  expectOptionInDocument('Matching library');
+  expectOptionNotInDocument('Non-matching library');
+  expectOptionNotInDocument('Matching location 1');
+  expectOptionNotInDocument('Matching location 2');
+  expectOptionNotInDocument('Non-matching location');
 
   await userEvent.selectOptions(
     screen.getByRole('combobox', { name: 'Campus' }),
     'Matching campus 2'
   );
 
-  await expectOptionNotInDocument('Matching library');
-  await expectOptionNotInDocument('Non-matching library');
-  await expectOptionNotInDocument('Matching location 1');
-  await expectOptionNotInDocument('Matching location 2');
-  await expectOptionNotInDocument('Non-matching location');
+  expectOptionNotInDocument('Matching library');
+  expectOptionNotInDocument('Non-matching library');
+  expectOptionNotInDocument('Matching location 1');
+  expectOptionNotInDocument('Matching location 2');
+  expectOptionNotInDocument('Non-matching location');
 
   await userEvent.selectOptions(
     screen.getByRole('combobox', { name: 'Campus' }),
     'Matching campus 1'
   );
 
-  await expectOptionInDocument('Matching library');
-  await expectOptionNotInDocument('Non-matching library');
-  await expectOptionNotInDocument('Matching location 1');
-  await expectOptionNotInDocument('Matching location 2');
-  await expectOptionNotInDocument('Non-matching location');
+  expectOptionInDocument('Matching library');
+  expectOptionNotInDocument('Non-matching library');
+  expectOptionNotInDocument('Matching location 1');
+  expectOptionNotInDocument('Matching location 2');
+  expectOptionNotInDocument('Non-matching location');
 
   await userEvent.selectOptions(
     screen.getByRole('combobox', { name: 'Library' }),
     'Matching library'
   );
 
-  await expectOptionInDocument('Matching location 1');
-  await expectOptionInDocument('Matching location 2');
-  await expectOptionNotInDocument('Non-matching location');
+  expectOptionInDocument('Matching location 1');
+  expectOptionInDocument('Matching location 2');
+  expectOptionNotInDocument('Non-matching location');
 
   await userEvent.selectOptions(
     screen.getByRole('combobox', { name: 'Location' }),

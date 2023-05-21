@@ -29,11 +29,11 @@ test('Add button works as expected', async () => {
     )
   );
 
-  await userEvent.click(await screen.findByRole('button', { name: 'Add' }));
-  await userEvent.click(await screen.findByRole('button', { name: 'Add' }));
-  await userEvent.click(await screen.findByRole('button', { name: 'Add' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
 
-  await userEvent.click(await screen.findByRole('button', { name: 'Submit' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
   expect(submitter).toHaveBeenCalledWith({
     test: [

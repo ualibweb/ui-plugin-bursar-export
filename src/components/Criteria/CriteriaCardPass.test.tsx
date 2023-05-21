@@ -18,9 +18,9 @@ it('Criteria card with "no criteria" should be empty', async () => {
     )
   );
 
-  await userEvent.selectOptions(await screen.findByRole('combobox'), 'All of:');
+  await userEvent.selectOptions(screen.getByRole('combobox'), 'All of:');
   await userEvent.selectOptions(
-    await screen.findByRole('combobox'),
+    screen.getByRole('combobox'),
     'No criteria (always run)'
   );
 

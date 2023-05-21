@@ -32,22 +32,18 @@ describe('Current date token', () => {
       )
     );
 
-    expect(
-      await screen.findByRole('combobox', { name: 'Format' })
-    ).toHaveDisplayValue('Year (4-digit)');
-    expect(
-      await screen.findByRole('option', { name: 'Quarter' })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('combobox', { name: 'Format' })).toHaveDisplayValue(
+      'Year (4-digit)'
+    );
+    expect(screen.getByRole('option', { name: 'Quarter' })).toBeInTheDocument();
 
     expect(
-      await screen.findByRole('combobox', { name: 'Timezone' })
+      screen.getByRole('combobox', { name: 'Timezone' })
     ).toHaveDisplayValue('America/Chicago');
     expect(
-      await screen.findByRole('option', { name: 'Europe/Lisbon' })
+      screen.getByRole('option', { name: 'Europe/Lisbon' })
     ).toBeInTheDocument();
-    expect(
-      await screen.findByRole('option', { name: 'UTC' })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'UTC' })).toBeInTheDocument();
 
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
@@ -82,7 +78,7 @@ describe('Current date token', () => {
     );
 
     expect(
-      await screen.findByRole('combobox', { name: 'Timezone' })
+      screen.getByRole('combobox', { name: 'Timezone' })
     ).toHaveDisplayValue('UTC');
 
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));

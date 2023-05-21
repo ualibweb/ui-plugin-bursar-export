@@ -30,7 +30,7 @@ describe('Arbitrary text token', () => {
       )
     );
 
-    expect(await screen.findByRole('textbox')).toBeVisible();
+    expect(screen.getByRole('textbox')).toBeVisible();
 
     await userEvent.type(screen.getByRole('textbox'), 'Sample constant!');
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));

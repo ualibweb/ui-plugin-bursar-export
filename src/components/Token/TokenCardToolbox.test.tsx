@@ -35,10 +35,8 @@ describe('Token card toolbox', () => {
       )
     );
 
-    await userEvent.click(await screen.findByRole('button', { name: 'trash' }));
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'trash' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({ test: ['a', 'c'] });
   });
@@ -71,26 +69,18 @@ describe('Token card toolbox', () => {
       )
     );
 
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'caret-up' })
-    );
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'caret-up' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({ test: ['b', 'a', 'c'] });
 
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'caret-down' })
-    );
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'caret-down' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({ test: ['b', 'c', 'a'] });
   });
 
-  it('first has disabled up arrow', async () => {
+  it('first has disabled up arrow', () => {
     const submitter = jest.fn();
 
     render(
@@ -118,16 +108,14 @@ describe('Token card toolbox', () => {
       )
     );
 
+    expect(screen.getByRole('button', { name: 'caret-up' })).toBeDisabled();
     expect(
-      await screen.findByRole('button', { name: 'caret-up' })
-    ).toBeDisabled();
-    expect(
-      await screen.findByRole('button', { name: 'caret-down' })
+      screen.getByRole('button', { name: 'caret-down' })
     ).not.toBeDisabled();
     expect(screen.queryByRole('button', { name: 'gear' })).toBeNull();
   });
 
-  it('last has disabled down arrow', async () => {
+  it('last has disabled down arrow', () => {
     const submitter = jest.fn();
 
     render(
@@ -155,12 +143,8 @@ describe('Token card toolbox', () => {
       )
     );
 
-    expect(
-      await screen.findByRole('button', { name: 'caret-up' })
-    ).not.toBeDisabled();
-    expect(
-      await screen.findByRole('button', { name: 'caret-down' })
-    ).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'caret-up' })).not.toBeDisabled();
+    expect(screen.getByRole('button', { name: 'caret-down' })).toBeDisabled();
     expect(screen.queryByRole('button', { name: 'gear' })).toBeVisible();
   });
 
@@ -192,28 +176,22 @@ describe('Token card toolbox', () => {
       )
     );
 
-    await userEvent.click(await screen.findByRole('button', { name: 'gear' }));
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'gear' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({
       test: [{ lengthControl: { drawerOpen: true } }],
     });
 
-    await userEvent.click(await screen.findByRole('button', { name: 'gear' }));
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'gear' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({
       test: [{ lengthControl: { drawerOpen: false } }],
     });
 
-    await userEvent.click(await screen.findByRole('button', { name: 'gear' }));
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'gear' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({
       test: [{ lengthControl: { drawerOpen: true } }],

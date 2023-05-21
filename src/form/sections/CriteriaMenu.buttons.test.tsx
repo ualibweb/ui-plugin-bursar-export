@@ -33,12 +33,8 @@ describe('Buttons work as expected', () => {
   it('Outer add button works as expected', async () => {
     renderWithValue({ type: CriteriaCardGroupType.ALL_OF });
 
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'plus-sign' })
-    );
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'plus-sign' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({
       criteria: {
@@ -64,9 +60,7 @@ describe('Buttons work as expected', () => {
         await screen.findAllByRole('button', { name: 'plus-sign' })
       )[1]
     );
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({
       criteria: {
@@ -100,9 +94,7 @@ describe('Buttons work as expected', () => {
         await screen.findAllByRole('button', { name: 'trash' })
       )[0]
     );
-    await userEvent.click(
-      await screen.findByRole('button', { name: 'Submit' })
-    );
+    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({
       criteria: {

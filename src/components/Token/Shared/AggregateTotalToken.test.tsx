@@ -30,7 +30,7 @@ describe('Aggregate total token', () => {
       )
     );
 
-    expect(await screen.findByRole('checkbox')).toBeVisible();
+    expect(screen.getByRole('checkbox')).toBeVisible();
 
     // check default
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));

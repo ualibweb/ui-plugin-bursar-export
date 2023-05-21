@@ -28,7 +28,7 @@ describe('Whitespace token', () => {
       )
     );
 
-    expect(await screen.findByRole('spinbutton')).toBeVisible();
+    expect(screen.getByRole('spinbutton')).toBeVisible();
 
     await userEvent.type(screen.getByRole('spinbutton'), '8');
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));

@@ -6,7 +6,7 @@ import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 import GenericTokenCard from './GenericTokenCard';
 
 describe('Generic token card', () => {
-  it('Shows length control when state is true and length control is available', async () => {
+  it('Shows length control when state is true and length control is available', () => {
     render(
       withIntlConfiguration(
         <Form
@@ -32,7 +32,7 @@ describe('Generic token card', () => {
       )
     );
 
-    expect(await screen.findByRole('textbox')).toBeVisible();
+    expect(screen.getByRole('textbox')).toBeVisible();
   });
 
   it.each([
@@ -43,7 +43,7 @@ describe('Generic token card', () => {
     [false, false],
   ])(
     'Does not show length control when state is %s and length control is %s available',
-    async (state, available) => {
+    (state, available) => {
       render(
         withIntlConfiguration(
           <Form

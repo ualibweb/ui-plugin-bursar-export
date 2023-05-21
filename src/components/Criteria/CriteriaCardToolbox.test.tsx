@@ -29,7 +29,7 @@ describe('Criteria card toolbox', () => {
     CriteriaCardGroupType.ALL_OF,
     CriteriaCardGroupType.ANY_OF,
     CriteriaCardGroupType.NONE_OF,
-  ])('Outer group type %s results in only add', async (type) => {
+  ])('Outer group type %s results in only add', (type) => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
@@ -43,16 +43,14 @@ describe('Criteria card toolbox', () => {
     );
 
     expect(screen.queryAllByRole('button')).toHaveLength(1);
-    expect(
-      await screen.findByRole('button', { name: 'plus-sign' })
-    ).toBeVisible();
+    expect(screen.getByRole('button', { name: 'plus-sign' })).toBeVisible();
   });
 
   it.each([
     CriteriaCardGroupType.ALL_OF,
     CriteriaCardGroupType.ANY_OF,
     CriteriaCardGroupType.NONE_OF,
-  ])('Inner group type %s results in add and delete', async (type) => {
+  ])('Inner group type %s results in add and delete', (type) => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
@@ -72,50 +70,37 @@ describe('Criteria card toolbox', () => {
     );
 
     expect(screen.queryAllByRole('button')).toHaveLength(2);
-    expect(
-      await screen.findByRole('button', { name: 'plus-sign' })
-    ).toBeVisible();
-    expect(await screen.findByRole('button', { name: 'trash' })).toBeVisible();
-    expect(
-      await screen.findByRole('button', { name: 'trash' })
-    ).not.toBeDisabled();
+    expect(screen.getByRole('button', { name: 'plus-sign' })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'trash' })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'trash' })).not.toBeDisabled();
   });
 
   it.each([
     CriteriaCardGroupType.ALL_OF,
     CriteriaCardGroupType.ANY_OF,
     CriteriaCardGroupType.NONE_OF,
-  ])(
-    'Inner group type alone %s results in add and disabled delete',
-    async (type) => {
-      render(
-        withIntlConfiguration(
-          <Form<FormValues>
-            mutators={{ ...arrayMutators }}
-            onSubmit={noop}
-            initialValues={{ criteria: { type } }}
-          >
-            {() => (
-              <CriteriaCardToolbox prefix="criteria." root={false} alone />
-            )}
-          </Form>
-        )
-      );
+  ])('Inner group type alone %s results in add and disabled delete', (type) => {
+    render(
+      withIntlConfiguration(
+        <Form<FormValues>
+          mutators={{ ...arrayMutators }}
+          onSubmit={noop}
+          initialValues={{ criteria: { type } }}
+        >
+          {() => <CriteriaCardToolbox prefix="criteria." root={false} alone />}
+        </Form>
+      )
+    );
 
-      expect(screen.queryAllByRole('button')).toHaveLength(2);
-      expect(
-        await screen.findByRole('button', { name: 'plus-sign' })
-      ).toBeVisible();
-      expect(
-        await screen.findByRole('button', { name: 'trash' })
-      ).toBeVisible();
-      expect(await screen.findByRole('button', { name: 'trash' })).toBeDisabled;
-    }
-  );
+    expect(screen.queryAllByRole('button')).toHaveLength(2);
+    expect(screen.getByRole('button', { name: 'plus-sign' })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'trash' })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'trash' })).toBeDisabled;
+  });
 
   it.each([CriteriaCardTerminalType.AGE, CriteriaCardTerminalType.LOCATION])(
     'Inner type alone %s has disabled delete',
-    async (type) => {
+    (type) => {
       render(
         withIntlConfiguration(
           <Form<FormValues>
@@ -131,16 +116,14 @@ describe('Criteria card toolbox', () => {
       );
 
       expect(screen.queryAllByRole('button')).toHaveLength(1);
-      expect(
-        await screen.findByRole('button', { name: 'trash' })
-      ).toBeVisible();
-      expect(await screen.findByRole('button', { name: 'trash' })).toBeDisabled;
+      expect(screen.getByRole('button', { name: 'trash' })).toBeVisible();
+      expect(screen.getByRole('button', { name: 'trash' })).toBeDisabled;
     }
   );
 
   it.each([CriteriaCardTerminalType.AGE, CriteriaCardTerminalType.LOCATION])(
     'Inner type not alone %s has enabled delete',
-    async (type) => {
+    (type) => {
       render(
         withIntlConfiguration(
           <Form<FormValues>
@@ -156,12 +139,11 @@ describe('Criteria card toolbox', () => {
       );
 
       expect(screen.queryAllByRole('button')).toHaveLength(1);
-      expect(
-        await screen.findByRole('button', { name: 'trash' })
-      ).toBeVisible();
-      expect(
-        await screen.findByRole('button', { name: 'trash' })
-      ).toHaveAttribute('disabled', '');
+      expect(screen.getByRole('button', { name: 'trash' })).toBeVisible();
+      expect(screen.getByRole('button', { name: 'trash' })).toHaveAttribute(
+        'disabled',
+        ''
+      );
     }
   );
 });
