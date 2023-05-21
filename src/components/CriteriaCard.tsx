@@ -30,7 +30,10 @@ export default function CriteriaCard({
 }) {
   const type = useField<
     CriteriaCardGroupType | CriteriaCardTerminalType | undefined
-  >(`${name}.type`, { subscription: { value: true } }).input.value;
+  >(`${name}.type`, {
+    subscription: { value: true },
+    format: (value) => value || CriteriaCardTerminalType.PASS,
+  }).input.value;
 
   const cardInterior = useMemo(() => {
     switch (type) {
