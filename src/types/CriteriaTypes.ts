@@ -14,12 +14,12 @@ export type CriteriaTerminal =
   | { type: CriteriaCardTerminalType.PASS }
   | {
       type: CriteriaCardTerminalType.AGE;
-      numDays?: number;
+      numDays?: string;
     }
   | {
       type: CriteriaCardTerminalType.AMOUNT;
       operator?: ComparisonOperator;
-      amountDollars?: number;
+      amountDollars?: string;
     }
   | {
       type: CriteriaCardTerminalType.FEE_FINE_TYPE;
