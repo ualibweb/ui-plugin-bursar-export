@@ -5,6 +5,7 @@ import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 import ArbitraryTextToken from '../Shared/ArbitraryTextToken';
 import CurrentDateToken from '../Shared/CurrentDateToken';
 import WhitespaceToken from '../Shared/WhitespaceToken';
+import AggregateTotalToken from '../Shared/AggregateTotalToken';
 
 export const EMPTY_BODY_TYPES = [
   HeaderFooterTokenType.AGGREGATE_COUNT,
@@ -44,6 +45,12 @@ export default function HeaderFooterCardBody({ name }: { name: string }) {
         return (
           <Row>
             <CurrentDateToken prefix={`${name}.`} />
+          </Row>
+        );
+      case HeaderFooterTokenType.AGGREGATE_TOTAL:
+        return (
+          <Row>
+            <AggregateTotalToken prefix={`${name}.`} />
           </Row>
         );
 
