@@ -32,7 +32,7 @@ export default function CriteriaCard({
     CriteriaCardGroupType | CriteriaCardTerminalType | undefined
   >(`${name}.type`, {
     subscription: { value: true },
-    format: (value) => value || CriteriaCardTerminalType.PASS,
+    format: (value) => value ?? CriteriaCardTerminalType.PASS,
   }).input.value;
 
   const cardInterior = useMemo(() => {
