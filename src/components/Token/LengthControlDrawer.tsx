@@ -79,7 +79,11 @@ export default function LengthControlDrawer({ prefix }: { prefix: string }) {
           </Field>
         </Col>
         <Col xs={6} md={3}>
-          <Field name={`${prefix}truncate`} type="checkbox">
+          <Field
+            name={`${prefix}truncate`}
+            type="checkbox"
+            defaultValue={false}
+          >
             {(fieldProps) => (
               <Checkbox
                 {...fieldProps}
