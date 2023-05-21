@@ -7,10 +7,10 @@ import {
 } from '../../types/CriteriaTypes';
 
 export default function CriteriaCardSelect({
-  prefix,
+  name,
   root,
 }: {
-  prefix: string;
+  name: string;
   root: boolean;
 }) {
   const selectDefaultValue = useMemo(() => {
@@ -82,7 +82,7 @@ export default function CriteriaCardSelect({
   }, [root]);
 
   return (
-    <Field name={`${prefix}type`} defaultValue={selectDefaultValue}>
+    <Field name={name} defaultValue={selectDefaultValue}>
       {(fieldProps) => (
         <Select<CriteriaCardGroupType | CriteriaCardTerminalType>
           {...fieldProps}

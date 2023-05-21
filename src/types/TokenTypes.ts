@@ -64,3 +64,9 @@ export type HeaderFooterToken =
       decimal: boolean;
       lengthControl?: LengthControl;
     };
+
+export const TOKEN_TYPES_WITH_LENGTH_CONTROL = [
+  HeaderFooterTokenType.CURRENT_DATE,
+  HeaderFooterTokenType.AGGREGATE_COUNT,
+  HeaderFooterTokenType.AGGREGATE_TOTAL,
+];
