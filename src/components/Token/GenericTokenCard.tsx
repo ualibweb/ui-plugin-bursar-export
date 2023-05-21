@@ -44,7 +44,7 @@ export default function GenericTokenCard<TypeEnum>({
     <Card
       cardClass={css.cardClass}
       headerClass={css.headerClass}
-      headerStart={<SelectComponent name={name} />}
+      headerStart={<SelectComponent name={`${name}.type`} />}
       headerEnd={
         <TokenCardToolbox
           fieldArrayName={fieldArrayName}

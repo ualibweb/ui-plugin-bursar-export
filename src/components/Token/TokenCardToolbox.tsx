@@ -20,7 +20,7 @@ export default function TokenCardToolbox({
 }: TokenCardToolboxProps) {
   const fieldArray = useFieldArray(fieldArrayName);
   const lengthControlOpen = useField<boolean>(
-    `${name}.lengthControl.panelOpen`,
+    `${name}.lengthControl.drawerOpen`,
     {
       subscription: { value: true },
       format: (value) => value ?? false,

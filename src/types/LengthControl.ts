@@ -1,5 +1,5 @@
 export default interface LengthControl {
-  panelOpen?: boolean;
+  drawerOpen?: boolean;
 
   character: string;
   length: string;

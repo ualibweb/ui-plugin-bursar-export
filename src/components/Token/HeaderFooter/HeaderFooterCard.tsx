@@ -1,10 +1,12 @@
 import React from 'react';
-import {
-  HeaderFooterTokenType,
-  TOKEN_TYPES_WITH_LENGTH_CONTROL,
-} from '../../../types/TokenTypes';
+import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 import GenericTokenCard from '../GenericTokenCard';
 import { useField } from 'react-final-form';
+import HeaderFooterTypeSelect from './HeaderFooterTypeSelect';
+import { TOKEN_TYPES_WITH_LENGTH_CONTROL } from '../LengthControlDrawer';
+import HeaderFooterCardBody, {
+  isHeaderFooterBodyEmpty,
+} from './HeaderFooterCardBody';
 
 export interface HeaderFooterCardProps {
   fieldArrayName: string;
@@ -30,9 +32,9 @@ export default function HeaderFooterCard({
       name={name}
       index={index}
       isLast={isLast}
-      SelectComponent={() => null}
-      BodyComponent={() => null}
-      isBodyEmpty={() => true}
+      SelectComponent={HeaderFooterTypeSelect}
+      BodyComponent={HeaderFooterCardBody}
+      isBodyEmpty={isHeaderFooterBodyEmpty}
       shouldHaveLengthControl={() =>
         TOKEN_TYPES_WITH_LENGTH_CONTROL.includes(type)
       }
