@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
-import { HeaderFooterTokenType } from '../../../types/TokenTypes';
-import { useField } from 'react-final-form';
 import { Row } from '@folio/stripes/components';
+import React, { useMemo } from 'react';
+import { useField } from 'react-final-form';
+import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 import ArbitraryTextToken from '../Shared/ArbitraryTextToken';
+import CurrentDateToken from '../Shared/CurrentDateToken';
 import WhitespaceToken from '../Shared/WhitespaceToken';
 
 export const EMPTY_BODY_TYPES = [
@@ -37,6 +38,12 @@ export default function HeaderFooterCardBody({ name }: { name: string }) {
         return (
           <Row>
             <WhitespaceToken prefix={`${name}.`} />
+          </Row>
+        );
+      case HeaderFooterTokenType.CURRENT_DATE:
+        return (
+          <Row>
+            <CurrentDateToken prefix={`${name}.`} />
           </Row>
         );
 

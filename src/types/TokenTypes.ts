@@ -22,9 +22,7 @@ export enum DateFormatType {
   MINUTE = 'MINUTE',
   SECOND = 'SECOND',
   QUARTER = 'QUARTER',
-  WEEK_OF_YEAR = 'WEEK_OF_YEAR',
   WEEK_OF_YEAR_ISO = 'WEEK_OF_YEAR_ISO',
-  WEEK_YEAR = 'WEEK_YEAR',
   WEEK_YEAR_ISO = 'WEEK_YEAR_ISO',
 }
 
@@ -51,7 +49,7 @@ export type HeaderFooterToken =
     }
   | {
       type: HeaderFooterTokenType.CURRENT_DATE;
-      value: DateFormatType;
+      format: DateFormatType;
       timezone: string;
       lengthControl?: LengthControl;
     }
