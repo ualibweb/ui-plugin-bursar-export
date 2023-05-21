@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 import GenericTokenCard from '../GenericTokenCard';
 import { useField } from 'react-final-form';
@@ -26,6 +26,11 @@ export default function HeaderFooterCard({
     format: (value) => value ?? HeaderFooterTokenType.NEWLINE,
   }).input.value;
 
+  const shouldHaveLengthControl = useCallback(
+    () => TOKEN_TYPES_WITH_LENGTH_CONTROL.includes(type),
+    [type]
+  );
+
   return (
     <GenericTokenCard<HeaderFooterTokenType>
       fieldArrayName={fieldArrayName}
@@ -35,9 +40,7 @@ export default function HeaderFooterCard({
       SelectComponent={HeaderFooterTypeSelect}
       BodyComponent={HeaderFooterCardBody}
       isBodyEmpty={isHeaderFooterBodyEmpty}
-      shouldHaveLengthControl={() =>
-        TOKEN_TYPES_WITH_LENGTH_CONTROL.includes(type)
-      }
+      shouldHaveLengthControl={shouldHaveLengthControl}
     />
   );
 }
