@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
-import { FormValues } from '../form/types';
+import FormValues from '../types/FormValues';
 import withIntlConfiguration from '../test/util/withIntlConfiguration';
 import useMonetaryOnBlur from './useMonetaryOnBlur';
 

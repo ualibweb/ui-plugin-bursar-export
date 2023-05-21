@@ -1,18 +1,3 @@
-export interface FormValues {
-  scheduling: {
-    frequency: SchedulingFrequency;
-    interval?: number;
-  };
-  criteria: CriteriaGroup | CriteriaTerminal;
-}
-
-export enum SchedulingFrequency {
-  Manual = 'NONE',
-  Hours = 'HOUR',
-  Days = 'DAY',
-  Weeks = 'WEEK',
-}
-
 export interface CriteriaGroup {
   type: CriteriaCardGroupType;
   criteria?: (CriteriaGroup | CriteriaTerminal)[];
@@ -29,12 +14,12 @@ export type CriteriaTerminal =
   | { type: CriteriaCardTerminalType.PASS }
   | {
       type: CriteriaCardTerminalType.AGE;
-      numDays?: number;
+      numDays?: string;
     }
   | {
       type: CriteriaCardTerminalType.AMOUNT;
       operator?: ComparisonOperator;
-      amountDollars?: number;
+      amountDollars?: string;
     }
   | {
       type: CriteriaCardTerminalType.FEE_FINE_TYPE;

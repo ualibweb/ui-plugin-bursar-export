@@ -3,7 +3,10 @@ import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import { useField } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import { CriteriaCardGroupType, CriteriaCardTerminalType } from '../form/types';
+import {
+  CriteriaCardGroupType,
+  CriteriaCardTerminalType,
+} from '../../types/CriteriaTypes';
 import CriteriaAge from './CriteriaAge';
 import CriteriaAmount from './CriteriaAmount';
 import css from './CriteriaCard.module.css';
@@ -27,7 +30,10 @@ export default function CriteriaCard({
 }) {
   const type = useField<
     CriteriaCardGroupType | CriteriaCardTerminalType | undefined
-  >(`${name}.type`, { subscription: { value: true } }).input.value;
+  >(`${name}.type`, {
+    subscription: { value: true },
+    format: (value) => value ?? CriteriaCardTerminalType.PASS,
+  }).input.value;
 
   const cardInterior = useMemo(() => {
     switch (type) {

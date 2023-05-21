@@ -1,7 +1,10 @@
 import { Select, SelectOptionType } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { Field } from 'react-final-form';
-import { CriteriaCardGroupType, CriteriaCardTerminalType } from '../form/types';
+import {
+  CriteriaCardGroupType,
+  CriteriaCardTerminalType,
+} from '../../types/CriteriaTypes';
 
 export default function CriteriaCardSelect({
   prefix,
