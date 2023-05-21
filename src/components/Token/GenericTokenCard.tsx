@@ -4,6 +4,7 @@ import { Card } from '@folio/stripes/components';
 import classNames from 'classnames';
 import { useField } from 'react-final-form';
 import TokenCardToolbox from './TokenCardToolbox';
+import LengthControl from './LengthControl';
 
 export interface GenericTokenCardProps<TypeEnum> {
   fieldArrayName: string;
@@ -38,27 +39,41 @@ export default function GenericTokenCard<TypeEnum>({
     [type, shouldHaveLengthControl]
   );
 
-  // TODO: show length control panel
+  const lengthControlOpen = useField<boolean>(
+    `${name}.lengthControl.drawerOpen`,
+    {
+      subscription: { value: true },
+      format: (value) => value ?? false,
+    }
+  ).input.value;
 
   return (
-    <Card
-      cardClass={css.cardClass}
-      headerClass={css.headerClass}
-      headerStart={<SelectComponent name={`${name}.type`} />}
-      headerEnd={
-        <TokenCardToolbox
-          fieldArrayName={fieldArrayName}
-          name={name}
-          index={index}
-          isLast={isLast}
-          showLengthControl={lengthControlAvailable}
-        />
-      }
-      bodyClass={classNames({
-        [css.emptyBody]: isBodyEmpty(type),
-      })}
-    >
-      <BodyComponent name={name} />
-    </Card>
+    <>
+      <Card
+        cardClass={classNames(css.cardClass, {
+          [css.cardWithLengthControl]:
+            lengthControlAvailable && lengthControlOpen,
+        })}
+        headerClass={css.headerClass}
+        headerStart={<SelectComponent name={`${name}.type`} />}
+        headerEnd={
+          <TokenCardToolbox
+            fieldArrayName={fieldArrayName}
+            name={name}
+            index={index}
+            isLast={isLast}
+            showLengthControl={lengthControlAvailable}
+          />
+        }
+        bodyClass={classNames({
+          [css.emptyBody]: isBodyEmpty(type),
+        })}
+      >
+        <BodyComponent name={name} />
+      </Card>
+      {lengthControlAvailable && lengthControlOpen && (
+        <LengthControl prefix={`${name}.lengthControl.`} />
+      )}
+    </>
   );
 }

@@ -1,4 +1,5 @@
-.cardClass:last-child {
+.cardClass:last-child,
+.cardWithLengthControl {
   margin-bottom: 0;
 }
 
