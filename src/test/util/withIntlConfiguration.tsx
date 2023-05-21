@@ -21,10 +21,10 @@ export const translationSets = [
   },
 ];
 
-export default function withIntlConfiguration(
+export function withIntlConfigurationAnyTimezone(
   children: ReactNode,
   locale = 'en-US',
-  timeZone = 'UTC'
+  timeZone?: string
 ): React.JSX.Element {
   const allTranslations: Record<string, string> = {};
 
@@ -44,4 +44,12 @@ export default function withIntlConfiguration(
       {children}
     </IntlProvider>
   );
+}
+
+export default function withIntlConfiguration(
+  children: ReactNode,
+  locale = 'en-US',
+  timeZone = 'UTC'
+): React.JSX.Element {
+  return withIntlConfigurationAnyTimezone(children, locale, timeZone);
 }
