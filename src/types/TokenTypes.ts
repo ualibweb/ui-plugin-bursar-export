@@ -43,7 +43,7 @@ export type HeaderFooterToken =
     }
   | {
       type: HeaderFooterTokenType.SPACE;
-      repeat?: string;
+      repeat: string;
     }
   | {
       type: HeaderFooterTokenType.ARBITRARY_TEXT;

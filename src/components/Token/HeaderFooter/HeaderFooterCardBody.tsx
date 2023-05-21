@@ -3,6 +3,7 @@ import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 import { useField } from 'react-final-form';
 import { Row } from '@folio/stripes/components';
 import ArbitraryTextToken from '../Shared/ArbitraryTextToken';
+import WhitespaceToken from '../Shared/WhitespaceToken';
 
 export const EMPTY_BODY_TYPES = [
   HeaderFooterTokenType.AGGREGATE_COUNT,
@@ -30,6 +31,12 @@ export default function HeaderFooterCardBody({ name }: { name: string }) {
         return (
           <Row>
             <ArbitraryTextToken prefix={`${name}.`} />
+          </Row>
+        );
+      case HeaderFooterTokenType.SPACE:
+        return (
+          <Row>
+            <WhitespaceToken prefix={`${name}.`} />
           </Row>
         );
 
