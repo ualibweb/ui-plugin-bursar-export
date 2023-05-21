@@ -4,7 +4,7 @@ import { Card } from '@folio/stripes/components';
 import classNames from 'classnames';
 import { useField } from 'react-final-form';
 import TokenCardToolbox from './TokenCardToolbox';
-import LengthControl from './LengthControl';
+import LengthControlDrawer from './LengthControlDrawer';
 
 export interface GenericTokenCardProps<TypeEnum> {
   fieldArrayName: string;
@@ -72,7 +72,7 @@ export default function GenericTokenCard<TypeEnum>({
         <BodyComponent name={name} />
       </Card>
       {lengthControlAvailable && lengthControlOpen && (
-        <LengthControl prefix={`${name}.lengthControl.`} />
+        <LengthControlDrawer prefix={`${name}.lengthControl.`} />
       )}
     </>
   );
