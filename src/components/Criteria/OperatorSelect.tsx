@@ -1,7 +1,7 @@
 import { Select } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
-import { ComparisonOperator } from '../types/CriteriaTypes';
+import { ComparisonOperator } from '../../types/CriteriaTypes';
 
 export default function OperatorSelect({ name }: { name: string }) {
   return (

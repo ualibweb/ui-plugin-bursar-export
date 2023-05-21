@@ -3,29 +3,36 @@ import userEvent from '@testing-library/user-event';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
-import FormValues from '../types/FormValues';
-import withIntlConfiguration from '../test/util/withIntlConfiguration';
+import FormValues from '../../types/FormValues';
+import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 import CriteriaCard from './CriteriaCard';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const getResponse = jest.fn((endpoint: string) => {
-  if (endpoint.startsWith('service-points')) {
+  if (endpoint.startsWith('groups')) {
     return {
-      servicepoints: [
+      usergroups: [
         {
-          id: '3a40852d-49fd-4df2-a1f9-6e2641a6e91f',
-          name: 'Circ Desk 1',
+          id: '503a81cd-6c26-400f-b620-14c08943697c',
+          group: 'faculty',
+          desc: 'Faculty Member',
         },
         {
-          id: 'c4c90014-c8c9-4ade-8f24-b5e313319f4b',
-          name: 'Circ Desk 2',
+          id: '3684a786-6671-4268-8ed0-9db82ebca60b',
+          group: 'staff',
+          desc: 'Staff Member',
         },
         {
-          id: '7c5abc9f-f3d7-4856-b8d7-6712462ca007',
-          name: 'Online',
+          id: 'ad0bc554-d5bc-463c-85d1-5562127ae91b',
+          group: 'graduate',
+          desc: 'Graduate Student',
+        },
+        {
+          id: 'bdc2b6d4-5ceb-4a12-ab46-249b9a68473e',
+          group: 'undergrad',
+          desc: 'Undergraduate Student',
         },
       ],
-      totalRecords: 4,
     };
   } else {
     throw new Error(`Unknown endpoint in mock: ${endpoint}`);
@@ -41,7 +48,7 @@ jest.mock('@folio/stripes/core', () => ({
   }),
 }));
 
-it('Service point type criteria displays appropriate form', async () => {
+it('Patron group type criteria displays appropriate form', async () => {
   const submitter = jest.fn();
 
   render(
@@ -62,29 +69,26 @@ it('Service point type criteria displays appropriate form', async () => {
     )
   );
 
-  await userEvent.selectOptions(
-    screen.getByRole('combobox'),
-    'Item service point'
-  );
+  await userEvent.selectOptions(screen.getByRole('combobox'), 'Patron group');
 
   expect(
-    await screen.findByRole('option', { name: 'Circ Desk 1' })
+    await screen.findByRole('option', { name: 'faculty' })
   ).toBeInTheDocument();
   expect(
-    await screen.findByRole('option', { name: 'Online' })
+    await screen.findByRole('option', { name: 'undergrad' })
   ).toBeInTheDocument();
 
   await userEvent.selectOptions(
-    await screen.findByRole('combobox', { name: 'Service point' }),
-    'Circ Desk 1'
+    await screen.findByRole('combobox', { name: 'Patron group' }),
+    'staff'
   );
 
   await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
   expect(submitter).toHaveBeenLastCalledWith({
     criteria: {
-      type: 'ServicePoint',
-      servicePointId: '3a40852d-49fd-4df2-a1f9-6e2641a6e91f',
+      type: 'PatronGroup',
+      patronGroupId: '3684a786-6671-4268-8ed0-9db82ebca60b',
     },
   });
 });

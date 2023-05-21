@@ -1,32 +1,32 @@
 import { Col, Select } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { Field } from 'react-final-form';
-import usePatronGroups from '../api/usePatronGroups';
+import useServicePoints from '../../api/useServicePoints';
 
-export default function CriteriaPatronGroup({ prefix }: { prefix: string }) {
-  const patronGroups = usePatronGroups();
+export default function CriteriaServicePoint({ prefix }: { prefix: string }) {
+  const servicePoints = useServicePoints();
 
   const selectOptions = useMemo(() => {
-    if (!patronGroups.isSuccess) {
+    if (!servicePoints.isSuccess) {
       return [];
     }
 
-    return patronGroups.data.map((sp) => ({
-      label: sp.group,
+    return servicePoints.data.map((sp) => ({
+      label: sp.name,
       value: sp.id,
     }));
-  }, [patronGroups]);
+  }, [servicePoints]);
 
   return (
     <Col xs={12} md={6}>
-      <Field name={`${prefix}patronGroupId`}>
+      <Field name={`${prefix}servicePointId`}>
         {(fieldProps) => (
           <Select<string | undefined>
             {...fieldProps}
             fullWidth
             marginBottom0
             required
-            label="Patron group"
+            label="Service point"
             dataOptions={[{ label: '', value: undefined }, ...selectOptions]}
           />
         )}

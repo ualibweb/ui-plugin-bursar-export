@@ -6,7 +6,7 @@ import { FieldArray } from 'react-final-form-arrays';
 import {
   CriteriaCardGroupType,
   CriteriaCardTerminalType,
-} from '../types/CriteriaTypes';
+} from '../../types/CriteriaTypes';
 import CriteriaAge from './CriteriaAge';
 import CriteriaAmount from './CriteriaAmount';
 import css from './CriteriaCard.module.css';

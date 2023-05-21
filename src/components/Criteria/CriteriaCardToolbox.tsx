@@ -7,7 +7,7 @@ import {
   CriteriaCardTerminalType,
   CriteriaGroup,
   CriteriaTerminal,
-} from '../types/CriteriaTypes';
+} from '../../types/CriteriaTypes';
 
 export interface CriteriaCardToolboxProps {
   prefix: string;

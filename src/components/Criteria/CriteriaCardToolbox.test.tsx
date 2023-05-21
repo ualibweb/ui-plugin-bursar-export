@@ -2,12 +2,12 @@ import { render, screen } from '@testing-library/react';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
-import withIntlConfiguration from '../test/util/withIntlConfiguration';
+import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 import {
   CriteriaCardGroupType,
   CriteriaCardTerminalType,
-} from '../types/CriteriaTypes';
-import FormValues from '../types/FormValues';
+} from '../../types/CriteriaTypes';
+import FormValues from '../../types/FormValues';
 import CriteriaCardToolbox from './CriteriaCardToolbox';
 
 const noop = () => ({});

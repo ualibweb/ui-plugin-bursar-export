@@ -4,7 +4,7 @@ import { Field } from 'react-final-form';
 import {
   CriteriaCardGroupType,
   CriteriaCardTerminalType,
-} from '../types/CriteriaTypes';
+} from '../../types/CriteriaTypes';
 
 export default function CriteriaCardSelect({
   prefix,
