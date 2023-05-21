@@ -78,7 +78,7 @@ describe('Criteria card toolbox', () => {
     expect(await screen.findByRole('button', { name: 'trash' })).toBeVisible();
     expect(
       await screen.findByRole('button', { name: 'trash' })
-    ).not.toHaveAttribute('disabled');
+    ).not.toBeDisabled();
   });
 
   it.each([
@@ -109,9 +109,7 @@ describe('Criteria card toolbox', () => {
       expect(
         await screen.findByRole('button', { name: 'trash' })
       ).toBeVisible();
-      expect(
-        await screen.findByRole('button', { name: 'trash' })
-      ).toHaveAttribute('disabled');
+      expect(await screen.findByRole('button', { name: 'trash' })).toBeDisabled;
     }
   );
 
@@ -136,9 +134,7 @@ describe('Criteria card toolbox', () => {
       expect(
         await screen.findByRole('button', { name: 'trash' })
       ).toBeVisible();
-      expect(
-        await screen.findByRole('button', { name: 'trash' })
-      ).toHaveAttribute('disabled');
+      expect(await screen.findByRole('button', { name: 'trash' })).toBeDisabled;
     }
   );
 
