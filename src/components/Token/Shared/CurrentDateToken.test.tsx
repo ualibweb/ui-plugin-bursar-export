@@ -3,13 +3,11 @@ import userEvent from '@testing-library/user-event';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
-import FormValues from '../../../types/FormValues';
 import withIntlConfiguration, {
   withIntlConfigurationAnyTimezone,
 } from '../../../test/util/withIntlConfiguration';
-import HeaderFooterCard from '../HeaderFooter/HeaderFooterCard';
-import HeaderFooterCardBody from '../HeaderFooter/HeaderFooterCardBody';
 import { HeaderFooterTokenType } from '../../../types/TokenTypes';
+import HeaderFooterCardBody from '../HeaderFooter/HeaderFooterCardBody';
 
 describe('Current date token', () => {
   it('displays appropriate form', async () => {
