@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 import { useField } from 'react-final-form';
+import { Row } from '@folio/stripes/components';
+import ArbitraryTextToken from '../Shared/ArbitraryTextToken';
 
 export const EMPTY_BODY_TYPES = [
   HeaderFooterTokenType.AGGREGATE_COUNT,
@@ -22,9 +24,19 @@ export default function HeaderFooterCardBody({ name }: { name: string }) {
     format: (value) => value ?? HeaderFooterTokenType.NEWLINE,
   }).input.value;
 
-  if (isHeaderFooterBodyEmpty(type)) {
-    return <div />;
-  }
+  const cardInterior = useMemo(() => {
+    switch (type) {
+      case HeaderFooterTokenType.ARBITRARY_TEXT:
+        return (
+          <Row>
+            <ArbitraryTextToken prefix={`${name}.`} />
+          </Row>
+        );
 
-  return <h1>{name}</h1>;
+      default:
+        return <div />;
+    }
+  }, [type]);
+
+  return <div>{cardInterior}</div>;
 }
