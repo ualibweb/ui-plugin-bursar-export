@@ -1,4 +1,4 @@
-import CriteriaGroup, { CriteriaTerminal } from './CriteriaTypes';
+import { CriteriaGroup, CriteriaTerminal } from './CriteriaTypes';
 import SchedulingFrequency from './SchedulingFrequency';
 
 export default interface FormValues {
