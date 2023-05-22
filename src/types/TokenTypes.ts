@@ -83,6 +83,23 @@ export enum DataTokenType {
   CONSTANT_CONDITIONAL = 'ConstantConditional',
 }
 
+export type ItemAttributes =
+  | 'BARCODE'
+  | 'NAME'
+  | 'MATERIAL_TYPE'
+  | 'INSTITUTION_ID'
+  | 'CAMPUS_ID'
+  | 'LIBRARY_ID'
+  | 'LOCATION_ID';
+export type UserAttributes =
+  | 'FOLIO_ID'
+  | 'PATRON_GROUP_ID'
+  | 'BARCODE'
+  | 'USERNAME'
+  | 'FIRST_NAME'
+  | 'MIDDLE_NAME'
+  | 'LAST_NAME';
+
 export type DataToken =
   | {
       type: DataTokenType.NEWLINE;
@@ -129,27 +146,13 @@ export type DataToken =
     }
   | {
       type: DataTokenType.ITEM_INFO;
-      attribute:
-        | 'BARCODE'
-        | 'NAME'
-        | 'MATERIAL_TYPE'
-        | 'INSTITUTION_ID'
-        | 'CAMPUS_ID'
-        | 'LIBRARY_ID'
-        | 'LOCATION_ID';
+      attribute: ItemAttributes;
       placeholder: string;
       lengthControl?: LengthControl;
     }
   | {
       type: DataTokenType.USER_DATA;
-      attribute:
-        | 'FOLIO_ID'
-        | 'PATRON_GROUP_ID'
-        | 'BARCODE'
-        | 'USERNAME'
-        | 'FIRST_NAME'
-        | 'MIDDLE_NAME'
-        | 'LAST_NAME';
+      attribute: UserAttributes;
       placeholder?: string;
       lengthControl?: LengthControl;
     }
