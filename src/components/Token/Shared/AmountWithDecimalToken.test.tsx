@@ -1,28 +1,33 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
-import { HeaderFooterTokenType } from '../../../types/TokenTypes';
+import {
+  DataTokenType,
+  HeaderFooterTokenType,
+} from '../../../types/TokenTypes';
+import DataTokenCardBody from '../Data/DataTokenCardBody';
 import HeaderFooterCardBody from '../HeaderFooter/HeaderFooterCardBody';
 
 describe('Aggregate total token', () => {
-  it('displays appropriate form', async () => {
+  it.each([
+    [HeaderFooterTokenType.AGGREGATE_TOTAL, HeaderFooterCardBody],
+    [DataTokenType.ACCOUNT_AMOUNT, DataTokenCardBody],
+  ])('displays appropriate form', async (type, Component) => {
     const submitter = jest.fn();
 
     render(
       withIntlConfiguration(
         <Form
-          mutators={{ ...arrayMutators }}
           onSubmit={(v) => submitter(v)}
           initialValues={{
-            test: { type: HeaderFooterTokenType.AGGREGATE_TOTAL },
+            test: { type },
           }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <HeaderFooterCardBody name="test" />
+              <Component name="test" />
               <button type="submit">Submit</button>
             </form>
           )}
@@ -37,7 +42,7 @@ describe('Aggregate total token', () => {
 
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
-        type: HeaderFooterTokenType.AGGREGATE_TOTAL,
+        type,
         decimal: true,
       },
     });
@@ -47,7 +52,7 @@ describe('Aggregate total token', () => {
 
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
-        type: HeaderFooterTokenType.AGGREGATE_TOTAL,
+        type,
         decimal: false,
       },
     });
@@ -57,7 +62,7 @@ describe('Aggregate total token', () => {
 
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
-        type: HeaderFooterTokenType.AGGREGATE_TOTAL,
+        type,
         decimal: true,
       },
     });

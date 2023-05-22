@@ -2,7 +2,7 @@ import { Checkbox, Col } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
 
-export default function AggregateTotalToken({ prefix }: { prefix: string }) {
+export default function AmountWithDecimalToken({ prefix }: { prefix: string }) {
   return (
     <Col xs={12}>
       <Field name={`${prefix}decimal`} type="checkbox" defaultValue={true}>

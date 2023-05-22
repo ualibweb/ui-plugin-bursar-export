@@ -3,10 +3,13 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
-import { HeaderFooterTokenType } from '../../../types/TokenTypes';
-import HeaderFooterTypeSelect from './HeaderFooterTypeSelect';
+import {
+  DataTokenType,
+  HeaderFooterTokenType,
+} from '../../../types/TokenTypes';
+import DataTypeSelect from './DataTypeSelect';
 
-describe('Header/footer type selection', () => {
+describe('Data token type selection', () => {
   it('has correct default', async () => {
     const submitter = jest.fn();
 
@@ -15,7 +18,7 @@ describe('Header/footer type selection', () => {
         <Form onSubmit={(v) => submitter(v)}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <HeaderFooterTypeSelect name="test" />
+              <DataTypeSelect name="test" />
               <button type="submit">Submit</button>
             </form>
           )}
@@ -27,7 +30,7 @@ describe('Header/footer type selection', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
     expect(submitter).toHaveBeenLastCalledWith({
-      test: HeaderFooterTokenType.NEWLINE,
+      test: DataTokenType.NEWLINE,
     });
   });
 
@@ -37,12 +40,12 @@ describe('Header/footer type selection', () => {
         <Form
           onSubmit={() => ({})}
           initialValues={{
-            test: HeaderFooterTokenType.ARBITRARY_TEXT,
+            test: DataTokenType.FEE_FINE_TYPE,
           }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <HeaderFooterTypeSelect name="test" />
+              <DataTypeSelect name="test" />
               <button type="submit">Submit</button>
             </form>
           )}
@@ -50,6 +53,6 @@ describe('Header/footer type selection', () => {
       )
     );
 
-    expect(screen.getByRole('combobox')).toHaveDisplayValue('Arbitrary text');
+    expect(screen.getByRole('combobox')).toHaveDisplayValue('Fee/fine type');
   });
 });

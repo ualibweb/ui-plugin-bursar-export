@@ -21,6 +21,7 @@ import useCampuses from '../api/useCampuses';
 import useInstitutions from '../api/useInstitutions';
 import useLibraries from '../api/useLibraries';
 import HeaderFooterMenu from './sections/HeaderFooterMenu';
+import DataTokenMenu from './sections/DataTokenMenu';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -60,6 +61,9 @@ function ConfigurationForm({
         </Accordion>
         <Accordion label="Header format">
           <HeaderFooterMenu name="header" />
+        </Accordion>
+        <Accordion label="Account data format">
+          <DataTokenMenu />
         </Accordion>
         <Accordion label="Footer format">
           <HeaderFooterMenu name="footer" />

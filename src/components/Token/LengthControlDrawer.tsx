@@ -8,12 +8,19 @@ import {
 } from '@folio/stripes/components';
 import React from 'react';
 import { Field, useField } from 'react-final-form';
-import { HeaderFooterTokenType } from '../../types/TokenTypes';
+import { DataTokenType, HeaderFooterTokenType } from '../../types/TokenTypes';
 
 export const TOKEN_TYPES_WITH_LENGTH_CONTROL = [
   HeaderFooterTokenType.CURRENT_DATE,
   HeaderFooterTokenType.AGGREGATE_COUNT,
   HeaderFooterTokenType.AGGREGATE_TOTAL,
+
+  DataTokenType.CURRENT_DATE,
+  DataTokenType.ACCOUNT_AMOUNT,
+  DataTokenType.ACCOUNT_DATE,
+  DataTokenType.FEE_FINE_TYPE,
+  DataTokenType.ITEM_INFO,
+  DataTokenType.USER_DATA,
 ];
 
 function FakeHeader() {

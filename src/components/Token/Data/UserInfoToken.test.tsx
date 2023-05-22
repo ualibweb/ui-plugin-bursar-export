@@ -3,19 +3,12 @@ import userEvent from '@testing-library/user-event';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
+import { DataTokenType } from '../../../types/TokenTypes';
+import DataTokenCardBody from './DataTokenCardBody';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
-import {
-  DataTokenType,
-  HeaderFooterTokenType,
-} from '../../../types/TokenTypes';
-import DataTokenCardBody from '../Data/DataTokenCardBody';
-import HeaderFooterCardBody from '../HeaderFooter/HeaderFooterCardBody';
 
-describe('Whitespace token', () => {
-  it.each([
-    [HeaderFooterTokenType.SPACE, HeaderFooterCardBody],
-    [DataTokenType.SPACE, DataTokenCardBody],
-  ])('displays appropriate form', async (type, Component) => {
+describe('Item info type token', () => {
+  it('displays appropriate form', async () => {
     const submitter = jest.fn();
 
     render(
@@ -23,11 +16,11 @@ describe('Whitespace token', () => {
         <Form
           mutators={{ ...arrayMutators }}
           onSubmit={(v) => submitter(v)}
-          initialValues={{ test: { type } }}
+          initialValues={{ test: { type: DataTokenType.USER_DATA } }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <Component name="test" />
+              <DataTokenCardBody name="test" />
               <button type="submit">Submit</button>
             </form>
           )}
@@ -35,15 +28,22 @@ describe('Whitespace token', () => {
       )
     );
 
-    expect(screen.getByRole('spinbutton')).toBeVisible();
+    await userEvent.selectOptions(
+      screen.getByRole('combobox', { name: 'Value' }),
+      'Patron group ID'
+    );
+    await userEvent.type(
+      screen.getByRole('textbox', { name: 'Fallback value' }),
+      'foo bar fallback'
+    );
 
-    await userEvent.type(screen.getByRole('spinbutton'), '8');
     await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
-        type: HeaderFooterTokenType.SPACE,
-        repeat: '8',
+        type: DataTokenType.USER_DATA,
+        attribute: 'PATRON_GROUP_ID',
+        placeholder: 'foo bar fallback',
       },
     });
   });

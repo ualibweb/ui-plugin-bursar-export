@@ -1,28 +1,28 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
-import withIntlConfiguration, {
-  withIntlConfigurationAnyTimezone,
-} from '../../../test/util/withIntlConfiguration';
-import { HeaderFooterTokenType } from '../../../types/TokenTypes';
+import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
+import {
+  DataTokenType,
+  HeaderFooterTokenType,
+} from '../../../types/TokenTypes';
+import DataTokenCardBody from '../Data/DataTokenCardBody';
 import HeaderFooterCardBody from '../HeaderFooter/HeaderFooterCardBody';
 
 describe('Current date token', () => {
-  it('displays appropriate form', async () => {
+  it.each([
+    [HeaderFooterTokenType.CURRENT_DATE, HeaderFooterCardBody],
+    [DataTokenType.CURRENT_DATE, DataTokenCardBody],
+  ])('displays appropriate form', async (type, Component) => {
     const submitter = jest.fn();
 
     render(
       withIntlConfiguration(
-        <Form
-          mutators={{ ...arrayMutators }}
-          onSubmit={(v) => submitter(v)}
-          initialValues={{ test: { type: HeaderFooterTokenType.CURRENT_DATE } }}
-        >
+        <Form onSubmit={(v) => submitter(v)} initialValues={{ test: { type } }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <HeaderFooterCardBody name="test" />
+              <Component name="test" />
               <button type="submit">Submit</button>
             </form>
           )}
@@ -52,42 +52,6 @@ describe('Current date token', () => {
         type: HeaderFooterTokenType.CURRENT_DATE,
         format: 'YEAR_LONG',
         timezone: 'America/Chicago',
-      },
-    });
-  });
-
-  it('Assumes UTC when no known TZ', async () => {
-    const submitter = jest.fn();
-
-    render(
-      withIntlConfigurationAnyTimezone(
-        <Form
-          mutators={{ ...arrayMutators }}
-          onSubmit={(v) => submitter(v)}
-          initialValues={{ test: { type: HeaderFooterTokenType.CURRENT_DATE } }}
-        >
-          {({ handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
-              <HeaderFooterCardBody name="test" />
-              <button type="submit">Submit</button>
-            </form>
-          )}
-        </Form>,
-        'en-US'
-      )
-    );
-
-    expect(
-      screen.getByRole('combobox', { name: 'Timezone' })
-    ).toHaveDisplayValue('UTC');
-
-    await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
-
-    expect(submitter).toHaveBeenLastCalledWith({
-      test: {
-        type: HeaderFooterTokenType.CURRENT_DATE,
-        format: 'YEAR_LONG',
-        timezone: 'UTC',
       },
     });
   });

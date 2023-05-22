@@ -35,11 +35,7 @@ test.each([
 ])('Card bodies for type %s result in empty div', (type) => {
   const { container } = render(
     withIntlConfiguration(
-      <Form
-        mutators={{ ...arrayMutators }}
-        onSubmit={() => ({})}
-        initialValues={{ test: { type } }}
-      >
+      <Form onSubmit={() => ({})} initialValues={{ test: { type } }}>
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <HeaderFooterCardBody name="test" />

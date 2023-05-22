@@ -1,28 +1,33 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
-import { HeaderFooterTokenType } from '../../../types/TokenTypes';
+import {
+  DataTokenType,
+  HeaderFooterTokenType,
+} from '../../../types/TokenTypes';
 import HeaderFooterCardBody from '../HeaderFooter/HeaderFooterCardBody';
+import DataTokenCardBody from '../Data/DataTokenCardBody';
 
 describe('Arbitrary text token', () => {
-  it('displays appropriate form', async () => {
+  it.each([
+    [HeaderFooterTokenType.ARBITRARY_TEXT, HeaderFooterCardBody],
+    [DataTokenType.ARBITRARY_TEXT, DataTokenCardBody],
+  ])('displays appropriate form', async (type, Component) => {
     const submitter = jest.fn();
 
     render(
       withIntlConfiguration(
         <Form
-          mutators={{ ...arrayMutators }}
           onSubmit={(v) => submitter(v)}
           initialValues={{
-            test: { type: HeaderFooterTokenType.ARBITRARY_TEXT },
+            test: { type },
           }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <HeaderFooterCardBody name="test" />
+              <Component name="test" />
               <button type="submit">Submit</button>
             </form>
           )}
