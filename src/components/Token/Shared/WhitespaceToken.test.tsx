@@ -27,7 +27,7 @@ describe('Whitespace token', () => {
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <DataTokenCardBody name="test" />
+              <Component name="test" />
               <button type="submit">Submit</button>
             </form>
           )}
