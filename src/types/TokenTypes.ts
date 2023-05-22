@@ -94,6 +94,7 @@ export type ItemAttribute =
 export type UserAttribute =
   | 'FOLIO_ID'
   | 'PATRON_GROUP_ID'
+  | 'EXTERNAL_SYSTEM_ID'
   | 'BARCODE'
   | 'USERNAME'
   | 'FIRST_NAME'
