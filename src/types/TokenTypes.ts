@@ -62,3 +62,21 @@ export type HeaderFooterToken =
       decimal: boolean;
       lengthControl?: LengthControl;
     };
+
+export enum DataTokenType {
+  ARBITRARY_TEXT = 'Constant',
+  NEWLINE = 'Newline',
+  NEWLINE_MICROSOFT = 'NewlineMicrosoft',
+  TAB = 'Tab',
+  COMMA = 'Comma',
+  SPACE = 'Space',
+
+  CURRENT_DATE = 'CurrentDate',
+
+  ACCOUNT_DATE = 'FeeDate',
+  ACCOUNT_METADATA = 'FeeMetadata',
+  ITEM_INFO = 'ItemData',
+  USER_DATA = 'UserData',
+
+  CONSTANT_CONDITIONAL = 'ConstantConditional',
+}
