@@ -68,6 +68,7 @@ function ConfigurationForm({
         <Accordion label="Footer format">
           <HeaderFooterMenu name="footer" />
         </Accordion>
+        <Accordion label="Transfer accounts to"></Accordion>
         <Accordion label="Debug (form state)">
           <FormSpy subscription={{ values: true }}>
             {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
