@@ -2,6 +2,9 @@ import { CriteriaGroup, CriteriaTerminal } from './CriteriaTypes';
 import SchedulingFrequency from './SchedulingFrequency';
 import { DataToken, HeaderFooterToken } from './TokenTypes';
 
+// for coverage
+export const TYPE_ONLY = true;
+
 export default interface FormValues {
   scheduling: {
     frequency: SchedulingFrequency;

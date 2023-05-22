@@ -1,3 +1,6 @@
+// for coverage
+export const TYPE_ONLY = true;
+
 export default interface LengthControl {
   drawerOpen?: boolean;
 
