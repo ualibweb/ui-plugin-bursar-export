@@ -10,7 +10,7 @@ import {
   CriteriaCardTerminalType,
 } from '../../../types/CriteriaTypes';
 import { DataTokenType } from '../../../types/TokenTypes';
-import DataCardBody from './DataTokenCardBody';
+import DataTokenCardBody from './DataTokenCardBody';
 
 describe('Constant conditional token', () => {
   describe('buttons work as expected', () => {
@@ -44,7 +44,7 @@ describe('Constant conditional token', () => {
           >
             {({ handleSubmit }) => (
               <form onSubmit={handleSubmit}>
-                <DataCardBody name="test" />
+                <DataTokenCardBody name="test" />
                 <button type="submit">Submit</button>
               </form>
             )}

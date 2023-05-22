@@ -3,22 +3,26 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
-import { HeaderFooterTokenType } from '../../../types/TokenTypes';
+import {
+  DataTokenType,
+  HeaderFooterTokenType,
+} from '../../../types/TokenTypes';
+import DataTokenCardBody from '../Data/DataTokenCardBody';
 import HeaderFooterCardBody from '../HeaderFooter/HeaderFooterCardBody';
 
 describe('Current date token', () => {
-  it('displays appropriate form', async () => {
+  it.each([
+    [HeaderFooterTokenType.CURRENT_DATE, HeaderFooterCardBody],
+    [DataTokenType.CURRENT_DATE, DataTokenCardBody],
+  ])('displays appropriate form', async (type, Component) => {
     const submitter = jest.fn();
 
     render(
       withIntlConfiguration(
-        <Form
-          onSubmit={(v) => submitter(v)}
-          initialValues={{ test: { type: HeaderFooterTokenType.CURRENT_DATE } }}
-        >
+        <Form onSubmit={(v) => submitter(v)} initialValues={{ test: { type } }}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <HeaderFooterCardBody name="test" />
+              <Component name="test" />
               <button type="submit">Submit</button>
             </form>
           )}

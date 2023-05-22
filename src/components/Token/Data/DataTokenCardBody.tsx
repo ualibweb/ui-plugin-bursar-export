@@ -23,7 +23,7 @@ export function isDataBodyEmpty(type: DataTokenType | undefined) {
   return EMPTY_BODY_TYPES.includes(type ?? DataTokenType.NEWLINE);
 }
 
-export default function DataCardBody({ name }: { name: string }) {
+export default function DataTokenCardBody({ name }: { name: string }) {
   const type = useField<DataTokenType>(`${name}.type`, {
     subscription: { value: true },
     format: (value) => value ?? DataTokenType.NEWLINE,

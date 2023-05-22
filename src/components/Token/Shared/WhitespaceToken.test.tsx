@@ -4,11 +4,18 @@ import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
-import { HeaderFooterTokenType } from '../../../types/TokenTypes';
+import {
+  DataTokenType,
+  HeaderFooterTokenType,
+} from '../../../types/TokenTypes';
+import DataTokenCardBody from '../Data/DataTokenCardBody';
 import HeaderFooterCardBody from '../HeaderFooter/HeaderFooterCardBody';
 
 describe('Whitespace token', () => {
-  it('displays appropriate form', async () => {
+  it.each([
+    [HeaderFooterTokenType.SPACE, HeaderFooterCardBody],
+    [DataTokenType.SPACE, DataTokenCardBody],
+  ])('displays appropriate form', async (type, Component) => {
     const submitter = jest.fn();
 
     render(
@@ -16,11 +23,11 @@ describe('Whitespace token', () => {
         <Form
           mutators={{ ...arrayMutators }}
           onSubmit={(v) => submitter(v)}
-          initialValues={{ test: { type: HeaderFooterTokenType.SPACE } }}
+          initialValues={{ test: { type } }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <HeaderFooterCardBody name="test" />
+              <DataTokenCardBody name="test" />
               <button type="submit">Submit</button>
             </form>
           )}

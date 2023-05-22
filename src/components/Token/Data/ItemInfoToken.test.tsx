@@ -4,7 +4,7 @@ import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
 import { DataTokenType } from '../../../types/TokenTypes';
-import DataCardBody from './DataTokenCardBody';
+import DataTokenCardBody from './DataTokenCardBody';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
 
 describe('Item info type token', () => {
@@ -20,7 +20,7 @@ describe('Item info type token', () => {
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <DataCardBody name="test" />
+              <DataTokenCardBody name="test" />
               <button type="submit">Submit</button>
             </form>
           )}

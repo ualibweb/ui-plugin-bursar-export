@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Form } from 'react-final-form';
 import { DataTokenType } from '../../../types/TokenTypes';
-import DataCardBody from './DataTokenCardBody';
+import DataTokenCardBody from './DataTokenCardBody';
 
 describe('Fee/fine type token', () => {
   it('displays appropriate form', async () => {
@@ -16,7 +16,7 @@ describe('Fee/fine type token', () => {
       >
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <DataCardBody name="test" />
+            <DataTokenCardBody name="test" />
             <button type="submit">Submit</button>
           </form>
         )}
