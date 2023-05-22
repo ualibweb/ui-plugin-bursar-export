@@ -9,7 +9,7 @@ import {
 } from '../../types/CriteriaTypes';
 import CriteriaAge from './CriteriaAge';
 import CriteriaAmount from './CriteriaAmount';
-import css from './CriteriaCard.module.css';
+import css from '../Card.module.css';
 import CriteriaCardSelect from './CriteriaCardSelect';
 import CriteriaCardToolbox from './CriteriaCardToolbox';
 import CriteriaFeeFineType from './CriteriaFeeFineType';
@@ -28,12 +28,13 @@ export default function CriteriaCard({
   root?: boolean;
   alone: boolean;
 }) {
-  const type = useField<
-    CriteriaCardGroupType | CriteriaCardTerminalType | undefined
-  >(`${name}.type`, {
-    subscription: { value: true },
-    format: (value) => value ?? CriteriaCardTerminalType.PASS,
-  }).input.value;
+  const type = useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
+    `${name}.type`,
+    {
+      subscription: { value: true },
+      format: (value) => value ?? CriteriaCardTerminalType.PASS,
+    }
+  ).input.value;
 
   const cardInterior = useMemo(() => {
     switch (type) {
@@ -104,7 +105,7 @@ export default function CriteriaCard({
     <Card
       cardClass={css.cardClass}
       headerClass={css.headerClass}
-      headerStart={<CriteriaCardSelect prefix={`${name}.`} root={root} />}
+      headerStart={<CriteriaCardSelect name={`${name}.type`} root={root} />}
       headerEnd={
         <CriteriaCardToolbox
           prefix={`${name}.`}

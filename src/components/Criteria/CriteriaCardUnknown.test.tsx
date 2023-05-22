@@ -7,7 +7,7 @@ import CriteriaCard from './CriteriaCard';
 
 const noop = () => ({});
 
-it('Criteria card with unknown type should display loading', async () => {
+it('Criteria card with unknown type should display loading', () => {
   const { container } = render(
     withIntlConfiguration(
       <Form
@@ -22,5 +22,5 @@ it('Criteria card with unknown type should display loading', async () => {
 
   expect(
     container.querySelector('[data-test-card-body] .spinner')
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });

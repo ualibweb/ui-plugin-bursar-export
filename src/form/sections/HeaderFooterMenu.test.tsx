@@ -3,11 +3,14 @@ import userEvent from '@testing-library/user-event';
 import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
-import FormValues from '../../types/FormValues';
 import withIntlConfiguration from '../../test/util/withIntlConfiguration';
-import CriteriaCard from './CriteriaCard';
+import { CriteriaCardGroupType } from '../../types/CriteriaTypes';
+import FormValues from '../../types/FormValues';
+import CriteriaMenu from './CriteriaMenu';
+import HeaderFooterMenu from './HeaderFooterMenu';
+import { HeaderFooterTokenType } from '../../types/TokenTypes';
 
-it('Age criteria displays appropriate form', async () => {
+test('Add button works as expected', async () => {
   const submitter = jest.fn();
 
   render(
@@ -18,7 +21,7 @@ it('Age criteria displays appropriate form', async () => {
       >
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <CriteriaCard name="criteria" root alone />
+            <HeaderFooterMenu name="test" />
             <button type="submit">Submit</button>
           </form>
         )}
@@ -26,14 +29,17 @@ it('Age criteria displays appropriate form', async () => {
     )
   );
 
-  await userEvent.selectOptions(screen.getByRole('combobox'), 'Age');
-  await userEvent.type(screen.getByRole('textbox'), '10');
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+
   await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
   expect(submitter).toHaveBeenCalledWith({
-    criteria: {
-      type: 'Age',
-      numDays: '10',
-    },
+    test: [
+      { type: HeaderFooterTokenType.NEWLINE },
+      { type: HeaderFooterTokenType.NEWLINE },
+      { type: HeaderFooterTokenType.NEWLINE },
+    ],
   });
 });

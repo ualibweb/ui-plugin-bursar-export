@@ -31,7 +31,7 @@ describe('Scheduling menu', () => {
     expect(screen.queryAllByRole('textbox')).toHaveLength(0);
   });
 
-  it('Hours option shows interval option only', async () => {
+  it('Hours option shows interval option only', () => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
@@ -47,11 +47,11 @@ describe('Scheduling menu', () => {
 
     expect(screen.queryAllByRole('textbox')).toHaveLength(1);
     expect(
-      await screen.findByRole('textbox', { name: 'Hours between runs' })
-    ).toBeInTheDocument();
+      screen.getByRole('textbox', { name: 'Hours between runs' })
+    ).toBeVisible();
   });
 
-  it('Days option shows interval and start time options only', async () => {
+  it('Days option shows interval and start time options only', () => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
@@ -67,16 +67,16 @@ describe('Scheduling menu', () => {
 
     expect(screen.queryAllByRole('textbox')).toHaveLength(2);
     expect(
-      await screen.findByRole('textbox', { name: 'Days between runs' })
-    ).toBeInTheDocument();
+      screen.getByRole('textbox', { name: 'Days between runs' })
+    ).toBeVisible();
     expect(
-      await screen.findByRole('textbox', {
+      screen.getByRole('textbox', {
         name: (name) => name.startsWith('Run at'),
       })
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
-  it('Weeks option shows all options', async () => {
+  it('Weeks option shows all options', () => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
@@ -92,15 +92,15 @@ describe('Scheduling menu', () => {
 
     expect(screen.queryAllByRole('textbox')).toHaveLength(3);
     expect(
-      await screen.findByRole('textbox', { name: 'Weeks between runs' })
-    ).toBeInTheDocument();
+      screen.getByRole('textbox', { name: 'Weeks between runs' })
+    ).toBeVisible();
     expect(
-      await screen.findByRole('textbox', {
+      screen.getByRole('textbox', {
         name: (name) => name.startsWith('Run at'),
       })
-    ).toBeInTheDocument();
+    ).toBeVisible();
     expect(
-      await screen.findByRole('textbox', { name: 'Run on weekdays' })
-    ).toBeInTheDocument();
+      screen.getByRole('textbox', { name: 'Run on weekdays' })
+    ).toBeVisible();
   });
 });

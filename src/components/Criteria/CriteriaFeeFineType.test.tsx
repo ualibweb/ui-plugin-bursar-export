@@ -100,15 +100,11 @@ describe('Fee/fine type criteria displays appropriate form', () => {
   it('Automatic works as expected', async () => {
     // check default fill in
     expect(
-      await screen.findByRole('combobox', { name: 'Fee/fine owner' })
+      screen.getByRole('combobox', { name: 'Fee/fine owner' })
     ).toHaveDisplayValue('Automatic');
 
-    expect(
-      await screen.findByRole('option', { name: 'Overdue fine' })
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByRole('option', { name: 'Lost item fee' })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'Overdue fine' })).toBeVisible();
+    expect(screen.getByRole('option', { name: 'Lost item fee' })).toBeVisible();
     expect(screen.queryByRole('option', { name: 'Type 1' })).toBeNull();
     expect(screen.queryByRole('option', { name: 'Type 2' })).toBeNull();
     expect(screen.queryByRole('option', { name: 'Type 3' })).toBeNull();
@@ -130,16 +126,12 @@ describe('Fee/fine type criteria displays appropriate form', () => {
 
   it('Selecting an owner works as expected', async () => {
     await userEvent.selectOptions(
-      await screen.findByRole('combobox', { name: 'Fee/fine owner' }),
+      screen.getByRole('combobox', { name: 'Fee/fine owner' }),
       'Owner 1'
     );
 
-    expect(
-      await screen.findByRole('option', { name: 'Type 1' })
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByRole('option', { name: 'Type 2' })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'Type 1' })).toBeVisible();
+    expect(screen.getByRole('option', { name: 'Type 2' })).toBeVisible();
     expect(screen.queryByRole('option', { name: 'Type 3' })).toBeNull();
     expect(screen.queryByRole('option', { name: 'Overdue fine' })).toBeNull();
 

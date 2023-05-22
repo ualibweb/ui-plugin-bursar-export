@@ -28,10 +28,10 @@ it('Amount criteria displays appropriate form', async () => {
 
   await userEvent.selectOptions(screen.getByRole('combobox'), 'Amount');
   await userEvent.selectOptions(
-    await screen.findByRole('combobox', { name: 'Comparison operator' }),
+    screen.getByRole('combobox', { name: 'Comparison operator' }),
     'Greater than but not equal to'
   );
-  await userEvent.type(await screen.findByRole('spinbutton'), '12');
+  await userEvent.type(screen.getByRole('spinbutton'), '12');
   await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
   expect(submitter).toHaveBeenCalledWith({

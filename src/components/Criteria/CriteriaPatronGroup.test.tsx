@@ -71,15 +71,11 @@ it('Patron group type criteria displays appropriate form', async () => {
 
   await userEvent.selectOptions(screen.getByRole('combobox'), 'Patron group');
 
-  expect(
-    await screen.findByRole('option', { name: 'faculty' })
-  ).toBeInTheDocument();
-  expect(
-    await screen.findByRole('option', { name: 'undergrad' })
-  ).toBeInTheDocument();
+  expect(screen.getByRole('option', { name: 'faculty' })).toBeVisible();
+  expect(screen.getByRole('option', { name: 'undergrad' })).toBeVisible();
 
   await userEvent.selectOptions(
-    await screen.findByRole('combobox', { name: 'Patron group' }),
+    screen.getByRole('combobox', { name: 'Patron group' }),
     'staff'
   );
 
