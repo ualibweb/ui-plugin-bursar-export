@@ -18,7 +18,7 @@ export default function CriteriaPatronGroup({ prefix }: { prefix: string }) {
   }, [patronGroups]);
 
   return (
-    <Col xs={12} md={6}>
+    <Col xs={12}>
       <Field name={`${prefix}patronGroupId`}>
         {(fieldProps) => (
           <Select<string | undefined>
