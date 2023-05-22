@@ -83,7 +83,7 @@ export enum DataTokenType {
   CONSTANT_CONDITIONAL = 'ConstantConditional',
 }
 
-export type ItemAttributes =
+export type ItemAttribute =
   | 'BARCODE'
   | 'NAME'
   | 'MATERIAL_TYPE'
@@ -91,7 +91,7 @@ export type ItemAttributes =
   | 'CAMPUS_ID'
   | 'LIBRARY_ID'
   | 'LOCATION_ID';
-export type UserAttributes =
+export type UserAttribute =
   | 'FOLIO_ID'
   | 'PATRON_GROUP_ID'
   | 'BARCODE'
@@ -147,13 +147,13 @@ export type DataToken =
     }
   | {
       type: DataTokenType.ITEM_INFO;
-      attribute: ItemAttributes;
+      attribute: ItemAttribute;
       placeholder: string;
       lengthControl?: LengthControl;
     }
   | {
       type: DataTokenType.USER_DATA;
-      attribute: UserAttributes;
+      attribute: UserAttribute;
       placeholder?: string;
       lengthControl?: LengthControl;
     }

@@ -43,7 +43,7 @@ export default function AccountDateToken({ prefix }: { prefix: string }) {
         <DatePartPicker prefix={prefix} />
       </Col>
       <Col xs={12} md={6}>
-        <Field name={`${prefix}text`}>
+        <Field name={`${prefix}placeholder`}>
           {(fieldProps) => (
             <TextField<string>
               {...fieldProps}
