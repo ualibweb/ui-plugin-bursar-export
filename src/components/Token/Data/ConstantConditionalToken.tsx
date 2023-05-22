@@ -1,16 +1,9 @@
-import {
-  Button,
-  Card,
-  Col,
-  Select,
-  TextField,
-} from '@folio/stripes/components';
+import { Button, Card, Col, TextField } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
-import { UserAttribute } from '../../../types/TokenTypes';
-import CriteriaCard from '../../Criteria/CriteriaCard';
 import { FieldArray } from 'react-final-form-arrays';
 import { CriteriaCardGroupType } from '../../../types/CriteriaTypes';
+import CriteriaCard from '../../Criteria/CriteriaCard';
 
 export default function ConstantConditionalToken({
   prefix,
