@@ -1,3 +1,4 @@
+import { CriteriaGroup, CriteriaTerminal } from './CriteriaTypes';
 import LengthControl from './LengthControl';
 
 export enum HeaderFooterTokenType {
@@ -73,10 +74,90 @@ export enum DataTokenType {
 
   CURRENT_DATE = 'CurrentDate',
 
+  ACCOUNT_AMOUNT = 'FeeAmount',
   ACCOUNT_DATE = 'FeeDate',
-  ACCOUNT_METADATA = 'FeeMetadata',
+  FEE_FINE_TYPE = 'FeeFineMetadata',
   ITEM_INFO = 'ItemData',
   USER_DATA = 'UserData',
 
   CONSTANT_CONDITIONAL = 'ConstantConditional',
 }
+
+export type DataToken =
+  | {
+      type: DataTokenType.NEWLINE;
+    }
+  | {
+      type: DataTokenType.NEWLINE_MICROSOFT;
+    }
+  | {
+      type: DataTokenType.TAB;
+    }
+  | {
+      type: DataTokenType.COMMA;
+    }
+  | {
+      type: DataTokenType.SPACE;
+      repeat: string;
+    }
+  | {
+      type: DataTokenType.ARBITRARY_TEXT;
+      text: string;
+    }
+  | {
+      type: DataTokenType.CURRENT_DATE;
+      format: DateFormatType;
+      timezone: string;
+      lengthControl?: LengthControl;
+    }
+  | {
+      type: DataTokenType.ACCOUNT_AMOUNT;
+      decimal: boolean;
+      lengthControl?: LengthControl;
+    }
+  | {
+      type: DataTokenType.ACCOUNT_DATE;
+      attribute: 'CREATED' | 'UPDATED' | 'DUE' | 'RETURNED';
+      format: DateFormatType;
+      timezone: string;
+      lengthControl?: LengthControl;
+    }
+  | {
+      type: DataTokenType.FEE_FINE_TYPE;
+      attribute: 'FEE_FINE_TYPE_ID' | 'FEE_FINE_TYPE_NAME';
+      lengthControl?: LengthControl;
+    }
+  | {
+      type: DataTokenType.ITEM_INFO;
+      attribute:
+        | 'BARCODE'
+        | 'NAME'
+        | 'MATERIAL_TYPE'
+        | 'INSTITUTION_ID'
+        | 'CAMPUS_ID'
+        | 'LIBRARY_ID'
+        | 'LOCATION_ID';
+      placeholder: string;
+      lengthControl?: LengthControl;
+    }
+  | {
+      type: DataTokenType.USER_DATA;
+      attribute:
+        | 'FOLIO_ID'
+        | 'PATRON_GROUP_ID'
+        | 'BARCODE'
+        | 'USERNAME'
+        | 'FIRST_NAME'
+        | 'MIDDLE_NAME'
+        | 'LAST_NAME';
+      placeholder?: string;
+      lengthControl?: LengthControl;
+    }
+  | {
+      type: DataTokenType.CONSTANT_CONDITIONAL;
+      conditions: {
+        condition: CriteriaGroup | CriteriaTerminal;
+        value: string;
+      }[];
+      else: string;
+    };

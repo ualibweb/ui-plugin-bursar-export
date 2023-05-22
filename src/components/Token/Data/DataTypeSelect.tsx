@@ -60,12 +60,16 @@ export default function DataTypeSelect({ name }: { name: string }) {
             },
 
             {
+              label: 'Account amount',
+              value: DataTokenType.ACCOUNT_AMOUNT,
+            },
+            {
               label: 'Account date',
               value: DataTokenType.ACCOUNT_DATE,
             },
             {
-              label: 'Account info',
-              value: DataTokenType.ACCOUNT_METADATA,
+              label: 'Fee/fine type',
+              value: DataTokenType.FEE_FINE_TYPE,
             },
             {
               label: 'Item info',
