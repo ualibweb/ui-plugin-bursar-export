@@ -6,6 +6,7 @@ import AmountWithDecimalToken from '../Shared/AmountWithDecimalToken';
 import ArbitraryTextToken from '../Shared/ArbitraryTextToken';
 import CurrentDateToken from '../Shared/CurrentDateToken';
 import WhitespaceToken from '../Shared/WhitespaceToken';
+import AccountDateToken from './AccountDateToken';
 
 export const EMPTY_BODY_TYPES = [
   DataTokenType.COMMA,
@@ -49,6 +50,12 @@ export default function DataCardBody({ name }: { name: string }) {
         return (
           <Row>
             <AmountWithDecimalToken prefix={`${name}.`} />
+          </Row>
+        );
+      case DataTokenType.ACCOUNT_DATE:
+        return (
+          <Row>
+            <AccountDateToken prefix={`${name}.`} />
           </Row>
         );
 
