@@ -34,17 +34,25 @@ export default function ConstantConditionalToken({
                 key={name}
                 headerStart="If:"
                 headerEnd={
-                  <IconButton
-                    icon="trash"
-                    onClick={() => fields.remove(index)}
-                  />
+                  <>
+                    <IconButton
+                      icon="caret-up"
+                      disabled={index === 0}
+                      onClick={() => fields.swap(index, index - 1)}
+                    />
+                    <IconButton
+                      icon="caret-down"
+                      disabled={index + 1 === fields.length}
+                      onClick={() => fields.swap(index, index + 1)}
+                    />
+                    <IconButton
+                      icon="trash"
+                      onClick={() => fields.remove(index)}
+                    />
+                  </>
                 }
               >
-                <CriteriaCard
-                  name={name}
-                  alone
-                  onRemove={() => fields.remove(index)}
-                />
+                <CriteriaCard name={name} alone />
                 <Field name={`${name}.value`}>
                   {(fieldProps) => (
                     <TextField<string>
