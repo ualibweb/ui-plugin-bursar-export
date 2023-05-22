@@ -18,7 +18,7 @@ export default function CriteriaServicePoint({ prefix }: { prefix: string }) {
   }, [servicePoints]);
 
   return (
-    <Col xs={12} md={6}>
+    <Col xs={12}>
       <Field name={`${prefix}servicePointId`}>
         {(fieldProps) => (
           <Select<string | undefined>
