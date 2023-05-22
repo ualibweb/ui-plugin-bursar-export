@@ -1,9 +1,9 @@
-import { Button, Card, IconButton } from '@folio/stripes/components';
+import { Button, Card } from '@folio/stripes/components';
 import React from 'react';
 import { FieldArray } from 'react-final-form-arrays';
-import CriteriaCard from '../../components/Criteria/CriteriaCard';
-import { CriteriaCardTerminalType } from '../../types/CriteriaTypes';
+import ConditionalCard from '../../components/ConditionalCard';
 import TransferAccountFields from '../../components/TransferAccountFields';
+import { CriteriaCardTerminalType } from '../../types/CriteriaTypes';
 
 export default function TransferInfoMenu() {
   return (
@@ -11,31 +11,14 @@ export default function TransferInfoMenu() {
       {({ fields }) => (
         <>
           {fields.map((name, index) => (
-            <Card
+            <ConditionalCard
               key={name}
-              headerStart="If:"
-              headerEnd={
-                <>
-                  <IconButton
-                    icon="caret-up"
-                    disabled={index === 0}
-                    onClick={() => fields.swap(index, index - 1)}
-                  />
-                  <IconButton
-                    icon="caret-down"
-                    disabled={index + 1 === fields.length}
-                    onClick={() => fields.swap(index, index + 1)}
-                  />
-                  <IconButton
-                    icon="trash"
-                    onClick={() => fields.remove(index)}
-                  />
-                </>
-              }
+              index={index}
+              fieldArrayName="transferInfo.conditions"
+              conditionName={`${name}.condition`}
             >
-              <CriteriaCard name={`${name}.condition`} alone />
               <TransferAccountFields prefix={`${name}.`} />
-            </Card>
+            </ConditionalCard>
           ))}
 
           <Card headerStart={fields.length ? 'Otherwise:' : 'Transfer to:'}>
