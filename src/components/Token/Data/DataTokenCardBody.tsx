@@ -2,6 +2,7 @@ import { Row } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { useField } from 'react-final-form';
 import { DataTokenType } from '../../../types/TokenTypes';
+import AmountWithDecimalToken from '../Shared/AmountWithDecimalToken';
 import ArbitraryTextToken from '../Shared/ArbitraryTextToken';
 import CurrentDateToken from '../Shared/CurrentDateToken';
 import WhitespaceToken from '../Shared/WhitespaceToken';
@@ -41,6 +42,13 @@ export default function DataCardBody({ name }: { name: string }) {
         return (
           <Row>
             <CurrentDateToken prefix={`${name}.`} />
+          </Row>
+        );
+
+      case DataTokenType.ACCOUNT_AMOUNT:
+        return (
+          <Row>
+            <AmountWithDecimalToken prefix={`${name}.`} />
           </Row>
         );
 
