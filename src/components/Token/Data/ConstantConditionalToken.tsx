@@ -1,4 +1,10 @@
-import { Button, Card, Col, TextField } from '@folio/stripes/components';
+import {
+  Button,
+  Card,
+  Col,
+  IconButton,
+  TextField,
+} from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -24,7 +30,16 @@ export default function ConstantConditionalToken({
         <>
           <Col xs={12}>
             {fields.map((name, index) => (
-              <Card key={name} headerStart="If:">
+              <Card
+                key={name}
+                headerStart="If:"
+                headerEnd={
+                  <IconButton
+                    icon="trash"
+                    onClick={() => fields.remove(index)}
+                  />
+                }
+              >
                 <CriteriaCard
                   name={name}
                   alone
