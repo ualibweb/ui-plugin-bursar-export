@@ -67,7 +67,7 @@ export default function ConstantConditionalToken({
             ))}
           </Col>
           <Col xs={12}>
-            <Card headerStart="Otherwise">
+            <Card headerStart="Otherwise:">
               <Field name={`${prefix}else`}>
                 {(fieldProps) => (
                   <TextField<string>

@@ -22,6 +22,7 @@ import useInstitutions from '../api/useInstitutions';
 import useLibraries from '../api/useLibraries';
 import HeaderFooterMenu from './sections/HeaderFooterMenu';
 import DataTokenMenu from './sections/DataTokenMenu';
+import TransferInfoMenu from './sections/TransferInfoMenu';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -68,7 +69,9 @@ function ConfigurationForm({
         <Accordion label="Footer format">
           <HeaderFooterMenu name="footer" />
         </Accordion>
-        <Accordion label="Transfer accounts to"></Accordion>
+        <Accordion label="Transfer accounts to">
+          <TransferInfoMenu />
+        </Accordion>
         <Accordion label="Debug (form state)">
           <FormSpy subscription={{ values: true }}>
             {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
