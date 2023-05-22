@@ -1,21 +1,17 @@
 import { TextField } from '@folio/stripes/components';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Field, Form } from 'react-final-form';
-import FormValues from '../types/FormValues';
 import withIntlConfiguration from '../test/util/withIntlConfiguration';
+import FormValues from '../types/FormValues';
 import useMonetaryOnBlur from './useMonetaryOnBlur';
 
 const submitter = jest.fn((_) => ({}));
 
 function TestComponent() {
   return (
-    <Form<FormValues>
-      mutators={{ ...arrayMutators }}
-      onSubmit={(v) => submitter(v)}
-    >
+    <Form<FormValues> onSubmit={(v) => submitter(v)}>
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <Field name="test">

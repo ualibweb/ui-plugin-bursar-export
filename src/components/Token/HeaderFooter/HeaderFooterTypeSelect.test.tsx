@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
@@ -13,7 +12,7 @@ describe('Header/footer type selection', () => {
 
     render(
       withIntlConfiguration(
-        <Form mutators={{ ...arrayMutators }} onSubmit={(v) => submitter(v)}>
+        <Form onSubmit={(v) => submitter(v)}>
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <HeaderFooterTypeSelect name="test" />
@@ -36,7 +35,6 @@ describe('Header/footer type selection', () => {
     render(
       withIntlConfiguration(
         <Form
-          mutators={{ ...arrayMutators }}
           onSubmit={() => ({})}
           initialValues={{
             test: HeaderFooterTokenType.ARBITRARY_TEXT,

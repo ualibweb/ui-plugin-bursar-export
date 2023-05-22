@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
 import DatePartPicker from './DatePartPicker';
@@ -10,7 +9,7 @@ describe('Date part picker', () => {
     const submitter = jest.fn();
 
     render(
-      <Form mutators={{ ...arrayMutators }} onSubmit={(v) => submitter(v)}>
+      <Form onSubmit={(v) => submitter(v)}>
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <DatePartPicker prefix="" />
