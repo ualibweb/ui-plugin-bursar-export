@@ -16,7 +16,7 @@ describe('Item info type token', () => {
         <Form
           mutators={{ ...arrayMutators }}
           onSubmit={(v) => submitter(v)}
-          initialValues={{ test: { type: DataTokenType.ITEM_INFO } }}
+          initialValues={{ test: { type: DataTokenType.USER_DATA } }}
         >
           {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
@@ -30,7 +30,7 @@ describe('Item info type token', () => {
 
     await userEvent.selectOptions(
       screen.getByRole('combobox', { name: 'Value' }),
-      'Institution ID'
+      'Patron group ID'
     );
     await userEvent.type(
       screen.getByRole('textbox', { name: 'Fallback value' }),
@@ -41,8 +41,8 @@ describe('Item info type token', () => {
 
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
-        type: DataTokenType.ITEM_INFO,
-        attribute: 'INSTITUTION_ID',
+        type: DataTokenType.USER_DATA,
+        attribute: 'PATRON_GROUP_ID',
         placeholder: 'foo bar fallback',
       },
     });
