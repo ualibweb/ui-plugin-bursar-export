@@ -1,9 +1,8 @@
 import { Col, Select } from '@folio/stripes/components';
 import React from 'react';
-import TimezonePicker from '../Shared/TimezonePicker';
-import DatePartPicker from '../Shared/DatePartPicker';
-import { DataTokenType } from '../../../types/TokenTypes';
 import { Field } from 'react-final-form';
+import DatePartPicker from '../Shared/DatePartPicker';
+import TimezonePicker from '../Shared/TimezonePicker';
 
 export default function AccountDateToken({ prefix }: { prefix: string }) {
   return (

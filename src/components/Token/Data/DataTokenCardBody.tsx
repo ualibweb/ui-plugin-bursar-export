@@ -7,6 +7,7 @@ import ArbitraryTextToken from '../Shared/ArbitraryTextToken';
 import CurrentDateToken from '../Shared/CurrentDateToken';
 import WhitespaceToken from '../Shared/WhitespaceToken';
 import AccountDateToken from './AccountDateToken';
+import FeeFineTypeToken from './FeeFineTypeToken';
 
 export const EMPTY_BODY_TYPES = [
   DataTokenType.COMMA,
@@ -56,6 +57,12 @@ export default function DataCardBody({ name }: { name: string }) {
         return (
           <Row>
             <AccountDateToken prefix={`${name}.`} />
+          </Row>
+        );
+      case DataTokenType.FEE_FINE_TYPE:
+        return (
+          <Row>
+            <FeeFineTypeToken prefix={`${name}.`} />
           </Row>
         );
 
