@@ -16,7 +16,7 @@ export default function ConstantConditionalToken({
         <>
           <Col xs={12}>
             {fields.map((name, index) => (
-              <Card headerStart="If:">
+              <Card key={name} headerStart="If:">
                 <CriteriaCard
                   name={name}
                   alone
