@@ -10,6 +10,7 @@ import AccountDateToken from './AccountDateToken';
 import FeeFineTypeToken from './FeeFineTypeToken';
 import ItemInfoToken from './ItemInfoToken';
 import UserInfoToken from './UserInfoToken';
+import ConstantConditionalToken from './ConstantConditionalToken';
 
 export const EMPTY_BODY_TYPES = [
   DataTokenType.COMMA,
@@ -77,6 +78,12 @@ export default function DataCardBody({ name }: { name: string }) {
         return (
           <Row>
             <UserInfoToken prefix={`${name}.`} />
+          </Row>
+        );
+      case DataTokenType.CONSTANT_CONDITIONAL:
+        return (
+          <Row>
+            <ConstantConditionalToken prefix={`${name}.`} />
           </Row>
         );
 
