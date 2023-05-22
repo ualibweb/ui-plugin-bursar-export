@@ -2,7 +2,12 @@ import { Button, Card, Col, TextField } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import { CriteriaCardGroupType } from '../../../types/CriteriaTypes';
+import {
+  CriteriaCardGroupType,
+  CriteriaCardTerminalType,
+  CriteriaGroup,
+  CriteriaTerminal,
+} from '../../../types/CriteriaTypes';
 import CriteriaCard from '../../Criteria/CriteriaCard';
 
 export default function ConstantConditionalToken({
@@ -11,7 +16,10 @@ export default function ConstantConditionalToken({
   prefix: string;
 }) {
   return (
-    <FieldArray name={`${prefix}conditions`}>
+    <FieldArray<CriteriaGroup | CriteriaTerminal>
+      name={`${prefix}conditions`}
+      defaultValue={[{ type: CriteriaCardTerminalType.PATRON_GROUP }]}
+    >
       {({ fields }) => (
         <>
           <Col xs={12}>
