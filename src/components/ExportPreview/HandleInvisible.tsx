@@ -29,22 +29,26 @@ export default function HandleInvisible({
   text: string;
   showInvisible: boolean;
 }) {
-  // add a <br /> after each newline, taking care to keep newlines intact
-  let pieces: ReactNode[] = text.split('\n').flatMap((piece, index, array) => {
-    if (index === array.length - 1) {
-      return [piece];
-    }
-
-    return [piece, '\n', <br />];
-  });
+  let pieces: ReactNode[] = [text];
 
   // denote appropriately
   if (showInvisible) {
     pieces = pieces
       .flatMap((piece) => splitAdd(piece, '\r', <Invisible>\r</Invisible>))
-      .flatMap((piece) => splitAdd(piece, '\n', <Invisible>\n</Invisible>))
+      .flatMap((piece) =>
+        splitAdd(
+          piece,
+          '\n',
+          <>
+            <br />
+            <Invisible>\n</Invisible>
+          </>
+        )
+      )
       .flatMap((piece) => splitAdd(piece, '\t', <Invisible>\t</Invisible>))
       .flatMap((piece) => splitAdd(piece, ' ', <Invisible>•</Invisible>));
+  } else {
+    pieces = pieces.flatMap((piece) => splitAdd(piece, '\n', <br />));
   }
 
   pieces = pieces.map((piece) => {
