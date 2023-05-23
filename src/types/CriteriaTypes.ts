@@ -1,5 +1,5 @@
 export interface CriteriaGroup {
-  type: CriteriaCardGroupType;
+  type: CriteriaGroupType;
   criteria?: (CriteriaGroup | CriteriaTerminal)[];
 }
 
@@ -11,44 +11,59 @@ export enum ComparisonOperator {
 }
 
 export type CriteriaTerminal =
-  | { type: CriteriaCardTerminalType.PASS }
+  | { type: CriteriaTerminalType.PASS }
   | {
-      type: CriteriaCardTerminalType.AGE;
+      type: CriteriaTerminalType.AGE;
       numDays?: string;
     }
   | {
-      type: CriteriaCardTerminalType.AMOUNT;
+      type: CriteriaTerminalType.AMOUNT;
       operator?: ComparisonOperator;
       amountDollars?: string;
     }
   | {
-      type: CriteriaCardTerminalType.FEE_FINE_TYPE;
+      type: CriteriaTerminalType.FEE_FINE_TYPE;
       feeFineOwnerId?: string;
       feeFineTypeId?: string;
     }
   | {
-      type: CriteriaCardTerminalType.LOCATION;
+      type: CriteriaTerminalType.LOCATION;
       institutionId?: string;
       campusId?: string;
       libraryId?: string;
       locationId?: string;
     }
   | {
-      type: CriteriaCardTerminalType.SERVICE_POINT;
+      type: CriteriaTerminalType.SERVICE_POINT;
       servicePointId?: string;
     }
   | {
-      type: CriteriaCardTerminalType.PATRON_GROUP;
+      type: CriteriaTerminalType.PATRON_GROUP;
       patronGroupId?: string;
     };
 
-export enum CriteriaCardGroupType {
+export type CriteriaAggregate =
+  | {
+      type: CriteriaAggregateType.PASS;
+    }
+  | {
+      type: CriteriaAggregateType.NUM_ROWS;
+      operator?: ComparisonOperator;
+      amount?: string;
+    }
+  | {
+      type: CriteriaAggregateType.TOTAL_AMOUNT;
+      operator?: ComparisonOperator;
+      amountDollars?: string;
+    };
+
+export enum CriteriaGroupType {
   ALL_OF = 'Condition-AND',
   ANY_OF = 'Condition-OR',
   NONE_OF = 'Condition-NOR',
 }
 
-export enum CriteriaCardTerminalType {
+export enum CriteriaTerminalType {
   PASS = 'Pass',
 
   AGE = 'Age',
@@ -57,4 +72,10 @@ export enum CriteriaCardTerminalType {
   LOCATION = 'Location',
   SERVICE_POINT = 'ServicePoint',
   PATRON_GROUP = 'PatronGroup',
+}
+
+export enum CriteriaAggregateType {
+  PASS = 'Pass',
+  NUM_ROWS = 'NumRows',
+  TOTAL_AMOUNT = 'TotalAmount',
 }

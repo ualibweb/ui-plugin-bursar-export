@@ -3,8 +3,8 @@ import React from 'react';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 import {
-  CriteriaCardGroupType,
-  CriteriaCardTerminalType,
+  CriteriaGroupType,
+  CriteriaTerminalType,
   CriteriaGroup,
   CriteriaTerminal,
 } from '../../../types/CriteriaTypes';
@@ -18,7 +18,7 @@ export default function ConstantConditionalToken({
   return (
     <FieldArray<CriteriaGroup | CriteriaTerminal>
       name={`${prefix}conditions`}
-      defaultValue={[{ type: CriteriaCardTerminalType.PATRON_GROUP }]}
+      defaultValue={[{ type: CriteriaTerminalType.PATRON_GROUP }]}
     >
       {({ fields }) => (
         <>
@@ -59,9 +59,7 @@ export default function ConstantConditionalToken({
           </Col>
           <Col xs={12}>
             <Button
-              onClick={() =>
-                fields.push({ type: CriteriaCardGroupType.ALL_OF })
-              }
+              onClick={() => fields.push({ type: CriteriaGroupType.ALL_OF })}
             >
               Add condition
             </Button>

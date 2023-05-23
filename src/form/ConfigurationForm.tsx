@@ -23,6 +23,7 @@ import useLibraries from '../api/useLibraries';
 import HeaderFooterMenu from './sections/HeaderFooterMenu';
 import DataTokenMenu from './sections/DataTokenMenu';
 import TransferInfoMenu from './sections/TransferInfoMenu';
+import AggregateMenu from './sections/AggregateMenu';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -61,7 +62,7 @@ function ConfigurationForm({
           <CriteriaMenu />
         </Accordion>
         <Accordion label="Aggregate by patron">
-          <p>Settings go here...</p>
+          <AggregateMenu />
         </Accordion>
         <Accordion label="Header format">
           <HeaderFooterMenu name="header" />

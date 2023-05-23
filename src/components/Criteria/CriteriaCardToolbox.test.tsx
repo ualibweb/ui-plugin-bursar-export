@@ -4,8 +4,8 @@ import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 import {
-  CriteriaCardGroupType,
-  CriteriaCardTerminalType,
+  CriteriaGroupType,
+  CriteriaTerminalType,
 } from '../../types/CriteriaTypes';
 import FormValues from '../../types/FormValues';
 import CriteriaCardToolbox from './CriteriaCardToolbox';
@@ -26,9 +26,9 @@ describe('Criteria card toolbox', () => {
   });
 
   it.each([
-    CriteriaCardGroupType.ALL_OF,
-    CriteriaCardGroupType.ANY_OF,
-    CriteriaCardGroupType.NONE_OF,
+    CriteriaGroupType.ALL_OF,
+    CriteriaGroupType.ANY_OF,
+    CriteriaGroupType.NONE_OF,
   ])('Outer group type %s results in only add', (type) => {
     render(
       withIntlConfiguration(
@@ -47,9 +47,9 @@ describe('Criteria card toolbox', () => {
   });
 
   it.each([
-    CriteriaCardGroupType.ALL_OF,
-    CriteriaCardGroupType.ANY_OF,
-    CriteriaCardGroupType.NONE_OF,
+    CriteriaGroupType.ALL_OF,
+    CriteriaGroupType.ANY_OF,
+    CriteriaGroupType.NONE_OF,
   ])('Inner group type %s results in add and delete', (type) => {
     render(
       withIntlConfiguration(
@@ -76,9 +76,9 @@ describe('Criteria card toolbox', () => {
   });
 
   it.each([
-    CriteriaCardGroupType.ALL_OF,
-    CriteriaCardGroupType.ANY_OF,
-    CriteriaCardGroupType.NONE_OF,
+    CriteriaGroupType.ALL_OF,
+    CriteriaGroupType.ANY_OF,
+    CriteriaGroupType.NONE_OF,
   ])('Inner group type alone %s results in add and disabled delete', (type) => {
     render(
       withIntlConfiguration(
@@ -98,7 +98,7 @@ describe('Criteria card toolbox', () => {
     expect(screen.getByRole('button', { name: 'trash' })).toBeDisabled;
   });
 
-  it.each([CriteriaCardTerminalType.AGE, CriteriaCardTerminalType.LOCATION])(
+  it.each([CriteriaTerminalType.AGE, CriteriaTerminalType.LOCATION])(
     'Inner type alone %s has disabled delete',
     (type) => {
       render(
@@ -121,7 +121,7 @@ describe('Criteria card toolbox', () => {
     }
   );
 
-  it.each([CriteriaCardTerminalType.AGE, CriteriaCardTerminalType.LOCATION])(
+  it.each([CriteriaTerminalType.AGE, CriteriaTerminalType.LOCATION])(
     'Inner type not alone %s has enabled delete',
     (type) => {
       render(

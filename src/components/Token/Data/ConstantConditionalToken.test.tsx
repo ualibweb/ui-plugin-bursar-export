@@ -6,8 +6,8 @@ import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
 import {
   ComparisonOperator,
-  CriteriaCardGroupType,
-  CriteriaCardTerminalType,
+  CriteriaGroupType,
+  CriteriaTerminalType,
 } from '../../../types/CriteriaTypes';
 import { DataTokenType } from '../../../types/TokenTypes';
 import DataTokenCardBody from './DataTokenCardBody';
@@ -27,12 +27,12 @@ describe('Constant conditional token', () => {
                 type: DataTokenType.CONSTANT_CONDITIONAL,
                 conditions: [
                   {
-                    type: CriteriaCardTerminalType.AGE,
+                    type: CriteriaTerminalType.AGE,
                     numDays: '10',
                     value: 'if value 1',
                   },
                   {
-                    type: CriteriaCardTerminalType.AMOUNT,
+                    type: CriteriaTerminalType.AMOUNT,
                     operator: ComparisonOperator.GREATER_THAN,
                     amountDollars: '20',
                     value: 'if value 2',
@@ -69,18 +69,18 @@ describe('Constant conditional token', () => {
           type: DataTokenType.CONSTANT_CONDITIONAL,
           conditions: [
             {
-              type: CriteriaCardTerminalType.AGE,
+              type: CriteriaTerminalType.AGE,
               numDays: '10',
               value: 'if value 1',
             },
             {
-              type: CriteriaCardTerminalType.AMOUNT,
+              type: CriteriaTerminalType.AMOUNT,
               operator: ComparisonOperator.GREATER_THAN,
               amountDollars: '20',
               value: 'if value 2',
             },
             {
-              type: CriteriaCardGroupType.ALL_OF,
+              type: CriteriaGroupType.ALL_OF,
               value: 'if value 3',
             },
           ],

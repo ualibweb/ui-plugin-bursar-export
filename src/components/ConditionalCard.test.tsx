@@ -5,9 +5,9 @@ import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../test/util/withIntlConfiguration';
 import {
-  CriteriaCardTerminalType,
+  CriteriaTerminalType,
   ComparisonOperator,
-  CriteriaCardGroupType,
+  CriteriaGroupType,
 } from '../types/CriteriaTypes';
 import { DataTokenType } from '../types/TokenTypes';
 import DataTokenCardBody from './Token/Data/DataTokenCardBody';
@@ -26,12 +26,12 @@ describe('Conditional card (via constant conditional)', () => {
                 type: DataTokenType.CONSTANT_CONDITIONAL,
                 conditions: [
                   {
-                    type: CriteriaCardTerminalType.AGE,
+                    type: CriteriaTerminalType.AGE,
                     numDays: '10',
                     value: 'if value 1',
                   },
                   {
-                    type: CriteriaCardTerminalType.AMOUNT,
+                    type: CriteriaTerminalType.AMOUNT,
                     operator: ComparisonOperator.GREATER_THAN,
                     amountDollars: '20',
                     value: 'if value 2',
@@ -64,7 +64,7 @@ describe('Conditional card (via constant conditional)', () => {
           type: DataTokenType.CONSTANT_CONDITIONAL,
           conditions: [
             {
-              type: CriteriaCardTerminalType.AGE,
+              type: CriteriaTerminalType.AGE,
               numDays: '10',
               value: 'if value 1',
             },
@@ -86,13 +86,13 @@ describe('Conditional card (via constant conditional)', () => {
           type: DataTokenType.CONSTANT_CONDITIONAL,
           conditions: [
             {
-              type: CriteriaCardTerminalType.AMOUNT,
+              type: CriteriaTerminalType.AMOUNT,
               operator: ComparisonOperator.GREATER_THAN,
               amountDollars: '20',
               value: 'if value 2',
             },
             {
-              type: CriteriaCardTerminalType.AGE,
+              type: CriteriaTerminalType.AGE,
               numDays: '10',
               value: 'if value 1',
             },
@@ -114,13 +114,13 @@ describe('Conditional card (via constant conditional)', () => {
           type: DataTokenType.CONSTANT_CONDITIONAL,
           conditions: [
             {
-              type: CriteriaCardTerminalType.AMOUNT,
+              type: CriteriaTerminalType.AMOUNT,
               operator: ComparisonOperator.GREATER_THAN,
               amountDollars: '20',
               value: 'if value 2',
             },
             {
-              type: CriteriaCardTerminalType.AGE,
+              type: CriteriaTerminalType.AGE,
               numDays: '10',
               value: 'if value 1',
             },

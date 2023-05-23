@@ -2,8 +2,8 @@ import { Select, SelectOptionType } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { Field } from 'react-final-form';
 import {
-  CriteriaCardGroupType,
-  CriteriaCardTerminalType,
+  CriteriaGroupType,
+  CriteriaTerminalType,
 } from '../../types/CriteriaTypes';
 
 export default function CriteriaCardSelect({
@@ -15,66 +15,66 @@ export default function CriteriaCardSelect({
 }) {
   const selectDefaultValue = useMemo(() => {
     if (root) {
-      return CriteriaCardTerminalType.PASS;
+      return CriteriaTerminalType.PASS;
     } else {
-      return CriteriaCardGroupType.ALL_OF;
+      return CriteriaGroupType.ALL_OF;
     }
   }, [root]);
 
   const selectOptions = useMemo(() => {
     const options: SelectOptionType<
-      CriteriaCardGroupType | CriteriaCardTerminalType
+      CriteriaGroupType | CriteriaTerminalType
     >[] = [
       {
         label: 'All of:',
-        value: CriteriaCardGroupType.ALL_OF,
+        value: CriteriaGroupType.ALL_OF,
       },
       {
         label: 'Any of:',
-        value: CriteriaCardGroupType.ANY_OF,
+        value: CriteriaGroupType.ANY_OF,
       },
       {
         label: 'None of:',
-        value: CriteriaCardGroupType.NONE_OF,
+        value: CriteriaGroupType.NONE_OF,
       },
 
       {
         label: '',
-        value: CriteriaCardTerminalType.PASS,
+        value: CriteriaTerminalType.PASS,
         disabled: true,
       },
 
       // TODO: sort these alphabetically per i18n
       {
         label: 'Age',
-        value: CriteriaCardTerminalType.AGE,
+        value: CriteriaTerminalType.AGE,
       },
       {
         label: 'Amount',
-        value: CriteriaCardTerminalType.AMOUNT,
+        value: CriteriaTerminalType.AMOUNT,
       },
       {
         label: 'Fee/fine type',
-        value: CriteriaCardTerminalType.FEE_FINE_TYPE,
+        value: CriteriaTerminalType.FEE_FINE_TYPE,
       },
       {
         label: 'Item location',
-        value: CriteriaCardTerminalType.LOCATION,
+        value: CriteriaTerminalType.LOCATION,
       },
       {
         label: 'Item service point',
-        value: CriteriaCardTerminalType.SERVICE_POINT,
+        value: CriteriaTerminalType.SERVICE_POINT,
       },
       {
         label: 'Patron group',
-        value: CriteriaCardTerminalType.PATRON_GROUP,
+        value: CriteriaTerminalType.PATRON_GROUP,
       },
     ];
 
     if (root) {
       options.unshift({
         label: 'No criteria (always run)',
-        value: CriteriaCardTerminalType.PASS,
+        value: CriteriaTerminalType.PASS,
       });
     }
 
@@ -84,7 +84,7 @@ export default function CriteriaCardSelect({
   return (
     <Field name={name} defaultValue={selectDefaultValue}>
       {(fieldProps) => (
-        <Select<CriteriaCardGroupType | CriteriaCardTerminalType>
+        <Select<CriteriaGroupType | CriteriaTerminalType>
           {...fieldProps}
           required
           marginBottom0

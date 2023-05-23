@@ -1,4 +1,8 @@
-import { CriteriaGroup, CriteriaTerminal } from './CriteriaTypes';
+import {
+  CriteriaAggregate,
+  CriteriaGroup,
+  CriteriaTerminal,
+} from './CriteriaTypes';
 import SchedulingFrequency from './SchedulingFrequency';
 import { DataToken, HeaderFooterToken } from './TokenTypes';
 
@@ -10,6 +14,8 @@ export default interface FormValues {
     frequency: SchedulingFrequency;
     interval?: number;
   };
+  aggregate: boolean;
+  aggregateFilter?: CriteriaAggregate;
   criteria: CriteriaGroup | CriteriaTerminal;
   header?: HeaderFooterToken[];
   data?: DataToken[];
