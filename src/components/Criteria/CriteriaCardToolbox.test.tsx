@@ -82,7 +82,7 @@ describe('Criteria card toolbox', () => {
       withIntlConfiguration(
         <Form<FormValues>
           mutators={{ ...arrayMutators }}
-          onSubmit={noop}
+          onSubmit={jest.fn()}
           initialValues={{ criteria: { type } }}
         >
           {() => <CriteriaCardToolbox prefix="criteria." root={false} alone />}
@@ -103,7 +103,7 @@ describe('Criteria card toolbox', () => {
         withIntlConfiguration(
           <Form<FormValues>
             mutators={{ ...arrayMutators }}
-            onSubmit={noop}
+            onSubmit={jest.fn()}
             initialValues={{ criteria: { type } }}
           >
             {() => (
@@ -126,7 +126,7 @@ describe('Criteria card toolbox', () => {
         withIntlConfiguration(
           <Form<FormValues>
             mutators={{ ...arrayMutators }}
-            onSubmit={noop}
+            onSubmit={jest.fn()}
             initialValues={{ criteria: { type } }}
           >
             {() => (
