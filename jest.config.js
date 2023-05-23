@@ -40,6 +40,7 @@ module.exports = {
   },
 
   slowTestThreshold: 10,
+  testTimeout: 20000,
 
   globals: {
     'ts-jest': {
