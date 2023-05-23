@@ -14,12 +14,16 @@ export default interface FormValues {
     frequency: SchedulingFrequency;
     interval?: number;
   };
+
+  criteria: CriteriaGroup | CriteriaTerminal;
+
   aggregate: boolean;
   aggregateFilter?: CriteriaAggregate;
-  criteria: CriteriaGroup | CriteriaTerminal;
+
   header?: HeaderFooterToken[];
   data?: DataToken[];
   footer?: HeaderFooterToken[];
+
   transferInfo: {
     conditions: {
       condition: CriteriaGroup | CriteriaTerminal;
