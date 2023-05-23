@@ -12,8 +12,10 @@ export default function CriteriaAge({ prefix }: { prefix: string }) {
             fullWidth
             marginBottom0
             required
+            type="number"
             label="Older than (days)"
             min={1}
+            step={1}
           />
         )}
       </Field>
