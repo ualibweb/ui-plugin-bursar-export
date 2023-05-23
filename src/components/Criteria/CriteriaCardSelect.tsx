@@ -8,11 +8,11 @@ import {
 
 export default function CriteriaCardSelect({
   name,
-  root,
+  root = false,
   patronOnly = false,
 }: {
   name: string;
-  root: boolean;
+  root?: boolean;
   patronOnly?: boolean;
 }) {
   const selectDefaultValue = useMemo(() => {
