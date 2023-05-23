@@ -1,10 +1,4 @@
-import {
-  Button,
-  Card,
-  Col,
-  IconButton,
-  TextField,
-} from '@folio/stripes/components';
+import { Button, Card, Col, TextField } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -14,7 +8,7 @@ import {
   CriteriaGroup,
   CriteriaTerminal,
 } from '../../../types/CriteriaTypes';
-import CriteriaCard from '../../Criteria/CriteriaCard';
+import ConditionalCard from '../../ConditionalCard';
 
 export default function ConstantConditionalToken({
   prefix,
@@ -30,29 +24,12 @@ export default function ConstantConditionalToken({
         <>
           <Col xs={12}>
             {fields.map((name, index) => (
-              <Card
+              <ConditionalCard
                 key={name}
-                headerStart="If:"
-                headerEnd={
-                  <>
-                    <IconButton
-                      icon="caret-up"
-                      disabled={index === 0}
-                      onClick={() => fields.swap(index, index - 1)}
-                    />
-                    <IconButton
-                      icon="caret-down"
-                      disabled={index + 1 === fields.length}
-                      onClick={() => fields.swap(index, index + 1)}
-                    />
-                    <IconButton
-                      icon="trash"
-                      onClick={() => fields.remove(index)}
-                    />
-                  </>
-                }
+                index={index}
+                conditionName={name}
+                fieldArrayName={`${prefix}conditions`}
               >
-                <CriteriaCard name={name} alone />
                 <Field name={`${name}.value`}>
                   {(fieldProps) => (
                     <TextField<string>
@@ -63,11 +40,11 @@ export default function ConstantConditionalToken({
                     />
                   )}
                 </Field>
-              </Card>
+              </ConditionalCard>
             ))}
           </Col>
           <Col xs={12}>
-            <Card headerStart="Otherwise">
+            <Card headerStart="Otherwise:">
               <Field name={`${prefix}else`}>
                 {(fieldProps) => (
                   <TextField<string>
