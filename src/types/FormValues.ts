@@ -22,6 +22,7 @@ export default interface FormValues {
 
   header?: HeaderFooterToken[];
   data?: DataToken[];
+  dataAggregate?: DataToken[];
   footer?: HeaderFooterToken[];
 
   transferInfo: {

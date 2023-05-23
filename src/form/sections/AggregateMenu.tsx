@@ -1,4 +1,4 @@
-import { Card, Checkbox, Label } from '@folio/stripes/components';
+import { Checkbox } from '@folio/stripes/components';
 import React from 'react';
 import { Field, useField } from 'react-final-form';
 import AggregateCriteriaCard from '../../components/AggregateCriteria/AggregateCriteriaCard';
