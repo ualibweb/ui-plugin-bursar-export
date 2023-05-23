@@ -9,9 +9,11 @@ import {
 export default function CriteriaCardSelect({
   name,
   root,
+  patronOnly = false,
 }: {
   name: string;
   root: boolean;
+  patronOnly?: boolean;
 }) {
   const selectDefaultValue = useMemo(() => {
     if (root) {
@@ -45,26 +47,30 @@ export default function CriteriaCardSelect({
       },
 
       // TODO: sort these alphabetically per i18n
-      {
-        label: 'Age',
-        value: CriteriaTerminalType.AGE,
-      },
-      {
-        label: 'Amount',
-        value: CriteriaTerminalType.AMOUNT,
-      },
-      {
-        label: 'Fee/fine type',
-        value: CriteriaTerminalType.FEE_FINE_TYPE,
-      },
-      {
-        label: 'Item location',
-        value: CriteriaTerminalType.LOCATION,
-      },
-      {
-        label: 'Item service point',
-        value: CriteriaTerminalType.SERVICE_POINT,
-      },
+      ...(patronOnly
+        ? []
+        : [
+            {
+              label: 'Age',
+              value: CriteriaTerminalType.AGE,
+            },
+            {
+              label: 'Amount',
+              value: CriteriaTerminalType.AMOUNT,
+            },
+            {
+              label: 'Fee/fine type',
+              value: CriteriaTerminalType.FEE_FINE_TYPE,
+            },
+            {
+              label: 'Item location',
+              value: CriteriaTerminalType.LOCATION,
+            },
+            {
+              label: 'Item service point',
+              value: CriteriaTerminalType.SERVICE_POINT,
+            },
+          ]),
       {
         label: 'Patron group',
         value: CriteriaTerminalType.PATRON_GROUP,
@@ -79,7 +85,7 @@ export default function CriteriaCardSelect({
     }
 
     return options;
-  }, [root]);
+  }, [root, patronOnly]);
 
   return (
     <Field name={name} defaultValue={selectDefaultValue}>

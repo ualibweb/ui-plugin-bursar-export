@@ -3,11 +3,8 @@ import arrayMutators from 'final-form-arrays';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
+import { DataTokenType } from '../../../types/TokenTypes';
 import DataTokenCard from './DataTokenCard';
-import {
-  DataTokenType,
-  HeaderFooterTokenType,
-} from '../../../types/TokenTypes';
 
 describe('Data token card', () => {
   test('has good default value', () => {

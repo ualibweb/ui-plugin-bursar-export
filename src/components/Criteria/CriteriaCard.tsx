@@ -21,11 +21,13 @@ export default function CriteriaCard({
   name,
   onRemove,
   root = false,
+  patronOnly = false,
   alone,
 }: {
   name: string;
   onRemove?: () => void;
   root?: boolean;
+  patronOnly?: boolean;
   alone: boolean;
 }) {
   const type = useField<CriteriaGroupType | CriteriaTerminalType>(
@@ -105,7 +107,13 @@ export default function CriteriaCard({
     <Card
       cardClass={css.cardClass}
       headerClass={css.headerClass}
-      headerStart={<CriteriaCardSelect name={`${name}.type`} root={root} />}
+      headerStart={
+        <CriteriaCardSelect
+          name={`${name}.type`}
+          root={root}
+          patronOnly={patronOnly}
+        />
+      }
       headerEnd={
         <CriteriaCardToolbox
           prefix={`${name}.`}

@@ -7,7 +7,7 @@ import {
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
 import React, { FormEvent, useCallback } from 'react';
-import { FormRenderProps, FormSpy } from 'react-final-form';
+import { FormRenderProps, FormSpy, useField } from 'react-final-form';
 import useFeeFineOwners, { FeeFineOwnerDTO } from '../api/useFeeFineOwners';
 import useFeeFineTypes, { FeeFineTypeDTO } from '../api/useFeeFineTypes';
 import useLocations, { LocationDTO } from '../api/useLocations';
@@ -47,6 +47,11 @@ function ConfigurationForm({
     [handleSubmit]
   );
 
+  const aggregateEnabled = useField<boolean>('aggregate', {
+    subscription: { value: true },
+    format: (value) => value ?? false,
+  }).input.value;
+
   return (
     <form id={FORM_ID} onSubmit={submitter}>
       <AccordionSet>
@@ -67,7 +72,11 @@ function ConfigurationForm({
         <Accordion label="Header format">
           <HeaderFooterMenu name="header" />
         </Accordion>
-        <Accordion label="Account data format">
+        <Accordion
+          label={
+            aggregateEnabled ? 'Patron data format' : 'Account data format'
+          }
+        >
           <DataTokenMenu />
         </Accordion>
         <Accordion label="Footer format">

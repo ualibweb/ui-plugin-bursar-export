@@ -1,6 +1,6 @@
 import { Button, Card, Col, TextField } from '@folio/stripes/components';
 import React from 'react';
-import { Field } from 'react-final-form';
+import { Field, useField } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 import {
   CriteriaGroupType,
@@ -15,6 +15,11 @@ export default function ConstantConditionalToken({
 }: {
   prefix: string;
 }) {
+  const aggregate = useField<boolean>('aggregate', {
+    subscription: { value: true },
+    format: (value) => value ?? false,
+  }).input.value;
+
   return (
     <FieldArray<CriteriaGroup | CriteriaTerminal>
       name={`${prefix}conditions`}
@@ -28,6 +33,7 @@ export default function ConstantConditionalToken({
                 key={name}
                 index={index}
                 conditionName={name}
+                patronOnly={aggregate}
                 fieldArrayName={`${prefix}conditions`}
               >
                 <Field name={`${name}.value`}>

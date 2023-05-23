@@ -7,11 +7,13 @@ export default function ConditionalCard({
   children,
   conditionName,
   fieldArrayName,
+  patronOnly = false,
   index,
 }: {
   children: ReactNode;
   conditionName: string;
   fieldArrayName: string;
+  patronOnly?: boolean;
   index: number;
 }) {
   const { fields } = useFieldArray(fieldArrayName);
@@ -35,7 +37,7 @@ export default function ConditionalCard({
         </>
       }
     >
-      <CriteriaCard name={conditionName} alone />
+      <CriteriaCard name={conditionName} alone patronOnly={patronOnly} />
       {children}
     </Card>
   );

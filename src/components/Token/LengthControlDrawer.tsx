@@ -21,6 +21,9 @@ export const TOKEN_TYPES_WITH_LENGTH_CONTROL = [
   DataTokenType.FEE_FINE_TYPE,
   DataTokenType.ITEM_INFO,
   DataTokenType.USER_DATA,
+
+  DataTokenType.AGGREGATE_COUNT,
+  DataTokenType.AGGREGATE_TOTAL,
 ];
 
 function FakeHeader() {
