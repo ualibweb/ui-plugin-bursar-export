@@ -121,34 +121,38 @@ export function tokenToNode(
 }
 
 export function generateEntry(
-  dataToUse: DataToken[],
+  tokens: DataToken[],
   isAggregate: boolean
 ): { elements: string[]; amount: number; count: number } {
   const amount = faker.number.float({ min: 5, max: 100, precision: 0.01 });
   const count = isAggregate ? faker.number.int({ min: 1, max: 10 }) : 1;
 
   return {
-    elements: dataToUse.map((token) => tokenToNode(token, amount, count)),
+    elements: tokens.map((token) => tokenToNode(token, amount, count)),
     amount,
     count,
   };
 }
 
 export default function createPreviewData(
-  dataToUse: DataToken[],
+  tokens: DataToken[],
   isAggregate: boolean
 ): { dataPreview: string; totalAmount: number; totalCount: number } {
   const numEntries = faker.number.int({ min: 3, max: 12 });
 
   const results: string[] = [];
+  let totalAmount = 0;
+  let totalCount = 0;
   for (let i = 0; i < numEntries; i++) {
-    const { elements, amount, count } = generateEntry(dataToUse, isAggregate);
+    const { elements, amount, count } = generateEntry(tokens, isAggregate);
     results.push(...elements);
+    totalAmount += amount;
+    totalCount += count;
   }
 
   return {
     dataPreview: results.join(''),
-    totalAmount: 0,
-    totalCount: 0,
+    totalAmount,
+    totalCount,
   };
 }

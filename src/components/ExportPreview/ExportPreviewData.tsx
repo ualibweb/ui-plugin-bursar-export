@@ -3,6 +3,8 @@ import { useField } from 'react-final-form';
 import { useFieldArray } from 'react-final-form-arrays';
 import { DataToken, HeaderFooterToken } from '../../types/TokenTypes';
 import createPreviewData from './createPreviewData';
+import createPreviewHeaderFooter from './createPreviewHeaderFooter';
+import HandleInvisible from './HandleInvisible';
 
 export default function ExportPreviewData() {
   const isAggregate = useField<boolean>('aggregate', {
@@ -40,28 +42,22 @@ export default function ExportPreviewData() {
       isAggregate
     );
 
-    // const headerPreview = createPreviewHeaderFooter(
-    //   header,
-    //   totalAmount,
-    //   totalCount,
-    //   showInvisible
-    // );
-    // const footerPreview = createPreviewHeaderFooter(
-    //   footer,
-    //   totalAmount,
-    //   totalCount,
-    //   showInvisible
-    // );
-
-    // TODO: do something with showInvisible
-    // TODO: remove \r
+    const headerPreview = createPreviewHeaderFooter(
+      header,
+      totalAmount,
+      totalCount
+    );
+    const footerPreview = createPreviewHeaderFooter(
+      footer,
+      totalAmount,
+      totalCount
+    );
 
     return (
-      <div>
-        {/* {headerPreview} */}
-        {dataPreview}
-        {/* {footerPreview} */}
-      </div>
+      <HandleInvisible
+        text={headerPreview + dataPreview + footerPreview}
+        showInvisible={showInvisible}
+      />
     );
   }, [header, data, dataAggregate, footer, isAggregate, showInvisible]);
 
