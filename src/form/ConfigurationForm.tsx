@@ -82,6 +82,9 @@ function ConfigurationForm({
         <Accordion label="Footer format">
           <HeaderFooterMenu name="footer" />
         </Accordion>
+
+        <Accordion label="Preview">{/* <ExportPreview /> */}</Accordion>
+
         <Accordion label="Transfer accounts to">
           <TransferInfoMenu />
         </Accordion>
