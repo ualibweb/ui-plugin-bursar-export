@@ -53,13 +53,8 @@ export default function ExportPreviewData() {
       totalCount
     );
 
-    return (
-      <HandleInvisible
-        text={headerPreview + dataPreview + footerPreview}
-        showInvisible={showInvisible}
-      />
-    );
-  }, [header, data, dataAggregate, footer, isAggregate, showInvisible]);
+    return headerPreview + dataPreview + footerPreview;
+  }, [header, data, dataAggregate, footer, isAggregate]);
 
-  return contents;
+  return <HandleInvisible text={contents} showInvisible={showInvisible} />;
 }
