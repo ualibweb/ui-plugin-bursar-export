@@ -3,6 +3,7 @@ import css from './ExportPreview.module.css';
 import { Card, Checkbox } from '@folio/stripes/components';
 import classNames from 'classnames';
 import { Field, useField } from 'react-final-form';
+import ExportPreviewData from '../../components/ExportPreview/ExportPreviewData';
 
 export default function ExportPreview() {
   const wrap = useField<boolean>('preview.wrap', {
@@ -16,11 +17,7 @@ export default function ExportPreview() {
         headerStart="Export preview"
         bodyClass={classNames(css.preview, { [css.wrap]: wrap })}
       >
-        sample data goes here!{' .   '}sample data goes here! sample data goes
-        here! sample data goes here! sample data goes here!
-        <br />
-        sample data goes here!{' .   '}sample data goes here! sample data goes
-        here! sample data goes here! sample data goes here!
+        <ExportPreviewData />
       </Card>
       <Field name="preview.wrap" type="checkbox" defaultValue={true}>
         {(fieldProps) => (
