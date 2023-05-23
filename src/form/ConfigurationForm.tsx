@@ -76,6 +76,7 @@ function ConfigurationForm({
         <Accordion label="Transfer accounts to">
           <TransferInfoMenu />
         </Accordion>
+
         <Accordion label="Debug (form state)">
           <FormSpy subscription={{ values: true }}>
             {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
