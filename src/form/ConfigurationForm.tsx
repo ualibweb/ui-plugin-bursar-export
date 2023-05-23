@@ -60,6 +60,9 @@ function ConfigurationForm({
         <Accordion label="Criteria">
           <CriteriaMenu />
         </Accordion>
+        <Accordion label="Aggregate by patron">
+          <p>Settings go here...</p>
+        </Accordion>
         <Accordion label="Header format">
           <HeaderFooterMenu name="header" />
         </Accordion>
