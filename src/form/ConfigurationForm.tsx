@@ -24,6 +24,7 @@ import HeaderFooterMenu from './sections/HeaderFooterMenu';
 import DataTokenMenu from './sections/DataTokenMenu';
 import TransferInfoMenu from './sections/TransferInfoMenu';
 import AggregateMenu from './sections/AggregateMenu';
+import ExportPreview from './sections/ExportPreview';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -83,7 +84,9 @@ function ConfigurationForm({
           <HeaderFooterMenu name="footer" />
         </Accordion>
 
-        <Accordion label="Preview">{/* <ExportPreview /> */}</Accordion>
+        <Accordion label="Preview">
+          <ExportPreview />
+        </Accordion>
 
         <Accordion label="Transfer accounts to">
           <TransferInfoMenu />
