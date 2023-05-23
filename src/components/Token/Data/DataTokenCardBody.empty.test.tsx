@@ -12,6 +12,7 @@ test.each([
   [DataTokenType.NEWLINE_MICROSOFT, true],
   [DataTokenType.TAB, true],
   [DataTokenType.COMMA, true],
+  [DataTokenType.AGGREGATE_COUNT, true],
 
   [DataTokenType.ARBITRARY_TEXT, false],
   [DataTokenType.SPACE, false],
@@ -32,6 +33,7 @@ test.each([
   DataTokenType.NEWLINE_MICROSOFT,
   DataTokenType.TAB,
   DataTokenType.COMMA,
+  DataTokenType.AGGREGATE_COUNT,
 ])('Card bodies for type %s result in empty div', (type) => {
   const { container } = render(
     withIntlConfiguration(

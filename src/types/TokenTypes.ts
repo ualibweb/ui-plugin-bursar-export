@@ -81,6 +81,9 @@ export enum DataTokenType {
   USER_DATA = 'UserData',
 
   CONSTANT_CONDITIONAL = 'ConstantConditional',
+
+  AGGREGATE_COUNT = 'AggregateNumRows',
+  AGGREGATE_TOTAL = 'AggregateTotalAmount',
 }
 
 export type ItemAttribute =
@@ -165,4 +168,13 @@ export type DataToken =
         value: string;
       }[];
       else: string;
+    }
+  | {
+      type: DataTokenType.AGGREGATE_COUNT;
+      lengthControl?: LengthControl;
+    }
+  | {
+      type: DataTokenType.AGGREGATE_TOTAL;
+      decimal: boolean;
+      lengthControl?: LengthControl;
     };

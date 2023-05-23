@@ -3,8 +3,8 @@ import React, { useCallback } from 'react';
 import { useField } from 'react-final-form';
 import { useFieldArray } from 'react-final-form-arrays';
 import {
-  CriteriaCardGroupType,
-  CriteriaCardTerminalType,
+  CriteriaGroupType,
+  CriteriaTerminalType,
   CriteriaGroup,
   CriteriaTerminal,
 } from '../../types/CriteriaTypes';
@@ -22,12 +22,12 @@ export default function CriteriaCardToolbox({
   alone = false,
   onRemove,
 }: CriteriaCardToolboxProps) {
-  const type = useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
+  const type = useField<CriteriaGroupType | CriteriaTerminalType>(
     `${prefix}type`,
     // format ensures undefined is treated as default (pass)
     {
       subscription: { value: true },
-      format: (value) => value || CriteriaCardTerminalType.PASS,
+      format: (value) => value || CriteriaTerminalType.PASS,
     }
   ).input.value;
   const criteria = useFieldArray<CriteriaGroup | CriteriaTerminal>(
@@ -36,7 +36,7 @@ export default function CriteriaCardToolbox({
 
   const addCallback = useCallback(() => {
     criteria.fields.push({
-      type: CriteriaCardGroupType.ALL_OF,
+      type: CriteriaGroupType.ALL_OF,
       criteria: [],
     });
   }, [criteria]);
@@ -45,10 +45,10 @@ export default function CriteriaCardToolbox({
     <div>
       {(
         [
-          CriteriaCardGroupType.ALL_OF,
-          CriteriaCardGroupType.ANY_OF,
-          CriteriaCardGroupType.NONE_OF,
-        ] as (CriteriaCardGroupType | CriteriaCardTerminalType)[]
+          CriteriaGroupType.ALL_OF,
+          CriteriaGroupType.ANY_OF,
+          CriteriaGroupType.NONE_OF,
+        ] as (CriteriaGroupType | CriteriaTerminalType)[]
       ).includes(type) && <IconButton icon="plus-sign" onClick={addCallback} />}
       {!root && <IconButton icon="trash" onClick={onRemove} disabled={alone} />}
     </div>

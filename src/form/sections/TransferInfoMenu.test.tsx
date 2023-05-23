@@ -6,7 +6,7 @@ import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 import {
   ComparisonOperator,
-  CriteriaCardTerminalType,
+  CriteriaTerminalType,
 } from '../../types/CriteriaTypes';
 import TransferInfoMenu from './TransferInfoMenu';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -118,7 +118,7 @@ describe('Transfer criteria menu', () => {
                   conditions: [
                     {
                       condition: {
-                        type: CriteriaCardTerminalType.AGE,
+                        type: CriteriaTerminalType.AGE,
                         numDays: '10',
                       },
                       owner: 'owner1id',
@@ -126,7 +126,7 @@ describe('Transfer criteria menu', () => {
                     },
                     {
                       condition: {
-                        type: CriteriaCardTerminalType.AMOUNT,
+                        type: CriteriaTerminalType.AMOUNT,
                         operator: ComparisonOperator.GREATER_THAN,
                         amountDollars: '20',
                       },
@@ -177,7 +177,7 @@ describe('Transfer criteria menu', () => {
           conditions: [
             {
               condition: {
-                type: CriteriaCardTerminalType.AGE,
+                type: CriteriaTerminalType.AGE,
                 numDays: '10',
               },
               owner: 'owner1id',
@@ -185,7 +185,7 @@ describe('Transfer criteria menu', () => {
             },
             {
               condition: {
-                type: CriteriaCardTerminalType.AMOUNT,
+                type: CriteriaTerminalType.AMOUNT,
                 operator: ComparisonOperator.GREATER_THAN,
                 amountDollars: '20',
               },
@@ -194,7 +194,7 @@ describe('Transfer criteria menu', () => {
             },
             {
               condition: {
-                type: CriteriaCardTerminalType.PATRON_GROUP,
+                type: CriteriaTerminalType.PATRON_GROUP,
                 patronGroupId: '1',
               },
               owner: 'owner2id',

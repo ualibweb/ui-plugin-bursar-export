@@ -1,10 +1,10 @@
 import { Button, Card, Col, TextField } from '@folio/stripes/components';
 import React from 'react';
-import { Field } from 'react-final-form';
+import { Field, useField } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 import {
-  CriteriaCardGroupType,
-  CriteriaCardTerminalType,
+  CriteriaGroupType,
+  CriteriaTerminalType,
   CriteriaGroup,
   CriteriaTerminal,
 } from '../../../types/CriteriaTypes';
@@ -15,10 +15,15 @@ export default function ConstantConditionalToken({
 }: {
   prefix: string;
 }) {
+  const aggregate = useField<boolean>('aggregate', {
+    subscription: { value: true },
+    format: (value) => value ?? false,
+  }).input.value;
+
   return (
     <FieldArray<CriteriaGroup | CriteriaTerminal>
       name={`${prefix}conditions`}
-      defaultValue={[{ type: CriteriaCardTerminalType.PATRON_GROUP }]}
+      defaultValue={[{ type: CriteriaTerminalType.PATRON_GROUP }]}
     >
       {({ fields }) => (
         <>
@@ -28,6 +33,7 @@ export default function ConstantConditionalToken({
                 key={name}
                 index={index}
                 conditionName={name}
+                patronOnly={aggregate}
                 fieldArrayName={`${prefix}conditions`}
               >
                 <Field name={`${name}.value`}>
@@ -59,9 +65,7 @@ export default function ConstantConditionalToken({
           </Col>
           <Col xs={12}>
             <Button
-              onClick={() =>
-                fields.push({ type: CriteriaCardGroupType.ALL_OF })
-              }
+              onClick={() => fields.push({ type: CriteriaGroupType.ALL_OF })}
             >
               Add condition
             </Button>

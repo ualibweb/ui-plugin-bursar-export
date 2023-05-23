@@ -5,14 +5,12 @@ import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 import CriteriaCard from './CriteriaCard';
 
-const noop = () => ({});
-
 it('Criteria card with unknown type should display loading', () => {
   const { container } = render(
     withIntlConfiguration(
       <Form
         mutators={{ ...arrayMutators }}
-        onSubmit={noop}
+        onSubmit={jest.fn()}
         initialValues={{ criteria: { type: 'foobar' } }}
       >
         {() => <CriteriaCard name="criteria" root alone />}

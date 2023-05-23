@@ -1,12 +1,26 @@
 import { Button } from '@folio/stripes/components';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { FieldArray } from 'react-final-form-arrays';
 import DataTokenCard from '../../components/Token/Data/DataTokenCard';
 import { DataTokenType } from '../../types/TokenTypes';
+import { useField } from 'react-final-form';
 
 export default function DataTokenMenu() {
+  const aggregate = useField<boolean>('aggregate', {
+    subscription: { value: true },
+    format: (value) => value ?? false,
+  }).input.value;
+
+  const name = useMemo(() => {
+    if (aggregate) {
+      return 'dataAggregate';
+    } else {
+      return 'data';
+    }
+  }, [aggregate]);
+
   return (
-    <FieldArray name="data">
+    <FieldArray key={name} name={name}>
       {({ fields }) => (
         <>
           {fields.map((innerName, index) => (

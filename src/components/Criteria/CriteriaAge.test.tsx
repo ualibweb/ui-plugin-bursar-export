@@ -27,7 +27,7 @@ it('Age criteria displays appropriate form', async () => {
   );
 
   await userEvent.selectOptions(screen.getByRole('combobox'), 'Age');
-  await userEvent.type(screen.getByRole('textbox'), '10');
+  await userEvent.type(screen.getByRole('spinbutton'), '10');
   await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
 
   expect(submitter).toHaveBeenCalledWith({

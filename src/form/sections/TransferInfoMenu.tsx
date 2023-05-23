@@ -3,7 +3,7 @@ import React from 'react';
 import { FieldArray } from 'react-final-form-arrays';
 import ConditionalCard from '../../components/ConditionalCard';
 import TransferAccountFields from '../../components/TransferAccountFields';
-import { CriteriaCardTerminalType } from '../../types/CriteriaTypes';
+import { CriteriaTerminalType } from '../../types/CriteriaTypes';
 
 export default function TransferInfoMenu() {
   return (
@@ -28,7 +28,7 @@ export default function TransferInfoMenu() {
           <Button
             onClick={() =>
               fields.push({
-                condition: { type: CriteriaCardTerminalType.PATRON_GROUP },
+                condition: { type: CriteriaTerminalType.PATRON_GROUP },
               })
             }
           >

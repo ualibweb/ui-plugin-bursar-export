@@ -17,6 +17,8 @@ export const EMPTY_BODY_TYPES = [
   DataTokenType.NEWLINE,
   DataTokenType.NEWLINE_MICROSOFT,
   DataTokenType.TAB,
+
+  DataTokenType.AGGREGATE_COUNT,
 ];
 
 export function isDataBodyEmpty(type: DataTokenType | undefined) {
@@ -50,6 +52,7 @@ export default function DataTokenCardBody({ name }: { name: string }) {
           </Row>
         );
 
+      case DataTokenType.AGGREGATE_TOTAL:
       case DataTokenType.ACCOUNT_AMOUNT:
         return (
           <Row>

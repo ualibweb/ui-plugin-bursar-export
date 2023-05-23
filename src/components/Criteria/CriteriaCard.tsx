@@ -4,8 +4,8 @@ import React, { useMemo } from 'react';
 import { useField } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 import {
-  CriteriaCardGroupType,
-  CriteriaCardTerminalType,
+  CriteriaGroupType,
+  CriteriaTerminalType,
 } from '../../types/CriteriaTypes';
 import CriteriaAge from './CriteriaAge';
 import CriteriaAmount from './CriteriaAmount';
@@ -21,29 +21,31 @@ export default function CriteriaCard({
   name,
   onRemove,
   root = false,
+  patronOnly = false,
   alone,
 }: {
   name: string;
   onRemove?: () => void;
   root?: boolean;
+  patronOnly?: boolean;
   alone: boolean;
 }) {
-  const type = useField<CriteriaCardGroupType | CriteriaCardTerminalType>(
+  const type = useField<CriteriaGroupType | CriteriaTerminalType>(
     `${name}.type`,
     {
       subscription: { value: true },
-      format: (value) => value ?? CriteriaCardTerminalType.PASS,
+      format: (value) => value ?? CriteriaTerminalType.PASS,
     }
   ).input.value;
 
   const cardInterior = useMemo(() => {
     switch (type) {
-      case CriteriaCardTerminalType.PASS:
+      case CriteriaTerminalType.PASS:
         return <div />;
 
-      case CriteriaCardGroupType.ALL_OF:
-      case CriteriaCardGroupType.ANY_OF:
-      case CriteriaCardGroupType.NONE_OF:
+      case CriteriaGroupType.ALL_OF:
+      case CriteriaGroupType.ANY_OF:
+      case CriteriaGroupType.NONE_OF:
         return (
           <FieldArray name={`${name}.criteria`}>
             {({ fields }) =>
@@ -59,37 +61,37 @@ export default function CriteriaCard({
           </FieldArray>
         );
 
-      case CriteriaCardTerminalType.AGE:
+      case CriteriaTerminalType.AGE:
         return (
           <Row>
             <CriteriaAge prefix={`${name}.`} />
           </Row>
         );
-      case CriteriaCardTerminalType.AMOUNT:
+      case CriteriaTerminalType.AMOUNT:
         return (
           <Row>
             <CriteriaAmount prefix={`${name}.`} />
           </Row>
         );
-      case CriteriaCardTerminalType.FEE_FINE_TYPE:
+      case CriteriaTerminalType.FEE_FINE_TYPE:
         return (
           <Row>
             <CriteriaFeeFineType prefix={`${name}.`} />
           </Row>
         );
-      case CriteriaCardTerminalType.LOCATION:
+      case CriteriaTerminalType.LOCATION:
         return (
           <Row>
             <CriteriaLocation prefix={`${name}.`} />
           </Row>
         );
-      case CriteriaCardTerminalType.SERVICE_POINT:
+      case CriteriaTerminalType.SERVICE_POINT:
         return (
           <Row>
             <CriteriaServicePoint prefix={`${name}.`} />
           </Row>
         );
-      case CriteriaCardTerminalType.PATRON_GROUP:
+      case CriteriaTerminalType.PATRON_GROUP:
         return (
           <Row>
             <CriteriaPatronGroup prefix={`${name}.`} />
@@ -105,7 +107,13 @@ export default function CriteriaCard({
     <Card
       cardClass={css.cardClass}
       headerClass={css.headerClass}
-      headerStart={<CriteriaCardSelect name={`${name}.type`} root={root} />}
+      headerStart={
+        <CriteriaCardSelect
+          name={`${name}.type`}
+          root={root}
+          patronOnly={patronOnly}
+        />
+      }
       headerEnd={
         <CriteriaCardToolbox
           prefix={`${name}.`}
@@ -115,7 +123,7 @@ export default function CriteriaCard({
         />
       }
       bodyClass={classNames({
-        [css.emptyBody]: type === CriteriaCardTerminalType.PASS,
+        [css.emptyBody]: type === CriteriaTerminalType.PASS,
       })}
     >
       {cardInterior}
