@@ -14,6 +14,7 @@ describe('Aggregate total token', () => {
   it.each([
     [HeaderFooterTokenType.AGGREGATE_TOTAL, HeaderFooterCardBody],
     [DataTokenType.ACCOUNT_AMOUNT, DataTokenCardBody],
+    [DataTokenType.AGGREGATE_TOTAL, DataTokenCardBody],
   ])('displays appropriate form', async (type, Component) => {
     const submitter = jest.fn();
 

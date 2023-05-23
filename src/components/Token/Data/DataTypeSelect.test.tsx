@@ -3,10 +3,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Form } from 'react-final-form';
 import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
-import {
-  DataTokenType,
-  HeaderFooterTokenType,
-} from '../../../types/TokenTypes';
+import { DataTokenType } from '../../../types/TokenTypes';
 import DataTypeSelect from './DataTypeSelect';
 
 describe('Data token type selection', () => {
@@ -54,5 +51,58 @@ describe('Data token type selection', () => {
     );
 
     expect(screen.getByRole('combobox')).toHaveDisplayValue('Fee/fine type');
+  });
+
+  it.each([
+    ['Newline (LF)', undefined],
+    ['Newline (LF)', false],
+    ['Newline (LF)', true],
+
+    ['Item info', undefined],
+    ['Item info', false],
+
+    ['Total amount', true],
+    ['Number of accounts', true],
+  ])('has %s when aggregate=%s', (optionName, aggregate) => {
+    render(
+      withIntlConfiguration(
+        <Form onSubmit={() => ({})} initialValues={{ aggregate }}>
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <DataTypeSelect name="test" />
+              <button type="submit">Submit</button>
+            </form>
+          )}
+        </Form>
+      )
+    );
+
+    expect(
+      screen.getByRole('option', { name: optionName })
+    ).toBeInTheDocument();
+  });
+
+  it.each([
+    ['Item info', true],
+
+    ['Total amount', undefined],
+    ['Total amount', false],
+    ['Number of accounts', undefined],
+    ['Number of accounts', false],
+  ])('does not have %s when aggregate=%s', (optionName, aggregate) => {
+    render(
+      withIntlConfiguration(
+        <Form onSubmit={() => ({})} initialValues={{ aggregate }}>
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <DataTypeSelect name="test" />
+              <button type="submit">Submit</button>
+            </form>
+          )}
+        </Form>
+      )
+    );
+
+    expect(screen.queryByRole('option', { name: optionName })).toBeNull();
   });
 });
