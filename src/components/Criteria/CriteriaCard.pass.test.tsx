@@ -7,12 +7,10 @@ import FormValues from '../../types/FormValues';
 import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 import CriteriaCard from './CriteriaCard';
 
-const noop = () => ({});
-
 it('Criteria card with "no criteria" should be empty', async () => {
   const { container } = render(
     withIntlConfiguration(
-      <Form<FormValues> mutators={{ ...arrayMutators }} onSubmit={noop}>
+      <Form<FormValues> mutators={{ ...arrayMutators }} onSubmit={jest.fn()}>
         {() => <CriteriaCard name="criteria" root alone />}
       </Form>
     )

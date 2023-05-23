@@ -10,13 +10,11 @@ import {
 import FormValues from '../../types/FormValues';
 import CriteriaCardToolbox from './CriteriaCardToolbox';
 
-const noop = () => ({});
-
 describe('Criteria card toolbox', () => {
   it('Default outer type results in no buttons', () => {
     render(
       withIntlConfiguration(
-        <Form<FormValues> mutators={{ ...arrayMutators }} onSubmit={noop}>
+        <Form<FormValues> mutators={{ ...arrayMutators }} onSubmit={jest.fn()}>
           {() => <CriteriaCardToolbox prefix="criteria." root alone />}
         </Form>
       )
@@ -34,7 +32,7 @@ describe('Criteria card toolbox', () => {
       withIntlConfiguration(
         <Form<FormValues>
           mutators={{ ...arrayMutators }}
-          onSubmit={noop}
+          onSubmit={jest.fn()}
           initialValues={{ criteria: { type } }}
         >
           {() => <CriteriaCardToolbox prefix="criteria." root alone />}
@@ -55,7 +53,7 @@ describe('Criteria card toolbox', () => {
       withIntlConfiguration(
         <Form<FormValues>
           mutators={{ ...arrayMutators }}
-          onSubmit={noop}
+          onSubmit={jest.fn()}
           initialValues={{ criteria: { type } }}
         >
           {() => (

@@ -6,8 +6,6 @@ import FormValues from '../../types/FormValues';
 import SchedulingFrequency from '../../types/SchedulingFrequency';
 import SchedulingMenu, { getIntervalLabel } from './SchedulingMenu';
 
-const noop = () => ({});
-
 describe('Scheduling menu', () => {
   it('Shows no interval field label when in manual mode', () => {
     expect(getIntervalLabel(SchedulingFrequency.Manual)).toBe('');
@@ -17,7 +15,7 @@ describe('Scheduling menu', () => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
-          onSubmit={noop}
+          onSubmit={jest.fn()}
           initialValues={{
             scheduling: { frequency: SchedulingFrequency.Manual },
           }}
@@ -35,7 +33,7 @@ describe('Scheduling menu', () => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
-          onSubmit={noop}
+          onSubmit={jest.fn()}
           initialValues={{
             scheduling: { frequency: SchedulingFrequency.Hours },
           }}
@@ -55,7 +53,7 @@ describe('Scheduling menu', () => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
-          onSubmit={noop}
+          onSubmit={jest.fn()}
           initialValues={{
             scheduling: { frequency: SchedulingFrequency.Days },
           }}
@@ -80,7 +78,7 @@ describe('Scheduling menu', () => {
     render(
       withIntlConfiguration(
         <Form<FormValues>
-          onSubmit={noop}
+          onSubmit={jest.fn()}
           initialValues={{
             scheduling: { frequency: SchedulingFrequency.Weeks },
           }}
