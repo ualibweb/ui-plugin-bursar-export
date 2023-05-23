@@ -5,7 +5,12 @@ import {
   ItemAttribute,
   UserAttribute,
 } from '../../types/TokenTypes';
-import { applyLengthControl, formatDate, applyDecimalFormat } from './utils';
+import {
+  applyLengthControl,
+  formatDate,
+  applyDecimalFormat,
+  guardNumber,
+} from './utils';
 
 export function formatFeeFineToken(
   attribute: 'FEE_FINE_TYPE_ID' | 'FEE_FINE_TYPE_NAME'
@@ -65,7 +70,7 @@ export function tokenToNode(
     case DataTokenType.COMMA:
       return ',';
     case DataTokenType.SPACE:
-      return ' '.repeat(parseInt(dataToken.repeat) ?? 1);
+      return ' '.repeat(guardNumber(dataToken.repeat, 1));
 
     case DataTokenType.CURRENT_DATE:
       return applyLengthControl(
