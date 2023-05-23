@@ -13,7 +13,7 @@ const getResponse = jest.fn((endpoint: string) => {
     return {
       locinsts: [
         {
-          id: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+          id: 'institutionId',
           name: 'Test institution',
         },
       ],
@@ -22,19 +22,19 @@ const getResponse = jest.fn((endpoint: string) => {
     return {
       loccamps: [
         {
-          id: '62cf76b7-cca5-4d33-9217-edf42ce1a848',
+          id: 'campusId1',
           name: 'Matching campus 1',
-          institutionId: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+          institutionId: 'institutionId',
         },
         {
-          id: 'f239fd5d-6e62-52fe-b640-28e853aa2abd',
+          id: 'campusId2',
           name: 'Matching campus 2',
-          institutionId: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
+          institutionId: 'institutionId',
         },
         {
-          id: '62cf76b7-cca5-4d33-9217-edf42ce1a848',
+          id: 'campusIdIrrelevant',
           name: 'Non-matching campus',
-          institutionId: 'a83bdecc-5e33-58a7-8f84-177af3edad66',
+          institutionId: 'institutionIrrelevant',
         },
       ],
     };
@@ -42,14 +42,14 @@ const getResponse = jest.fn((endpoint: string) => {
     return {
       loclibs: [
         {
-          id: '5d78803e-ca04-4b4a-aeae-2c63b924518b',
+          id: 'libraryId',
           name: 'Matching library',
-          campusId: '62cf76b7-cca5-4d33-9217-edf42ce1a848',
+          campusId: 'campusId1',
         },
         {
-          id: 'c2549bb4-19c7-4fcc-8b52-39e612fb7dbe',
+          id: 'libraryIdIrrelevant',
           name: 'Non-matching library',
-          campusId: '470ff1dd-937a-4195-bf9e-06bcfcd135df',
+          campusId: 'campusIdIrrelevant',
         },
       ],
     };
@@ -57,19 +57,19 @@ const getResponse = jest.fn((endpoint: string) => {
     return {
       locations: [
         {
-          id: 'fcd64ce1-6995-48f0-840e-89ffa2288371',
+          id: 'locationId1',
           name: 'Matching location 1',
-          libraryId: '5d78803e-ca04-4b4a-aeae-2c63b924518b',
+          libraryId: 'libraryId',
         },
         {
-          id: '758258bc-ecc1-41b8-abca-f7b610822ffd',
+          id: 'locationId2',
           name: 'Matching location 2',
-          libraryId: '5d78803e-ca04-4b4a-aeae-2c63b924518b',
+          libraryId: 'libraryId',
         },
         {
-          id: '184aae84-a5bf-4c6a-85ba-4a7c73026cd5',
+          id: 'locationIrrelevant',
           name: 'Non-matching location',
-          libraryId: 'c2549bb4-19c7-4fcc-8b52-39e612fb7dbe',
+          libraryId: 'libraryIdIrrelevant',
         },
       ],
     };
@@ -193,10 +193,10 @@ it('Location criteria displays appropriate form', async () => {
   expect(submitter).toHaveBeenCalledWith({
     criteria: {
       type: 'Location',
-      institutionId: '40ee00ca-a518-4b49-be01-0638d0a4ac57',
-      campusId: '62cf76b7-cca5-4d33-9217-edf42ce1a848',
-      libraryId: '5d78803e-ca04-4b4a-aeae-2c63b924518b',
-      locationId: 'fcd64ce1-6995-48f0-840e-89ffa2288371',
+      institutionId: 'institutionId',
+      campusId: 'campusId1',
+      libraryId: 'libraryId',
+      locationId: 'locationId1',
     },
   });
 });
