@@ -41,3 +41,39 @@ test('Add button works as expected', async () => {
     ],
   });
 });
+
+test('Add button in aggregate mode works as expected', async () => {
+  const submitter = jest.fn();
+
+  render(
+    withIntlConfiguration(
+      <Form<FormValues>
+        mutators={{ ...arrayMutators }}
+        onSubmit={(v) => submitter(v)}
+        initialValues={{ aggregate: true }}
+      >
+        {({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <DataTokenMenu />
+            <button type="submit">Submit</button>
+          </form>
+        )}
+      </Form>
+    )
+  );
+
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+
+  await userEvent.click(screen.getByRole('button', { name: 'Submit' }));
+
+  expect(submitter).toHaveBeenCalledWith({
+    aggregate: true,
+    dataAggregate: [
+      { type: DataTokenType.NEWLINE },
+      { type: DataTokenType.NEWLINE },
+      { type: DataTokenType.NEWLINE },
+    ],
+  });
+});
