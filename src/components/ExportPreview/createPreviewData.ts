@@ -42,10 +42,10 @@ export function formatUserToken(attribute: UserAttribute) {
       return faker.string.alphanumeric(10);
     case 'USERNAME':
       return faker.internet.userName();
-    case 'MIDDLE_NAME':
-      return faker.person.middleName();
     case 'FIRST_NAME':
       return faker.person.firstName();
+    case 'MIDDLE_NAME':
+      return faker.person.middleName();
     case 'LAST_NAME':
       return faker.person.lastName();
     default:
