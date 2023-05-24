@@ -2,12 +2,8 @@ import {
   HeaderFooterToken,
   HeaderFooterTokenType,
 } from '../../types/TokenTypes';
-import {
-  applyDecimalFormat,
-  applyLengthControl,
-  formatDate,
-  guardNumber,
-} from './utils';
+import guardNumber from '../../utils/guardNumber';
+import { applyDecimalFormat, applyLengthControl, formatDate } from './utils';
 
 export function tokenToNode(
   token: HeaderFooterToken,

@@ -1,7 +1,7 @@
 import { Col, TextField } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
-import useMonetaryOnBlur from '../../utils/useMonetaryOnBlur';
+import useMonetaryOnBlur from '../../hooks/';
 import OperatorSelect from './OperatorSelect';
 
 export default function CriteriaAmount({ prefix }: { prefix: string }) {

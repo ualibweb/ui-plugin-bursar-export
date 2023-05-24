@@ -5,12 +5,8 @@ import {
   ItemAttribute,
   UserAttribute,
 } from '../../types/TokenTypes';
-import {
-  applyLengthControl,
-  formatDate,
-  applyDecimalFormat,
-  guardNumber,
-} from './utils';
+import guardNumber from '../../utils/guardNumber';
+import { applyDecimalFormat, applyLengthControl, formatDate } from './utils';
 
 export function formatFeeFineToken(
   attribute: 'FEE_FINE_TYPE_ID' | 'FEE_FINE_TYPE_NAME'
