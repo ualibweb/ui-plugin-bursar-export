@@ -195,8 +195,8 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.organization=ualibweb
-            -Dsonar.projectKey=ualibweb_${{ github.event.repository.name }}
+            -Dsonar.organization=folio-org
+            -Dsonar.projectKey=org.folio:${{ github.event.repository.name }}
             -Dsonar.projectName=${{ github.event.repository.name }}
             -Dsonar.sources=${{ env.SQ_ROOT_DIR }}
             -Dsonar.language=js
