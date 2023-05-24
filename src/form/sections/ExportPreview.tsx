@@ -19,6 +19,12 @@ export default function ExportPreview() {
       >
         <ExportPreviewData />
       </Card>
+      <p>
+        <i>
+          This preview is only a sample and does not represent real data, nor
+          does it consider any specified criteria.
+        </i>
+      </p>
       <Field name="preview.wrap" type="checkbox" defaultValue={true}>
         {(fieldProps) => (
           <Checkbox {...fieldProps} fullWidth label="Wrap long lines" />
