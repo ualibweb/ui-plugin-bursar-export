@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-export function splitAdd(
+export function splitAndInsert(
   haystack: string | ReactNode,
   needle: string,
   replacement: ReactNode
@@ -9,13 +9,16 @@ export function splitAdd(
     return [haystack];
   }
 
-  return haystack.split(needle).flatMap((piece, index, array) => {
-    if (index === array.length - 1) {
-      return [piece];
-    }
+  return haystack
+    .split(needle)
+    .flatMap((piece, index, array) => {
+      if (index === array.length - 1) {
+        return [piece];
+      }
 
-    return [piece, replacement];
-  });
+      return [piece, replacement];
+    })
+    .filter((piece) => piece !== '');
 }
 
 function Invisible({ children }: { children: ReactNode }) {
@@ -34,9 +37,11 @@ export default function HandleInvisible({
   // denote appropriately
   if (showInvisible) {
     pieces = pieces
-      .flatMap((piece) => splitAdd(piece, '\r', <Invisible>\r</Invisible>))
       .flatMap((piece) =>
-        splitAdd(
+        splitAndInsert(piece, '\r', <Invisible>\r</Invisible>)
+      )
+      .flatMap((piece) =>
+        splitAndInsert(
           piece,
           '\n',
           <>
@@ -45,10 +50,12 @@ export default function HandleInvisible({
           </>
         )
       )
-      .flatMap((piece) => splitAdd(piece, '\t', <Invisible>\t</Invisible>))
-      .flatMap((piece) => splitAdd(piece, ' ', <Invisible>•</Invisible>));
+      .flatMap((piece) =>
+        splitAndInsert(piece, '\t', <Invisible>\t</Invisible>)
+      )
+      .flatMap((piece) => splitAndInsert(piece, ' ', <Invisible>•</Invisible>));
   } else {
-    pieces = pieces.flatMap((piece) => splitAdd(piece, '\n', <br />));
+    pieces = pieces.flatMap((piece) => splitAndInsert(piece, '\n', <br />));
   }
 
   pieces = pieces.map((piece) => {
@@ -58,5 +65,11 @@ export default function HandleInvisible({
     return piece;
   });
 
-  return <>{pieces}</>;
+  return (
+    <>
+      {pieces.map((piece, i) => (
+        <span key={i}>{piece}</span>
+      ))}
+    </>
+  );
 }
