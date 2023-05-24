@@ -50,6 +50,6 @@ test.each([
   'Rendering with text=%s and showInvisible gives inner text=%s',
   (text, textContent) => {
     const { container } = render(<HandleInvisible text={text} showInvisible />);
-    expect(container.textContent).toEqual(textContent);
+    expect(container).toHaveTextContent(textContent);
   }
 );

@@ -31,7 +31,7 @@ export default function ExportPreviewData() {
 
   const showInvisible = useField<boolean>('preview.invisible', {
     subscription: { value: true },
-    format: (value) => value ?? true,
+    format: (value) => value ?? false,
   }).input.value;
 
   const contents = useMemo(() => {
