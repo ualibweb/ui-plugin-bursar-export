@@ -1,8 +1,96 @@
-import { CriteriaGroup, CriteriaTerminal } from '../../types/CriteriaTypes';
-import { BursarExportFilterAge, BursarExportJobDTO } from './types';
+import {
+  CriteriaGroup,
+  CriteriaGroupType,
+  CriteriaTerminal,
+  CriteriaTerminalType,
+} from '../../types/CriteriaTypes';
+import guardNumber from '../../utils/guardNumber';
+import { BursarExportJobDTO } from './types';
 
 export default function criteriaToFilterDto(
   criteria: CriteriaGroup | CriteriaTerminal
 ): BursarExportJobDTO['filter'] {
-  return { type: 'Pass' };
+  switch (criteria.type) {
+    case CriteriaTerminalType.AGE:
+      return {
+        type: 'Age',
+        numDays: guardNumber(criteria.numDays, 0),
+      };
+
+    case CriteriaTerminalType.AMOUNT:
+      return {
+        type: 'Amount',
+        condition: criteria.operator ?? 'LESS_THAN_EQUAL',
+        amount: guardNumber(criteria.amountDollars, 0),
+      };
+
+    case CriteriaTerminalType.FEE_FINE_TYPE:
+      return {
+        type: 'FeeType',
+        feeFineTypeId: criteria.feeFineTypeId ?? '',
+      };
+
+    case CriteriaTerminalType.LOCATION:
+      return {
+        type: 'Location',
+        locationId: criteria.locationId ?? '',
+      };
+
+    case CriteriaTerminalType.PATRON_GROUP:
+      return {
+        type: 'PatronGroup',
+        patronGroupId: criteria.patronGroupId ?? '',
+      };
+
+    case CriteriaTerminalType.SERVICE_POINT:
+      return {
+        type: 'ServicePoint',
+        servicePointId: criteria.servicePointId ?? '',
+      };
+
+    case CriteriaTerminalType.PASS:
+      return { type: 'Pass' };
+
+    case CriteriaGroupType.ALL_OF:
+    case CriteriaGroupType.ANY_OF:
+    case CriteriaGroupType.NONE_OF:
+      return groupToFilterDto(criteria);
+  }
+}
+
+export function groupToFilterDto(
+  criteria: CriteriaGroup
+): BursarExportJobDTO['filter'] {
+  const criteriaList = criteria.criteria ?? [];
+
+  if (criteria.type === CriteriaGroupType.ALL_OF) {
+    return {
+      type: 'Condition',
+      operation: 'AND',
+      criteria: criteriaList.map(criteriaToFilterDto),
+    };
+  }
+  if (criteria.type === CriteriaGroupType.ANY_OF) {
+    return {
+      type: 'Condition',
+      operation: 'OR',
+      criteria: criteriaList.map(criteriaToFilterDto),
+    };
+  }
+
+  if (criteriaList.length === 1) {
+    return {
+      type: 'Negation',
+      criteria: criteriaToFilterDto(criteriaList[0]),
+    };
+  }
+
+  return {
+    type: 'Negation',
+    criteria: {
+      type: 'Condition',
+      operation: 'OR',
+      criteria: criteriaList.map(criteriaToFilterDto),
+    },
+  };
 }
