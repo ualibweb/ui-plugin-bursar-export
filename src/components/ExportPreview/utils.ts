@@ -58,7 +58,7 @@ export function applyLengthControl(
     return value;
   }
 
-  const desiredLength = parseInt(lengthControl?.length, 10);
+  const desiredLength = parseInt(lengthControl.length, 10);
   if (isNaN(desiredLength)) {
     return value;
   }
@@ -73,12 +73,14 @@ export function applyLengthControl(
         value + lengthControl.character.repeat(desiredLength - value.length)
       );
     }
-  } else {
+  } else if (lengthControl.truncate) {
     if (lengthControl.direction === 'FRONT') {
       return value.substring(value.length - desiredLength);
     } else {
       return value.substring(0, desiredLength);
     }
+  } else {
+    return value;
   }
 }
 
