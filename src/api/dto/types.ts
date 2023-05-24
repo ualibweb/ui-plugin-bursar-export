@@ -5,43 +5,56 @@ export interface BursarExportJobDTO {
   /**
    * Filter for bursar export job
    */
-  filter:
-    | BursarExportFilterAge
-    | BursarExportFilterAmount
-    | BursarExportFilterFeeType
-    | BursarExportFilterLocation
-    | BursarExportFilterPatronGroup
-    | BursarExportFilterServicePoint
-    | BursarExportFilterCondition
-    | BursarExportFilterNegation
-    | BursarExportFilterPass
-    | BursarExportFilterFeeFineOwner;
+  filter: BursarExportFilterDTO;
   groupByPatron: boolean;
   groupByPatronFilter?: BursarExportFilterAggregate;
-  header: (
-    | BursarExportTokenAggregate
-    | BursarExportTokenConstant
-    | BursarExportTokenCurrentDate
-  )[];
-  data: (
-    | BursarExportTokenAggregate
-    | BursarExportTokenConstant
-    | BursarExportTokenCurrentDate
-    | BursarExportTokenFeeDate
-    | BursarExportTokenFeeAmount
-    | BursarExportTokenFeeMetadata
-    | BursarExportTokenItemData
-    | BursarExportTokenUserData
-    | BursarExportTokenUserDataOptional
-    | BursarExportTokenConditional
-  )[];
-  footer: (
-    | BursarExportTokenAggregate
-    | BursarExportTokenConstant
-    | BursarExportTokenCurrentDate
-  )[];
+  header: BursarExportHeaderFooterTokenDTO[];
+  data: BursarExportDataTokenDTO[];
+  footer: BursarExportHeaderFooterTokenDTO[];
   transferInfo: BursarExportTransferCriteria;
 }
+
+export type BursarExportFilterDTO =
+  | BursarExportFilterAge
+  | BursarExportFilterAmount
+  | BursarExportFilterFeeType
+  | BursarExportFilterLocation
+  | BursarExportFilterPatronGroup
+  | BursarExportFilterServicePoint
+  | BursarExportFilterCondition
+  | BursarExportFilterNegation
+  | BursarExportFilterPass
+  | BursarExportFilterFeeFineOwner;
+
+export type BursarExportHeaderFooterTokenDTO =
+  | BursarExportTokenAggregate
+  | BursarExportTokenConstant
+  | BursarExportTokenCurrentDate;
+
+export type BursarExportDataTokenDTO =
+  | BursarExportTokenAggregate
+  | BursarExportTokenConstant
+  | BursarExportTokenCurrentDate
+  | BursarExportTokenFeeDate
+  | BursarExportTokenFeeAmount
+  | BursarExportTokenFeeMetadata
+  | BursarExportTokenItemData
+  | BursarExportTokenUserData
+  | BursarExportTokenUserDataOptional
+  | BursarExportTokenConditional;
+
+export type DateFormatType =
+  | 'YEAR_LONG'
+  | 'YEAR_SHORT'
+  | 'MONTH'
+  | 'DATE'
+  | 'HOUR'
+  | 'MINUTE'
+  | 'SECOND'
+  | 'QUARTER'
+  | 'WEEK_OF_YEAR_ISO'
+  | 'WEEK_YEAR_ISO';
+
 /**
  * Filter by fees older than certain number of days
  */
@@ -95,18 +108,7 @@ export interface BursarExportFilterServicePoint {
 export interface BursarExportFilterCondition {
   type: 'Condition';
   operation: 'AND' | 'OR';
-  criteria: (
-    | BursarExportFilterAge
-    | BursarExportFilterAmount
-    | BursarExportFilterFeeType
-    | BursarExportFilterLocation
-    | BursarExportFilterPatronGroup
-    | BursarExportFilterServicePoint
-    | BursarExportFilterCondition
-    | BursarExportFilterNegation
-    | BursarExportFilterPass
-    | BursarExportFilterFeeFineOwner
-  )[];
+  criteria: BursarExportFilterDTO[];
 }
 /**
  * Negation of filter for bursar export
@@ -116,17 +118,7 @@ export interface BursarExportFilterNegation {
   /**
    * Filter for bursar export job
    */
-  criteria:
-    | BursarExportFilterAge
-    | BursarExportFilterAmount
-    | BursarExportFilterFeeType
-    | BursarExportFilterLocation
-    | BursarExportFilterPatronGroup
-    | BursarExportFilterServicePoint
-    | BursarExportFilterCondition
-    | BursarExportFilterNegation
-    | BursarExportFilterPass
-    | BursarExportFilterFeeFineOwner;
+  criteria: BursarExportFilterDTO;
 }
 /**
  * Filter that is always true
@@ -190,17 +182,7 @@ export interface BursarExportTokenCurrentDate {
   /**
    * Schema to represent the type of date information
    */
-  value:
-    | 'YEAR_LONG'
-    | 'YEAR_SHORT'
-    | 'MONTH'
-    | 'DATE'
-    | 'HOUR'
-    | 'MINUTE'
-    | 'SECOND'
-    | 'QUARTER'
-    | 'WEEK_OF_YEAR_ISO'
-    | 'WEEK_YEAR_ISO';
+  value: DateFormatType;
   timezone: string;
   lengthControl?: BursarExportTokenLengthControl;
 }
@@ -213,17 +195,7 @@ export interface BursarExportTokenFeeDate {
   /**
    * Schema to represent the type of date information
    */
-  value:
-    | 'YEAR_LONG'
-    | 'YEAR_SHORT'
-    | 'MONTH'
-    | 'DATE'
-    | 'HOUR'
-    | 'MINUTE'
-    | 'SECOND'
-    | 'QUARTER'
-    | 'WEEK_OF_YEAR_ISO'
-    | 'WEEK_YEAR_ISO';
+  value: DateFormatType;
   placeholder: string;
   timezone: string;
   lengthControl?: BursarExportTokenLengthControl;
@@ -244,19 +216,22 @@ export interface BursarExportTokenFeeMetadata {
   value: 'FEE_FINE_TYPE_ID' | 'FEE_FINE_TYPE_NAME';
   lengthControl?: BursarExportTokenLengthControl;
 }
+
+export type ItemDataType =
+  | 'BARCODE'
+  | 'NAME'
+  | 'MATERIAL_TYPE'
+  | 'INSTITUTION_ID'
+  | 'CAMPUS_ID'
+  | 'LIBRARY_ID'
+  | 'LOCATION_ID';
+
 /**
  * Token to represent item data
  */
 export interface BursarExportTokenItemData {
   type: 'ItemData';
-  value:
-    | 'BARCODE'
-    | 'NAME'
-    | 'MATERIAL_TYPE'
-    | 'INSTITUTION_ID'
-    | 'CAMPUS_ID'
-    | 'LIBRARY_ID'
-    | 'LOCATION_ID';
+  value: ItemDataType;
   placeholder: string;
   lengthControl?: BursarExportTokenLengthControl;
 }
@@ -268,12 +243,18 @@ export interface BursarExportTokenUserData {
   value: 'FOLIO_ID' | 'PATRON_GROUP_ID' | 'EXTERNAL_SYSTEM_ID';
   lengthControl?: BursarExportTokenLengthControl;
 }
+export type UserDataOptionalType =
+  | 'BARCODE'
+  | 'USERNAME'
+  | 'FIRST_NAME'
+  | 'MIDDLE_NAME'
+  | 'LAST_NAME';
 /**
  * Token to represent optional user data
  */
 export interface BursarExportTokenUserDataOptional {
   type: 'UserDataOptional';
-  value: 'BARCODE' | 'USERNAME' | 'FIRST_NAME' | 'MIDDLE_NAME' | 'LAST_NAME';
+  value: UserDataOptionalType;
   placeholder: string;
   lengthControl?: BursarExportTokenLengthControl;
 }
@@ -286,17 +267,7 @@ export interface BursarExportTokenConditional {
     /**
      * Filter for bursar export job
      */
-    condition:
-      | BursarExportFilterAge
-      | BursarExportFilterAmount
-      | BursarExportFilterFeeType
-      | BursarExportFilterLocation
-      | BursarExportFilterPatronGroup
-      | BursarExportFilterServicePoint
-      | BursarExportFilterCondition
-      | BursarExportFilterNegation
-      | BursarExportFilterPass
-      | BursarExportFilterFeeFineOwner;
+    condition: BursarExportFilterDTO;
     /**
      * Usable token for bursar export
      */
@@ -315,17 +286,7 @@ export interface BursarExportTransferCriteria {
     /**
      * Filter for bursar export job
      */
-    condition:
-      | BursarExportFilterAge
-      | BursarExportFilterAmount
-      | BursarExportFilterFeeType
-      | BursarExportFilterLocation
-      | BursarExportFilterPatronGroup
-      | BursarExportFilterServicePoint
-      | BursarExportFilterCondition
-      | BursarExportFilterNegation
-      | BursarExportFilterPass
-      | BursarExportFilterFeeFineOwner;
+    condition: BursarExportFilterDTO;
     account: string;
   }[];
   /**

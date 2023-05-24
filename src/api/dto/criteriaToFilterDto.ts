@@ -5,11 +5,11 @@ import {
   CriteriaTerminalType,
 } from '../../types/CriteriaTypes';
 import guardNumber from '../../utils/guardNumber';
-import { BursarExportJobDTO } from './types';
+import { BursarExportFilterDTO } from './types';
 
 export default function criteriaToFilterDto(
   criteria: CriteriaGroup | CriteriaTerminal
-): BursarExportJobDTO['filter'] {
+): BursarExportFilterDTO {
   switch (criteria.type) {
     case CriteriaTerminalType.AGE:
       return {
@@ -60,7 +60,7 @@ export default function criteriaToFilterDto(
 
 export function groupToFilterDto(
   criteria: CriteriaGroup
-): BursarExportJobDTO['filter'] {
+): BursarExportFilterDTO {
   const criteriaList = criteria.criteria ?? [];
 
   if (criteria.type === CriteriaGroupType.ALL_OF) {
