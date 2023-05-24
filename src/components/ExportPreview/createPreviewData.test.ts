@@ -147,23 +147,23 @@ describe('Preview data generation', () => {
     [
       [
         { type: DataTokenType.AGGREGATE_COUNT },
-        { type: DataTokenType.COMMA },
+        { type: DataTokenType.SPACE, repeat: 1 },
         { type: DataTokenType.AGGREGATE_TOTAL, decimal: true },
-        { type: DataTokenType.NEWLINE },
+        { type: DataTokenType.COMMA },
       ],
       false,
-      '1,12.34\n'.repeat(7),
+      '1 12.34,'.repeat(7),
       7,
     ],
     [
       [
         { type: DataTokenType.AGGREGATE_COUNT },
-        { type: DataTokenType.COMMA },
+        { type: DataTokenType.SPACE, repeat: 1 },
         { type: DataTokenType.AGGREGATE_TOTAL, decimal: true },
-        { type: DataTokenType.NEWLINE },
+        { type: DataTokenType.COMMA },
       ],
       true,
-      '7,12.34\n'.repeat(7),
+      '7 12.34,'.repeat(7),
       7 * 7,
     ],
   ])(
@@ -175,13 +175,13 @@ describe('Preview data generation', () => {
       expect(
         createPreviewData(tokens as DataToken[], aggregate)
       ).toHaveProperty('totalCount', expectedCount);
-      // must test with epsilon because floats
+
+      // must round to test because floats
       expect(
-        createPreviewData(tokens as DataToken[], aggregate)
-      ).toHaveProperty(
-        'totalAmount',
-        (v: number) => Math.abs(v - 12.34 * 7) < 0.01
-      );
+        createPreviewData(tokens as DataToken[], aggregate).totalAmount.toFixed(
+          2
+        )
+      ).toBe((12.34 * 7).toFixed(2));
     }
   );
 });
