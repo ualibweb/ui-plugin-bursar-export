@@ -48,13 +48,14 @@ export default function criteriaToFilterDto(
         servicePointId: criteria.servicePointId ?? '',
       };
 
-    case CriteriaTerminalType.PASS:
-      return { type: 'Pass' };
-
     case CriteriaGroupType.ALL_OF:
     case CriteriaGroupType.ANY_OF:
     case CriteriaGroupType.NONE_OF:
       return groupToFilterDto(criteria);
+
+    case CriteriaTerminalType.PASS:
+    default:
+      return { type: 'Pass' };
   }
 }
 
