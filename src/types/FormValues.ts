@@ -26,7 +26,7 @@ export default interface FormValues {
   footer?: HeaderFooterToken[];
 
   transferInfo: {
-    conditions: {
+    conditions?: {
       condition: CriteriaGroup | CriteriaTerminal;
       owner?: string;
       account?: string;

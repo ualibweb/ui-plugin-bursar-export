@@ -25,6 +25,7 @@ import DataTokenMenu from './sections/DataTokenMenu';
 import TransferInfoMenu from './sections/TransferInfoMenu';
 import AggregateMenu from './sections/AggregateMenu';
 import ExportPreview from './sections/ExportPreview';
+import formValuesToDto from '../api/dto/formValuesToDTO';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -95,6 +96,13 @@ function ConfigurationForm({
         <Accordion label="Debug (form state)">
           <FormSpy subscription={{ values: true }}>
             {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
+          </FormSpy>
+        </Accordion>
+        <Accordion label="Debug (formValuesToDto)">
+          <FormSpy<FormValues> subscription={{ values: true }}>
+            {({ values }) => (
+              <pre>{JSON.stringify(formValuesToDto(values), undefined, 2)}</pre>
+            )}
           </FormSpy>
         </Accordion>
         <Accordion label="Debug (usePatronGroups)" closedByDefault>
