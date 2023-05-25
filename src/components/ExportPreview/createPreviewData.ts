@@ -5,7 +5,7 @@ import {
   ItemAttribute,
   UserAttribute,
 } from '../../types/TokenTypes';
-import guardNumber, { guardNumberPositive } from '../../utils/guardNumber';
+import { guardNumberPositive } from '../../utils/guardNumber';
 import { applyDecimalFormat, applyLengthControl, formatDate } from './utils';
 
 export function formatFeeFineToken(
