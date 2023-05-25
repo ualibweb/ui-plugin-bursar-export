@@ -2,7 +2,6 @@ import {
   CriteriaAggregate,
   CriteriaGroup,
   CriteriaTerminal,
-  CriteriaTerminalType,
 } from './CriteriaTypes';
 import SchedulingFrequency from './SchedulingFrequency';
 import { DataToken, HeaderFooterToken } from './TokenTypes';
