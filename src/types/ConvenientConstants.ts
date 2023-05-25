@@ -1,7 +1,15 @@
+import { DataTokenType, HeaderFooterTokenType } from './TokenTypes';
+
 export default {
-  NEWLINE: '\n',
-  NEWLINE_MICROSOFT: '\r\n',
-  TAB: '\t',
-  COMMA: ',',
-  SPACE: ' ',
+  [HeaderFooterTokenType.NEWLINE]: '\n',
+  [HeaderFooterTokenType.NEWLINE_MICROSOFT]: '\r\n',
+  [HeaderFooterTokenType.TAB]: '\t',
+  [HeaderFooterTokenType.COMMA]: ',',
+  [HeaderFooterTokenType.SPACE]: ' ',
+
+  [DataTokenType.NEWLINE]: '\n',
+  [DataTokenType.NEWLINE_MICROSOFT]: '\r\n',
+  [DataTokenType.TAB]: '\t',
+  [DataTokenType.COMMA]: ',',
+  [DataTokenType.SPACE]: ' ',
 };
