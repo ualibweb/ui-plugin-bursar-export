@@ -1,6 +1,8 @@
+/** Guarantees an integer */
 export default function guardNumber(
   value: string | undefined,
-  fallback: number
+  fallback: number,
+  preRound: (value: number) => number = (v) => v
 ): number {
   const parsed = parseFloat(value ?? '');
 
@@ -8,5 +10,5 @@ export default function guardNumber(
     return fallback;
   }
 
-  return parsed;
+  return Math.round(preRound(parsed));
 }
