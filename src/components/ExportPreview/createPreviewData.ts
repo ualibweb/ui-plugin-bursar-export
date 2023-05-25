@@ -5,7 +5,7 @@ import {
   ItemAttribute,
   UserAttribute,
 } from '../../types/TokenTypes';
-import guardNumber from '../../utils/guardNumber';
+import guardNumber, { guardNumberPositive } from '../../utils/guardNumber';
 import { applyDecimalFormat, applyLengthControl, formatDate } from './utils';
 
 export function formatFeeFineToken(
@@ -66,7 +66,7 @@ export function tokenToNode(
     case DataTokenType.COMMA:
       return ',';
     case DataTokenType.SPACE:
-      return ' '.repeat(guardNumber(dataToken.repeat, 1));
+      return ' '.repeat(guardNumberPositive(dataToken.repeat));
 
     case DataTokenType.CURRENT_DATE:
       return applyLengthControl(

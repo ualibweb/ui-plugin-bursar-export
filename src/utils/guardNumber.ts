@@ -12,3 +12,7 @@ export default function guardNumber(
 
   return Math.round(preRound(parsed));
 }
+
+export function guardNumberPositive(value: string | undefined): number {
+  return guardNumber(value, 0, (v) => Math.max(0, v));
+}

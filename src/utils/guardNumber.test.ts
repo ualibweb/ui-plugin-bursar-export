@@ -1,4 +1,4 @@
-import guardNumber from './guardNumber';
+import guardNumber, { guardNumberPositive } from './guardNumber';
 
 describe('guardNumber function', () => {
   const TEST_FALLBACK = 1234;
@@ -22,4 +22,16 @@ describe('guardNumber function', () => {
     expect(guardNumber('1234.1', TEST_FALLBACK, formatter)).toBe(1235);
     expect(formatter).toHaveBeenLastCalledWith(1234.1);
   });
+
+  test.each([
+    ['1', 1],
+    ['0', 0],
+    ['0.9', 1],
+    ['12.7', 13],
+    ['-1', 0],
+    ['-1000.5', 0],
+    ['', 0],
+  ])('guardNumberPositive(%s) = %s', (input, expected) =>
+    expect(guardNumberPositive(input)).toBe(expected)
+  );
 });
