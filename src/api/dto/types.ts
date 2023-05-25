@@ -296,3 +296,6 @@ export interface BursarExportTransferCriteria {
     account: string;
   };
 }
+
+// for coverage
+export const TYPE_ONLY = true;
