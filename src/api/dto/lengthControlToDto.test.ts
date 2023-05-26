@@ -23,6 +23,19 @@ describe('Length control conversion', () => {
     ],
     [
       {
+        length: '12',
+        direction: 'FRONT',
+        truncate: true,
+      },
+      {
+        character: '',
+        length: 12,
+        direction: 'FRONT',
+        truncate: true,
+      },
+    ],
+    [
+      {
         character: 'abc',
         length: '3.4',
         direction: 'BACK',

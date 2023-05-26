@@ -10,7 +10,7 @@ export default function lengthControlToDto(
   }
 
   return {
-    character: lengthControl.character.substring(0, 1),
+    character: lengthControl.character?.substring(0, 1) ?? '',
     length: guardNumberPositive(lengthControl.length),
     direction: lengthControl.direction,
     truncate: lengthControl.truncate,
