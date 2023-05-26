@@ -28,10 +28,7 @@ export default function formValuesToDto(
       header: headerFooterToDto(values.header),
       data: dataToDto(values.data),
       footer: headerFooterToDto(values.footer),
-      transferInfo: {
-        conditions: [],
-        else: { account: '' },
-      },
+      transferInfo: transferToDto(values.transferInfo),
     };
   }
 }
