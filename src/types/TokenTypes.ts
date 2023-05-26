@@ -152,7 +152,7 @@ export type DataToken =
   | {
       type: DataTokenType.ITEM_INFO;
       itemAttribute: ItemAttribute;
-      placeholder: string;
+      placeholder?: string;
       lengthControl?: LengthControl;
     }
   | {

@@ -1,6 +1,7 @@
 import FormValues from '../../types/FormValues';
 import aggregateCriteriaToFilterDto from './aggregateCriteriaToFilterDto';
 import criteriaToFilterDto from './criteriaToFilterDto';
+import dataToDto from './dataToDto';
 import headerFooterToDto from './headerFooterToDto';
 import { BursarExportJobDTO } from './types';
 
@@ -14,7 +15,7 @@ export default function formValuesToDto(
       groupByPatronFilter: aggregateCriteriaToFilterDto(values.aggregateFilter),
 
       header: headerFooterToDto(values.header),
-      data: [],
+      data: dataToDto(values.dataAggregate),
       footer: headerFooterToDto(values.footer),
       transferInfo: {
         conditions: [],
@@ -33,7 +34,7 @@ export default function formValuesToDto(
       groupByPatron: false,
 
       header: headerFooterToDto(values.header),
-      data: [],
+      data: dataToDto(values.data),
       footer: headerFooterToDto(values.footer),
       transferInfo: {
         conditions: [],
