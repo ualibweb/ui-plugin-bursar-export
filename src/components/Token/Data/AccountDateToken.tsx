@@ -9,7 +9,7 @@ export default function AccountDateToken({ prefix }: { prefix: string }) {
     <>
       <Col xs={12} md={6}>
         <Field<'CREATED' | 'UPDATED' | 'DUE' | 'RETURNED'>
-          name={`${prefix}attribute`}
+          name={`${prefix}dateProperty`}
           defaultValue="CREATED"
         >
           {(fieldProps) => (

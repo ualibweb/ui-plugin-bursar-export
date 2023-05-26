@@ -89,19 +89,19 @@ export function tokenToNode(
 
     case DataTokenType.FEE_FINE_TYPE:
       return applyLengthControl(
-        formatFeeFineToken(dataToken.attribute),
+        formatFeeFineToken(dataToken.feeFineAttribute),
         dataToken.lengthControl
       );
 
     case DataTokenType.ITEM_INFO:
       return applyLengthControl(
-        formatItemToken(dataToken.attribute),
+        formatItemToken(dataToken.itemAttribute),
         dataToken.lengthControl
       );
 
     case DataTokenType.USER_DATA:
       return applyLengthControl(
-        formatUserToken(dataToken.attribute),
+        formatUserToken(dataToken.userAttribute),
         dataToken.lengthControl
       );
 

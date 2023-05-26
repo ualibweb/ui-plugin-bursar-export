@@ -28,7 +28,7 @@ describe('Fee/fine type token', () => {
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
         type: DataTokenType.FEE_FINE_TYPE,
-        attribute: 'FEE_FINE_TYPE_NAME',
+        feeFineAttribute: 'FEE_FINE_TYPE_NAME',
       },
     });
 
@@ -42,7 +42,7 @@ describe('Fee/fine type token', () => {
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
         type: DataTokenType.FEE_FINE_TYPE,
-        attribute: 'FEE_FINE_TYPE_ID',
+        feeFineAttribute: 'FEE_FINE_TYPE_ID',
       },
     });
   });

@@ -7,6 +7,7 @@ export default function UserInfoToken({ prefix }: { prefix: string }) {
     <UserItemInfoToken<UserAttribute>
       prefix={prefix}
       defaultValue="EXTERNAL_SYSTEM_ID"
+      attributeName="userAttribute"
       options={[
         {
           label: 'Folio ID',
