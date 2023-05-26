@@ -5,9 +5,8 @@ import {
 import FormValues from '../../types/FormValues';
 import SchedulingFrequency from '../../types/SchedulingFrequency';
 import { DataTokenType, HeaderFooterTokenType } from '../../types/TokenTypes';
-import formValuesToDto from './formValuesToDTO';
-import transferToDto from './transferToDto';
-import { BursarExportJobDTO, BursarExportTransferCriteria } from './types';
+import formValuesToDto from './formValuesToDto';
+import { BursarExportJobDTO } from './types';
 
 describe('Form values conversion', () => {
   const TEST_VALUE: Omit<FormValues, 'aggregate'> = {
