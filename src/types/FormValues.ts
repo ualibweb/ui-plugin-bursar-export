@@ -25,13 +25,13 @@ export default interface FormValues {
   dataAggregate?: DataToken[];
   footer?: HeaderFooterToken[];
 
-  transferInfo: {
+  transferInfo?: {
     conditions?: {
       condition: CriteriaGroup | CriteriaTerminal;
       owner?: string;
       account?: string;
-    };
-    else: {
+    }[];
+    else?: {
       owner?: string;
       account?: string;
     };

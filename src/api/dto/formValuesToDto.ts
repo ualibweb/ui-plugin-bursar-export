@@ -3,6 +3,7 @@ import aggregateCriteriaToFilterDto from './aggregateCriteriaToFilterDto';
 import criteriaToFilterDto from './criteriaToFilterDto';
 import dataToDto from './dataToDto';
 import headerFooterToDto from './headerFooterToDto';
+import transferToDto from './transferToDto';
 import { BursarExportJobDTO } from './types';
 
 export default function formValuesToDto(
@@ -17,16 +18,7 @@ export default function formValuesToDto(
       header: headerFooterToDto(values.header),
       data: dataToDto(values.dataAggregate),
       footer: headerFooterToDto(values.footer),
-      transferInfo: {
-        conditions: [],
-        else: { account: '' },
-      },
-      // groupByPatron: values.groupByPatron,
-      // groupByPatronFilter: values.groupByPatronFilter,
-      // header: values.header,
-      // data: values.data,
-      // footer: values.footer,
-      // transferInfo: values.transferInfo,
+      transferInfo: transferToDto(values.transferInfo),
     };
   } else {
     return {
@@ -40,12 +32,6 @@ export default function formValuesToDto(
         conditions: [],
         else: { account: '' },
       },
-      // groupByPatron: values.groupByPatron,
-      // groupByPatronFilter: values.groupByPatronFilter,
-      // header: values.header,
-      // data: values.data,
-      // footer: values.footer,
-      // transferInfo: values.transferInfo,
     };
   }
 }
