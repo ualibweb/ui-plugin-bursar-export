@@ -5,12 +5,15 @@ import {
   PaneFooter,
 } from '@folio/stripes/components';
 import React, { useCallback } from 'react';
-import ConfigurationForm from './form/ConfigurationForm';
+import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
 import useFeeFineOwners from './api/useFeeFineOwners';
 import useFeeFineTypes from './api/useFeeFineTypes';
 import useLocations from './api/useLocations';
 import usePatronGroups from './api/usePatronGroups';
 import useServicePoints from './api/useServicePoints';
+import FormValues from './types/FormValues';
+import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
+import formValuesToDto from './api/dto/formValuesToDto';
 
 export default function BursarExports() {
   const feeFineOwners = useFeeFineOwners();
@@ -19,7 +22,12 @@ export default function BursarExports() {
   const patronGroups = usePatronGroups();
   const servicePoints = useServicePoints();
 
-  const submitCallback = useCallback((v) => console.log(v), []);
+  const manualScheduler = useManualSchedulerMutation();
+
+  const submitCallback = useCallback(
+    (values: FormValues) => manualScheduler(formValuesToDto(values)),
+    []
+  );
 
   if (
     !feeFineOwners.isSuccess ||
@@ -51,7 +59,11 @@ export default function BursarExports() {
       defaultWidth="fill"
       footer={
         <PaneFooter
-          renderStart={<Button>Run manually</Button>}
+          renderStart={
+            <Button type="submit" form={FORM_ID}>
+              Run manually
+            </Button>
+          }
           renderEnd={<Button buttonStyle="primary">Save</Button>}
         />
       }
