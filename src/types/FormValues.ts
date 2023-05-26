@@ -40,4 +40,6 @@ export default interface FormValues {
       account?: string;
     };
   };
+
+  buttonClicked?: 'save' | 'manual';
 }

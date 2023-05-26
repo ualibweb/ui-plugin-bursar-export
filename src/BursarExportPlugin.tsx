@@ -4,7 +4,7 @@ import {
   Pane,
   PaneFooter,
 } from '@folio/stripes/components';
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
 import useFeeFineOwners from './api/useFeeFineOwners';
 import useFeeFineTypes from './api/useFeeFineTypes';
@@ -14,6 +14,9 @@ import useServicePoints from './api/useServicePoints';
 import FormValues from './types/FormValues';
 import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
 import formValuesToDto from './api/dto/formValuesToDto';
+import { FormApi } from 'final-form';
+import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
+import schedulingToDto from './api/dto/schedulingToDto';
 
 export default function BursarExports() {
   const feeFineOwners = useFeeFineOwners();
@@ -23,11 +26,20 @@ export default function BursarExports() {
   const servicePoints = useServicePoints();
 
   const manualScheduler = useManualSchedulerMutation();
+  const automaticScheduler = useAutomaticSchedulerMutation();
 
-  const submitCallback = useCallback(
-    (values: FormValues) => manualScheduler(formValuesToDto(values)),
-    []
-  );
+  const formApiRef = useRef<FormApi<FormValues>>(null);
+
+  const submitCallback = useCallback((values: FormValues) => {
+    if (values.buttonClicked === 'manual') {
+      manualScheduler(formValuesToDto(values));
+    } else {
+      automaticScheduler({
+        bursar: formValuesToDto(values),
+        scheduling: schedulingToDto(values.scheduling),
+      });
+    }
+  }, []);
 
   if (
     !feeFineOwners.isSuccess ||
@@ -60,11 +72,28 @@ export default function BursarExports() {
       footer={
         <PaneFooter
           renderStart={
-            <Button type="submit" form={FORM_ID}>
+            <Button
+              type="submit"
+              form={FORM_ID}
+              onClick={() =>
+                formApiRef.current?.change('buttonClicked', 'manual')
+              }
+            >
               Run manually
             </Button>
           }
-          renderEnd={<Button buttonStyle="primary">Save</Button>}
+          renderEnd={
+            <Button
+              buttonStyle="primary"
+              type="submit"
+              form={FORM_ID}
+              onClick={() =>
+                formApiRef.current?.change('buttonClicked', 'save')
+              }
+            >
+              Save
+            </Button>
+          }
         />
       }
       id="pane-batch-group-configuration"
@@ -73,11 +102,7 @@ export default function BursarExports() {
       <ConfigurationForm
         initialValues={{}}
         onSubmit={submitCallback}
-        feeFineOwners={feeFineOwners.data}
-        feeFineTypes={feeFineTypes.data}
-        locations={locations.data}
-        patronGroups={patronGroups.data}
-        servicePoints={servicePoints.data}
+        formApiRef={formApiRef}
       />
     </Pane>
   );
