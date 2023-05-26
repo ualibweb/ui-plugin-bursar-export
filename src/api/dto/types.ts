@@ -1,3 +1,5 @@
+import { Weekday } from '../../utils/WeekdayUtils';
+
 /**
  * Bursar export job schema
  */
@@ -295,6 +297,15 @@ export interface BursarExportTransferCriteria {
   else: {
     account: string;
   };
+}
+
+// from mod-data-export-spring
+export interface SchedulingDTO {
+  schedulePeriod: 'NONE' | 'HOUR' | 'DAY' | 'WEEK';
+  scheduleFrequency?: number;
+  /** straight from timepicker, for DAY and WEEK only  */
+  scheduleTime?: string;
+  weekDays?: Weekday[];
 }
 
 // for coverage
