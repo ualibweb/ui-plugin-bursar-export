@@ -8,7 +8,6 @@ export default function useAutomaticSchedulerMutation() {
   const context = useContext(CalloutContext);
 
   const mutation = useMutation(
-    // TODO: handle updating an existing job
     async (parameters: {
       bursar: BursarExportJobDTO;
       scheduling: SchedulingDTO;
