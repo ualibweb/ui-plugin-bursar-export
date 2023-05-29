@@ -3,7 +3,7 @@ import { waitFor } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
 import React, { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import useAutomaticSchedulerMutation from './useAutomaticSchedulerMutation';
+import useManualSchedulerMutation from './useManualSchedulerMutation';
 
 const kyMock = jest.fn();
 
@@ -35,25 +35,20 @@ describe('Automatic scheduling mutation', () => {
   );
 
   it('handles successful responses', async () => {
-    const { result: mutator } = renderHook(
-      () => useAutomaticSchedulerMutation(),
-      { wrapper }
-    );
+    const { result: mutator } = renderHook(() => useManualSchedulerMutation(), {
+      wrapper,
+    });
 
     kyMock.mockReturnValueOnce(Promise.resolve({}));
 
     act(() => {
-      mutator.current({
-        bursar: 'bursar data',
-        scheduling: { schedulingData: 'is here!' },
-      } as any);
+      mutator.current('bursar data' as any);
     });
 
     waitFor(() =>
       expect(kyMock).toHaveBeenLastCalledWith('data-export-spring/configs', {
         type: 'BURSAR_FEES_FINES',
         exportTypeSpecificParameters: { bursarFeeFines: 'bursar data' },
-        schedulingData: 'is here!',
       })
     );
 
@@ -66,18 +61,14 @@ describe('Automatic scheduling mutation', () => {
   });
 
   it('handles error responses', async () => {
-    const { result: mutator } = renderHook(
-      () => useAutomaticSchedulerMutation(),
-      { wrapper }
-    );
+    const { result: mutator } = renderHook(() => useManualSchedulerMutation(), {
+      wrapper,
+    });
 
     kyMock.mockReturnValueOnce(Promise.reject({}));
 
     act(() => {
-      mutator.current({
-        bursar: 'bursar data that fails',
-        scheduling: { schedulingData: 'is here!' },
-      } as any);
+      mutator.current('bursar data that fails' as any);
     });
 
     waitFor(() =>
@@ -86,7 +77,6 @@ describe('Automatic scheduling mutation', () => {
         exportTypeSpecificParameters: {
           bursarFeeFines: 'bursar data that fails',
         },
-        schedulingData: 'is here!',
       })
     );
 
