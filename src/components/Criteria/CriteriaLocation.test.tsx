@@ -74,7 +74,7 @@ const getResponse = jest.fn((endpoint: string) => {
       ],
     };
   } else {
-    throw new Error(`Unknown endpoint in mock: ${endpoint}`);
+    fail(`Unexpected endpoint: ${endpoint}`);
   }
 });
 
