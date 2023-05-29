@@ -13,16 +13,21 @@ export default function UserItemInfoToken<
 >({
   defaultValue,
   prefix,
+  attributeName,
   options,
 }: {
   defaultValue: T;
   prefix: string;
+  attributeName: string;
   options: SelectOptionType<T>[];
 }) {
   return (
     <>
       <Col xs={12} md={6}>
-        <Field<T> name={`${prefix}attribute`} defaultValue={defaultValue}>
+        <Field<T>
+          name={`${prefix}${attributeName}`}
+          defaultValue={defaultValue}
+        >
           {(fieldProps) => (
             <Select<T>
               {...fieldProps}

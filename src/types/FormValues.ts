@@ -1,3 +1,4 @@
+import { SelectOptionType } from '@folio/stripes/components';
 import {
   CriteriaAggregate,
   CriteriaGroup,
@@ -5,6 +6,7 @@ import {
 } from './CriteriaTypes';
 import SchedulingFrequency from './SchedulingFrequency';
 import { DataToken, HeaderFooterToken } from './TokenTypes';
+import { Weekday } from '../utils/WeekdayUtils';
 
 // for coverage
 export const TYPE_ONLY = true;
@@ -12,7 +14,9 @@ export const TYPE_ONLY = true;
 export default interface FormValues {
   scheduling: {
     frequency: SchedulingFrequency;
-    interval?: number;
+    interval?: string;
+    time?: string;
+    weekdays?: SelectOptionType<Weekday>[];
   };
 
   criteria: CriteriaGroup | CriteriaTerminal;
@@ -25,15 +29,17 @@ export default interface FormValues {
   dataAggregate?: DataToken[];
   footer?: HeaderFooterToken[];
 
-  transferInfo: {
-    conditions: {
+  transferInfo?: {
+    conditions?: {
       condition: CriteriaGroup | CriteriaTerminal;
       owner?: string;
       account?: string;
-    };
-    else: {
+    }[];
+    else?: {
       owner?: string;
       account?: string;
     };
   };
+
+  buttonClicked?: 'save' | 'manual';
 }

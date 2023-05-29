@@ -6,39 +6,41 @@ import {
   Row,
 } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
-import React, { FormEvent, useCallback } from 'react';
+import { FormApi } from 'final-form';
+import React, { FormEvent, MutableRefObject, useCallback } from 'react';
 import { FormRenderProps, FormSpy, useField } from 'react-final-form';
-import useFeeFineOwners, { FeeFineOwnerDTO } from '../api/useFeeFineOwners';
-import useFeeFineTypes, { FeeFineTypeDTO } from '../api/useFeeFineTypes';
-import useLocations, { LocationDTO } from '../api/useLocations';
-import usePatronGroups, { PatronGroupDTO } from '../api/usePatronGroups';
-import useServicePoints, { ServicePointDTO } from '../api/useServicePoints';
-import useTransferAccounts from '../api/useTransferAccounts';
-import CriteriaMenu from './sections/CriteriaMenu';
-import SchedulingMenu from './sections/SchedulingMenu';
-import FormValues from '../types/FormValues';
+import formValuesToDto from '../api/dto/formValuesToDto';
 import useCampuses from '../api/useCampuses';
+import useFeeFineOwners from '../api/useFeeFineOwners';
+import useFeeFineTypes from '../api/useFeeFineTypes';
 import useInstitutions from '../api/useInstitutions';
 import useLibraries from '../api/useLibraries';
-import HeaderFooterMenu from './sections/HeaderFooterMenu';
-import DataTokenMenu from './sections/DataTokenMenu';
-import TransferInfoMenu from './sections/TransferInfoMenu';
+import useLocations from '../api/useLocations';
+import usePatronGroups from '../api/usePatronGroups';
+import useServicePoints from '../api/useServicePoints';
+import useTransferAccounts from '../api/useTransferAccounts';
+import FormValues from '../types/FormValues';
 import AggregateMenu from './sections/AggregateMenu';
+import CriteriaMenu from './sections/CriteriaMenu';
+import DataTokenMenu from './sections/DataTokenMenu';
 import ExportPreview from './sections/ExportPreview';
+import HeaderFooterMenu from './sections/HeaderFooterMenu';
+import SchedulingMenu from './sections/SchedulingMenu';
+import TransferInfoMenu from './sections/TransferInfoMenu';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
 interface ConfigurationFormProps {
-  feeFineOwners: FeeFineOwnerDTO[];
-  feeFineTypes: FeeFineTypeDTO[];
-  locations: LocationDTO[];
-  patronGroups: PatronGroupDTO[];
-  servicePoints: ServicePointDTO[];
+  formApiRef: MutableRefObject<FormApi<FormValues> | null>;
 }
 
 function ConfigurationForm({
   handleSubmit,
+  formApiRef,
+  form,
 }: FormRenderProps<FormValues> & ConfigurationFormProps) {
+  formApiRef.current = form;
+
   const submitter = useCallback(
     (e: FormEvent) => {
       handleSubmit(e)?.catch(() => {
@@ -95,6 +97,13 @@ function ConfigurationForm({
         <Accordion label="Debug (form state)">
           <FormSpy subscription={{ values: true }}>
             {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
+          </FormSpy>
+        </Accordion>
+        <Accordion label="Debug (formValuesToDto)">
+          <FormSpy<FormValues> subscription={{ values: true }}>
+            {({ values }) => (
+              <pre>{JSON.stringify(formValuesToDto(values), undefined, 2)}</pre>
+            )}
           </FormSpy>
         </Accordion>
         <Accordion label="Debug (usePatronGroups)" closedByDefault>

@@ -4,7 +4,7 @@ export const TYPE_ONLY = true;
 export default interface LengthControl {
   drawerOpen?: boolean;
 
-  character: string;
+  character?: string;
   length: string;
   direction: 'FRONT' | 'BACK';
   truncate: boolean;

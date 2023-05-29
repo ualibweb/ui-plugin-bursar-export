@@ -1,30 +1,8 @@
 import LengthControl from '../../types/LengthControl';
 import { DateFormatType } from '../../types/TokenTypes';
-import {
-  applyDecimalFormat,
-  applyLengthControl,
-  formatDate,
-  guardNumber,
-} from './utils';
+import { applyDecimalFormat, applyLengthControl, formatDate } from './utils';
 
 describe('Export preview utility functions', () => {
-  describe('guardNumber function', () => {
-    const TEST_FALLBACK = 1234.56;
-
-    test.each([
-      ['1', 1],
-      ['12', 12],
-      [' 12.5', 12.5],
-      [' 12.52', 12.52],
-      ['abc', TEST_FALLBACK],
-      ['', TEST_FALLBACK],
-      [undefined, TEST_FALLBACK],
-      ['a123', TEST_FALLBACK],
-    ])('guardNumber(%s) = %s', (input, expected) =>
-      expect(guardNumber(input, TEST_FALLBACK)).toBe(expected)
-    );
-  });
-
   describe('date formatter', () => {
     // Jan 2, 2021 @ 03:04:05
     const TEST_DATE = new Date(2021, 0, 2, 3, 4, 5);

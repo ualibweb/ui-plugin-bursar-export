@@ -1,3 +1,4 @@
+import { CriteriaTerminalType } from '../../types/CriteriaTypes';
 import {
   DataToken,
   DataTokenType,
@@ -74,8 +75,8 @@ describe('Preview data generation', () => {
   const TEST_AMOUNT = 12.34;
   const TEST_COUNT = 5;
 
-  test.each([
-    [{}, ''],
+  test.each<[Partial<DataToken>, string]>([
+    [{} as DataToken, ''],
     [{ type: DataTokenType.ARBITRARY_TEXT }, ''],
     [{ type: DataTokenType.ARBITRARY_TEXT, text: 'foo' }, 'foo'],
     [{ type: DataTokenType.NEWLINE }, '\n'],
@@ -94,11 +95,17 @@ describe('Preview data generation', () => {
       '2001',
     ],
     [
-      { type: DataTokenType.FEE_FINE_TYPE, attribute: 'FEE_FINE_TYPE_ID' },
+      {
+        type: DataTokenType.FEE_FINE_TYPE,
+        feeFineAttribute: 'FEE_FINE_TYPE_ID',
+      },
       'UUID',
     ],
     [{ type: DataTokenType.ITEM_INFO }, 'UUID'],
-    [{ type: DataTokenType.USER_DATA, attribute: 'BARCODE' }, 'ALPHANUMERIC'],
+    [
+      { type: DataTokenType.USER_DATA, userAttribute: 'BARCODE' },
+      'ALPHANUMERIC',
+    ],
     [
       {
         type: DataTokenType.CONSTANT_CONDITIONAL,
@@ -109,13 +116,13 @@ describe('Preview data generation', () => {
     [
       {
         type: DataTokenType.CONSTANT_CONDITIONAL,
-        conditions: [{ value: 'foo' }],
+        conditions: [{ type: CriteriaTerminalType.PASS, value: 'foo' }],
         else: 'else',
       },
       'foo',
     ],
     [{ type: DataTokenType.AGGREGATE_COUNT }, '5'],
-  ] as const)('tokenToNode(%o)=%s', (token, expected) =>
+  ])('tokenToNode(%o)=%s', (token, expected) =>
     expect(tokenToNode(token as DataToken, TEST_AMOUNT, TEST_COUNT)).toBe(
       expected
     )

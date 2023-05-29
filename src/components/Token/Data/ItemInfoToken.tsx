@@ -7,6 +7,7 @@ export default function ItemInfoToken({ prefix }: { prefix: string }) {
     <UserItemInfoToken<ItemAttribute>
       prefix={prefix}
       defaultValue="NAME"
+      attributeName="itemAttribute"
       options={[
         {
           label: 'Name',

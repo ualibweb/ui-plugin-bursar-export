@@ -2,12 +2,8 @@ import {
   HeaderFooterToken,
   HeaderFooterTokenType,
 } from '../../types/TokenTypes';
-import {
-  applyDecimalFormat,
-  applyLengthControl,
-  formatDate,
-  guardNumber,
-} from './utils';
+import { guardNumberPositive } from '../../utils/guardNumber';
+import { applyDecimalFormat, applyLengthControl, formatDate } from './utils';
 
 export function tokenToNode(
   token: HeaderFooterToken,
@@ -26,7 +22,7 @@ export function tokenToNode(
     case HeaderFooterTokenType.COMMA:
       return ',';
     case HeaderFooterTokenType.SPACE:
-      return ' '.repeat(guardNumber(token.repeat, 1));
+      return ' '.repeat(guardNumberPositive(token.repeat));
 
     case HeaderFooterTokenType.CURRENT_DATE:
       return applyLengthControl(

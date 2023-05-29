@@ -3,7 +3,7 @@ import React from 'react';
 import { CriteriaAggregateType } from '../../types/CriteriaTypes';
 import { Field, useField } from 'react-final-form';
 import OperatorSelect from '../Criteria/OperatorSelect';
-import useMonetaryOnBlur from '../../utils/useMonetaryOnBlur';
+import useMonetaryOnBlur from '../../hooks/useMonetaryOnBlur';
 
 export default function AggregateCriteriaCard() {
   const selectedType = useField<CriteriaAggregateType>('aggregateFilter.type', {

@@ -45,8 +45,8 @@ export default function HandleInvisible({
           piece,
           '\n',
           <>
-            <br />
             <Invisible>\n</Invisible>
+            <br />
           </>
         )
       )

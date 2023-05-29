@@ -42,7 +42,7 @@ describe('Item info type token', () => {
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
         type: DataTokenType.ITEM_INFO,
-        attribute: 'INSTITUTION_ID',
+        itemAttribute: 'INSTITUTION_ID',
         placeholder: 'foo bar fallback',
       },
     });

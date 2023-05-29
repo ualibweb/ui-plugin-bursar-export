@@ -42,7 +42,7 @@ describe('Item info type token', () => {
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
         type: DataTokenType.USER_DATA,
-        attribute: 'PATRON_GROUP_ID',
+        userAttribute: 'PATRON_GROUP_ID',
         placeholder: 'foo bar fallback',
       },
     });

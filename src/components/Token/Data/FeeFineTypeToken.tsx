@@ -6,7 +6,7 @@ export default function FeeFineTypeToken({ prefix }: { prefix: string }) {
   return (
     <Col xs={12}>
       <Field<'FEE_FINE_TYPE_ID' | 'FEE_FINE_TYPE_NAME'>
-        name={`${prefix}attribute`}
+        name={`${prefix}feeFineAttribute`}
         defaultValue="FEE_FINE_TYPE_NAME"
       >
         {(fieldProps) => (
