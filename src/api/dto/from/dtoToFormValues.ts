@@ -3,6 +3,7 @@ import { LocaleWeekdayInfo } from '../../../utils/WeekdayUtils';
 import { SavedJobDTO } from '../types';
 import dtoToAggregateCriteria from './dtoToAggregateCriteria';
 import dtoToCriteria from './dtoToCriteria';
+import dtoToData from './dtoToData';
 import dtoToHeaderFooter from './dtoToHeaderFooter';
 import dtoToScheduling from './dtoToScheduling';
 
@@ -12,23 +13,46 @@ export default function dtoToFormValues(
 ): Partial<FormValues> {
   if (values === null) return {};
 
-  return {
-    scheduling: dtoToScheduling(values, localeWeekdays),
+  if (values.exportTypeSpecificParameters.bursarFeeFines.groupByPatron) {
+    return {
+      scheduling: dtoToScheduling(values, localeWeekdays),
 
-    criteria: dtoToCriteria(
-      values.exportTypeSpecificParameters.bursarFeeFines.filter
-    ),
+      criteria: dtoToCriteria(
+        values.exportTypeSpecificParameters.bursarFeeFines.filter
+      ),
 
-    aggregate: values.exportTypeSpecificParameters.bursarFeeFines.groupByPatron,
-    aggregateFilter: dtoToAggregateCriteria(
-      values.exportTypeSpecificParameters.bursarFeeFines.groupByPatronFilter
-    ),
+      aggregate: true,
+      aggregateFilter: dtoToAggregateCriteria(
+        values.exportTypeSpecificParameters.bursarFeeFines.groupByPatronFilter
+      ),
 
-    header: dtoToHeaderFooter(
-      values.exportTypeSpecificParameters.bursarFeeFines.header
-    ),
-    footer: dtoToHeaderFooter(
-      values.exportTypeSpecificParameters.bursarFeeFines.header
-    ),
-  };
+      header: dtoToHeaderFooter(
+        values.exportTypeSpecificParameters.bursarFeeFines.header
+      ),
+      dataAggregate: dtoToData(
+        values.exportTypeSpecificParameters.bursarFeeFines.data
+      ),
+      footer: dtoToHeaderFooter(
+        values.exportTypeSpecificParameters.bursarFeeFines.header
+      ),
+    };
+  } else {
+    return {
+      scheduling: dtoToScheduling(values, localeWeekdays),
+
+      criteria: dtoToCriteria(
+        values.exportTypeSpecificParameters.bursarFeeFines.filter
+      ),
+
+      aggregate: false,
+
+      header: dtoToHeaderFooter(
+        values.exportTypeSpecificParameters.bursarFeeFines.header
+      ),
+      data: dtoToData(values.exportTypeSpecificParameters.bursarFeeFines.data),
+      footer: dtoToHeaderFooter(
+        values.exportTypeSpecificParameters.bursarFeeFines.header
+      ),
+    };
+  }
 }
