@@ -10,11 +10,11 @@ import formValuesToDto from './api/dto/formValuesToDto';
 import schedulingToDto from './api/dto/schedulingToDto';
 import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
 import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
-import useFeeFineOwners from './api/useFeeFineOwners';
-import useFeeFineTypes from './api/useFeeFineTypes';
-import useLocations from './api/useLocations';
-import usePatronGroups from './api/usePatronGroups';
-import useServicePoints from './api/useServicePoints';
+import useFeeFineOwners from './api/queries/useFeeFineOwners';
+import useFeeFineTypes from './api/queries/useFeeFineTypes';
+import useLocations from './api/queries/useLocations';
+import usePatronGroups from './api/queries/usePatronGroups';
+import useServicePoints from './api/queries/useServicePoints';
 import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
 import FormValues from './types/FormValues';
 
