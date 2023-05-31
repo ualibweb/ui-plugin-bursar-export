@@ -14,8 +14,12 @@ import dtoToLengthControl from './dtoToLengthControl';
 
 // inverse of ../to/dataToDto
 export default function dtoToData(
-  tokens: BursarExportDataTokenDTO[]
+  tokens: BursarExportDataTokenDTO[] | undefined
 ): DataToken[] {
+  if (tokens === undefined) {
+    return [];
+  }
+
   return tokens.map(dtoToDataToken);
 }
 

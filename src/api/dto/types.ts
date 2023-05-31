@@ -10,9 +10,9 @@ export interface BursarExportJobDTO {
   filter: BursarExportFilterDTO;
   groupByPatron: boolean;
   groupByPatronFilter?: BursarExportFilterAggregate;
-  header: BursarExportHeaderFooterTokenDTO[];
-  data: BursarExportDataTokenDTO[];
-  footer: BursarExportHeaderFooterTokenDTO[];
+  header?: BursarExportHeaderFooterTokenDTO[];
+  data?: BursarExportDataTokenDTO[];
+  footer?: BursarExportHeaderFooterTokenDTO[];
   transferInfo: BursarExportTransferCriteria;
 }
 
@@ -284,7 +284,7 @@ export interface BursarExportTokenConditional {
  * Transfer criteria
  */
 export interface BursarExportTransferCriteria {
-  conditions: {
+  conditions?: {
     /**
      * Filter for bursar export job
      */
@@ -313,7 +313,9 @@ export interface SavedJobDTO extends SchedulingDTO {
   type: 'BURSAR_FEES_FINES';
   tenant: string;
 
-  exportTypeSpecificParameters: { bursarFeeFines: BursarExportJobDTO };
+  exportTypeSpecificParameters: {
+    bursarFeeFines: BursarExportJobDTO;
+  };
 }
 
 // for coverage

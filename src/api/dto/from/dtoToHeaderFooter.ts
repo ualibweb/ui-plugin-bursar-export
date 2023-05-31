@@ -13,8 +13,11 @@ import dtoToLengthControl from './dtoToLengthControl';
 
 // inverse of ../to/headerFooterToDto
 export default function dtoToHeaderFooter(
-  tokens: BursarExportHeaderFooterTokenDTO[]
+  tokens: BursarExportHeaderFooterTokenDTO[] | undefined
 ): HeaderFooterToken[] {
+  if (tokens === undefined) {
+    return [];
+  }
   return tokens.map(dtoToHeaderFooterToken);
 }
 
