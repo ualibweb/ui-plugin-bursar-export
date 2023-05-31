@@ -6,12 +6,15 @@ import dtoToCriteria from './dtoToCriteria';
 import dtoToData from './dtoToData';
 import dtoToHeaderFooter from './dtoToHeaderFooter';
 import dtoToScheduling from './dtoToScheduling';
+import dtoToTransfer from './dtoToTransfer';
 
 export default function dtoToFormValues(
   values: SavedJobDTO | null,
   localeWeekdays: LocaleWeekdayInfo[]
 ): Partial<FormValues> {
-  if (values === null) return {};
+  if (values === null) {
+    return {};
+  }
 
   if (values.exportTypeSpecificParameters.bursarFeeFines.groupByPatron) {
     return {
@@ -35,6 +38,10 @@ export default function dtoToFormValues(
       footer: dtoToHeaderFooter(
         values.exportTypeSpecificParameters.bursarFeeFines.header
       ),
+
+      transferInfo: dtoToTransfer(
+        values.exportTypeSpecificParameters.bursarFeeFines.transferInfo
+      ),
     };
   } else {
     return {
@@ -52,6 +59,10 @@ export default function dtoToFormValues(
       data: dtoToData(values.exportTypeSpecificParameters.bursarFeeFines.data),
       footer: dtoToHeaderFooter(
         values.exportTypeSpecificParameters.bursarFeeFines.header
+      ),
+
+      transferInfo: dtoToTransfer(
+        values.exportTypeSpecificParameters.bursarFeeFines.transferInfo
       ),
     };
   }

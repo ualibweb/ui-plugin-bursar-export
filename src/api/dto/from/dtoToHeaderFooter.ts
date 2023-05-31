@@ -52,7 +52,7 @@ export function constantToToken(
     return { type: HeaderFooterTokenType.TAB };
   } else if (token.value === ConvenientConstants[HeaderFooterTokenType.COMMA]) {
     return { type: HeaderFooterTokenType.COMMA };
-  } else if (/^[ ]+$/.test(token.value)) {
+  } else if (/^ +$/.test(token.value)) {
     return {
       type: HeaderFooterTokenType.SPACE,
       repeat: token.value.length.toString(),

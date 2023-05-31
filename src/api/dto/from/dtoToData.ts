@@ -1,13 +1,11 @@
 import ConvenientConstants from '../../../types/ConvenientConstants';
 import {
   DataToken,
-  DateFormatType,
-  HeaderFooterToken,
   DataTokenType,
+  DateFormatType,
 } from '../../../types/TokenTypes';
 import {
   BursarExportDataTokenDTO,
-  BursarExportHeaderFooterTokenDTO,
   BursarExportTokenAggregate,
   BursarExportTokenConstant,
 } from '../types';
@@ -108,7 +106,7 @@ export function constantToToken(token: BursarExportTokenConstant): DataToken {
     return { type: DataTokenType.TAB };
   } else if (token.value === ConvenientConstants[DataTokenType.COMMA]) {
     return { type: DataTokenType.COMMA };
-  } else if (/^[ ]+$/.test(token.value)) {
+  } else if (/^ +$/.test(token.value)) {
     return {
       type: DataTokenType.SPACE,
       repeat: token.value.length.toString(),
