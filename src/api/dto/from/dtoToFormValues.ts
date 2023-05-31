@@ -1,16 +1,19 @@
-import { IntlShape } from 'react-intl';
 import FormValues from '../../../types/FormValues';
-import { SchedulingDTO } from '../types';
-import dtoToScheduling from './dtoToScheduling';
 import { LocaleWeekdayInfo } from '../../../utils/WeekdayUtils';
+import { SavedJobDTO } from '../types';
+import dtoToCriteria from './dtoToCriteria';
+import dtoToScheduling from './dtoToScheduling';
 
 export default function dtoToFormValues(
-  values: Required<SchedulingDTO> | null,
+  values: SavedJobDTO | null,
   localeWeekdays: LocaleWeekdayInfo[]
 ): Partial<FormValues> {
   if (values === null) return {};
 
   return {
     scheduling: dtoToScheduling(values, localeWeekdays),
+    criteria: dtoToCriteria(
+      values.exportTypeSpecificParameters.bursarFeeFines.filter
+    ),
   };
 }

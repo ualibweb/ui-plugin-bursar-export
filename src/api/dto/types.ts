@@ -301,15 +301,19 @@ export interface BursarExportTransferCriteria {
 
 // from mod-data-export-spring
 export interface SchedulingDTO {
-  id?: string;
-  type?: 'BURSAR_FEES_FINES';
-  tenant?: string;
-
   schedulePeriod: 'NONE' | 'HOUR' | 'DAY' | 'WEEK';
   scheduleFrequency?: number;
   /** straight from timepicker, for DAY and WEEK only  */
   scheduleTime?: string;
   weekDays?: Weekday[];
+}
+
+export interface SavedJobDTO extends SchedulingDTO {
+  id: string;
+  type: 'BURSAR_FEES_FINES';
+  tenant: string;
+
+  exportTypeSpecificParameters: { bursarFeeFines: BursarExportJobDTO };
 }
 
 // for coverage
