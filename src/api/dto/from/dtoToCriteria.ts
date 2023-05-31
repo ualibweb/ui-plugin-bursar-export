@@ -11,10 +11,10 @@ import {
   BursarExportFilterNegation,
 } from '../types';
 
+// inverse of ../to/criteriaToFilterDto
 export default function dtoToCriteria(
   filter: BursarExportFilterDTO
 ): CriteriaGroup | CriteriaTerminal {
-  // inverse of ../to/criteriaToFilterDto
   switch (filter.type) {
     case 'Age':
       return {
