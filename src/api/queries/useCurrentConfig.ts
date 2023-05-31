@@ -11,7 +11,7 @@ export default function useCurrentConfig() {
   const ky = useOkapiKy();
 
   return useQuery<SavedJobDTO | null>(
-    ['ui-plugin-bursar-export', 'institutions'],
+    ['ui-plugin-bursar-export', 'current-config'],
     async () =>
       (
         await ky
