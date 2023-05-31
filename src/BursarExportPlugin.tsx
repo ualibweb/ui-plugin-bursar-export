@@ -4,21 +4,21 @@ import {
   Pane,
   PaneFooter,
 } from '@folio/stripes/components';
+import { FormApi } from 'final-form';
 import React, { useCallback, useRef } from 'react';
-import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
+import formValuesToDto from './api/dto/formValuesToDto';
+import schedulingToDto from './api/dto/schedulingToDto';
+import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
+import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
 import useFeeFineOwners from './api/useFeeFineOwners';
 import useFeeFineTypes from './api/useFeeFineTypes';
 import useLocations from './api/useLocations';
 import usePatronGroups from './api/usePatronGroups';
 import useServicePoints from './api/useServicePoints';
+import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
 import FormValues from './types/FormValues';
-import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
-import formValuesToDto from './api/dto/formValuesToDto';
-import { FormApi } from 'final-form';
-import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
-import schedulingToDto from './api/dto/schedulingToDto';
 
-export default function BursarExports() {
+export default function BursarExportPlugin() {
   const feeFineOwners = useFeeFineOwners();
   const feeFineTypes = useFeeFineTypes();
   const locations = useLocations();
