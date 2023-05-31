@@ -1,11 +1,11 @@
-import ConvenientConstants from '../../types/ConvenientConstants';
+import ConvenientConstants from '../../../types/ConvenientConstants';
 import {
   HeaderFooterToken,
   HeaderFooterTokenType,
-} from '../../types/TokenTypes';
-import { guardNumberPositive } from '../../utils/guardNumber';
+} from '../../../types/TokenTypes';
+import { guardNumberPositive } from '../../../utils/guardNumber';
+import { BursarExportHeaderFooterTokenDTO } from '../types';
 import lengthControlToDto from './lengthControlToDto';
-import { BursarExportHeaderFooterTokenDTO } from './types';
 
 export default function headerFooterToDto(
   tokens: HeaderFooterToken[] | undefined

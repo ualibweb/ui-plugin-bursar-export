@@ -1,7 +1,7 @@
-import FormValues from '../../types/FormValues';
-import SchedulingFrequency from '../../types/SchedulingFrequency';
+import FormValues from '../../../types/FormValues';
+import SchedulingFrequency from '../../../types/SchedulingFrequency';
+import { SchedulingDTO } from '../types';
 import schedulingToDto from './schedulingToDto';
-import { SchedulingDTO } from './types';
 
 describe('Scheduling conversion to DTO', () => {
   it.each<[FormValues['scheduling'], SchedulingDTO]>([

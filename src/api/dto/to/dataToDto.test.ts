@@ -1,11 +1,11 @@
-import { CriteriaTerminalType } from '../../types/CriteriaTypes';
+import { CriteriaTerminalType } from '../../../types/CriteriaTypes';
 import {
   DataToken,
   DataTokenType,
   DateFormatType,
-} from '../../types/TokenTypes';
+} from '../../../types/TokenTypes';
+import { BursarExportDataTokenDTO } from '../types';
 import dataToDto, { dataTokenToDto } from './dataToDto';
-import { BursarExportDataTokenDTO } from './types';
 
 describe('Data token conversion', () => {
   test.each<[DataToken, BursarExportDataTokenDTO]>([

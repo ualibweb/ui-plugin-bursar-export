@@ -6,8 +6,8 @@ import {
 } from '@folio/stripes/components';
 import { FormApi } from 'final-form';
 import React, { useCallback, useRef } from 'react';
-import formValuesToDto from './api/dto/formValuesToDto';
-import schedulingToDto from './api/dto/schedulingToDto';
+import formValuesToDto from './api/dto/to/formValuesToDto';
+import schedulingToDto from './api/dto/to/schedulingToDto';
 import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
 import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
 import useFeeFineOwners from './api/queries/useFeeFineOwners';
@@ -17,6 +17,10 @@ import usePatronGroups from './api/queries/usePatronGroups';
 import useServicePoints from './api/queries/useServicePoints';
 import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
 import FormValues from './types/FormValues';
+import useCurrentConfig from './api/queries/useCurrentConfig';
+import dtoToFormValues from './api/dto/from/dtoToFormValues';
+import { useIntl } from 'react-intl';
+import { useLocaleWeekdays } from './utils/WeekdayUtils';
 
 export default function BursarExportPlugin() {
   const feeFineOwners = useFeeFineOwners();
@@ -25,8 +29,12 @@ export default function BursarExportPlugin() {
   const patronGroups = usePatronGroups();
   const servicePoints = useServicePoints();
 
+  const currentConfig = useCurrentConfig();
+
   const manualScheduler = useManualSchedulerMutation();
   const automaticScheduler = useAutomaticSchedulerMutation();
+
+  const localeWeekdays = useLocaleWeekdays(useIntl());
 
   const formApiRef = useRef<FormApi<FormValues>>(null);
 
@@ -41,7 +49,9 @@ export default function BursarExportPlugin() {
     }
   }, []);
 
+  // if any are not successful, show loading pane
   if (
+    !currentConfig.isSuccess ||
     !feeFineOwners.isSuccess ||
     !feeFineTypes.isSuccess ||
     !locations.isSuccess ||
@@ -100,7 +110,7 @@ export default function BursarExportPlugin() {
       paneTitle="Transfer configuration"
     >
       <ConfigurationForm
-        initialValues={{}}
+        initialValues={dtoToFormValues(currentConfig.data, localeWeekdays)}
         onSubmit={submitCallback}
         formApiRef={formApiRef}
       />

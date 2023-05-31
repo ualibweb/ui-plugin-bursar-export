@@ -1,6 +1,6 @@
-import FormValues from '../../types/FormValues';
+import FormValues from '../../../types/FormValues';
+import { BursarExportTransferCriteria } from '../types';
 import criteriaToFilterDto from './criteriaToFilterDto';
-import { BursarExportTransferCriteria } from './types';
 
 export default function transferToDto(
   transferInfo: FormValues['transferInfo']

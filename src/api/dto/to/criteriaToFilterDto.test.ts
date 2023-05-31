@@ -4,9 +4,9 @@ import {
   CriteriaGroupType,
   CriteriaTerminal,
   CriteriaTerminalType,
-} from '../../types/CriteriaTypes';
+} from '../../../types/CriteriaTypes';
+import { BursarExportFilterDTO } from '../types';
 import criteriaToFilterDto from './criteriaToFilterDto';
-import { BursarExportFilterDTO } from './types';
 
 describe('Conversion of form values to filter DTO', () => {
   it.each<[CriteriaGroup | CriteriaTerminal, BursarExportFilterDTO]>([

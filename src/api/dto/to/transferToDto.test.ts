@@ -1,7 +1,7 @@
-import { CriteriaTerminalType } from '../../types/CriteriaTypes';
-import FormValues from '../../types/FormValues';
+import { CriteriaTerminalType } from '../../../types/CriteriaTypes';
+import FormValues from '../../../types/FormValues';
+import { BursarExportTransferCriteria } from '../types';
 import transferToDto from './transferToDto';
-import { BursarExportTransferCriteria } from './types';
 
 describe('Transfer info conversion', () => {
   test.each<[FormValues['transferInfo'], BursarExportTransferCriteria]>([

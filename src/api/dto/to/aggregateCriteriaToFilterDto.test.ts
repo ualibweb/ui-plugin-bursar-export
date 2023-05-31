@@ -2,9 +2,9 @@ import {
   ComparisonOperator,
   CriteriaAggregate,
   CriteriaAggregateType,
-} from '../../types/CriteriaTypes';
+} from '../../../types/CriteriaTypes';
 import aggregateCriteriaToFilterDto from './aggregateCriteriaToFilterDto';
-import { BursarExportFilterAggregate } from './types';
+import { BursarExportFilterAggregate } from '../types';
 
 describe('Conversion of aggregate criteria to filter DTO', () => {
   it.each<

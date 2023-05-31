@@ -9,8 +9,9 @@ import stripesFinalForm from '@folio/stripes/final-form';
 import { FormApi } from 'final-form';
 import React, { FormEvent, MutableRefObject, useCallback } from 'react';
 import { FormRenderProps, FormSpy, useField } from 'react-final-form';
-import formValuesToDto from '../api/dto/formValuesToDto';
+import formValuesToDto from '../api/dto/to/formValuesToDto';
 import useCampuses from '../api/queries/useCampuses';
+import useCurrentConfig from '../api/queries/useCurrentConfig';
 import useFeeFineOwners from '../api/queries/useFeeFineOwners';
 import useFeeFineTypes from '../api/queries/useFeeFineTypes';
 import useInstitutions from '../api/queries/useInstitutions';
@@ -27,6 +28,9 @@ import ExportPreview from './sections/ExportPreview';
 import HeaderFooterMenu from './sections/HeaderFooterMenu';
 import SchedulingMenu from './sections/SchedulingMenu';
 import TransferInfoMenu from './sections/TransferInfoMenu';
+import dtoToFormValues from '../api/dto/from/dtoToFormValues';
+import { useIntl } from 'react-intl';
+import { useLocaleWeekdays } from '../utils/WeekdayUtils';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -105,6 +109,21 @@ function ConfigurationForm({
               <pre>{JSON.stringify(formValuesToDto(values), undefined, 2)}</pre>
             )}
           </FormSpy>
+        </Accordion>
+        <Accordion label="Debug (useCurrentConfig)">
+          <pre>{JSON.stringify(useCurrentConfig().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (dtoToFormValues(useCurrentConfig))">
+          <pre>
+            {JSON.stringify(
+              dtoToFormValues(
+                useCurrentConfig().data ?? null,
+                useLocaleWeekdays(useIntl())
+              ),
+              undefined,
+              2
+            )}
+          </pre>
         </Accordion>
         <Accordion label="Debug (usePatronGroups)" closedByDefault>
           <pre>{JSON.stringify(usePatronGroups().data, undefined, 2)}</pre>

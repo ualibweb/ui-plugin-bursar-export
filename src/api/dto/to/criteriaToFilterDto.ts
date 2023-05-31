@@ -3,14 +3,14 @@ import {
   CriteriaGroupType,
   CriteriaTerminal,
   CriteriaTerminalType,
-} from '../../types/CriteriaTypes';
-import guardNumber from '../../utils/guardNumber';
-import { BursarExportFilterDTO } from './types';
+} from '../../../types/CriteriaTypes';
+import guardNumber from '../../../utils/guardNumber';
+import { BursarExportFilterDTO } from '../types';
 
 export default function criteriaToFilterDto(
-  criteria: CriteriaGroup | CriteriaTerminal
+  criteria: CriteriaGroup | CriteriaTerminal | undefined
 ): BursarExportFilterDTO {
-  switch (criteria.type) {
+  switch (criteria?.type) {
     case CriteriaTerminalType.AGE:
       return {
         type: 'Age',

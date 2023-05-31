@@ -1,7 +1,7 @@
-import FormValues from '../../types/FormValues';
-import SchedulingFrequency from '../../types/SchedulingFrequency';
-import { guardNumberPositive } from '../../utils/guardNumber';
-import { SchedulingDTO } from './types';
+import FormValues from '../../../types/FormValues';
+import SchedulingFrequency from '../../../types/SchedulingFrequency';
+import { guardNumberPositive } from '../../../utils/guardNumber';
+import { SchedulingDTO } from '../types';
 
 export default function schedulingToDto(
   values: FormValues['scheduling']
