@@ -6,13 +6,9 @@ import ExportPreview from './ExportPreview';
 import { DataTokenType, HeaderFooterTokenType } from '../../types/TokenTypes';
 import userEvent from '@testing-library/user-event';
 
-jest.mock('@faker-js/faker', () => ({
-  faker: {
-    number: {
-      int: jest.fn(() => 2),
-      float: jest.fn(() => 12.34),
-    },
-  },
+jest.mock('@ngneat/falso', () => ({
+  randFloat: jest.fn(() => 12.34),
+  randNumber: jest.fn(() => 2),
 }));
 
 describe('Export preview component', () => {
