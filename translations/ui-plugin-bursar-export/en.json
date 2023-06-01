@@ -1,7 +1,7 @@
 {
-  "meta.title": "Transfer criteria",
+  "meta.title": "Transfer configuration",
 
-  "bursarExports.paneTitle": "Transfer criteria",
+  "bursarExports.paneTitle": "Transfer configuration",
 
   "bursarExports.scheduling.accordion": "Scheduling",
   "bursarExports.scheduling.frequency": "Frequency",

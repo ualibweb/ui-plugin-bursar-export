@@ -91,7 +91,9 @@ export default function BursarExportPlugin() {
         />
       }
       id="pane-batch-group-configuration"
-      paneTitle="Transfer configuration"
+      paneTitle={
+        <FormattedMessage id="ui-plugin-bursar-export.bursarExports.paneTitle" />
+      }
     >
       <ConfigurationForm
         initialValues={initialValues}
