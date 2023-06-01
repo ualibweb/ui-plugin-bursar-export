@@ -37,12 +37,12 @@ export default function useAutomaticSchedulerMutation() {
     {
       onError: () =>
         context.sendCallout({ type: 'error', message: 'Failed to save job' }),
-      onSuccess: () => {
+      onSuccess: async () => {
         context.sendCallout({
           type: 'success',
           message: 'Configuration saved',
         });
-        queryClient.invalidateQueries([
+        await queryClient.invalidateQueries([
           'ui-plugin-bursar-export',
           'current-config',
         ]);
