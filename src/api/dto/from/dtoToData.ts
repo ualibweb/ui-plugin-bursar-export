@@ -4,6 +4,8 @@ import {
   DataTokenType,
   DateFormatType,
 } from '../../../types/TokenTypes';
+import { FeeFineTypeDTO } from '../../queries/useFeeFineTypes';
+import { LocationDTO } from '../../queries/useLocations';
 import {
   BursarExportDataTokenDTO,
   BursarExportTokenAggregate,
@@ -14,16 +16,22 @@ import dtoToLengthControl from './dtoToLengthControl';
 
 // inverse of ../to/dataToDto
 export default function dtoToData(
-  tokens: BursarExportDataTokenDTO[] | undefined
+  tokens: BursarExportDataTokenDTO[] | undefined,
+  feeFineTypes: FeeFineTypeDTO[],
+  locations: LocationDTO[]
 ): DataToken[] {
   if (tokens === undefined) {
     return [];
   }
 
-  return tokens.map(dtoToDataToken);
+  return tokens.map((token) => dtoToDataToken(token, feeFineTypes, locations));
 }
 
-export function dtoToDataToken(token: BursarExportDataTokenDTO): DataToken {
+export function dtoToDataToken(
+  token: BursarExportDataTokenDTO,
+  feeFineTypes: FeeFineTypeDTO[],
+  locations: LocationDTO[]
+): DataToken {
   switch (token.type) {
     case 'Constant':
       return constantToToken(token);
@@ -91,7 +99,7 @@ export function dtoToDataToken(token: BursarExportDataTokenDTO): DataToken {
       return {
         type: DataTokenType.CONSTANT_CONDITIONAL,
         conditions: token.conditions.map((condition) => ({
-          ...dtoToCriteria(condition.condition),
+          ...dtoToCriteria(condition.condition, feeFineTypes, locations),
           value: condition.value.value,
         })),
         else: token.else.value,

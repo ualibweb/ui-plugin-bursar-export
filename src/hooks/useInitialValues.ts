@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import dtoToFormValues from '../api/dto/from/dtoToFormValues';
 import useCurrentConfig from '../api/queries/useCurrentConfig';
 import useFeeFineTypes from '../api/queries/useFeeFineTypes';
+import useLocations from '../api/queries/useLocations';
 import useTransferAccounts from '../api/queries/useTransferAccounts';
 import FormValues from '../types/FormValues';
 import { useLocaleWeekdays } from '../utils/WeekdayUtils';
@@ -11,6 +12,7 @@ export default function useInitialValues() {
   const currentConfig = useCurrentConfig();
 
   const feeFineTypes = useFeeFineTypes();
+  const locations = useLocations();
   const transferAccounts = useTransferAccounts();
 
   const localeWeekdays = useLocaleWeekdays(useIntl());
@@ -27,6 +29,7 @@ export default function useInitialValues() {
     if (
       !currentConfig.isSuccess ||
       !feeFineTypes.isSuccess ||
+      !locations.isSuccess ||
       !transferAccounts.isSuccess
     ) {
       return;
@@ -37,6 +40,7 @@ export default function useInitialValues() {
         currentConfig.data,
         localeWeekdays,
         feeFineTypes.data,
+        locations.data,
         transferAccounts.data
       )
     );
@@ -44,6 +48,7 @@ export default function useInitialValues() {
     currentConfig.isSuccess,
     localeWeekdays,
     feeFineTypes.isSuccess,
+    locations.isSuccess,
     transferAccounts.isSuccess,
   ]);
 

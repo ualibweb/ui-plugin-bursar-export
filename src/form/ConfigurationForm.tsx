@@ -114,7 +114,7 @@ function ConfigurationForm({
         <Accordion label="Debug (useCurrentConfig)" closedByDefault>
           <pre>{JSON.stringify(useCurrentConfig().data, undefined, 2)}</pre>
         </Accordion>
-        <Accordion label="Debug (useInitialValues())">
+        <Accordion label="Debug (useInitialValues)">
           <pre>{JSON.stringify(useInitialValues(), undefined, 2)}</pre>
         </Accordion>
         <Accordion label="Debug (usePatronGroups)" closedByDefault>
