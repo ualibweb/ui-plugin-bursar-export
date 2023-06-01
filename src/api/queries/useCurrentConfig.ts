@@ -15,7 +15,7 @@ export default function useCurrentConfig() {
     async () =>
       (
         await ky
-          .get(`data-export-spring/configs`, {
+          .get('data-export-spring/configs', {
             searchParams: { limit: 1, query: 'type==BURSAR_FEES_FINES' },
           })
           .json<CurrentConfigResponse>()
