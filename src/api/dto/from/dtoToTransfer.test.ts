@@ -1,10 +1,7 @@
-import * as Weekdays from '../../../test/data/Weekdays';
 import { CriteriaTerminalType } from '../../../types/CriteriaTypes';
 import FormValues from '../../../types/FormValues';
-import SchedulingFrequency from '../../../types/SchedulingFrequency';
 import { TransferAccountDTO } from '../../queries/useTransferAccounts';
-import { BursarExportTransferCriteria, SchedulingDTO } from '../types';
-import dtoToScheduling from './dtoToScheduling';
+import { BursarExportTransferCriteria } from '../types';
 import dtoToTransfer from './dtoToTransfer';
 
 test.each<
