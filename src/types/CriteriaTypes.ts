@@ -22,6 +22,10 @@ export type CriteriaTerminal =
       amountDollars?: string;
     }
   | {
+      type: CriteriaTerminalType.FEE_FINE_OWNER;
+      feeFineOwnerId?: string;
+    }
+  | {
       type: CriteriaTerminalType.FEE_FINE_TYPE;
       feeFineOwnerId?: string;
       feeFineTypeId?: string;
@@ -68,6 +72,7 @@ export enum CriteriaTerminalType {
 
   AGE = 'Age',
   AMOUNT = 'Amount',
+  FEE_FINE_OWNER = 'FeeFineOwner',
   FEE_FINE_TYPE = 'FeeType',
   LOCATION = 'Location',
   SERVICE_POINT = 'ServicePoint',

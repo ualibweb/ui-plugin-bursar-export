@@ -59,6 +59,10 @@ export default function CriteriaCardSelect({
               value: CriteriaTerminalType.AMOUNT,
             },
             {
+              label: 'Fee/fine owner',
+              value: CriteriaTerminalType.FEE_FINE_OWNER,
+            },
+            {
               label: 'Fee/fine type',
               value: CriteriaTerminalType.FEE_FINE_TYPE,
             },

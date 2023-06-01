@@ -41,6 +41,18 @@ describe('Conversion of form values to filter DTO', () => {
     ],
 
     [
+      { type: CriteriaTerminalType.FEE_FINE_OWNER },
+      { type: 'FeeFineOwner', feeFineOwner: '' },
+    ],
+    [
+      {
+        type: CriteriaTerminalType.FEE_FINE_OWNER,
+        feeFineOwnerId: 'fee-fine-owner-id',
+      },
+      { type: 'FeeFineOwner', feeFineOwner: 'fee-fine-owner-id' },
+    ],
+
+    [
       { type: CriteriaTerminalType.LOCATION },
       { type: 'Location', locationId: '' },
     ],

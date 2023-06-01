@@ -30,6 +30,12 @@ export default function criteriaToFilterDto(
         feeFineTypeId: criteria.feeFineTypeId ?? '',
       };
 
+    case CriteriaTerminalType.FEE_FINE_OWNER:
+      return {
+        type: 'FeeFineOwner',
+        feeFineOwner: criteria.feeFineOwnerId ?? '',
+      };
+
     case CriteriaTerminalType.LOCATION:
       return {
         type: 'Location',

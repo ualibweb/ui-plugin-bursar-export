@@ -29,7 +29,12 @@ export default function dtoToCriteria(
       return {
         type: CriteriaTerminalType.AMOUNT,
         operator: filter.condition as ComparisonOperator,
-        amountDollars: (filter.amount / 100).toFixed(),
+        amountDollars: (filter.amount / 100).toFixed(2),
+      };
+    case 'FeeFineOwner':
+      return {
+        type: CriteriaTerminalType.FEE_FINE_OWNER,
+        feeFineOwnerId: filter.feeFineOwner,
       };
     case 'FeeType':
       return {
