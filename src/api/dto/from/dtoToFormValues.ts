@@ -1,5 +1,7 @@
 import FormValues from '../../../types/FormValues';
 import { LocaleWeekdayInfo } from '../../../utils/WeekdayUtils';
+import { FeeFineTypeDTO } from '../../queries/useFeeFineTypes';
+import { TransferAccountDTO } from '../../queries/useTransferAccounts';
 import { SavedJobDTO } from '../types';
 import dtoToAggregateCriteria from './dtoToAggregateCriteria';
 import dtoToCriteria from './dtoToCriteria';
@@ -10,7 +12,9 @@ import dtoToTransfer from './dtoToTransfer';
 
 export default function dtoToFormValues(
   values: SavedJobDTO | null | undefined,
-  localeWeekdays: LocaleWeekdayInfo[]
+  localeWeekdays: LocaleWeekdayInfo[],
+  feeFineTypes: FeeFineTypeDTO[],
+  transferAccounts: TransferAccountDTO[]
 ): Partial<FormValues> {
   if (!values) {
     return {};
@@ -40,7 +44,8 @@ export default function dtoToFormValues(
       ),
 
       transferInfo: dtoToTransfer(
-        values.exportTypeSpecificParameters.bursarFeeFines.transferInfo
+        values.exportTypeSpecificParameters.bursarFeeFines.transferInfo,
+        transferAccounts
       ),
     };
   } else {
@@ -62,7 +67,8 @@ export default function dtoToFormValues(
       ),
 
       transferInfo: dtoToTransfer(
-        values.exportTypeSpecificParameters.bursarFeeFines.transferInfo
+        values.exportTypeSpecificParameters.bursarFeeFines.transferInfo,
+        transferAccounts
       ),
     };
   }

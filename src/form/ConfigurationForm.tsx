@@ -31,6 +31,7 @@ import TransferInfoMenu from './sections/TransferInfoMenu';
 import dtoToFormValues from '../api/dto/from/dtoToFormValues';
 import { useIntl } from 'react-intl';
 import { useLocaleWeekdays } from '../utils/WeekdayUtils';
+import useInitialValues from '../hooks/useInitialValues';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -110,20 +111,11 @@ function ConfigurationForm({
             )}
           </FormSpy>
         </Accordion>
-        <Accordion label="Debug (useCurrentConfig)">
+        <Accordion label="Debug (useCurrentConfig)" closedByDefault>
           <pre>{JSON.stringify(useCurrentConfig().data, undefined, 2)}</pre>
         </Accordion>
-        <Accordion label="Debug (dtoToFormValues(useCurrentConfig))">
-          <pre>
-            {JSON.stringify(
-              dtoToFormValues(
-                useCurrentConfig().data ?? null,
-                useLocaleWeekdays(useIntl())
-              ),
-              undefined,
-              2
-            )}
-          </pre>
+        <Accordion label="Debug (useInitialValues())">
+          <pre>{JSON.stringify(useInitialValues(), undefined, 2)}</pre>
         </Accordion>
         <Accordion label="Debug (usePatronGroups)" closedByDefault>
           <pre>{JSON.stringify(usePatronGroups().data, undefined, 2)}</pre>

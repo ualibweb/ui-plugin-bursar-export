@@ -31,8 +31,9 @@ export default function dtoToScheduling(
         interval: frequencyToString(values.scheduleFrequency),
         time: values.scheduleTime,
         weekdays: values.weekDays?.map((day) => ({
-          label: localeWeekdays.filter((weekday) => weekday.weekday === day)[0]
-            .long,
+          label:
+            localeWeekdays.find((weekday) => weekday.weekday === day)?.long ??
+            day, // should not happen
           value: day,
         })),
       };

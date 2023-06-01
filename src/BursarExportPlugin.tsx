@@ -5,41 +5,18 @@ import {
   PaneFooter,
 } from '@folio/stripes/components';
 import { FormApi } from 'final-form';
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import formValuesToDto from './api/dto/to/formValuesToDto';
 import schedulingToDto from './api/dto/to/schedulingToDto';
 import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
 import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
-import useFeeFineOwners from './api/queries/useFeeFineOwners';
-import useFeeFineTypes from './api/queries/useFeeFineTypes';
-import useLocations from './api/queries/useLocations';
-import usePatronGroups from './api/queries/usePatronGroups';
-import useServicePoints from './api/queries/useServicePoints';
 import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
+import useInitialValues from './hooks/useInitialValues';
 import FormValues from './types/FormValues';
-import useCurrentConfig from './api/queries/useCurrentConfig';
-import dtoToFormValues from './api/dto/from/dtoToFormValues';
-import { useIntl } from 'react-intl';
-import { useLocaleWeekdays } from './utils/WeekdayUtils';
 
 export default function BursarExportPlugin() {
-  const feeFineOwners = useFeeFineOwners();
-  const feeFineTypes = useFeeFineTypes();
-  const locations = useLocations();
-  const patronGroups = usePatronGroups();
-  const servicePoints = useServicePoints();
-
-  const currentConfig = useCurrentConfig();
-
   const manualScheduler = useManualSchedulerMutation();
   const automaticScheduler = useAutomaticSchedulerMutation();
-
-  const localeWeekdays = useLocaleWeekdays(useIntl());
-
-  const initialValues = useMemo(
-    () => dtoToFormValues(currentConfig.data, localeWeekdays),
-    [currentConfig, localeWeekdays]
-  );
 
   const formApiRef = useRef<FormApi<FormValues>>(null);
 
@@ -54,17 +31,9 @@ export default function BursarExportPlugin() {
     }
   }, []);
 
-  // if any are not successful, show loading pane
-  // accesses data directly to fix caching weirdness where a child component can use a query, causing it to re-fetch,
-  // re-rendering the form and obliterating the state
-  if (
-    !currentConfig.isSuccess ||
-    !feeFineOwners.data ||
-    !feeFineTypes.data ||
-    !locations.data ||
-    !patronGroups.data ||
-    !servicePoints.data
-  ) {
+  const initialValues = useInitialValues();
+
+  if (initialValues === null) {
     return (
       <LoadingPane
         paneTitle="Transfer configuration"
