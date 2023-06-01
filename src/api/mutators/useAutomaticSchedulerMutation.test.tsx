@@ -5,12 +5,16 @@ import React, { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import useAutomaticSchedulerMutation from './useAutomaticSchedulerMutation';
 
-const kyMock = jest.fn();
+const getMock = jest.fn();
+const postMock = jest.fn();
+const putMock = jest.fn();
 
 jest.mock('@folio/stripes/core', () => ({
   ...jest.requireActual('@folio/stripes/core'),
   useOkapiKy: () => ({
-    post: kyMock,
+    get: getMock,
+    post: postMock,
+    put: putMock,
   }),
 }));
 
@@ -23,6 +27,12 @@ describe('Automatic scheduling mutation', () => {
 
   afterAll(() => {
     console.error = original;
+  });
+
+  beforeEach(() => {
+    getMock.mockReset();
+    postMock.mockReset();
+    putMock.mockReset();
   });
 
   const contextMock = jest.fn();
@@ -40,7 +50,7 @@ describe('Automatic scheduling mutation', () => {
       { wrapper }
     );
 
-    kyMock.mockReturnValueOnce(Promise.resolve({}));
+    postMock.mockReturnValueOnce(Promise.resolve({}));
 
     act(() => {
       mutator.current({
@@ -49,15 +59,17 @@ describe('Automatic scheduling mutation', () => {
       } as any);
     });
 
-    waitFor(() =>
-      expect(kyMock).toHaveBeenLastCalledWith('data-export-spring/configs', {
-        type: 'BURSAR_FEES_FINES',
-        exportTypeSpecificParameters: { bursarFeeFines: 'bursar data' },
-        schedulingData: 'is here!',
+    await waitFor(() =>
+      expect(postMock).toHaveBeenLastCalledWith('data-export-spring/configs', {
+        json: {
+          type: 'BURSAR_FEES_FINES',
+          exportTypeSpecificParameters: { bursarFeeFines: 'bursar data' },
+          schedulingData: 'is here!',
+        },
       })
     );
 
-    waitFor(() =>
+    await waitFor(() =>
       expect(contextMock).toHaveBeenLastCalledWith({
         type: 'success',
         message: 'Configuration saved',
@@ -71,7 +83,7 @@ describe('Automatic scheduling mutation', () => {
       { wrapper }
     );
 
-    kyMock.mockReturnValueOnce(Promise.reject({}));
+    postMock.mockReturnValueOnce(Promise.reject({}));
 
     act(() => {
       mutator.current({
@@ -80,21 +92,93 @@ describe('Automatic scheduling mutation', () => {
       } as any);
     });
 
-    waitFor(() =>
-      expect(kyMock).toHaveBeenLastCalledWith('data-export-spring/configs', {
-        type: 'BURSAR_FEES_FINES',
-        exportTypeSpecificParameters: {
-          bursarFeeFines: 'bursar data that fails',
+    await waitFor(() =>
+      expect(postMock).toHaveBeenLastCalledWith('data-export-spring/configs', {
+        json: {
+          type: 'BURSAR_FEES_FINES',
+          exportTypeSpecificParameters: {
+            bursarFeeFines: 'bursar data that fails',
+          },
+          schedulingData: 'is here!',
         },
-        schedulingData: 'is here!',
       })
     );
 
-    waitFor(() =>
+    await waitFor(() =>
       expect(contextMock).toHaveBeenLastCalledWith({
         type: 'error',
         message: 'Failed to save job',
       })
     );
+  });
+
+  it('calls post when no initial config is available', async () => {
+    getMock.mockReturnValue({
+      json: () => {
+        return Promise.resolve({ totalRecords: 0 });
+      },
+    });
+
+    const { result: mutator } = renderHook(
+      () => useAutomaticSchedulerMutation(),
+      { wrapper }
+    );
+
+    postMock.mockReturnValueOnce(Promise.resolve({}));
+
+    // ensure query loads
+    await waitFor(() => expect(getMock).toHaveBeenCalled());
+
+    act(() => {
+      mutator.current({
+        bursar: 'bursar data',
+        scheduling: { schedulingData: 'is here!' },
+      } as any);
+    });
+
+    await waitFor(() => expect(postMock).toHaveBeenCalled());
+    expect(putMock).not.toHaveBeenCalled();
+
+    // check invalidation
+    await waitFor(() => expect(getMock).toHaveBeenCalledTimes(2));
+  });
+
+  it('calls put when initial data is returned', async () => {
+    getMock.mockReturnValue({
+      json: () => {
+        return Promise.resolve({ totalRecords: 1, configs: [{ id: 'foo' }] });
+      },
+    });
+
+    const { result: mutator } = renderHook(
+      () => useAutomaticSchedulerMutation(),
+      { wrapper }
+    );
+
+    // ensure query loads
+    postMock.mockReturnValueOnce(Promise.resolve({}));
+
+    await waitFor(() => expect(getMock).toHaveBeenCalled());
+
+    act(() => {
+      mutator.current({
+        bursar: 'bursar data',
+        scheduling: { schedulingData: 'is here!' },
+      } as any);
+    });
+
+    await waitFor(() =>
+      expect(putMock).toHaveBeenCalledWith('data-export-spring/configs/foo', {
+        json: {
+          id: 'foo',
+          exportTypeSpecificParameters: { bursarFeeFines: 'bursar data' },
+          schedulingData: 'is here!',
+        },
+      })
+    );
+    expect(postMock).not.toHaveBeenCalled();
+
+    // check invalidation
+    await waitFor(() => expect(getMock).toHaveBeenCalledTimes(2));
   });
 });
