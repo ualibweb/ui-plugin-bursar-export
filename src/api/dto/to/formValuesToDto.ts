@@ -1,10 +1,10 @@
-import FormValues from '../../types/FormValues';
+import FormValues from '../../../types/FormValues';
+import { BursarExportJobDTO } from '../types';
 import aggregateCriteriaToFilterDto from './aggregateCriteriaToFilterDto';
 import criteriaToFilterDto from './criteriaToFilterDto';
 import dataToDto from './dataToDto';
 import headerFooterToDto from './headerFooterToDto';
 import transferToDto from './transferToDto';
-import { BursarExportJobDTO } from './types';
 
 export default function formValuesToDto(
   values: FormValues

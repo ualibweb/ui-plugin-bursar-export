@@ -19,7 +19,7 @@ export default interface FormValues {
     weekdays?: SelectOptionType<Weekday>[];
   };
 
-  criteria: CriteriaGroup | CriteriaTerminal;
+  criteria?: CriteriaGroup | CriteriaTerminal;
 
   aggregate: boolean;
   aggregateFilter?: CriteriaAggregate;

@@ -1,9 +1,9 @@
 import {
   CriteriaAggregate,
   CriteriaAggregateType,
-} from '../../types/CriteriaTypes';
-import guardNumber from '../../utils/guardNumber';
-import { BursarExportFilterAggregate } from './types';
+} from '../../../types/CriteriaTypes';
+import guardNumber from '../../../utils/guardNumber';
+import { BursarExportFilterAggregate } from '../types';
 
 export default function aggregateCriteriaToFilterDto(
   criteria: CriteriaAggregate | undefined

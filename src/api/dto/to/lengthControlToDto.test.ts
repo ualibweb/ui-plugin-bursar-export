@@ -1,6 +1,6 @@
-import LengthControl from '../../types/LengthControl';
+import LengthControl from '../../../types/LengthControl';
+import { BursarExportTokenLengthControl } from '../types';
 import lengthControlToDto from './lengthControlToDto';
-import { BursarExportTokenLengthControl } from './types';
 
 describe('Length control conversion', () => {
   test.each<

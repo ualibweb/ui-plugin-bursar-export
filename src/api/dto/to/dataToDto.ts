@@ -1,9 +1,9 @@
-import ConvenientConstants from '../../types/ConvenientConstants';
-import { DataToken, DataTokenType } from '../../types/TokenTypes';
-import { guardNumberPositive } from '../../utils/guardNumber';
+import ConvenientConstants from '../../../types/ConvenientConstants';
+import { DataToken, DataTokenType } from '../../../types/TokenTypes';
+import { guardNumberPositive } from '../../../utils/guardNumber';
+import { BursarExportDataTokenDTO } from '../types';
 import criteriaToFilterDto from './criteriaToFilterDto';
 import lengthControlToDto from './lengthControlToDto';
-import { BursarExportDataTokenDTO } from './types';
 
 export default function dataToDto(
   tokens: DataToken[] | undefined

@@ -4,12 +4,14 @@ import {
   CriteriaGroupType,
   CriteriaTerminal,
   CriteriaTerminalType,
-} from '../../types/CriteriaTypes';
+} from '../../../types/CriteriaTypes';
+import { BursarExportFilterDTO } from '../types';
 import criteriaToFilterDto from './criteriaToFilterDto';
-import { BursarExportFilterDTO } from './types';
 
 describe('Conversion of form values to filter DTO', () => {
-  it.each<[CriteriaGroup | CriteriaTerminal, BursarExportFilterDTO]>([
+  it.each<
+    [CriteriaGroup | CriteriaTerminal | undefined, BursarExportFilterDTO]
+  >([
     [
       { type: CriteriaTerminalType.AGE, numDays: '1' },
       { type: 'Age', numDays: 1 },
@@ -38,6 +40,18 @@ describe('Conversion of form values to filter DTO', () => {
         feeFineTypeId: 'fee-fine-type-id',
       },
       { type: 'FeeType', feeFineTypeId: 'fee-fine-type-id' },
+    ],
+
+    [
+      { type: CriteriaTerminalType.FEE_FINE_OWNER },
+      { type: 'FeeFineOwner', feeFineOwner: '' },
+    ],
+    [
+      {
+        type: CriteriaTerminalType.FEE_FINE_OWNER,
+        feeFineOwnerId: 'fee-fine-owner-id',
+      },
+      { type: 'FeeFineOwner', feeFineOwner: 'fee-fine-owner-id' },
     ],
 
     [
@@ -88,6 +102,7 @@ describe('Conversion of form values to filter DTO', () => {
       { type: 'ServicePoint', servicePointId: 'service-point-id' },
     ],
 
+    [undefined, { type: 'Pass' }],
     [{ type: CriteriaTerminalType.PASS }, { type: 'Pass' }],
     [{ type: 'invalid' } as unknown as CriteriaTerminal, { type: 'Pass' }],
   ])('converts %s into %s', (input, expected) =>

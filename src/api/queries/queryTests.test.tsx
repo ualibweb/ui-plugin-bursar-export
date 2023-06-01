@@ -10,6 +10,7 @@ import useTransferAccounts from './useTransferAccounts';
 import useInstitutions from './useInstitutions';
 import useCampuses from './useCampuses';
 import useLibraries from './useLibraries';
+import useCurrentConfig from './useCurrentConfig';
 
 const responseMock = jest.fn();
 const kyMock = jest.fn(() => ({
@@ -30,6 +31,8 @@ describe('API Query Tests', () => {
   const wrapper = ({ children }: { children: ReactNode }) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
+
+  beforeEach(() => queryClient.clear());
 
   it('Patron groups query works as expected', async () => {
     responseMock.mockResolvedValue({
@@ -383,4 +386,28 @@ describe('API Query Tests', () => {
       },
     ]);
   });
+
+  it.each([
+    [undefined, null],
+    [[], null],
+    [[{ id: 'foo' }], { id: 'foo' }],
+  ])(
+    'Current config query with response %s gives %s',
+    async (configs, expected) => {
+      responseMock.mockResolvedValue({
+        configs,
+      });
+
+      const { result, waitFor } = renderHook(() => useCurrentConfig(), {
+        wrapper,
+      });
+
+      await waitFor(() => result.current.isSuccess);
+
+      expect(kyMock).toHaveBeenCalledWith('data-export-spring/configs', {
+        searchParams: { limit: 1, query: 'type==BURSAR_FEES_FINES' },
+      });
+      expect(result.current.data).toStrictEqual(expected);
+    }
+  );
 });

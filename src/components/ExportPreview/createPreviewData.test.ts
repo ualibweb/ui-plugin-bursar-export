@@ -12,48 +12,31 @@ import createPreviewData, {
   tokenToNode,
 } from './createPreviewData';
 
-jest.mock('@faker-js/faker', () => ({
-  faker: {
-    string: {
-      uuid: jest.fn(() => 'UUID'),
-      alphanumeric: jest.fn(() => 'ALPHANUMERIC'),
-    },
-    lorem: {
-      words: jest.fn(() => 'WORDS'),
-      word: jest.fn(() => 'WORD'),
-    },
-    internet: {
-      userName: jest.fn(() => 'USERNAME'),
-    },
-    person: {
-      firstName: jest.fn(() => 'FIRST_NAME'),
-      middleName: jest.fn(() => 'MIDDLE_NAME'),
-      lastName: jest.fn(() => 'LAST_NAME'),
-    },
-    date: {
-      past: jest.fn(() => new Date(2001, 0, 1)),
-    },
-    helpers: {
-      arrayElement: jest.fn(([first]) => first),
-    },
-    number: {
-      int: jest.fn(() => 7),
-      float: jest.fn(() => 12.34),
-    },
-  },
+jest.mock('@ngneat/falso', () => ({
+  rand: jest.fn(([first]) => first),
+  randFirstName: jest.fn(() => 'FIRST_NAME'),
+  randFloat: jest.fn(() => 12.34),
+  randLastName: jest.fn(() => 'LAST_NAME'),
+  randNumber: jest.fn(() => 7),
+  randPassword: jest.fn(() => 'ALPHANUMERIC'),
+  randPastDate: jest.fn(() => new Date(2001, 0, 1)),
+  randUserName: jest.fn(() => 'USERNAME'),
+  randUuid: jest.fn(() => 'UUID'),
+  randWord: jest.fn(() => 'WORD'),
+  randTextRange: jest.fn(() => 'WORDS WORDS WORDS'),
 }));
 
 describe('Preview data generation', () => {
   test.each([
     ['FEE_FINE_TYPE_ID', 'UUID'],
-    ['FEE_FINE_TYPE_NAME', 'WORDS'],
+    ['FEE_FINE_TYPE_NAME', 'WORD WORD'],
   ] as const)('formatFeeFineToken(%s)=%s', (type, expected) =>
     expect(formatFeeFineToken(type)).toBe(expected)
   );
 
   test.each([
     ['BARCODE', 'ALPHANUMERIC'],
-    ['NAME', 'WORDS'],
+    ['NAME', 'WORDS WORDS WORDS'],
     ['MATERIAL_TYPE', 'WORD'],
     ['LIBRARY_ID', 'UUID'],
   ] as const)('formatItemToken(%s)=%s', (type, expected) =>
@@ -66,7 +49,7 @@ describe('Preview data generation', () => {
     ['EXTERNAL_SYSTEM_ID', 'ALPHANUMERIC'],
     ['USERNAME', 'USERNAME'],
     ['FIRST_NAME', 'FIRST_NAME'],
-    ['MIDDLE_NAME', 'MIDDLE_NAME'],
+    ['MIDDLE_NAME', 'LAST_NAME'],
     ['LAST_NAME', 'LAST_NAME'],
   ] as const)('formatUserToken(%s)=%s', (type, expected) =>
     expect(formatUserToken(type)).toBe(expected)

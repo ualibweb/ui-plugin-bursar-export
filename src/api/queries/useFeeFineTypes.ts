@@ -21,12 +21,12 @@ export interface FeeFineTypeDTO {
   /** Type name */
   feeFineType: string;
   automatic: boolean;
+  ownerId?: string;
 
   // don't care about these
   defaultAmount?: number;
   chargeNoticeId?: string;
   actionNoticeId?: string;
-  ownerId?: string;
   metadata: unknown;
 }
 

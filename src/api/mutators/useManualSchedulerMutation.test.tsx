@@ -45,17 +45,19 @@ describe('Automatic scheduling mutation', () => {
       mutator.current('bursar data' as any);
     });
 
-    waitFor(() =>
-      expect(kyMock).toHaveBeenLastCalledWith('data-export-spring/configs', {
-        type: 'BURSAR_FEES_FINES',
-        exportTypeSpecificParameters: { bursarFeeFines: 'bursar data' },
+    await waitFor(() =>
+      expect(kyMock).toHaveBeenLastCalledWith('data-export-spring/jobs', {
+        json: {
+          type: 'BURSAR_FEES_FINES',
+          exportTypeSpecificParameters: { bursarFeeFines: 'bursar data' },
+        },
       })
     );
 
-    waitFor(() =>
+    await waitFor(() =>
       expect(contextMock).toHaveBeenLastCalledWith({
         type: 'success',
-        message: 'Configuration saved',
+        message: 'Job has been scheduled',
       })
     );
   });
@@ -71,19 +73,21 @@ describe('Automatic scheduling mutation', () => {
       mutator.current('bursar data that fails' as any);
     });
 
-    waitFor(() =>
-      expect(kyMock).toHaveBeenLastCalledWith('data-export-spring/configs', {
-        type: 'BURSAR_FEES_FINES',
-        exportTypeSpecificParameters: {
-          bursarFeeFines: 'bursar data that fails',
+    await waitFor(() =>
+      expect(kyMock).toHaveBeenLastCalledWith('data-export-spring/jobs', {
+        json: {
+          type: 'BURSAR_FEES_FINES',
+          exportTypeSpecificParameters: {
+            bursarFeeFines: 'bursar data that fails',
+          },
         },
       })
     );
 
-    waitFor(() =>
+    await waitFor(() =>
       expect(contextMock).toHaveBeenLastCalledWith({
         type: 'error',
-        message: 'Failed to save job',
+        message: 'Failed to start job',
       })
     );
   });

@@ -4,27 +4,17 @@ import {
   Pane,
   PaneFooter,
 } from '@folio/stripes/components';
-import React, { useCallback, useRef } from 'react';
-import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
-import useFeeFineOwners from './api/useFeeFineOwners';
-import useFeeFineTypes from './api/useFeeFineTypes';
-import useLocations from './api/useLocations';
-import usePatronGroups from './api/usePatronGroups';
-import useServicePoints from './api/useServicePoints';
-import FormValues from './types/FormValues';
-import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
-import formValuesToDto from './api/dto/formValuesToDto';
 import { FormApi } from 'final-form';
+import React, { useCallback, useRef } from 'react';
+import formValuesToDto from './api/dto/to/formValuesToDto';
+import schedulingToDto from './api/dto/to/schedulingToDto';
 import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
-import schedulingToDto from './api/dto/schedulingToDto';
+import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
+import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
+import useInitialValues from './hooks/useInitialValues';
+import FormValues from './types/FormValues';
 
-export default function BursarExports() {
-  const feeFineOwners = useFeeFineOwners();
-  const feeFineTypes = useFeeFineTypes();
-  const locations = useLocations();
-  const patronGroups = usePatronGroups();
-  const servicePoints = useServicePoints();
-
+export default function BursarExportPlugin() {
   const manualScheduler = useManualSchedulerMutation();
   const automaticScheduler = useAutomaticSchedulerMutation();
 
@@ -41,13 +31,9 @@ export default function BursarExports() {
     }
   }, []);
 
-  if (
-    !feeFineOwners.isSuccess ||
-    !feeFineTypes.isSuccess ||
-    !locations.isSuccess ||
-    !patronGroups.isSuccess ||
-    !servicePoints.isSuccess
-  ) {
+  const initialValues = useInitialValues();
+
+  if (initialValues === null) {
     return (
       <LoadingPane
         paneTitle="Transfer configuration"
@@ -100,7 +86,7 @@ export default function BursarExports() {
       paneTitle="Transfer configuration"
     >
       <ConfigurationForm
-        initialValues={{}}
+        initialValues={initialValues}
         onSubmit={submitCallback}
         formApiRef={formApiRef}
       />

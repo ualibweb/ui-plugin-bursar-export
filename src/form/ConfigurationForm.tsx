@@ -9,16 +9,18 @@ import stripesFinalForm from '@folio/stripes/final-form';
 import { FormApi } from 'final-form';
 import React, { FormEvent, MutableRefObject, useCallback } from 'react';
 import { FormRenderProps, FormSpy, useField } from 'react-final-form';
-import formValuesToDto from '../api/dto/formValuesToDto';
-import useCampuses from '../api/useCampuses';
-import useFeeFineOwners from '../api/useFeeFineOwners';
-import useFeeFineTypes from '../api/useFeeFineTypes';
-import useInstitutions from '../api/useInstitutions';
-import useLibraries from '../api/useLibraries';
-import useLocations from '../api/useLocations';
-import usePatronGroups from '../api/usePatronGroups';
-import useServicePoints from '../api/useServicePoints';
-import useTransferAccounts from '../api/useTransferAccounts';
+import formValuesToDto from '../api/dto/to/formValuesToDto';
+import useCampuses from '../api/queries/useCampuses';
+import useCurrentConfig from '../api/queries/useCurrentConfig';
+import useFeeFineOwners from '../api/queries/useFeeFineOwners';
+import useFeeFineTypes from '../api/queries/useFeeFineTypes';
+import useInstitutions from '../api/queries/useInstitutions';
+import useLibraries from '../api/queries/useLibraries';
+import useLocations from '../api/queries/useLocations';
+import usePatronGroups from '../api/queries/usePatronGroups';
+import useServicePoints from '../api/queries/useServicePoints';
+import useTransferAccounts from '../api/queries/useTransferAccounts';
+import useInitialValues from '../hooks/useInitialValues';
 import FormValues from '../types/FormValues';
 import AggregateMenu from './sections/AggregateMenu';
 import CriteriaMenu from './sections/CriteriaMenu';
@@ -105,6 +107,12 @@ function ConfigurationForm({
               <pre>{JSON.stringify(formValuesToDto(values), undefined, 2)}</pre>
             )}
           </FormSpy>
+        </Accordion>
+        <Accordion label="Debug (useCurrentConfig)" closedByDefault>
+          <pre>{JSON.stringify(useCurrentConfig().data, undefined, 2)}</pre>
+        </Accordion>
+        <Accordion label="Debug (useInitialValues)">
+          <pre>{JSON.stringify(useInitialValues(), undefined, 2)}</pre>
         </Accordion>
         <Accordion label="Debug (usePatronGroups)" closedByDefault>
           <pre>{JSON.stringify(usePatronGroups().data, undefined, 2)}</pre>
