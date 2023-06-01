@@ -14,7 +14,7 @@ export function formatFeeFineToken(
   if (attribute === 'FEE_FINE_TYPE_ID') {
     return faker.randUuid();
   } else {
-    return faker.randWord() + ' ' + faker.randWord();
+    return `${faker.randWord()} ${faker.randWord()}`;
   }
 }
 

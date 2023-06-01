@@ -15,7 +15,7 @@ export default function useAutomaticSchedulerMutation() {
       bursar: BursarExportJobDTO;
       scheduling: SchedulingDTO;
     }) => {
-      if (!!currentConfig.data) {
+      if (currentConfig.data) {
         return ky.put(`data-export-spring/configs/${currentConfig.data.id}`, {
           json: {
             ...currentConfig.data,

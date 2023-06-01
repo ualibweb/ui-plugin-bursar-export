@@ -20,6 +20,7 @@ import useLocations from '../api/queries/useLocations';
 import usePatronGroups from '../api/queries/usePatronGroups';
 import useServicePoints from '../api/queries/useServicePoints';
 import useTransferAccounts from '../api/queries/useTransferAccounts';
+import useInitialValues from '../hooks/useInitialValues';
 import FormValues from '../types/FormValues';
 import AggregateMenu from './sections/AggregateMenu';
 import CriteriaMenu from './sections/CriteriaMenu';
@@ -28,10 +29,6 @@ import ExportPreview from './sections/ExportPreview';
 import HeaderFooterMenu from './sections/HeaderFooterMenu';
 import SchedulingMenu from './sections/SchedulingMenu';
 import TransferInfoMenu from './sections/TransferInfoMenu';
-import dtoToFormValues from '../api/dto/from/dtoToFormValues';
-import { useIntl } from 'react-intl';
-import { useLocaleWeekdays } from '../utils/WeekdayUtils';
-import useInitialValues from '../hooks/useInitialValues';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
