@@ -9,10 +9,10 @@ import dtoToScheduling from './dtoToScheduling';
 import dtoToTransfer from './dtoToTransfer';
 
 export default function dtoToFormValues(
-  values: SavedJobDTO | null,
+  values: SavedJobDTO | null | undefined,
   localeWeekdays: LocaleWeekdayInfo[]
 ): Partial<FormValues> {
-  if (values === null) {
+  if (!values) {
     return {};
   }
 

@@ -5,7 +5,7 @@ import {
   PaneFooter,
 } from '@folio/stripes/components';
 import { FormApi } from 'final-form';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import formValuesToDto from './api/dto/to/formValuesToDto';
 import schedulingToDto from './api/dto/to/schedulingToDto';
 import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
@@ -36,6 +36,11 @@ export default function BursarExportPlugin() {
 
   const localeWeekdays = useLocaleWeekdays(useIntl());
 
+  const initialValues = useMemo(
+    () => dtoToFormValues(currentConfig.data, localeWeekdays),
+    [currentConfig, localeWeekdays]
+  );
+
   const formApiRef = useRef<FormApi<FormValues>>(null);
 
   const submitCallback = useCallback(async (values: FormValues) => {
@@ -50,13 +55,15 @@ export default function BursarExportPlugin() {
   }, []);
 
   // if any are not successful, show loading pane
+  // accesses data directly to fix caching weirdness where a child component can use a query, causing it to re-fetch,
+  // re-rendering the form and obliterating the state
   if (
     !currentConfig.isSuccess ||
-    !feeFineOwners.isSuccess ||
-    !feeFineTypes.isSuccess ||
-    !locations.isSuccess ||
-    !patronGroups.isSuccess ||
-    !servicePoints.isSuccess
+    !feeFineOwners.data ||
+    !feeFineTypes.data ||
+    !locations.data ||
+    !patronGroups.data ||
+    !servicePoints.data
   ) {
     return (
       <LoadingPane
@@ -110,7 +117,7 @@ export default function BursarExportPlugin() {
       paneTitle="Transfer configuration"
     >
       <ConfigurationForm
-        initialValues={dtoToFormValues(currentConfig.data, localeWeekdays)}
+        initialValues={initialValues}
         onSubmit={submitCallback}
         formApiRef={formApiRef}
       />
