@@ -29,6 +29,7 @@ import ExportPreview from './sections/ExportPreview';
 import HeaderFooterMenu from './sections/HeaderFooterMenu';
 import SchedulingMenu from './sections/SchedulingMenu';
 import TransferInfoMenu from './sections/TransferInfoMenu';
+import { FormattedMessage } from 'react-intl';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
@@ -65,7 +66,11 @@ function ConfigurationForm({
             <ExpandAllButton />
           </Col>
         </Row>
-        <Accordion label="Scheduling">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.scheduling.accordion" />
+          }
+        >
           <SchedulingMenu />
         </Accordion>
         <Accordion label="Criteria">

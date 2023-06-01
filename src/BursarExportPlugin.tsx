@@ -14,6 +14,7 @@ import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutatio
 import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
 import useInitialValues from './hooks/useInitialValues';
 import FormValues from './types/FormValues';
+import { FormattedMessage } from 'react-intl';
 
 export default function BursarExportPlugin() {
   const stripes = useStripes();
@@ -39,7 +40,9 @@ export default function BursarExportPlugin() {
   if (initialValues === null) {
     return (
       <LoadingPane
-        paneTitle="Transfer configuration"
+        paneTitle={
+          <FormattedMessage id="ui-plugin-bursar-export.bursarExports.paneTitle" />
+        }
         defaultWidth="fill"
         footer={
           <PaneFooter
