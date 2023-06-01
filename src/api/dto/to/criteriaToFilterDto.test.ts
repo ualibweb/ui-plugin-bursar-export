@@ -9,7 +9,9 @@ import { BursarExportFilterDTO } from '../types';
 import criteriaToFilterDto from './criteriaToFilterDto';
 
 describe('Conversion of form values to filter DTO', () => {
-  it.each<[CriteriaGroup | CriteriaTerminal, BursarExportFilterDTO]>([
+  it.each<
+    [CriteriaGroup | CriteriaTerminal | undefined, BursarExportFilterDTO]
+  >([
     [
       { type: CriteriaTerminalType.AGE, numDays: '1' },
       { type: 'Age', numDays: 1 },
@@ -100,6 +102,7 @@ describe('Conversion of form values to filter DTO', () => {
       { type: 'ServicePoint', servicePointId: 'service-point-id' },
     ],
 
+    [undefined, { type: 'Pass' }],
     [{ type: CriteriaTerminalType.PASS }, { type: 'Pass' }],
     [{ type: 'invalid' } as unknown as CriteriaTerminal, { type: 'Pass' }],
   ])('converts %s into %s', (input, expected) =>
