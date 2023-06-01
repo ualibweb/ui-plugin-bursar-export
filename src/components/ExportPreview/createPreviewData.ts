@@ -1,4 +1,4 @@
-import faker from '@ngneat/falso';
+import * as faker from '@ngneat/falso';
 import {
   DataToken,
   DataTokenType,
