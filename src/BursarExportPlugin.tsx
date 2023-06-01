@@ -4,6 +4,7 @@ import {
   Pane,
   PaneFooter,
 } from '@folio/stripes/components';
+import { useStripes } from '@folio/stripes/core';
 import { FormApi } from 'final-form';
 import React, { useCallback, useRef } from 'react';
 import formValuesToDto from './api/dto/to/formValuesToDto';
@@ -15,6 +16,8 @@ import useInitialValues from './hooks/useInitialValues';
 import FormValues from './types/FormValues';
 
 export default function BursarExportPlugin() {
+  const stripes = useStripes();
+
   const manualScheduler = useManualSchedulerMutation();
   const automaticScheduler = useAutomaticSchedulerMutation();
 
@@ -59,6 +62,7 @@ export default function BursarExportPlugin() {
         <PaneFooter
           renderStart={
             <Button
+              disabled={!stripes.hasPerm('data-export.job.item.post')}
               type="submit"
               form={FORM_ID}
               onClick={() =>
@@ -70,6 +74,7 @@ export default function BursarExportPlugin() {
           }
           renderEnd={
             <Button
+              disabled={!stripes.hasPerm('data-export.config.item.post')}
               buttonStyle="primary"
               type="submit"
               form={FORM_ID}

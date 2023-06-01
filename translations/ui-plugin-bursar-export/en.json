@@ -36,5 +36,7 @@
   "bursarExports.runManually.success": "Bursar exports has been successfully scheduled",
   "bursarExports.runManually.error": "Bursar exports was not scheduled",
 
-  "permission.bursar-exports.all": "Transfer exports: Transfer admin"
+  "permission.bursar-exports.all": "Transfer exports: Modify configuration and start jobs",
+  "permission.bursar-exports.manual": "Transfer exports: Start manual jobs",
+  "permission.bursar-exports.view": "Transfer exports: View configuration"
 }
