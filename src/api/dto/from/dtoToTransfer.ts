@@ -13,12 +13,11 @@ export default function dtoToTransfer(
   transferAccounts: TransferAccountDTO[]
 ): FormValues['transferInfo'] {
   return {
-    conditions:
-      tokens.conditions?.map(({ condition, account }) => ({
-        condition: dtoToCriteria(condition, feeFineTypes, locations),
-        owner: getOwnerForAccount(transferAccounts, tokens.else.account),
-        account,
-      })) ?? [],
+    conditions: (tokens.conditions ?? []).map(({ condition, account }) => ({
+      condition: dtoToCriteria(condition, feeFineTypes, locations),
+      owner: getOwnerForAccount(transferAccounts, account),
+      account,
+    })),
     else: {
       owner: getOwnerForAccount(transferAccounts, tokens.else.account),
       account: tokens.else.account,
