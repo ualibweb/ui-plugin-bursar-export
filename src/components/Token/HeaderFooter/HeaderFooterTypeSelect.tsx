@@ -1,9 +1,86 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { HeaderFooterTokenType } from '../../../types/TokenTypes';
 import { Select } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
+import { useIntl } from 'react-intl';
 
 export default function HeaderFooterTypeSelect({ name }: { name: string }) {
+  const intl = useIntl();
+  const options = useMemo(() => {
+    const topSection = [
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.newline',
+        }),
+        value: HeaderFooterTokenType.NEWLINE,
+      },
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.newlineMicrosoft',
+        }),
+        value: HeaderFooterTokenType.NEWLINE_MICROSOFT,
+      },
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.tab',
+        }),
+        value: HeaderFooterTokenType.TAB,
+      },
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.comma',
+        }),
+        value: HeaderFooterTokenType.COMMA,
+      },
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.whitespace',
+        }),
+        value: HeaderFooterTokenType.SPACE,
+      },
+    ];
+
+    const bottomSection = [
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.arbitraryText',
+        }),
+        value: HeaderFooterTokenType.ARBITRARY_TEXT,
+      },
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.currentDate',
+        }),
+        value: HeaderFooterTokenType.CURRENT_DATE,
+      },
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.numAccounts',
+        }),
+        value: HeaderFooterTokenType.AGGREGATE_COUNT,
+      },
+      {
+        label: intl.formatMessage({
+          id: 'ui-plugin-bursar-export.bursarExports.token.totalAmount',
+        }),
+        value: HeaderFooterTokenType.AGGREGATE_TOTAL,
+      },
+    ];
+
+    topSection.sort((a, b) => a.label.localeCompare(b.label));
+    bottomSection.sort((a, b) => a.label.localeCompare(b.label));
+
+    return [
+      ...topSection,
+      {
+        label: '',
+        value: HeaderFooterTokenType.NEWLINE,
+        disabled: true,
+      },
+      ...bottomSection,
+    ];
+  }, [intl]);
+
   return (
     <Field name={name} defaultValue={HeaderFooterTokenType.NEWLINE}>
       {(fieldProps) => (
@@ -11,52 +88,7 @@ export default function HeaderFooterTypeSelect({ name }: { name: string }) {
           {...fieldProps}
           required
           marginBottom0
-          dataOptions={[
-            // TODO: sort these alphabetically per i18n
-            {
-              label: 'Newline (LF)',
-              value: HeaderFooterTokenType.NEWLINE,
-            },
-            {
-              label: 'Newline (Microsoft, CRLF)',
-              value: HeaderFooterTokenType.NEWLINE_MICROSOFT,
-            },
-            {
-              label: 'Tab',
-              value: HeaderFooterTokenType.TAB,
-            },
-            {
-              label: 'Comma',
-              value: HeaderFooterTokenType.COMMA,
-            },
-            {
-              label: 'Whitespace',
-              value: HeaderFooterTokenType.SPACE,
-            },
-
-            {
-              label: '',
-              value: HeaderFooterTokenType.NEWLINE,
-              disabled: true,
-            },
-
-            {
-              label: 'Arbitrary text',
-              value: HeaderFooterTokenType.ARBITRARY_TEXT,
-            },
-            {
-              label: 'Current date',
-              value: HeaderFooterTokenType.CURRENT_DATE,
-            },
-            {
-              label: 'Number of accounts',
-              value: HeaderFooterTokenType.AGGREGATE_COUNT,
-            },
-            {
-              label: 'Total amount',
-              value: HeaderFooterTokenType.AGGREGATE_TOTAL,
-            },
-          ]}
+          dataOptions={options}
         />
       )}
     </Field>

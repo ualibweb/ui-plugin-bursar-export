@@ -2,8 +2,10 @@ import { Select } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
 import { DateFormatType } from '../../../types/TokenTypes';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function DatePartPicker({ prefix }: { prefix: string }) {
+  const intl = useIntl();
   return (
     <Field name={`${prefix}format`} defaultValue={DateFormatType.YEAR_LONG}>
       {(fieldProps) => (
@@ -11,47 +13,69 @@ export default function DatePartPicker({ prefix }: { prefix: string }) {
           {...fieldProps}
           required
           marginBottom0
-          label="Format"
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.currentDate.format" />
+          }
           dataOptions={[
             {
-              label: 'Year (4-digit)',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.yearLong',
+              }),
               value: DateFormatType.YEAR_LONG,
             },
             {
-              label: 'Year (2-digit)',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.yearShort',
+              }),
               value: DateFormatType.YEAR_SHORT,
             },
             {
-              label: 'Month',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.month',
+              }),
               value: DateFormatType.MONTH,
             },
             {
-              label: 'Day of month',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.date',
+              }),
               value: DateFormatType.DATE,
             },
             {
-              label: 'Hour',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.hour',
+              }),
               value: DateFormatType.HOUR,
             },
             {
-              label: 'Minute',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.minute',
+              }),
               value: DateFormatType.MINUTE,
             },
             {
-              label: 'Second',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.second',
+              }),
               value: DateFormatType.SECOND,
             },
 
             {
-              label: 'Quarter',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.quarter',
+              }),
               value: DateFormatType.QUARTER,
             },
             {
-              label: 'ISO week number',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.isoWeekNum',
+              }),
               value: DateFormatType.WEEK_OF_YEAR_ISO,
             },
             {
-              label: 'ISO week year',
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.isoWeekYear',
+              }),
               value: DateFormatType.WEEK_YEAR_ISO,
             },
           ]}

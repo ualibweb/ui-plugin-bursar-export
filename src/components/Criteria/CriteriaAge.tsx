@@ -1,6 +1,7 @@
 import { Col, TextField } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 
 export default function CriteriaAge({ prefix }: { prefix: string }) {
   return (
@@ -13,7 +14,9 @@ export default function CriteriaAge({ prefix }: { prefix: string }) {
             marginBottom0
             required
             type="number"
-            label="Older than (days)"
+            label={
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.age.value" />
+            }
             min={1}
             step={1}
           />

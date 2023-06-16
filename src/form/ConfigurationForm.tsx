@@ -73,31 +73,59 @@ function ConfigurationForm({
         >
           <SchedulingMenu />
         </Accordion>
-        <Accordion label="Criteria">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.accordion" />
+          }
+        >
           <CriteriaMenu />
         </Accordion>
-        <Accordion label="Aggregate by patron">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.aggregate.accordion" />
+          }
+        >
           <AggregateMenu />
         </Accordion>
-        <Accordion label="Header format">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.header.accordion" />
+          }
+        >
           <HeaderFooterMenu name="header" />
         </Accordion>
         <Accordion
           label={
-            aggregateEnabled ? 'Patron data format' : 'Account data format'
+            aggregateEnabled ? (
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.data.accordion.patron" />
+            ) : (
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.data.accordion.account" />
+            )
           }
         >
           <DataTokenMenu />
         </Accordion>
-        <Accordion label="Footer format">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.footer.accordion" />
+          }
+        >
           <HeaderFooterMenu name="footer" />
         </Accordion>
 
-        <Accordion label="Preview">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.preview.accordion" />
+          }
+        >
           <ExportPreview />
         </Accordion>
 
-        <Accordion label="Transfer accounts to">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.transfer.accordion" />
+          }
+        >
           <TransferInfoMenu />
         </Accordion>
 

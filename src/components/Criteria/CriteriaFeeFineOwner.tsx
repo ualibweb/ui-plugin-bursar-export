@@ -2,6 +2,7 @@ import { Col, Select } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { Field } from 'react-final-form';
 import useFeeFineOwners from '../../api/queries/useFeeFineOwners';
+import { FormattedMessage } from 'react-intl';
 
 export default function CriteriaFeeFineOwner({ prefix }: { prefix: string }) {
   const feeFineOwners = useFeeFineOwners();
@@ -27,10 +28,14 @@ export default function CriteriaFeeFineOwner({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Fee/fine owner"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.select.owner" />
+              }
               dataOptions={[
                 { label: '', value: '', disabled: true },
-                ...ownersSelectOptions,
+                ...ownersSelectOptions.sort((a, b) =>
+                  a.label.localeCompare(b.label)
+                ),
               ]}
             />
           )}

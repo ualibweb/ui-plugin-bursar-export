@@ -2,6 +2,7 @@ import { Checkbox } from '@folio/stripes/components';
 import React from 'react';
 import { Field, useField } from 'react-final-form';
 import AggregateCriteriaCard from '../../components/AggregateCriteria/AggregateCriteriaCard';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function AggregateMenu() {
   const isAggregateEnabled = useField<boolean>('aggregate', {
@@ -9,17 +10,24 @@ export default function AggregateMenu() {
     format: (value) => value ?? false,
   }).input.value;
 
+  const intl = useIntl();
+
   return (
     <div>
       <Field name="aggregate" type="checkbox" defaultValue={false}>
         {(fieldProps) => (
-          <Checkbox {...fieldProps} fullWidth label="Group data by patron" />
+          <Checkbox
+            {...fieldProps}
+            fullWidth
+            label={intl.formatMessage({
+              id: 'ui-plugin-bursar-export.bursarExports.aggregate.enabler',
+            })}
+          />
         )}
       </Field>
       <p>
         <i>
-          If enabled, each output row will correspond to a single patron with
-          all of their accounts, rather than just a single account.
+          <FormattedMessage id="ui-plugin-bursar-export.bursarExports.aggregate.description" />
         </i>
       </p>
 

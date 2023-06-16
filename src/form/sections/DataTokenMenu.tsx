@@ -4,6 +4,7 @@ import { FieldArray } from 'react-final-form-arrays';
 import DataTokenCard from '../../components/Token/Data/DataTokenCard';
 import { DataTokenType } from '../../types/TokenTypes';
 import { useField } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 
 export default function DataTokenMenu() {
   const aggregate = useField<boolean>('aggregate', {
@@ -32,7 +33,7 @@ export default function DataTokenMenu() {
             />
           ))}
           <Button onClick={() => fields.push({ type: DataTokenType.NEWLINE })}>
-            Add
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.add" />
           </Button>
         </>
       )}

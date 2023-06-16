@@ -2,6 +2,7 @@ import { Col, Select } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { Field } from 'react-final-form';
 import useServicePoints from '../../api/queries/useServicePoints';
+import { FormattedMessage } from 'react-intl';
 
 export default function CriteriaServicePoint({ prefix }: { prefix: string }) {
   const servicePoints = useServicePoints();
@@ -26,8 +27,13 @@ export default function CriteriaServicePoint({ prefix }: { prefix: string }) {
             fullWidth
             marginBottom0
             required
-            label="Service point"
-            dataOptions={[{ label: '', value: undefined }, ...selectOptions]}
+            label={
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.servicePoint.value" />
+            }
+            dataOptions={[
+              { label: '', value: undefined },
+              ...selectOptions,
+            ].sort((a, b) => a.label.localeCompare(b.label))}
           />
         )}
       </Field>

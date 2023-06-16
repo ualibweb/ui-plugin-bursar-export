@@ -72,7 +72,7 @@ export default function BursarExportPlugin() {
                 formApiRef.current?.change('buttonClicked', 'manual')
               }
             >
-              Run manually
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.runManually" />
             </Button>
           }
           renderEnd={
@@ -85,7 +85,7 @@ export default function BursarExportPlugin() {
                 formApiRef.current?.change('buttonClicked', 'save')
               }
             >
-              Save
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.save" />
             </Button>
           }
         />
