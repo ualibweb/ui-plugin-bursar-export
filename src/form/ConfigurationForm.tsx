@@ -128,52 +128,6 @@ function ConfigurationForm({
         >
           <TransferInfoMenu />
         </Accordion>
-
-        <Accordion label="Debug (form state)">
-          <FormSpy subscription={{ values: true }}>
-            {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
-          </FormSpy>
-        </Accordion>
-        <Accordion label="Debug (formValuesToDto)">
-          <FormSpy<FormValues> subscription={{ values: true }}>
-            {({ values }) => (
-              <pre>{JSON.stringify(formValuesToDto(values), undefined, 2)}</pre>
-            )}
-          </FormSpy>
-        </Accordion>
-        <Accordion label="Debug (useCurrentConfig)" closedByDefault>
-          <pre>{JSON.stringify(useCurrentConfig().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useInitialValues)">
-          <pre>{JSON.stringify(useInitialValues(), undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (usePatronGroups)" closedByDefault>
-          <pre>{JSON.stringify(usePatronGroups().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useServicePoints)" closedByDefault>
-          <pre>{JSON.stringify(useServicePoints().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useFeeFineOwners)" closedByDefault>
-          <pre>{JSON.stringify(useFeeFineOwners().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useFeeFineTypes)" closedByDefault>
-          <pre>{JSON.stringify(useFeeFineTypes().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useTransferAccounts)" closedByDefault>
-          <pre>{JSON.stringify(useTransferAccounts().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useInstitutions)" closedByDefault>
-          <pre>{JSON.stringify(useInstitutions().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useCampuses)" closedByDefault>
-          <pre>{JSON.stringify(useCampuses().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useLibraries)" closedByDefault>
-          <pre>{JSON.stringify(useLibraries().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useLocations)" closedByDefault>
-          <pre>{JSON.stringify(useLocations().data, undefined, 2)}</pre>
-        </Accordion>
       </AccordionSet>
     </form>
   );
@@ -181,5 +135,4 @@ function ConfigurationForm({
 
 export default stripesFinalForm<ConfigurationFormProps, FormValues>({
   validateOnBlur: true,
-  // TODO: add validate,
 })(ConfigurationForm);
