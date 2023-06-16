@@ -57,7 +57,7 @@
   "bursarExports.aggregate.filter.operator.lessEqual": "Less than or equal to",
   "bursarExports.aggregate.filter.operator.greater": "Greater than but not equal to",
   "bursarExports.aggregate.filter.operator.greaterEqual": "Greater than or equal to",
-  "bursarExports.aggregate.filter.description": "This will be applied after accounts are evaluated per the \"Criteria\" specified above.",
+  "bursarExports.aggregate.filter.description": "This will be applied after accounts are evaluated per the \u201cCriteria\u201d specified above.",
 
   "bursarExports.header.accordion": "Header format",
   "bursarExports.footer.accordion": "Footer format",
@@ -97,7 +97,7 @@
   "bursarExports.token.currentDate.timezone": "Timezone",
 
   "bursarExports.token.accountAmount.enableDecimal": "Include the decimal point",
-  "bursarExports.token.accountAmount.enableDecimal.description": "If selected, amounts will be exported like \"12.50\" if left unselected, they will be exported like \"1250\".",
+  "bursarExports.token.accountAmount.enableDecimal.description": "If selected, amounts will be exported like \u201c12.50\u201d if left unselected, they will be exported like \u201c1250\u201d.",
 
   "bursarExports.token.accountDate.dateType": "Date",
   "bursarExports.token.accountDate.dateType.created": "Creation date",
@@ -140,7 +140,7 @@
   "bursarExports.preview.enableInvisibleChar": "Display invisible characters (newlines, tabs, and spaces)",
 
   "bursarExports.transfer.accordion": "Transfer accounts to",
-  "bursarExports.transfer.description": "Conditions will be evaluated in order, with the first matched transfer account being used. If no conditions are matched, the account listed under \"otherwise\" will be used.",
+  "bursarExports.transfer.description": "Conditions will be evaluated in order, with the first matched transfer account being used. If no conditions are matched, the account listed under \u201cotherwise\u201d will be used.",
   "bursarExports.transfer.owner": "Fee/fine owner",
   "bursarExports.transfer.account": "Transfer account",
   "bursarExports.transfer.transferTo": "Transfer to",
