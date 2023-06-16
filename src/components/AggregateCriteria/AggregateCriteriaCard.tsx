@@ -1,5 +1,5 @@
 import { Card, Col, Row, Select, TextField } from '@folio/stripes/components';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { CriteriaAggregateType } from '../../types/CriteriaTypes';
 import { Field, useField } from 'react-final-form';
 import OperatorSelect from '../Criteria/OperatorSelect';
@@ -14,6 +14,25 @@ export default function AggregateCriteriaCard() {
 
   const monetaryOnBlur = useMonetaryOnBlur('aggregateFilter.amountDollars');
   const intl = useIntl();
+
+  const criteriaOptions = useMemo(
+    () =>
+      [
+        {
+          label: intl.formatMessage({
+            id: 'ui-plugin-bursar-export.bursarExports.aggregate.filter.numAccounts',
+          }),
+          value: CriteriaAggregateType.NUM_ROWS,
+        },
+        {
+          label: intl.formatMessage({
+            id: 'ui-plugin-bursar-export.bursarExports.aggregate.filter.totalAmount',
+          }),
+          value: CriteriaAggregateType.TOTAL_AMOUNT,
+        },
+      ].sort((a, b) => a.label.localeCompare(b.label)),
+    [intl]
+  );
 
   return (
     <Card
@@ -43,19 +62,8 @@ export default function AggregateCriteriaCard() {
                     }),
                     value: CriteriaAggregateType.PASS,
                   },
-                  {
-                    label: intl.formatMessage({
-                      id: 'ui-plugin-bursar-export.bursarExports.aggregate.filter.numAccounts',
-                    }),
-                    value: CriteriaAggregateType.NUM_ROWS,
-                  },
-                  {
-                    label: intl.formatMessage({
-                      id: 'ui-plugin-bursar-export.bursarExports.aggregate.filter.totalAmount',
-                    }),
-                    value: CriteriaAggregateType.TOTAL_AMOUNT,
-                  },
-                ].sort((a, b) => a.label.localeCompare(b.label))}
+                  ...criteriaOptions,
+                ]}
               />
             )}
           </Field>
