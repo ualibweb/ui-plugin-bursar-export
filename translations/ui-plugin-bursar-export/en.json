@@ -22,9 +22,9 @@
   "bursarExports.scheduling.weekdays": "Run on weekdays",
 
   "bursarExports.criteria.accordion": "Criteria",
-  "bursarExports.criteria.select.allOf": "All of",
-  "bursarExports.criteria.select.anyOf": "Any of",
-  "bursarExports.criteria.select.noneOf": "None of",
+  "bursarExports.criteria.select.allOf": "All of:",
+  "bursarExports.criteria.select.anyOf": "Any of:",
+  "bursarExports.criteria.select.noneOf": "None of:",
   "bursarExports.criteria.select.age": "Age",
   "bursarExports.criteria.select.amount": "Amount",
   "bursarExports.criteria.select.owner": "Fee/fine owner",
@@ -32,7 +32,7 @@
   "bursarExports.criteria.select.location": "Item location",
   "bursarExports.criteria.select.servicePoint": "Item service point",
   "bursarExports.criteria.select.patronGroup": "Patron group",
-  "bursarExports.criteria.select.none": "No criteria (alwyays run)",
+  "bursarExports.criteria.select.none": "No criteria (always run)",
 
   "bursarExports.criteria.age.value": "Older than (days)",
   "bursarExports.criteria.type.automatic": "Automatic",
@@ -143,7 +143,7 @@
   "bursarExports.transfer.description": "Conditions will be evaluated in order, with the first matched transfer account being used. If no conditions are matched, the account listed under \u201cotherwise\u201d will be used.",
   "bursarExports.transfer.owner": "Fee/fine owner",
   "bursarExports.transfer.account": "Transfer account",
-  "bursarExports.transfer.transferTo": "Transfer to",
+  "bursarExports.transfer.transferTo": "Transfer to:",
 
   "permission.bursar-exports.all": "Transfer exports: Modify configuration and start jobs",
   "permission.bursar-exports.manual": "Transfer exports: Start manual jobs",

@@ -2,13 +2,16 @@ import { render, screen } from '@testing-library/react';
 import { Form } from 'react-final-form';
 import CriteriaCardSelect from './CriteriaCardSelect';
 import React from 'react';
+import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 
 describe('Criteria card selection box', () => {
   it('root has no criteria option', () => {
     render(
-      <Form onSubmit={jest.fn()}>
-        {() => <CriteriaCardSelect name="test" root />}
-      </Form>
+      withIntlConfiguration(
+        <Form onSubmit={jest.fn()}>
+          {() => <CriteriaCardSelect name="test" root />}
+        </Form>
+      )
     );
 
     expect(
@@ -18,9 +21,11 @@ describe('Criteria card selection box', () => {
 
   it('non patron-only has item/etc options', () => {
     render(
-      <Form onSubmit={jest.fn()}>
-        {() => <CriteriaCardSelect name="test" />}
-      </Form>
+      withIntlConfiguration(
+        <Form onSubmit={jest.fn()}>
+          {() => <CriteriaCardSelect name="test" />}
+        </Form>
+      )
     );
 
     expect(screen.getByRole('option', { name: 'All of:' })).toBeInTheDocument();
@@ -34,9 +39,11 @@ describe('Criteria card selection box', () => {
 
   it('patron-only does not have item/etc options', () => {
     render(
-      <Form onSubmit={jest.fn()}>
-        {() => <CriteriaCardSelect name="test" patronOnly />}
-      </Form>
+      withIntlConfiguration(
+        <Form onSubmit={jest.fn()}>
+          {() => <CriteriaCardSelect name="test" patronOnly />}
+        </Form>
+      )
     );
 
     expect(screen.getByRole('option', { name: 'All of:' })).toBeInTheDocument();
