@@ -41,8 +41,22 @@ describe('Configuration form', () => {
 
     expect(screen.getByText('Account data format')).toBeVisible();
 
-    // you should test the conditions for with/without aggregate
-    // (can `userEvent.click the checkbox, but you may need to open the accordion)
-    // you could also re-render and pass alternative initial values
   });
+
+  it('Render the configuration form with aggregate initial true', () => {
+    render(
+      withIntlConfiguration(
+        <ConfigurationForm
+          formApiRef={{ current: null }}
+          initialValues={{ aggregate: true }}
+          onSubmit={jest.fn()}
+        />
+      )
+    );
+
+    screen.debug();
+
+    expect(screen.getByText('Patron data format')).toBeVisible();
+
+    });
 });
