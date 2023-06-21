@@ -8,19 +8,8 @@ import {
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FormApi } from 'final-form';
 import React, { FormEvent, MutableRefObject, useCallback } from 'react';
-import { FormRenderProps, FormSpy, useField } from 'react-final-form';
-import formValuesToDto from '../api/dto/to/formValuesToDto';
-import useCampuses from '../api/queries/useCampuses';
-import useCurrentConfig from '../api/queries/useCurrentConfig';
-import useFeeFineOwners from '../api/queries/useFeeFineOwners';
-import useFeeFineTypes from '../api/queries/useFeeFineTypes';
-import useInstitutions from '../api/queries/useInstitutions';
-import useLibraries from '../api/queries/useLibraries';
-import useLocations from '../api/queries/useLocations';
-import usePatronGroups from '../api/queries/usePatronGroups';
-import useServicePoints from '../api/queries/useServicePoints';
-import useTransferAccounts from '../api/queries/useTransferAccounts';
-import useInitialValues from '../hooks/useInitialValues';
+import { FormRenderProps, useField } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 import FormValues from '../types/FormValues';
 import AggregateMenu from './sections/AggregateMenu';
 import CriteriaMenu from './sections/CriteriaMenu';
@@ -29,7 +18,6 @@ import ExportPreview from './sections/ExportPreview';
 import HeaderFooterMenu from './sections/HeaderFooterMenu';
 import SchedulingMenu from './sections/SchedulingMenu';
 import TransferInfoMenu from './sections/TransferInfoMenu';
-import { FormattedMessage } from 'react-intl';
 
 export const FORM_ID = 'ui-plugin-bursar-export-form';
 
