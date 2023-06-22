@@ -46,10 +46,14 @@ export default function BursarExportPlugin() {
         defaultWidth="fill"
         footer={
           <PaneFooter
-            renderStart={<Button disabled>Run manually</Button>}
+            renderStart={
+              <Button disabled>
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.runManually" />
+              </Button>
+            }
             renderEnd={
               <Button disabled buttonStyle="primary">
-                Save
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.save" />
               </Button>
             }
           />
