@@ -82,7 +82,13 @@ export default function HeaderFooterTypeSelect({ name }: { name: string }) {
   }, [intl]);
 
   return (
-    <Field name={name} defaultValue={HeaderFooterTokenType.NEWLINE}>
+    <Field
+      name={name}
+      defaultValue={HeaderFooterTokenType.NEWLINE}
+      aria-label={intl.formatMessage({
+        id: 'ui-plugin-bursar-export.bursarExports.token.headerFooter.typeSelect',
+      })}
+    >
       {(fieldProps) => (
         <Select<HeaderFooterTokenType>
           {...fieldProps}
