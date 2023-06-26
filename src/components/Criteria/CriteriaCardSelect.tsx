@@ -124,7 +124,13 @@ export default function CriteriaCardSelect({
   }, [root, patronOnly]);
 
   return (
-    <Field name={name} defaultValue={selectDefaultValue}>
+    <Field
+      name={name}
+      defaultValue={selectDefaultValue}
+      aria-label={intl.formatMessage({
+        id: 'ui-plugin-bursar-export.bursarExports.criteria.select.label',
+      })}
+    >
       {(fieldProps) => (
         <Select<CriteriaGroupType | CriteriaTerminalType>
           {...fieldProps}

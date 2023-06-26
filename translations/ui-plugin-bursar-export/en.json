@@ -33,6 +33,7 @@
   "bursarExports.criteria.select.servicePoint": "Item service point",
   "bursarExports.criteria.select.patronGroup": "Patron group",
   "bursarExports.criteria.select.none": "No criteria (always run)",
+  "bursarExports.criteria.select.label": "Criteria",
 
   "bursarExports.criteria.age.value": "Older than (days)",
   "bursarExports.criteria.type.automatic": "Automatic",
@@ -80,6 +81,10 @@
   "bursarExports.token.fallback": "Fallback value",
   "bursarExports.token.fallback.description": "If the chosen date is not available/applicable, the fallback value will be used instead.",
   "bursarExports.token.value": "Value",
+
+  "bursarExports.token.headerFooter.typeSelect": "Header/footer type select",
+  
+  "bursarExports.token.dataType.typeSelect": "Data type select",
 
   "bursarExports.token.whitespace.numSpaces": "Number of spaces",
 

@@ -146,7 +146,13 @@ export default function DataTypeSelect({ name }: { name: string }) {
   );
 
   return (
-    <Field name={name} defaultValue={DataTokenType.NEWLINE}>
+    <Field
+      name={name}
+      defaultValue={DataTokenType.NEWLINE}
+      aria-label={intl.formatMessage({
+        id: 'ui-plugin-bursar-export.bursarExports.token.dataType.typeSelect',
+      })}
+    >
       {(fieldProps) => (
         <Select<DataTokenType>
           {...fieldProps}
