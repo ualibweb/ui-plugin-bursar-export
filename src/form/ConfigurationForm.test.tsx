@@ -26,7 +26,7 @@ jest.mock('../api/queries/useTransferAccounts', () => ({
 }));
 
 describe('Configuration form', () => {
-  it('Render the configuration form', () => {
+  it('renders the configuration form', () => {
     render(
       withIntlConfiguration(
         <ConfigurationForm
@@ -40,10 +40,9 @@ describe('Configuration form', () => {
     screen.debug();
 
     expect(screen.getByText('Account data format')).toBeVisible();
-
   });
 
-  it('Render the configuration form with aggregate initial true', () => {
+  it('renders the configuration form with aggregate initial true', () => {
     render(
       withIntlConfiguration(
         <ConfigurationForm
@@ -57,6 +56,5 @@ describe('Configuration form', () => {
     screen.debug();
 
     expect(screen.getByText('Patron data format')).toBeVisible();
-
-    });
+  });
 });
