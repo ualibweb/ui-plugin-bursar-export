@@ -35,15 +35,16 @@ export default function ItemInfoToken({ prefix }: { prefix: string }) {
       value: 'LOCATION_ID',
     },
   ];
-  const options = useMemo(() => {
-    const selectOptions = attributeOptions
-      .map((option) => ({
-        label: intl.formatMessage({ id: option.labelId }),
-        value: option.value as ItemAttribute,
-      }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-    return selectOptions;
-  }, [intl]);
+  const options = useMemo(
+    () =>
+      attributeOptions
+        .map((option) => ({
+          label: intl.formatMessage({ id: option.labelId }),
+          value: option.value as ItemAttribute,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    [intl]
+  );
 
   return (
     <UserItemInfoToken<ItemAttribute>

@@ -41,13 +41,14 @@ export default function UserInfoToken({ prefix }: { prefix: string }) {
       value: 'LAST_NAME',
     },
   ];
-  const options = useMemo(() => {
-    const selectOptions = attributeOptions.map((option) => ({
-      label: intl.formatMessage({ id: option.labelId }),
-      value: option.value as UserAttribute,
-    }));
-    return selectOptions;
-  }, [intl]);
+  const options = useMemo(
+    () =>
+      attributeOptions.map((option) => ({
+        label: intl.formatMessage({ id: option.labelId }),
+        value: option.value as UserAttribute,
+      })),
+    [intl]
+  );
 
   return (
     <UserItemInfoToken<UserAttribute>

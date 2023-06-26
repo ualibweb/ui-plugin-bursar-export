@@ -1,6 +1,6 @@
 import { Select } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
-import { Field, Form } from 'react-final-form';
+import { Field } from 'react-final-form';
 import { FormattedMessage, useIntl } from 'react-intl';
 import timeZones from '../../../utils/timezones';
 
