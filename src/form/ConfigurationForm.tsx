@@ -8,19 +8,8 @@ import {
 import stripesFinalForm from '@folio/stripes/final-form';
 import { FormApi } from 'final-form';
 import React, { FormEvent, MutableRefObject, useCallback } from 'react';
-import { FormRenderProps, FormSpy, useField } from 'react-final-form';
-import formValuesToDto from '../api/dto/to/formValuesToDto';
-import useCampuses from '../api/queries/useCampuses';
-import useCurrentConfig from '../api/queries/useCurrentConfig';
-import useFeeFineOwners from '../api/queries/useFeeFineOwners';
-import useFeeFineTypes from '../api/queries/useFeeFineTypes';
-import useInstitutions from '../api/queries/useInstitutions';
-import useLibraries from '../api/queries/useLibraries';
-import useLocations from '../api/queries/useLocations';
-import usePatronGroups from '../api/queries/usePatronGroups';
-import useServicePoints from '../api/queries/useServicePoints';
-import useTransferAccounts from '../api/queries/useTransferAccounts';
-import useInitialValues from '../hooks/useInitialValues';
+import { FormRenderProps, useField } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 import FormValues from '../types/FormValues';
 import AggregateMenu from './sections/AggregateMenu';
 import CriteriaMenu from './sections/CriteriaMenu';
@@ -65,81 +54,67 @@ function ConfigurationForm({
             <ExpandAllButton />
           </Col>
         </Row>
-        <Accordion label="Scheduling">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.scheduling.accordion" />
+          }
+        >
           <SchedulingMenu />
         </Accordion>
-        <Accordion label="Criteria">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.accordion" />
+          }
+        >
           <CriteriaMenu />
         </Accordion>
-        <Accordion label="Aggregate by patron">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.aggregate.accordion" />
+          }
+        >
           <AggregateMenu />
         </Accordion>
-        <Accordion label="Header format">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.header.accordion" />
+          }
+        >
           <HeaderFooterMenu name="header" />
         </Accordion>
         <Accordion
           label={
-            aggregateEnabled ? 'Patron data format' : 'Account data format'
+            aggregateEnabled ? (
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.data.accordion.patron" />
+            ) : (
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.data.accordion.account" />
+            )
           }
         >
           <DataTokenMenu />
         </Accordion>
-        <Accordion label="Footer format">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.footer.accordion" />
+          }
+        >
           <HeaderFooterMenu name="footer" />
         </Accordion>
 
-        <Accordion label="Preview">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.preview.accordion" />
+          }
+        >
           <ExportPreview />
         </Accordion>
 
-        <Accordion label="Transfer accounts to">
+        <Accordion
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.transfer.accordion" />
+          }
+        >
           <TransferInfoMenu />
-        </Accordion>
-
-        <Accordion label="Debug (form state)">
-          <FormSpy subscription={{ values: true }}>
-            {({ values }) => <pre>{JSON.stringify(values, undefined, 2)}</pre>}
-          </FormSpy>
-        </Accordion>
-        <Accordion label="Debug (formValuesToDto)">
-          <FormSpy<FormValues> subscription={{ values: true }}>
-            {({ values }) => (
-              <pre>{JSON.stringify(formValuesToDto(values), undefined, 2)}</pre>
-            )}
-          </FormSpy>
-        </Accordion>
-        <Accordion label="Debug (useCurrentConfig)" closedByDefault>
-          <pre>{JSON.stringify(useCurrentConfig().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useInitialValues)">
-          <pre>{JSON.stringify(useInitialValues(), undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (usePatronGroups)" closedByDefault>
-          <pre>{JSON.stringify(usePatronGroups().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useServicePoints)" closedByDefault>
-          <pre>{JSON.stringify(useServicePoints().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useFeeFineOwners)" closedByDefault>
-          <pre>{JSON.stringify(useFeeFineOwners().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useFeeFineTypes)" closedByDefault>
-          <pre>{JSON.stringify(useFeeFineTypes().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useTransferAccounts)" closedByDefault>
-          <pre>{JSON.stringify(useTransferAccounts().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useInstitutions)" closedByDefault>
-          <pre>{JSON.stringify(useInstitutions().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useCampuses)" closedByDefault>
-          <pre>{JSON.stringify(useCampuses().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useLibraries)" closedByDefault>
-          <pre>{JSON.stringify(useLibraries().data, undefined, 2)}</pre>
-        </Accordion>
-        <Accordion label="Debug (useLocations)" closedByDefault>
-          <pre>{JSON.stringify(useLocations().data, undefined, 2)}</pre>
         </Accordion>
       </AccordionSet>
     </form>
@@ -148,5 +123,4 @@ function ConfigurationForm({
 
 export default stripesFinalForm<ConfigurationFormProps, FormValues>({
   validateOnBlur: true,
-  // TODO: add validate,
 })(ConfigurationForm);

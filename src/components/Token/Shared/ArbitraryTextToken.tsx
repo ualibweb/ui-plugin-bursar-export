@@ -1,6 +1,7 @@
 import { Col, TextField } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 
 export default function ArbitraryTextToken({ prefix }: { prefix: string }) {
   return (
@@ -12,7 +13,9 @@ export default function ArbitraryTextToken({ prefix }: { prefix: string }) {
             fullWidth
             marginBottom0
             required
-            label="Value"
+            label={
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.value" />
+            }
           />
         )}
       </Field>

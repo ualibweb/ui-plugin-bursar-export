@@ -1,8 +1,10 @@
 import { Col, Select } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function FeeFineTypeToken({ prefix }: { prefix: string }) {
+  const intl = useIntl();
   return (
     <Col xs={12}>
       <Field<'FEE_FINE_TYPE_ID' | 'FEE_FINE_TYPE_NAME'>
@@ -14,14 +16,20 @@ export default function FeeFineTypeToken({ prefix }: { prefix: string }) {
             {...fieldProps}
             required
             marginBottom0
-            label="Attribute"
+            label={
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.feeFineType.attribute" />
+            }
             dataOptions={[
               {
-                label: 'Type name',
+                label: intl.formatMessage({
+                  id: 'ui-plugin-bursar-export.bursarExports.token.feeFineType.name',
+                }),
                 value: 'FEE_FINE_TYPE_NAME',
               },
               {
-                label: 'Type ID',
+                label: intl.formatMessage({
+                  id: 'ui-plugin-bursar-export.bursarExports.token.feeFineType.id',
+                }),
                 value: 'FEE_FINE_TYPE_ID',
               },
             ]}

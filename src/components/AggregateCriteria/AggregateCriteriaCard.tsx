@@ -1,9 +1,10 @@
 import { Card, Col, Row, Select, TextField } from '@folio/stripes/components';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { CriteriaAggregateType } from '../../types/CriteriaTypes';
 import { Field, useField } from 'react-final-form';
 import OperatorSelect from '../Criteria/OperatorSelect';
 import useMonetaryOnBlur from '../../hooks/useMonetaryOnBlur';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function AggregateCriteriaCard() {
   const selectedType = useField<CriteriaAggregateType>('aggregateFilter.type', {
@@ -12,9 +13,33 @@ export default function AggregateCriteriaCard() {
   }).input.value;
 
   const monetaryOnBlur = useMonetaryOnBlur('aggregateFilter.amountDollars');
+  const intl = useIntl();
+
+  const criteriaOptions = useMemo(
+    () =>
+      [
+        {
+          label: intl.formatMessage({
+            id: 'ui-plugin-bursar-export.bursarExports.aggregate.filter.numAccounts',
+          }),
+          value: CriteriaAggregateType.NUM_ROWS,
+        },
+        {
+          label: intl.formatMessage({
+            id: 'ui-plugin-bursar-export.bursarExports.aggregate.filter.totalAmount',
+          }),
+          value: CriteriaAggregateType.TOTAL_AMOUNT,
+        },
+      ].sort((a, b) => a.label.localeCompare(b.label)),
+    [intl]
+  );
 
   return (
-    <Card headerStart="Only include patrons with:">
+    <Card
+      headerStart={
+        <FormattedMessage id="ui-plugin-bursar-export.bursarExports.aggregate.filter.header" />
+      }
+    >
       <Row>
         <Col xs={12} md={4}>
           <Field
@@ -27,20 +52,17 @@ export default function AggregateCriteriaCard() {
                 fullWidth
                 marginBottom0
                 required
-                label="Filter type"
+                label={
+                  <FormattedMessage id="ui-plugin-bursar-export.bursarExports.aggregate.filter" />
+                }
                 dataOptions={[
                   {
-                    label: 'None (include all patrons)',
+                    label: intl.formatMessage({
+                      id: 'ui-plugin-bursar-export.bursarExports.aggregate.filter.none',
+                    }),
                     value: CriteriaAggregateType.PASS,
                   },
-                  {
-                    label: 'Number of accounts',
-                    value: CriteriaAggregateType.NUM_ROWS,
-                  },
-                  {
-                    label: 'Total amount',
-                    value: CriteriaAggregateType.TOTAL_AMOUNT,
-                  },
+                  ...criteriaOptions,
                 ]}
               />
             )}
@@ -63,7 +85,9 @@ export default function AggregateCriteriaCard() {
                   marginBottom0
                   required
                   type="number"
-                  label="Number of accounts"
+                  label={
+                    <FormattedMessage id="ui-plugin-bursar-export.bursarExports.aggregate.filter.numAccounts.amount" />
+                  }
                   min={1}
                   step={1}
                 />
@@ -82,7 +106,9 @@ export default function AggregateCriteriaCard() {
                   marginBottom0
                   required
                   type="number"
-                  label="Amount"
+                  label={
+                    <FormattedMessage id="ui-plugin-bursar-export.bursarExports.aggregate.filter.totalAmount.amount" />
+                  }
                   min={0}
                   step={0.01}
                   onBlur={monetaryOnBlur}
@@ -95,8 +121,7 @@ export default function AggregateCriteriaCard() {
 
       <p style={{ marginBottom: 0 }}>
         <i>
-          This will be applied after accounts are evaluated per the
-          &ldquo;Criteria&rdquo; specified above.
+          <FormattedMessage id="ui-plugin-bursar-export.bursarExports.aggregate.filter.description" />
         </i>
       </p>
     </Card>

@@ -1,7 +1,7 @@
 import { Select } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { Field } from 'react-final-form';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import timeZones from '../../../utils/timezones';
 
 export default function TimezonePicker({ prefix }: { prefix: string }) {
@@ -19,7 +19,9 @@ export default function TimezonePicker({ prefix }: { prefix: string }) {
           {...fieldProps}
           required
           marginBottom0
-          label="Timezone"
+          label={
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.currentDate.timezone" />
+          }
           dataOptions={timeZonesForSelect}
         />
       )}

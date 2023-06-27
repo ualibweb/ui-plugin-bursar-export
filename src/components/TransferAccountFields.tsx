@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { Field, useField } from 'react-final-form';
 import useFeeFineOwners from '../api/queries/useFeeFineOwners';
 import useTransferAccounts from '../api/queries/useTransferAccounts';
+import { FormattedMessage } from 'react-intl';
 
 export default function TransferAccountFields({ prefix }: { prefix: string }) {
   const feeFineOwners = useFeeFineOwners();
@@ -48,11 +49,13 @@ export default function TransferAccountFields({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Fee/fine owner"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.transfer.owner" />
+              }
               dataOptions={[
                 { label: '', value: undefined, disabled: true },
                 ...ownersSelectOptions,
-              ]}
+              ].sort((a, b) => a.label.localeCompare(b.label))}
             />
           )}
         </Field>
@@ -65,11 +68,13 @@ export default function TransferAccountFields({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Transfer account"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.transfer.account" />
+              }
               dataOptions={[
                 { label: '', value: undefined },
                 ...accountSelectOptions,
-              ]}
+              ].sort((a, b) => a.label.localeCompare(b.label))}
             />
           )}
         </Field>

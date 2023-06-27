@@ -5,6 +5,7 @@ import { Form } from 'react-final-form';
 import ExportPreview from './ExportPreview';
 import { DataTokenType, HeaderFooterTokenType } from '../../types/TokenTypes';
 import userEvent from '@testing-library/user-event';
+import withIntlConfiguration from '../../test/util/withIntlConfiguration';
 
 jest.mock('@ngneat/falso', () => ({
   randFloat: jest.fn(() => 12.34),
@@ -14,11 +15,12 @@ jest.mock('@ngneat/falso', () => ({
 describe('Export preview component', () => {
   it('wraps lines when selected', async () => {
     const { container } = render(
-      <Form mutators={{ ...arrayMutators }} onSubmit={jest.fn()}>
-        {() => <ExportPreview />}
-      </Form>
+      withIntlConfiguration(
+        <Form mutators={{ ...arrayMutators }} onSubmit={jest.fn()}>
+          {() => <ExportPreview />}
+        </Form>
+      )
     );
-
     // when undefined
     expect(container.querySelector('.wrap')).toBeVisible();
 

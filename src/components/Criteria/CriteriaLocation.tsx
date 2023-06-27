@@ -5,6 +5,7 @@ import useCampuses from '../../api/queries/useCampuses';
 import useInstitutions from '../../api/queries/useInstitutions';
 import useLibraries from '../../api/queries/useLibraries';
 import useLocations from '../../api/queries/useLocations';
+import { FormattedMessage } from 'react-intl';
 
 export default function CriteriaLocation({ prefix }: { prefix: string }) {
   const institutions = useInstitutions();
@@ -85,11 +86,13 @@ export default function CriteriaLocation({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Institution"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.location.inst" />
+              }
               dataOptions={[
                 { label: '', value: undefined },
                 ...institutionSelectOptions,
-              ]}
+              ].sort((a, b) => a.label.localeCompare(b.label))}
             />
           )}
         </Field>
@@ -102,11 +105,13 @@ export default function CriteriaLocation({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Campus"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.location.camp" />
+              }
               dataOptions={[
                 { label: '', value: undefined },
                 ...campusSelectOptions,
-              ]}
+              ].sort((a, b) => a.label.localeCompare(b.label))}
             />
           )}
         </Field>
@@ -119,11 +124,13 @@ export default function CriteriaLocation({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Library"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.location.lib" />
+              }
               dataOptions={[
                 { label: '', value: undefined },
                 ...librarySelectOptions,
-              ]}
+              ].sort((a, b) => a.label.localeCompare(b.label))}
             />
           )}
         </Field>
@@ -136,11 +143,13 @@ export default function CriteriaLocation({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Location"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.location.loc" />
+              }
               dataOptions={[
                 { label: '', value: undefined },
                 ...locationSelectOptions,
-              ]}
+              ].sort((a, b) => a.label.localeCompare(b.label))}
             />
           )}
         </Field>

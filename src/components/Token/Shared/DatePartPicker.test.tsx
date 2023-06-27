@@ -3,20 +3,23 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Form } from 'react-final-form';
 import DatePartPicker from './DatePartPicker';
+import withIntlConfiguration from '../../../test/util/withIntlConfiguration';
 
 describe('Date part picker', () => {
   it('displays appropriate form', async () => {
     const submitter = jest.fn();
 
     render(
-      <Form onSubmit={(v) => submitter(v)}>
-        {({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <DatePartPicker prefix="" />
-            <button type="submit">Submit</button>
-          </form>
-        )}
-      </Form>
+      withIntlConfiguration(
+        <Form onSubmit={(v) => submitter(v)}>
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <DatePartPicker prefix="" />
+              <button type="submit">Submit</button>
+            </form>
+          )}
+        </Form>
+      )
     );
 
     expect(screen.getByRole('combobox', { name: 'Format' })).toHaveDisplayValue(

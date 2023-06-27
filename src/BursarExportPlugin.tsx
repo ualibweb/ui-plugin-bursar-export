@@ -14,6 +14,7 @@ import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutatio
 import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
 import useInitialValues from './hooks/useInitialValues';
 import FormValues from './types/FormValues';
+import { FormattedMessage } from 'react-intl';
 
 export default function BursarExportPlugin() {
   const stripes = useStripes();
@@ -39,14 +40,20 @@ export default function BursarExportPlugin() {
   if (initialValues === null) {
     return (
       <LoadingPane
-        paneTitle="Transfer configuration"
+        paneTitle={
+          <FormattedMessage id="ui-plugin-bursar-export.bursarExports.paneTitle" />
+        }
         defaultWidth="fill"
         footer={
           <PaneFooter
-            renderStart={<Button disabled>Run manually</Button>}
+            renderStart={
+              <Button disabled>
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.runManually" />
+              </Button>
+            }
             renderEnd={
               <Button disabled buttonStyle="primary">
-                Save
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.save" />
               </Button>
             }
           />
@@ -69,7 +76,7 @@ export default function BursarExportPlugin() {
                 formApiRef.current?.change('buttonClicked', 'manual')
               }
             >
-              Run manually
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.runManually" />
             </Button>
           }
           renderEnd={
@@ -82,13 +89,15 @@ export default function BursarExportPlugin() {
                 formApiRef.current?.change('buttonClicked', 'save')
               }
             >
-              Save
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.save" />
             </Button>
           }
         />
       }
       id="pane-batch-group-configuration"
-      paneTitle="Transfer configuration"
+      paneTitle={
+        <FormattedMessage id="ui-plugin-bursar-export.bursarExports.paneTitle" />
+      }
     >
       <ConfigurationForm
         initialValues={initialValues}

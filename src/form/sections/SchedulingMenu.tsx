@@ -9,18 +9,24 @@ import {
 } from '@folio/stripes/components';
 import React from 'react';
 import { Field, useField } from 'react-final-form';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Weekday, useLocaleWeekdays } from '../../utils/WeekdayUtils';
 import SchedulingFrequency from '../../types/SchedulingFrequency';
 
 export function getIntervalLabel(frequency: SchedulingFrequency) {
   switch (frequency) {
     case SchedulingFrequency.Hours:
-      return 'Hours between runs';
+      return (
+        <FormattedMessage id="ui-plugin-bursar-export.bursarExports.scheduling.interval.hours" />
+      );
     case SchedulingFrequency.Days:
-      return 'Days between runs';
+      return (
+        <FormattedMessage id="ui-plugin-bursar-export.bursarExports.scheduling.interval.days" />
+      );
     case SchedulingFrequency.Weeks:
-      return 'Weeks between runs';
+      return (
+        <FormattedMessage id="ui-plugin-bursar-export.bursarExports.scheduling.interval.weeks" />
+      );
     default:
       return '';
   }
@@ -31,7 +37,8 @@ export default function SchedulingMenu() {
     subscription: { value: true },
   }).input.value;
 
-  const localeWeekdays = useLocaleWeekdays(useIntl());
+  const intl = useIntl();
+  const localeWeekdays = useLocaleWeekdays(intl);
 
   return (
     <Row>
@@ -45,22 +52,32 @@ export default function SchedulingMenu() {
               {...fieldProps}
               fullWidth
               required
-              label="Frequency"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.scheduling.frequency" />
+              }
               dataOptions={[
                 {
-                  label: 'Never (run manually)',
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.scheduling.frequency.manual',
+                  }),
                   value: SchedulingFrequency.Manual,
                 },
                 {
-                  label: 'Hours',
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.scheduling.frequency.hours',
+                  }),
                   value: SchedulingFrequency.Hours,
                 },
                 {
-                  label: 'Days',
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.scheduling.frequency.days',
+                  }),
                   value: SchedulingFrequency.Days,
                 },
                 {
-                  label: 'Weeks',
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.scheduling.frequency.weeks',
+                  }),
                   value: SchedulingFrequency.Weeks,
                 },
               ]}
@@ -93,19 +110,27 @@ export default function SchedulingMenu() {
         <Col xs={12} md={6}>
           <Field name="scheduling.time">
             {(fieldProps) => (
-              <Timepicker {...fieldProps} required label="Run at" />
+              <Timepicker
+                {...fieldProps}
+                required
+                label={intl.formatMessage({
+                  id: 'ui-plugin-bursar-export.bursarExports.scheduling.time',
+                })}
+              />
             )}
           </Field>
         </Col>
       )}
       {frequencyValue === SchedulingFrequency.Weeks && (
         <Col xs={12} md={6}>
-          <Field name={`scheduling.weekdays`}>
+          <Field name="scheduling.weekdays">
             {(fieldProps) => (
               <MultiSelection<MultiSelectionDefaultOptionType<Weekday>>
                 {...fieldProps}
                 required
-                label="Run on weekdays"
+                label={
+                  <FormattedMessage id="ui-plugin-bursar-export.bursarExports.scheduling.weekdays" />
+                }
                 dataOptions={localeWeekdays.map((weekday) => ({
                   label: weekday.long,
                   value: weekday.weekday,

@@ -1,8 +1,10 @@
 import { Checkbox, Col } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
+import { useIntl } from 'react-intl';
 
 export default function AmountWithDecimalToken({ prefix }: { prefix: string }) {
+  const intl = useIntl();
   return (
     <Col xs={12}>
       <Field name={`${prefix}decimal`} type="checkbox" defaultValue={true}>
@@ -10,14 +12,17 @@ export default function AmountWithDecimalToken({ prefix }: { prefix: string }) {
           <Checkbox
             {...fieldProps}
             fullWidth
-            label="Include the decimal point"
+            label={intl.formatMessage({
+              id: 'ui-plugin-bursar-export.bursarExports.token.accountAmount.enableDecimal',
+            })}
           />
         )}
       </Field>
       <p style={{ margin: 0 }}>
         <i>
-          If selected, amounts will be exported like &ldquo;12.50&rdquo;; if
-          left unselected, they will be exported like &ldquo;1250&rdquo;.
+          {intl.formatMessage({
+            id: 'ui-plugin-bursar-export.bursarExports.token.accountAmount.enableDecimal.description',
+          })}
         </i>
       </p>
     </Col>

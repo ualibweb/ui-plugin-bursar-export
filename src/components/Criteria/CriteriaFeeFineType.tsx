@@ -3,10 +3,12 @@ import React, { useMemo } from 'react';
 import { Field, useField } from 'react-final-form';
 import useFeeFineOwners from '../../api/queries/useFeeFineOwners';
 import useFeeFineTypes from '../../api/queries/useFeeFineTypes';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
   const feeFineOwners = useFeeFineOwners();
   const feeFineTypes = useFeeFineTypes();
+  const intl = useIntl();
 
   const selectedOwner = useField<string | undefined>(
     `${prefix}feeFineOwnerId`,
@@ -60,11 +62,18 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Fee/fine owner"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.select.owner" />
+              }
               dataOptions={[
-                { label: 'Automatic', value: 'automatic' },
+                {
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.criteria.type.automatic',
+                  }),
+                  value: 'automatic',
+                },
                 ...ownersSelectOptions,
-              ]}
+              ].sort((a, b) => a.label.localeCompare(b.label))}
             />
           )}
         </Field>
@@ -77,11 +86,13 @@ export default function CriteriaFeeFineType({ prefix }: { prefix: string }) {
               fullWidth
               marginBottom0
               required
-              label="Fee/fine type"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.select.type" />
+              }
               dataOptions={[
                 { label: '', value: undefined },
                 ...typeSelectOptions,
-              ]}
+              ].sort((a, b) => a.label.localeCompare(b.label))}
             />
           )}
         </Field>
