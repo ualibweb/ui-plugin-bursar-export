@@ -12,10 +12,12 @@ export default function CriteriaFeeFineOwner({ prefix }: { prefix: string }) {
       return [];
     }
 
-    return feeFineOwners.data.map((owner) => ({
-      label: owner.owner,
-      value: owner.id,
-    }));
+    return feeFineOwners.data
+      .map((owner) => ({
+        label: owner.owner,
+        value: owner.id,
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
   }, [feeFineOwners]);
 
   return (
@@ -33,9 +35,7 @@ export default function CriteriaFeeFineOwner({ prefix }: { prefix: string }) {
               }
               dataOptions={[
                 { label: '', value: '', disabled: true },
-                ...ownersSelectOptions.sort((a, b) =>
-                  a.label.localeCompare(b.label)
-                ),
+                ...ownersSelectOptions,
               ]}
             />
           )}

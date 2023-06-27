@@ -9,7 +9,6 @@ import arrayMutators from 'final-form-arrays';
 import { FORM_ID } from './form/ConfigurationForm';
 import userEvent from '@testing-library/user-event';
 import formValuesToDto from './api/dto/to/formValuesToDto';
-import { OptionType } from '@folio/stripes-types/components/lib/Select/Select';
 import schedulingToDto from './api/dto/to/schedulingToDto';
 
 jest.mock('@folio/stripes/core', () => ({
