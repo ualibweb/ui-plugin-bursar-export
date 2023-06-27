@@ -37,8 +37,6 @@ describe('Configuration form', () => {
       )
     );
 
-    screen.debug();
-
     expect(screen.getByText('Account data format')).toBeVisible();
   });
 
@@ -52,8 +50,6 @@ describe('Configuration form', () => {
         />
       )
     );
-
-    screen.debug();
 
     expect(screen.getByText('Patron data format')).toBeVisible();
   });
