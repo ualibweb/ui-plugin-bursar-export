@@ -4,40 +4,56 @@ import {
   Pane,
   PaneFooter,
 } from '@folio/stripes/components';
-import React, { useCallback } from 'react';
-import ConfigurationForm from './form/ConfigurationForm';
-import useFeeFineOwners from './api/useFeeFineOwners';
-import useFeeFineTypes from './api/useFeeFineTypes';
-import useLocations from './api/useLocations';
-import usePatronGroups from './api/usePatronGroups';
-import useServicePoints from './api/useServicePoints';
+import { useStripes } from '@folio/stripes/core';
+import { FormApi } from 'final-form';
+import React, { useCallback, useRef } from 'react';
+import formValuesToDto from './api/dto/to/formValuesToDto';
+import schedulingToDto from './api/dto/to/schedulingToDto';
+import useAutomaticSchedulerMutation from './api/mutators/useAutomaticSchedulerMutation';
+import useManualSchedulerMutation from './api/mutators/useManualSchedulerMutation';
+import ConfigurationForm, { FORM_ID } from './form/ConfigurationForm';
+import useInitialValues from './hooks/useInitialValues';
+import FormValues from './types/FormValues';
+import { FormattedMessage } from 'react-intl';
 
-export default function BursarExports() {
-  const feeFineOwners = useFeeFineOwners();
-  const feeFineTypes = useFeeFineTypes();
-  const locations = useLocations();
-  const patronGroups = usePatronGroups();
-  const servicePoints = useServicePoints();
+export default function BursarExportPlugin() {
+  const stripes = useStripes();
 
-  const submitCallback = useCallback((v) => console.log(v), []);
+  const manualScheduler = useManualSchedulerMutation();
+  const automaticScheduler = useAutomaticSchedulerMutation();
 
-  if (
-    !feeFineOwners.isSuccess ||
-    !feeFineTypes.isSuccess ||
-    !locations.isSuccess ||
-    !patronGroups.isSuccess ||
-    !servicePoints.isSuccess
-  ) {
+  const formApiRef = useRef<FormApi<FormValues>>(null);
+
+  const submitCallback = useCallback(async (values: FormValues) => {
+    if (values.buttonClicked === 'manual') {
+      await manualScheduler(formValuesToDto(values));
+    } else {
+      await automaticScheduler({
+        bursar: formValuesToDto(values),
+        scheduling: schedulingToDto(values.scheduling),
+      });
+    }
+  }, []);
+
+  const initialValues = useInitialValues();
+
+  if (initialValues === null) {
     return (
       <LoadingPane
-        paneTitle="Transfer configuration"
+        paneTitle={
+          <FormattedMessage id="ui-plugin-bursar-export.bursarExports.paneTitle" />
+        }
         defaultWidth="fill"
         footer={
           <PaneFooter
-            renderStart={<Button disabled>Run manually</Button>}
+            renderStart={
+              <Button disabled>
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.runManually" />
+              </Button>
+            }
             renderEnd={
               <Button disabled buttonStyle="primary">
-                Save
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.save" />
               </Button>
             }
           />
@@ -51,21 +67,42 @@ export default function BursarExports() {
       defaultWidth="fill"
       footer={
         <PaneFooter
-          renderStart={<Button>Run manually</Button>}
-          renderEnd={<Button buttonStyle="primary">Save</Button>}
+          renderStart={
+            <Button
+              disabled={!stripes.hasPerm('data-export.job.item.post')}
+              type="submit"
+              form={FORM_ID}
+              onClick={() =>
+                formApiRef.current?.change('buttonClicked', 'manual')
+              }
+            >
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.runManually" />
+            </Button>
+          }
+          renderEnd={
+            <Button
+              disabled={!stripes.hasPerm('data-export.config.item.post')}
+              buttonStyle="primary"
+              type="submit"
+              form={FORM_ID}
+              onClick={() =>
+                formApiRef.current?.change('buttonClicked', 'save')
+              }
+            >
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.save" />
+            </Button>
+          }
         />
       }
       id="pane-batch-group-configuration"
-      paneTitle="Transfer configuration"
+      paneTitle={
+        <FormattedMessage id="ui-plugin-bursar-export.bursarExports.paneTitle" />
+      }
     >
       <ConfigurationForm
-        initialValues={{}}
+        initialValues={initialValues}
         onSubmit={submitCallback}
-        feeFineOwners={feeFineOwners.data}
-        feeFineTypes={feeFineTypes.data}
-        locations={locations.data}
-        patronGroups={patronGroups.data}
-        servicePoints={servicePoints.data}
+        formApiRef={formApiRef}
       />
     </Pane>
   );

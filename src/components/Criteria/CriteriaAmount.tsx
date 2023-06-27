@@ -1,8 +1,9 @@
 import { Col, TextField } from '@folio/stripes/components';
 import React from 'react';
 import { Field } from 'react-final-form';
-import useMonetaryOnBlur from '../../utils/useMonetaryOnBlur';
+import useMonetaryOnBlur from '../../hooks/useMonetaryOnBlur';
 import OperatorSelect from './OperatorSelect';
+import { FormattedMessage } from 'react-intl';
 
 export default function CriteriaAmount({ prefix }: { prefix: string }) {
   const monetaryOnBlur = useMonetaryOnBlur(`${prefix}amountDollars`);
@@ -21,7 +22,9 @@ export default function CriteriaAmount({ prefix }: { prefix: string }) {
               marginBottom0
               required
               type="number"
-              label="Amount"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.select.amount" />
+              }
               min={0}
               step={0.01}
               onBlur={monetaryOnBlur}

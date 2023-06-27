@@ -3,6 +3,7 @@ import React from 'react';
 import { FieldArray } from 'react-final-form-arrays';
 import { HeaderFooterTokenType } from '../../types/TokenTypes';
 import HeaderFooterCard from '../../components/Token/HeaderFooter/HeaderFooterCard';
+import { FormattedMessage } from 'react-intl';
 
 export default function HeaderFooterMenu({ name }: { name: string }) {
   return (
@@ -21,7 +22,7 @@ export default function HeaderFooterMenu({ name }: { name: string }) {
           <Button
             onClick={() => fields.push({ type: HeaderFooterTokenType.NEWLINE })}
           >
-            Add
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.add" />
           </Button>
         </>
       )}

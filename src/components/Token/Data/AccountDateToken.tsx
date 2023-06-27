@@ -3,13 +3,15 @@ import React from 'react';
 import { Field } from 'react-final-form';
 import DatePartPicker from '../Shared/DatePartPicker';
 import TimezonePicker from '../Shared/TimezonePicker';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function AccountDateToken({ prefix }: { prefix: string }) {
+  const intl = useIntl();
   return (
     <>
       <Col xs={12} md={6}>
         <Field<'CREATED' | 'UPDATED' | 'DUE' | 'RETURNED'>
-          name={`${prefix}attribute`}
+          name={`${prefix}dateProperty`}
           defaultValue="CREATED"
         >
           {(fieldProps) => (
@@ -19,19 +21,27 @@ export default function AccountDateToken({ prefix }: { prefix: string }) {
               label="Date"
               dataOptions={[
                 {
-                  label: 'Creation date',
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.token.accountDate.dateType.created',
+                  }),
                   value: 'CREATED',
                 },
                 {
-                  label: 'Last updated date',
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.token.accountDate.dateType.updated',
+                  }),
                   value: 'UPDATED',
                 },
                 {
-                  label: 'Item due date',
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.token.accountDate.dateType.dueItem',
+                  }),
                   value: 'DUE',
                 },
                 {
-                  label: 'Loan end date',
+                  label: intl.formatMessage({
+                    id: 'ui-plugin-bursar-export.bursarExports.token.accountDate.dateType.dueLoan',
+                  }),
                   value: 'DUE',
                 },
               ]}
@@ -48,7 +58,9 @@ export default function AccountDateToken({ prefix }: { prefix: string }) {
             <TextField<string>
               {...fieldProps}
               fullWidth
-              label="Fallback value"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.fallback" />
+              }
             />
           )}
         </Field>
@@ -59,8 +71,7 @@ export default function AccountDateToken({ prefix }: { prefix: string }) {
       <Col xs={12}>
         <p style={{ margin: 0 }}>
           <i>
-            If the chosen date is not available/applicable, the fallback value
-            will be used instead.
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.fallback.description" />
           </i>
         </p>
       </Col>

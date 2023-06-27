@@ -4,6 +4,7 @@ import { Card, Checkbox } from '@folio/stripes/components';
 import classNames from 'classnames';
 import { Field, useField } from 'react-final-form';
 import ExportPreviewData from '../../components/ExportPreview/ExportPreviewData';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 export default function ExportPreview() {
   const wrap = useField<boolean>('preview.wrap', {
@@ -11,23 +12,32 @@ export default function ExportPreview() {
     format: (value) => value ?? true,
   }).input.value;
 
+  const intl = useIntl();
+
   return (
     <>
       <Card
-        headerStart="Export preview"
+        headerStart={
+          <FormattedMessage id="ui-plugin-bursar-export.bursarExports.preview.header" />
+        }
         bodyClass={classNames(css.preview, { [css.wrap]: wrap })}
       >
         <ExportPreviewData />
       </Card>
       <p>
         <i>
-          This preview is only a sample and does not represent real data, nor
-          does it consider any specified criteria.
+          <FormattedMessage id="ui-plugin-bursar-export.bursarExports.preview.description" />
         </i>
       </p>
       <Field name="preview.wrap" type="checkbox" defaultValue={true}>
         {(fieldProps) => (
-          <Checkbox {...fieldProps} fullWidth label="Wrap long lines" />
+          <Checkbox
+            {...fieldProps}
+            fullWidth
+            label={intl.formatMessage({
+              id: 'ui-plugin-bursar-export.bursarExports.preview.wrap',
+            })}
+          />
         )}
       </Field>
       <Field name="preview.invisible" type="checkbox" defaultValue={false}>
@@ -35,7 +45,9 @@ export default function ExportPreview() {
           <Checkbox
             {...fieldProps}
             fullWidth
-            label="Display invisible characters (newlines, tabs, and spaces)"
+            label={intl.formatMessage({
+              id: 'ui-plugin-bursar-export.bursarExports.preview.enableInvisibleChar',
+            })}
           />
         )}
       </Field>

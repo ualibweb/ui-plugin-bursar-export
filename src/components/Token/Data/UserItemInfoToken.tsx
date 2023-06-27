@@ -7,27 +7,35 @@ import {
 import React from 'react';
 import { Field } from 'react-final-form';
 import { ItemAttribute, UserAttribute } from '../../../types/TokenTypes';
+import { FormattedMessage } from 'react-intl';
 
 export default function UserItemInfoToken<
   T extends ItemAttribute | UserAttribute
 >({
   defaultValue,
   prefix,
+  attributeName,
   options,
 }: {
   defaultValue: T;
   prefix: string;
+  attributeName: string;
   options: SelectOptionType<T>[];
 }) {
   return (
     <>
       <Col xs={12} md={6}>
-        <Field<T> name={`${prefix}attribute`} defaultValue={defaultValue}>
+        <Field<T>
+          name={`${prefix}${attributeName}`}
+          defaultValue={defaultValue}
+        >
           {(fieldProps) => (
             <Select<T>
               {...fieldProps}
               required
-              label="Value"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.value" />
+              }
               dataOptions={options}
             />
           )}
@@ -39,7 +47,9 @@ export default function UserItemInfoToken<
             <TextField<string>
               {...fieldProps}
               fullWidth
-              label="Fallback value"
+              label={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.fallback" />
+              }
             />
           )}
         </Field>
@@ -47,8 +57,7 @@ export default function UserItemInfoToken<
       <Col xs={12}>
         <p style={{ margin: 0 }}>
           <i>
-            If the chosen value is not available/applicable, the fallback value
-            will be used instead.
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.fallback.description" />
           </i>
         </p>
       </Col>

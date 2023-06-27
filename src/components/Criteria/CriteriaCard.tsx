@@ -16,6 +16,7 @@ import CriteriaFeeFineType from './CriteriaFeeFineType';
 import CriteriaLocation from './CriteriaLocation';
 import CriteriaPatronGroup from './CriteriaPatronGroup';
 import CriteriaServicePoint from './CriteriaServicePoint';
+import CriteriaFeeFineOwner from './CriteriaFeeFineOwner';
 
 export default function CriteriaCard({
   name,
@@ -71,6 +72,12 @@ export default function CriteriaCard({
         return (
           <Row>
             <CriteriaAmount prefix={`${name}.`} />
+          </Row>
+        );
+      case CriteriaTerminalType.FEE_FINE_OWNER:
+        return (
+          <Row>
+            <CriteriaFeeFineOwner prefix={`${name}.`} />
           </Row>
         );
       case CriteriaTerminalType.FEE_FINE_TYPE:

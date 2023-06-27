@@ -22,17 +22,39 @@
     "permissionSets": [
       {
         "permissionName": "ui-plugin-bursar-export.bursar-exports.all",
-        "displayName": "Bursar exports: Bursar admin",
+        "displayName": "Transfer exports: Modify configuration and start jobs",
+        "subPermissions": [
+          "ui-plugin-bursar-export.bursar-exports.manual",
+          "data-export.config.item.post",
+          "data-export.config.item.put"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui-plugin-bursar-export.bursar-exports.manual",
+        "displayName": "Transfer exports: Start manual jobs",
+        "subPermissions": [
+          "ui-plugin-bursar-export.bursar-exports.view",
+          "data-export.job.item.post"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui-plugin-bursar-export.bursar-exports.view",
+        "displayName": "Transfer exports: View configuration",
         "subPermissions": [
           "settings.tenant-settings.enabled",
           "usergroups.collection.get",
           "owners.collection.get",
           "transfers.collection.get",
           "feefines.collection.get",
-          "data-export.config.collection.get",
-          "data-export.config.item.post",
-          "data-export.config.item.put",
-          "data-export.job.item.post"
+          "inventory-storage.service-points.collection.get",
+          "inventory-storage.location-units.institutions.collection.get",
+          "inventory-storage.location-units.campuses.collection.get",
+          "inventory-storage.location-units.campuses.collection.get",
+          "inventory-storage.location-units.libraries.collection.get",
+          "inventory-storage.locations.collection.get",
+          "data-export.config.collection.get"
         ],
         "visible": true
       }
@@ -70,7 +92,6 @@
     "eslint": "^6.2.1",
     "eslint-plugin-filenames": "^1.3.2",
     "eslint-plugin-jest": "^23.0.4",
-    "faker": "^4.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^28.1.3",
     "jest-css-modules": "^2.1.0",
@@ -87,7 +108,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.0.1",
+    "@ngneat/falso": "^6.4.0",
     "classnames": "^2.3.2",
     "lodash": "^4.17.5",
     "prop-types": "^15.5.10",

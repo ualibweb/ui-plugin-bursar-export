@@ -1,19 +1,6 @@
 import LengthControl from '../../types/LengthControl';
 import { DateFormatType } from '../../types/TokenTypes';
 
-export function guardNumber(
-  value: string | undefined,
-  fallback: number
-): number {
-  const parsed = parseFloat(value ?? '');
-
-  if (isNaN(parsed)) {
-    return fallback;
-  }
-
-  return parsed;
-}
-
 export function formatDate(format: DateFormatType, date: Date): number {
   switch (format) {
     case DateFormatType.WEEK_YEAR_ISO:

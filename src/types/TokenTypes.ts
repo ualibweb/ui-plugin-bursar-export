@@ -138,7 +138,7 @@ export type DataToken =
     }
   | {
       type: DataTokenType.ACCOUNT_DATE;
-      attribute: 'CREATED' | 'UPDATED' | 'DUE' | 'RETURNED';
+      dateProperty: 'CREATED' | 'UPDATED' | 'DUE' | 'RETURNED';
       format: DateFormatType;
       timezone: string;
       placeholder: string;
@@ -146,27 +146,26 @@ export type DataToken =
     }
   | {
       type: DataTokenType.FEE_FINE_TYPE;
-      attribute: 'FEE_FINE_TYPE_ID' | 'FEE_FINE_TYPE_NAME';
+      feeFineAttribute: 'FEE_FINE_TYPE_ID' | 'FEE_FINE_TYPE_NAME';
       lengthControl?: LengthControl;
     }
   | {
       type: DataTokenType.ITEM_INFO;
-      attribute: ItemAttribute;
-      placeholder: string;
+      itemAttribute: ItemAttribute;
+      placeholder?: string;
       lengthControl?: LengthControl;
     }
   | {
       type: DataTokenType.USER_DATA;
-      attribute: UserAttribute;
+      userAttribute: UserAttribute;
       placeholder?: string;
       lengthControl?: LengthControl;
     }
   | {
       type: DataTokenType.CONSTANT_CONDITIONAL;
-      conditions: {
-        condition: CriteriaGroup | CriteriaTerminal;
+      conditions?: ((CriteriaGroup | CriteriaTerminal) & {
         value: string;
-      }[];
+      })[];
       else: string;
     }
   | {

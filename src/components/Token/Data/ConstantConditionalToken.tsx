@@ -9,6 +9,7 @@ import {
   CriteriaTerminal,
 } from '../../../types/CriteriaTypes';
 import ConditionalCard from '../../ConditionalCard';
+import { FormattedMessage } from 'react-intl';
 
 export default function ConstantConditionalToken({
   prefix,
@@ -42,7 +43,9 @@ export default function ConstantConditionalToken({
                       {...fieldProps}
                       fullWidth
                       required
-                      label="Then use:"
+                      label={
+                        <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.constantConditional.value" />
+                      }
                     />
                   )}
                 </Field>
@@ -50,14 +53,20 @@ export default function ConstantConditionalToken({
             ))}
           </Col>
           <Col xs={12}>
-            <Card headerStart="Otherwise:">
+            <Card
+              headerStart={
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.otherwise" />
+              }
+            >
               <Field name={`${prefix}else`}>
                 {(fieldProps) => (
                   <TextField<string>
                     {...fieldProps}
                     fullWidth
                     required
-                    label="Fallback value"
+                    label={
+                      <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.fallback" />
+                    }
                   />
                 )}
               </Field>
@@ -67,13 +76,11 @@ export default function ConstantConditionalToken({
             <Button
               onClick={() => fields.push({ type: CriteriaGroupType.ALL_OF })}
             >
-              Add condition
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.addCondition" />
             </Button>
             <p style={{ margin: 0 }}>
               <i>
-                Conditions will be evaluated in order, with the first matched
-                value being used. If no conditions are matched, the fallback
-                value will be used.
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.token.constantConditional.description" />
               </i>
             </p>
           </Col>

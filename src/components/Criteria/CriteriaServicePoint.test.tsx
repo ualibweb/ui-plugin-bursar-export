@@ -28,7 +28,7 @@ const getResponse = jest.fn((endpoint: string) => {
       totalRecords: 4,
     };
   } else {
-    throw new Error(`Unknown endpoint in mock: ${endpoint}`);
+    fail(`Unexpected endpoint: ${endpoint}`);
   }
 });
 

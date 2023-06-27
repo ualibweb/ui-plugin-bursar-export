@@ -1,7 +1,8 @@
 import { Col, Select } from '@folio/stripes/components';
 import React, { useMemo } from 'react';
 import { Field } from 'react-final-form';
-import usePatronGroups from '../../api/usePatronGroups';
+import usePatronGroups from '../../api/queries/usePatronGroups';
+import { FormattedMessage } from 'react-intl';
 
 export default function CriteriaPatronGroup({ prefix }: { prefix: string }) {
   const patronGroups = usePatronGroups();
@@ -26,8 +27,13 @@ export default function CriteriaPatronGroup({ prefix }: { prefix: string }) {
             fullWidth
             marginBottom0
             required
-            label="Patron group"
-            dataOptions={[{ label: '', value: undefined }, ...selectOptions]}
+            label={
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.criteria.select.patronGroup" />
+            }
+            dataOptions={[
+              { label: '', value: undefined },
+              ...selectOptions,
+            ].sort((a, b) => a.label.localeCompare(b.label))}
           />
         )}
       </Field>

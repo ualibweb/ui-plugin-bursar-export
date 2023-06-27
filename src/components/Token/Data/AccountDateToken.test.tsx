@@ -48,7 +48,7 @@ describe('Account date token', () => {
     expect(submitter).toHaveBeenLastCalledWith({
       test: {
         type: DataTokenType.ACCOUNT_DATE,
-        attribute: 'UPDATED',
+        dateProperty: 'UPDATED',
         format: 'QUARTER',
         timezone: 'UTC',
         placeholder: 'placeholder',

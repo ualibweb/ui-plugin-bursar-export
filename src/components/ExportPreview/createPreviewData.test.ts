@@ -1,3 +1,4 @@
+import { CriteriaTerminalType } from '../../types/CriteriaTypes';
 import {
   DataToken,
   DataTokenType,
@@ -11,48 +12,31 @@ import createPreviewData, {
   tokenToNode,
 } from './createPreviewData';
 
-jest.mock('@faker-js/faker', () => ({
-  faker: {
-    string: {
-      uuid: jest.fn(() => 'UUID'),
-      alphanumeric: jest.fn(() => 'ALPHANUMERIC'),
-    },
-    lorem: {
-      words: jest.fn(() => 'WORDS'),
-      word: jest.fn(() => 'WORD'),
-    },
-    internet: {
-      userName: jest.fn(() => 'USERNAME'),
-    },
-    person: {
-      firstName: jest.fn(() => 'FIRST_NAME'),
-      middleName: jest.fn(() => 'MIDDLE_NAME'),
-      lastName: jest.fn(() => 'LAST_NAME'),
-    },
-    date: {
-      past: jest.fn(() => new Date(2001, 0, 1)),
-    },
-    helpers: {
-      arrayElement: jest.fn(([first]) => first),
-    },
-    number: {
-      int: jest.fn(() => 7),
-      float: jest.fn(() => 12.34),
-    },
-  },
+jest.mock('@ngneat/falso', () => ({
+  rand: jest.fn(([first]) => first),
+  randFirstName: jest.fn(() => 'FIRST_NAME'),
+  randFloat: jest.fn(() => 12.34),
+  randLastName: jest.fn(() => 'LAST_NAME'),
+  randNumber: jest.fn(() => 7),
+  randPassword: jest.fn(() => 'ALPHANUMERIC'),
+  randPastDate: jest.fn(() => new Date(2001, 0, 1)),
+  randUserName: jest.fn(() => 'USERNAME'),
+  randUuid: jest.fn(() => 'UUID'),
+  randWord: jest.fn(() => 'WORD'),
+  randTextRange: jest.fn(() => 'WORDS WORDS WORDS'),
 }));
 
 describe('Preview data generation', () => {
   test.each([
     ['FEE_FINE_TYPE_ID', 'UUID'],
-    ['FEE_FINE_TYPE_NAME', 'WORDS'],
+    ['FEE_FINE_TYPE_NAME', 'WORD WORD'],
   ] as const)('formatFeeFineToken(%s)=%s', (type, expected) =>
     expect(formatFeeFineToken(type)).toBe(expected)
   );
 
   test.each([
     ['BARCODE', 'ALPHANUMERIC'],
-    ['NAME', 'WORDS'],
+    ['NAME', 'WORDS WORDS WORDS'],
     ['MATERIAL_TYPE', 'WORD'],
     ['LIBRARY_ID', 'UUID'],
   ] as const)('formatItemToken(%s)=%s', (type, expected) =>
@@ -65,7 +49,7 @@ describe('Preview data generation', () => {
     ['EXTERNAL_SYSTEM_ID', 'ALPHANUMERIC'],
     ['USERNAME', 'USERNAME'],
     ['FIRST_NAME', 'FIRST_NAME'],
-    ['MIDDLE_NAME', 'MIDDLE_NAME'],
+    ['MIDDLE_NAME', 'LAST_NAME'],
     ['LAST_NAME', 'LAST_NAME'],
   ] as const)('formatUserToken(%s)=%s', (type, expected) =>
     expect(formatUserToken(type)).toBe(expected)
@@ -74,8 +58,8 @@ describe('Preview data generation', () => {
   const TEST_AMOUNT = 12.34;
   const TEST_COUNT = 5;
 
-  test.each([
-    [{}, ''],
+  test.each<[Partial<DataToken>, string]>([
+    [{} as DataToken, ''],
     [{ type: DataTokenType.ARBITRARY_TEXT }, ''],
     [{ type: DataTokenType.ARBITRARY_TEXT, text: 'foo' }, 'foo'],
     [{ type: DataTokenType.NEWLINE }, '\n'],
@@ -94,11 +78,17 @@ describe('Preview data generation', () => {
       '2001',
     ],
     [
-      { type: DataTokenType.FEE_FINE_TYPE, attribute: 'FEE_FINE_TYPE_ID' },
+      {
+        type: DataTokenType.FEE_FINE_TYPE,
+        feeFineAttribute: 'FEE_FINE_TYPE_ID',
+      },
       'UUID',
     ],
     [{ type: DataTokenType.ITEM_INFO }, 'UUID'],
-    [{ type: DataTokenType.USER_DATA, attribute: 'BARCODE' }, 'ALPHANUMERIC'],
+    [
+      { type: DataTokenType.USER_DATA, userAttribute: 'BARCODE' },
+      'ALPHANUMERIC',
+    ],
     [
       {
         type: DataTokenType.CONSTANT_CONDITIONAL,
@@ -109,13 +99,13 @@ describe('Preview data generation', () => {
     [
       {
         type: DataTokenType.CONSTANT_CONDITIONAL,
-        conditions: [{ value: 'foo' }],
+        conditions: [{ type: CriteriaTerminalType.PASS, value: 'foo' }],
         else: 'else',
       },
       'foo',
     ],
     [{ type: DataTokenType.AGGREGATE_COUNT }, '5'],
-  ] as const)('tokenToNode(%o)=%s', (token, expected) =>
+  ])('tokenToNode(%o)=%s', (token, expected) =>
     expect(tokenToNode(token as DataToken, TEST_AMOUNT, TEST_COUNT)).toBe(
       expected
     )

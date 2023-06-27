@@ -4,6 +4,7 @@ import { FieldArray } from 'react-final-form-arrays';
 import ConditionalCard from '../../components/ConditionalCard';
 import TransferAccountFields from '../../components/TransferAccountFields';
 import { CriteriaTerminalType } from '../../types/CriteriaTypes';
+import { FormattedMessage } from 'react-intl';
 
 export default function TransferInfoMenu() {
   return (
@@ -21,7 +22,15 @@ export default function TransferInfoMenu() {
             </ConditionalCard>
           ))}
 
-          <Card headerStart={fields.length ? 'Otherwise:' : 'Transfer to:'}>
+          <Card
+            headerStart={
+              fields.length ? (
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.otherwise" />
+              ) : (
+                <FormattedMessage id="ui-plugin-bursar-export.bursarExports.transfer.transferTo" />
+              )
+            }
+          >
             <TransferAccountFields prefix="transferInfo.else." />
           </Card>
 
@@ -32,14 +41,12 @@ export default function TransferInfoMenu() {
               })
             }
           >
-            Add condition
+            <FormattedMessage id="ui-plugin-bursar-export.bursarExports.button.addCondition" />
           </Button>
 
           <p style={{ margin: 0, display: fields.length ? 'block' : 'none' }}>
             <i>
-              Conditions will be evaluated in order, with the first matched
-              transfer account being used. If no conditions are matched, the
-              account listed under &ldquo;otherwise&rdquo; will be used.
+              <FormattedMessage id="ui-plugin-bursar-export.bursarExports.transfer.description" />
             </i>
           </p>
         </>

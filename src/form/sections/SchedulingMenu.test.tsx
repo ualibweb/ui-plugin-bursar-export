@@ -69,7 +69,7 @@ describe('Scheduling menu', () => {
     ).toBeVisible();
     expect(
       screen.getByRole('textbox', {
-        name: (name) => name.startsWith('Run at'),
+        name: (name) => name.startsWith('Start time'),
       })
     ).toBeVisible();
   });
@@ -94,7 +94,7 @@ describe('Scheduling menu', () => {
     ).toBeVisible();
     expect(
       screen.getByRole('textbox', {
-        name: (name) => name.startsWith('Run at'),
+        name: (name) => name.startsWith('Start time'),
       })
     ).toBeVisible();
     expect(
