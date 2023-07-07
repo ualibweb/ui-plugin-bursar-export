@@ -78,6 +78,36 @@ export default function DatePartPicker({ prefix }: { prefix: string }) {
               }),
               value: DateFormatType.WEEK_YEAR_ISO,
             },
+            {
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.dayOfYear',
+              }),
+              value: DateFormatType.DAY_OF_YEAR,
+            },
+            {
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.YYYYMMDD',
+              }),
+              value: DateFormatType.YYYYMMDD,
+            },
+            {
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.YYYY-MM-DD',
+              }),
+              value: DateFormatType.YYYY_MM_DD,
+            },
+            {
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.MMDDYYYY',
+              }),
+              value: DateFormatType.MMDDYYYY,
+            },
+            {
+              label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.DDMMYYYY',
+              }),
+              value: DateFormatType.DDMMYYYY,
+            },
           ]}
         />
       )}

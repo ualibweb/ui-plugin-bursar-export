@@ -117,8 +117,6 @@ export function userDataToDto(
 ): BursarExportDataTokenDTO {
   switch (token.userAttribute) {
     case 'FOLIO_ID':
-    case 'PATRON_GROUP_ID':
-    case 'EXTERNAL_SYSTEM_ID':
       return {
         type: 'UserData',
         value: token.userAttribute,

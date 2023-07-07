@@ -110,11 +110,11 @@ describe('Data token conversion', () => {
     ],
     [
       { type: DataTokenType.USER_DATA, userAttribute: 'PATRON_GROUP_ID' },
-      { type: 'UserData', value: 'PATRON_GROUP_ID' },
+      { type: 'UserDataOptional', value: 'PATRON_GROUP_ID', placeholder: '' },
     ],
     [
       { type: DataTokenType.USER_DATA, userAttribute: 'EXTERNAL_SYSTEM_ID' },
-      { type: 'UserData', value: 'EXTERNAL_SYSTEM_ID' },
+      { type: 'UserDataOptional', value: 'EXTERNAL_SYSTEM_ID', placeholder: '' },
     ],
     [
       { type: DataTokenType.USER_DATA, userAttribute: 'BARCODE' },

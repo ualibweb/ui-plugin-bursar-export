@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React, { ComponentType } from 'react';
-import BursarExportPlugin from './BursarExportPlugin';
+import BursarExportPlugin from './index';
 import { useStripes } from '@folio/stripes/core';
 import withIntlConfiguration from './test/util/withIntlConfiguration';
 import useInitialValues from './hooks/useInitialValues';

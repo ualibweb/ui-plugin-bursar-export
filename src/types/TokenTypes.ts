@@ -25,6 +25,11 @@ export enum DateFormatType {
   QUARTER = 'QUARTER',
   WEEK_OF_YEAR_ISO = 'WEEK_OF_YEAR_ISO',
   WEEK_YEAR_ISO = 'WEEK_YEAR_ISO',
+  DAY_OF_YEAR = 'DAY_OF_YEAR',
+  YYYYMMDD = 'YYYYMMDD',
+  YYYY_MM_DD = 'YYYY-MM-DD',
+  MMDDYYYY = 'MMDDYYYY',
+  DDMMYYYY = 'DDMMYYYY',
 }
 
 export type HeaderFooterToken =
