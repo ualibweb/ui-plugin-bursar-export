@@ -83,7 +83,7 @@
   "bursarExports.token.value": "Value",
 
   "bursarExports.token.headerFooter.typeSelect": "Header/footer type select",
-  
+
   "bursarExports.token.dataType.typeSelect": "Data type select",
 
   "bursarExports.token.whitespace.numSpaces": "Number of spaces",
@@ -99,6 +99,11 @@
   "bursarExports.token.currentDate.format.quarter": "Quarter",
   "bursarExports.token.currentDate.format.isoWeekNum": "ISO week number",
   "bursarExports.token.currentDate.format.isoWeekYear": "ISO week year",
+  "bursarExports.token.currentDate.format.dayOfYear": "Day of year",
+  "bursarExports.token.currentDate.format.YYYYMMDD": "YYYYMMDD",
+  "bursarExports.token.currentDate.format.YYYY-MM-DD": "YYYY-MM-DD",
+  "bursarExports.token.currentDate.format.MMDDYYYY": "MMDDYYYY",
+  "bursarExports.token.currentDate.format.DDMMYYYY": "DDMMYYYY",
   "bursarExports.token.currentDate.timezone": "Timezone",
 
   "bursarExports.token.accountAmount.enableDecimal": "Include the decimal point",

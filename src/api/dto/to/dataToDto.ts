@@ -115,10 +115,7 @@ export function dataTokenToDto(token: DataToken): BursarExportDataTokenDTO {
 export function userDataToDto(
   token: DataToken & { type: DataTokenType.USER_DATA }
 ): BursarExportDataTokenDTO {
-  switch (token.userAttribute) {
-    case 'FOLIO_ID':
-    case 'PATRON_GROUP_ID':
-    case 'EXTERNAL_SYSTEM_ID':
+  if (token.userAttribute == 'FOLIO_ID') {
       return {
         type: 'UserData',
         value: token.userAttribute,
@@ -126,12 +123,12 @@ export function userDataToDto(
       };
 
     // all others (barcode, username, human name) are optional
-    default:
-      return {
-        type: 'UserDataOptional',
-        value: token.userAttribute,
-        placeholder: token.placeholder ?? '',
-        lengthControl: lengthControlToDto(token.lengthControl),
-      };
+  } else {
+    return {
+      type: 'UserDataOptional',
+      value: token.userAttribute,
+      placeholder: token.placeholder ?? '',
+      lengthControl: lengthControlToDto(token.lengthControl),
+    };
   }
 }

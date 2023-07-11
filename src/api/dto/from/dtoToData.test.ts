@@ -88,8 +88,8 @@ describe('DTO to data conversion for initial values', () => {
       },
     ],
     [
-      { type: 'UserData', value: 'EXTERNAL_SYSTEM_ID' },
-      { type: DataTokenType.USER_DATA, userAttribute: 'EXTERNAL_SYSTEM_ID' },
+      { type: 'UserData', value: 'FOLIO_ID' },
+      { type: DataTokenType.USER_DATA, userAttribute: 'FOLIO_ID' },
     ],
     [
       {

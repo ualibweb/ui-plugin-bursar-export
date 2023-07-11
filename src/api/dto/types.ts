@@ -55,7 +55,12 @@ export type DateFormatType =
   | 'SECOND'
   | 'QUARTER'
   | 'WEEK_OF_YEAR_ISO'
-  | 'WEEK_YEAR_ISO';
+  | 'WEEK_YEAR_ISO'
+  | 'DAY_OF_YEAR'
+  | 'YYYYMMDD'
+  | 'YYYY-MM-DD'
+  | 'MMDDYYYY'
+  | 'DDMMYYYY';
 
 /**
  * Filter by fees older than certain number of days
@@ -242,7 +247,7 @@ export interface BursarExportTokenItemData {
  */
 export interface BursarExportTokenUserData {
   type: 'UserData';
-  value: 'FOLIO_ID' | 'PATRON_GROUP_ID' | 'EXTERNAL_SYSTEM_ID';
+  value: 'FOLIO_ID'
   lengthControl?: BursarExportTokenLengthControl;
 }
 export type UserDataOptionalType =
@@ -250,7 +255,9 @@ export type UserDataOptionalType =
   | 'USERNAME'
   | 'FIRST_NAME'
   | 'MIDDLE_NAME'
-  | 'LAST_NAME';
+  | 'LAST_NAME'
+  | 'PATRON_GROUP_ID'
+  | 'EXTERNAL_SYSTEM_ID';
 /**
  * Token to represent optional user data
  */
