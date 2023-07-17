@@ -68,7 +68,7 @@
   "bursarExports.token.tab": "Tab",
   "bursarExports.token.comma": "Comma",
   "bursarExports.token.whitespace": "Whitespace",
-  "bursarExports.token.arbitraryText": "Arbitrary text",
+  "bursarExports.token.arbitraryText": "Text",
   "bursarExports.token.currentDate": "Current date",
   "bursarExports.token.constantConditional": "Conditional text",
   "bursarExports.token.numAccounts": "Number of accounts",
