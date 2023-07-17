@@ -50,6 +50,6 @@ describe('Header/footer type selection', () => {
       )
     );
 
-    expect(screen.getByRole('combobox')).toHaveDisplayValue('Arbitrary text');
+    expect(screen.getByRole('combobox')).toHaveDisplayValue('Text');
   });
 });
