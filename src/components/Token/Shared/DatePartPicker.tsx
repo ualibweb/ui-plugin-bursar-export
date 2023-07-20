@@ -31,6 +31,12 @@ export default function DatePartPicker({ prefix }: { prefix: string }) {
             },
             {
               label: intl.formatMessage({
+                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.dayOfYear',
+              }),
+              value: DateFormatType.DAY_OF_YEAR,
+            },
+            {
+              label: intl.formatMessage({
                 id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.month',
               }),
               value: DateFormatType.MONTH,
@@ -77,12 +83,6 @@ export default function DatePartPicker({ prefix }: { prefix: string }) {
                 id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.isoWeekYear',
               }),
               value: DateFormatType.WEEK_YEAR_ISO,
-            },
-            {
-              label: intl.formatMessage({
-                id: 'ui-plugin-bursar-export.bursarExports.token.currentDate.format.dayOfYear',
-              }),
-              value: DateFormatType.DAY_OF_YEAR,
             },
             {
               label: intl.formatMessage({
