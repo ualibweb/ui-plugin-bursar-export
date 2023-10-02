@@ -1,5 +1,6 @@
 import { CalloutContext } from '@folio/stripes/core';
-import { waitFor, act, renderHook } from '@testing-library/react';
+import { waitFor, act } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 import React, { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import useAutomaticSchedulerMutation from './useAutomaticSchedulerMutation';
@@ -159,7 +160,7 @@ describe('Automatic scheduling mutation', () => {
 
     await waitFor(() => expect(getMock).toHaveBeenCalled());
 
-    act(() => {
+    await act(async () => {
       mutator.current({
         bursar: 'bursar data',
         scheduling: { schedulingData: 'is here!' },
