@@ -1,5 +1,6 @@
 import { CalloutContext } from '@folio/stripes/core';
-import { waitFor, act, renderHook } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react-hooks';
 import React, { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import useManualSchedulerMutation from './useManualSchedulerMutation';
