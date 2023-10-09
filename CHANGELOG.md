@@ -3,7 +3,7 @@
 ## (IN PROGRESS)
 * Support `feesfines` interface version `18.0`. Refs UIPBEX-45.
 
-## [2.4.0](https://github.com/folio-org/ui-plugin-bursar-export/tree/v3.0.0) (2023-10-02)
+## [3.0.0](https://github.com/folio-org/ui-plugin-bursar-export/tree/v3.0.0) (2023-10-02)
 [Full Changelog](https://github.com/folio-org/ui-plugin-bursar-export/compare/v2.4.0...v3.0.0)
 * Upgrade react v18.0.0. Refs FOLIO-3876.
 * Upgrade dependent modules.
