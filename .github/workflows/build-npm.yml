@@ -63,9 +63,6 @@ jobs:
       - name: Run yarn list
         run: yarn list --pattern @folio
 
-      - name: Run yarn why @folio/stripes-types
-        run: yarn why @folio/stripes-types
-
       - name: Run yarn lint
         run: yarn lint
         continue-on-error: true
